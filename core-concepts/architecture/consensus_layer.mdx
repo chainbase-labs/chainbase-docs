@@ -1,0 +1,33 @@
+---
+title: 'Consensus Layer'
+---
+
+The consensus layer ensures that all execution layer nodes in the network reach a consensus on data and state consistency, based on CometBFT's instant final determinacy, achieving second-level data freshness.
+
+## **What is CometBFT**
+
+CometBFT is a software used for securely and consistently replicating applications across multiple machines. It ensures that the system can still operate normally when less than one-third of the machines fail. The core functions of CometBFT include:
+
+- **Security**: Tolerates any type of failure, including malicious attacks.
+- **Consistency**: All normally operating machines can see the same transaction logs and calculate the same state.
+
+## **Features of CometBFT**
+
+- **Byzantine fault tolerance**: CometBFT can tolerate less than one-third of machine failures, which can be in any form, including malicious attacks.
+- **Universal Application Interface**: Through the Application Block Chain Interface (ABCI), developers can use any programming language and development environment to build their own application logic.
+- **High performance and ease of use**: CometBFT is simple in design, high in performance, and suitable for various distributed applications.
+- **Modular design**: Separates the consensus engine from application state management, providing a flexible development environment.
+
+## **Why Choose CometBFT as the Consensus Engine**
+
+In the distributed network of Chainbase Data Network, all execution layer nodes need to reach a consensus on the status of large-scale data processing. The efficiency and resilience of consensus are key factors, so CometBFT is an ideal choice. It ensures that the system can efficiently and robustly reach consensus when processing large amounts of data, providing strong support.
+
+## **How to Integrate CVM Consensus**
+![death spiral](../../images/consensus-layer-1.png)
+
+### CVM Consensus
+
+1. **Block Proposal:** Validators take turns proposing new blocks. The proposing validator requests the latest block from CVM through the Engine API.
+2. **Block Construction:** The execution layer CVM obtains the source data to be processed from the Data Accessibility Layer, runs the logic of the Manuscript data processing submitted to the network, generates the result of the Dataset record and index proof, and builds a new CVM block.
+3. **Block Inclusion:** The proposed CVM block is packaged as a CometBFT transaction and added to the consensus layer block, ready for network validation.
+4. **Finalizing Blocks:** If the proposed consensus layer block obtains the approval of two-thirds of the validator set, the block will be finally determined and added to the Chainbase Data Network chain. These final blocks include the index proof and state after CVM processes the data, and the final consensus block represents that this processed data can be used externally.

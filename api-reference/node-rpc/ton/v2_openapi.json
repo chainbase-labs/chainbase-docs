@@ -1,0 +1,1206 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "TON HTTP API",
+    "description": "\nThis API enables HTTP access to TON blockchain - getting accounts and wallets information, looking up blocks and transactions, sending messages to the blockchain, calling get methods of smart contracts, and more.\n\nIn addition to REST API, all methods are available through [JSON-RPC endpoint](#json%20rpc)  with `method` equal to method name and `params` passed as a dictionary.\n\nThe response contains a JSON object, which always has a boolean field `ok` and either `error` or `result`. If `ok` equals true, the request was successful and the result of the query can be found in the `result` field. In case of an unsuccessful request, `ok` equals false and the error is explained in the `error`.\n\nAPI Key should be sent either as `api_key` query parameter or `X-API-Key` header.\n",
+    "version": "2.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://ton-mainnet.s.chainbase.online/{api-key}/v1",
+      "variables": {
+        "api-key": {
+          "enum": [
+            "demo"
+          ],
+          "default": "demo"
+        }
+      }
+    },
+    {
+      "url": "https://ton-mainnet.s.chainbase.com/{api-key}/v1",
+      "variables": {
+        "api-key": {
+          "enum": [
+            "demo"
+          ],
+          "default": "demo"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/getAddressInformation": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Get Address Information",
+        "description": "Get basic information about the address: balance, code, data, last_transaction_id.",
+        "operationId": "get_address_information_getAddressInformation_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in any form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in any form."
+            },
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getExtendedAddressInformation": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Get Extended Address Information",
+        "description": "Similar to previous one but tries to parse additional information for known contract types. This method is based on tonlib's function *getAccountState*. For detecting wallets we recommend to use *getWalletInformation*.",
+        "operationId": "get_extended_address_information_getExtendedAddressInformation_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in any form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in any form."
+            },
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getWalletInformation": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Get Wallet Information",
+        "description": "Retrieve wallet information. This method parses contract state and currently supports more wallet types than getExtendedAddressInformation: simple wallet, standart wallet, v3 wallet, v4 wallet.",
+        "operationId": "get_wallet_information_getWalletInformation_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in any form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in any form."
+            },
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getTransactions": {
+      "get": {
+        "tags": [
+          "accounts",
+          "transactions"
+        ],
+        "summary": "Get Transactions",
+        "description": "Get transaction history of a given address.",
+        "operationId": "get_transactions_getTransactions_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in any form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in any form."
+            },
+            "name": "address",
+            "in": "query"
+          },
+          {
+            "description": "Maximum number of transactions in response.",
+            "required": false,
+            "schema": {
+              "title": "Limit",
+              "maximum": 100,
+              "minimum": 0,
+              "type": "integer",
+              "description": "Maximum number of transactions in response.",
+              "default": 10
+            },
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "description": "Logical time of transaction to start with, must be sent with *hash*.",
+            "required": false,
+            "schema": {
+              "title": "Lt",
+              "type": "integer",
+              "description": "Logical time of transaction to start with, must be sent with *hash*."
+            },
+            "name": "lt",
+            "in": "query"
+          },
+          {
+            "description": "Hash of transaction to start with, in *base64* or *hex* encoding , must be sent with *lt*.",
+            "required": false,
+            "schema": {
+              "title": "Hash",
+              "type": "string",
+              "description": "Hash of transaction to start with, in *base64* or *hex* encoding , must be sent with *lt*."
+            },
+            "name": "hash",
+            "in": "query"
+          },
+          {
+            "description": "Logical time of transaction to finish with (to get tx from *lt* to *to_lt*).",
+            "required": false,
+            "schema": {
+              "title": "To Lt",
+              "type": "integer",
+              "description": "Logical time of transaction to finish with (to get tx from *lt* to *to_lt*).",
+              "default": 0
+            },
+            "name": "to_lt",
+            "in": "query"
+          },
+          {
+            "description": "By default getTransaction request is processed by any available liteserver. If *archival=true* only liteservers with full history are used.",
+            "required": false,
+            "schema": {
+              "title": "Archival",
+              "type": "boolean",
+              "description": "By default getTransaction request is processed by any available liteserver. If *archival=true* only liteservers with full history are used.",
+              "default": false
+            },
+            "name": "archival",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getAddressBalance": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Get Address Balance",
+        "description": "Get balance (in nanotons) of a given address.",
+        "operationId": "get_address_balance_getAddressBalance_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in any form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in any form."
+            },
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getAddressState": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Get Address",
+        "description": "Get state of a given address. State can be either *unitialized*, *active* or *frozen*.",
+        "operationId": "get_address_getAddressState_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in any form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in any form."
+            },
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/packAddress": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Pack Address",
+        "description": "Convert an address from raw to human-readable format.",
+        "operationId": "pack_address_packAddress_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in raw form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in raw form."
+            },
+            "example": "0:83DFD552E63729B472FCBCC8C45EBCC6691702558B68EC7527E1BA403A0F31A8",
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/unpackAddress": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Unpack Address",
+        "description": "Convert an address from human-readable to raw format.",
+        "operationId": "unpack_address_unpackAddress_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in user-friendly form",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in user-friendly form"
+            },
+            "example": "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N",
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getMasterchainInfo": {
+      "get": {
+        "tags": [
+          "blocks"
+        ],
+        "summary": "Get Masterchain Info",
+        "description": "Get up-to-date masterchain state.",
+        "operationId": "get_masterchain_info_getMasterchainInfo_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getMasterchainBlockSignatures": {
+      "get": {
+        "tags": [
+          "blocks"
+        ],
+        "summary": "Get Masterchain Block Signatures",
+        "description": "Get up-to-date masterchain state.",
+        "operationId": "get_masterchain_block_signatures_getMasterchainBlockSignatures_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Seqno",
+              "type": "integer"
+            },
+            "name": "seqno",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getShardBlockProof": {
+      "get": {
+        "tags": [
+          "blocks"
+        ],
+        "summary": "Get Shard Block Proof",
+        "description": "Get merkle proof of shardchain block.",
+        "operationId": "get_shard_block_proof_getShardBlockProof_get",
+        "parameters": [
+          {
+            "description": "Block workchain id",
+            "required": true,
+            "schema": {
+              "title": "Workchain",
+              "type": "integer",
+              "description": "Block workchain id"
+            },
+            "name": "workchain",
+            "in": "query"
+          },
+          {
+            "description": "Block shard id",
+            "required": true,
+            "schema": {
+              "title": "Shard",
+              "type": "integer",
+              "description": "Block shard id"
+            },
+            "name": "shard",
+            "in": "query"
+          },
+          {
+            "description": "Block seqno",
+            "required": true,
+            "schema": {
+              "title": "Seqno",
+              "type": "integer",
+              "description": "Block seqno"
+            },
+            "name": "seqno",
+            "in": "query"
+          },
+          {
+            "description": "Seqno of masterchain block starting from which proof is required. If not specified latest masterchain block is used.",
+            "required": false,
+            "schema": {
+              "title": "From Seqno",
+              "type": "integer",
+              "description": "Seqno of masterchain block starting from which proof is required. If not specified latest masterchain block is used."
+            },
+            "name": "from_seqno",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getConsensusBlock": {
+      "get": {
+        "tags": [
+          "blocks"
+        ],
+        "summary": "Get Consensus Block",
+        "description": "Get consensus block and its update timestamp.",
+        "operationId": "get_consensus_block_getConsensusBlock_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/lookupBlock": {
+      "get": {
+        "tags": [
+          "blocks"
+        ],
+        "summary": "Lookup Block",
+        "description": "Look up block by either *seqno*, *lt* or *unixtime*.",
+        "operationId": "lookup_block_lookupBlock_get",
+        "parameters": [
+          {
+            "description": "Workchain id to look up block in",
+            "required": true,
+            "schema": {
+              "title": "Workchain",
+              "type": "integer",
+              "description": "Workchain id to look up block in"
+            },
+            "name": "workchain",
+            "in": "query"
+          },
+          {
+            "description": "Shard id to look up block in",
+            "required": true,
+            "schema": {
+              "title": "Shard",
+              "type": "integer",
+              "description": "Shard id to look up block in"
+            },
+            "name": "shard",
+            "in": "query"
+          },
+          {
+            "description": "Block's height",
+            "required": false,
+            "schema": {
+              "title": "Seqno",
+              "type": "integer",
+              "description": "Block's height"
+            },
+            "name": "seqno",
+            "in": "query"
+          },
+          {
+            "description": "Block's logical time",
+            "required": false,
+            "schema": {
+              "title": "Lt",
+              "type": "integer",
+              "description": "Block's logical time"
+            },
+            "name": "lt",
+            "in": "query"
+          },
+          {
+            "description": "Block's unixtime",
+            "required": false,
+            "schema": {
+              "title": "Unixtime",
+              "type": "integer",
+              "description": "Block's unixtime"
+            },
+            "name": "unixtime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/shards": {
+      "get": {
+        "tags": [
+          "blocks"
+        ],
+        "summary": "Get Shards",
+        "description": "Get shards information.",
+        "operationId": "get_shards_shards_get",
+        "parameters": [
+          {
+            "description": "Masterchain seqno to fetch shards of.",
+            "required": true,
+            "schema": {
+              "title": "Seqno",
+              "type": "integer",
+              "description": "Masterchain seqno to fetch shards of."
+            },
+            "name": "seqno",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getBlockTransactions": {
+      "get": {
+        "tags": [
+          "blocks",
+          "transactions"
+        ],
+        "summary": "Get Block Transactions",
+        "description": "Get transactions of the given block.",
+        "operationId": "get_block_transactions_getBlockTransactions_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Workchain",
+              "type": "integer"
+            },
+            "name": "workchain",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Shard",
+              "type": "integer"
+            },
+            "name": "shard",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Seqno",
+              "type": "integer"
+            },
+            "name": "seqno",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Root Hash",
+              "type": "string"
+            },
+            "name": "root_hash",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "File Hash",
+              "type": "string"
+            },
+            "name": "file_hash",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "After Lt",
+              "type": "integer"
+            },
+            "name": "after_lt",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "After Hash",
+              "type": "string"
+            },
+            "name": "after_hash",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Count",
+              "type": "integer",
+              "default": 40
+            },
+            "name": "count",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getBlockHeader": {
+      "get": {
+        "tags": [
+          "blocks"
+        ],
+        "summary": "Get Block Header",
+        "description": "Get metadata of a given block.",
+        "operationId": "get_block_header_getBlockHeader_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Workchain",
+              "type": "integer"
+            },
+            "name": "workchain",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Shard",
+              "type": "integer"
+            },
+            "name": "shard",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Seqno",
+              "type": "integer"
+            },
+            "name": "seqno",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "Root Hash",
+              "type": "string"
+            },
+            "name": "root_hash",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "title": "File Hash",
+              "type": "string"
+            },
+            "name": "file_hash",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/getTokenData": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Get Token Data",
+        "description": "Get NFT or Jetton information.",
+        "operationId": "get_token_data_getTokenData_get",
+        "parameters": [
+          {
+            "description": "Address of NFT collection/item or Jetton master/wallet smart contract",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Address of NFT collection/item or Jetton master/wallet smart contract"
+            },
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/tryLocateTx": {
+      "get": {
+        "tags": [
+          "transactions"
+        ],
+        "summary": "Get Try Locate Tx",
+        "description": "Locate outcoming transaction of *destination* address by incoming message.",
+        "operationId": "get_try_locate_tx_tryLocateTx_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Source",
+              "type": "string"
+            },
+            "name": "source",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Destination",
+              "type": "string"
+            },
+            "name": "destination",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Created Lt",
+              "type": "integer"
+            },
+            "name": "created_lt",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/tryLocateResultTx": {
+      "get": {
+        "tags": [
+          "transactions"
+        ],
+        "summary": "Get Try Locate Result Tx",
+        "description": "Same as previous. Locate outcoming transaction of *destination* address by incoming message",
+        "operationId": "get_try_locate_result_tx_tryLocateResultTx_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Source",
+              "type": "string"
+            },
+            "name": "source",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Destination",
+              "type": "string"
+            },
+            "name": "destination",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Created Lt",
+              "type": "integer"
+            },
+            "name": "created_lt",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/tryLocateSourceTx": {
+      "get": {
+        "tags": [
+          "transactions"
+        ],
+        "summary": "Get Try Locate Source Tx",
+        "description": "Locate incoming transaction of *source* address by outcoming message.",
+        "operationId": "get_try_locate_source_tx_tryLocateSourceTx_get",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "title": "Source",
+              "type": "string"
+            },
+            "name": "source",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Destination",
+              "type": "string"
+            },
+            "name": "destination",
+            "in": "query"
+          },
+          {
+            "required": true,
+            "schema": {
+              "title": "Created Lt",
+              "type": "integer"
+            },
+            "name": "created_lt",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    },
+    "/detectAddress": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Detect Address",
+        "description": "Get all possible address forms.",
+        "operationId": "detect_address_detectAddress_get",
+        "parameters": [
+          {
+            "description": "Identifier of target TON account in any form.",
+            "required": true,
+            "schema": {
+              "title": "Address",
+              "type": "string",
+              "description": "Identifier of target TON account in any form."
+            },
+            "name": "address",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TonResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error"
+          },
+          "504": {
+            "description": "Lite Server Timeout"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TonResponse": {
+        "title": "TonResponse",
+        "required": [
+          "ok"
+        ],
+        "type": "object",
+        "properties": {
+          "ok": {
+            "title": "Ok",
+            "type": "boolean"
+          },
+          "result": {
+            "title": "Result",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "object"
+              }
+            ]
+          },
+          "error": {
+            "title": "Error",
+            "type": "string"
+          },
+          "code": {
+            "title": "Code",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "accounts",
+      "description": "Information about accounts."
+    },
+    {
+      "name": "blocks",
+      "description": "Information about blocks."
+    },
+    {
+      "name": "transactions",
+      "description": "Fetching and locating transactions."
+    }
+  ]
+}

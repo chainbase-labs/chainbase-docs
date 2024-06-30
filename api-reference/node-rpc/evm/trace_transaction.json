@@ -1,0 +1,252 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "EVM JSON-RPC API: trace_transaction",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://{network}.s.chainbase.online/v1",
+            "variables": {
+                "network": {
+                    "enum": [
+                        "ethereum-mainnet",
+                        "polygon-mainnet",
+                        "bsc-mainnet"
+                    ],
+                    "default": "ethereum-mainnet"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/{api-key}": {
+            "post": {
+                "summary": "trace_transaction",
+                "description": "Returns traces for the given transaction\n\n**Parameters**\n\nDATA, 32 Bytes - The transaction's hash\n\n**Returns**\n\nObject - An object of type AdhocTraceArray, see trace_filter.",
+                "operationId": "evm-trace-transaction",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "name": "api-key",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestExample"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseParityTraces"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ParityTrace": {
+                "title": "ParityTrace",
+                "required": [
+                    "action",
+                    "blockHash",
+                    "blockNumber",
+                    "result",
+                    "subtraces",
+                    "traceAddress",
+                    "transactionHash",
+                    "transactionPosition",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "$ref": "#/components/schemas/ParityTraceAction"
+                    },
+                    "blockHash": {
+                        "title": "Blockhash",
+                        "type": "string"
+                    },
+                    "blockNumber": {
+                        "title": "Blocknumber",
+                        "type": "string"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/ParityTraceResult"
+                    },
+                    "subtraces": {
+                        "title": "Subtraces",
+                        "type": "integer"
+                    },
+                    "traceAddress": {
+                        "title": "Traceaddress",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "transactionHash": {
+                        "title": "Transactionhash",
+                        "type": "string"
+                    },
+                    "transactionPosition": {
+                        "title": "Transactionposition",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string"
+                    }
+                }
+            },
+            "ParityTraceAction": {
+                "title": "ParityTraceAction",
+                "required": [
+                    "from",
+                    "callType",
+                    "gas",
+                    "input",
+                    "to",
+                    "value"
+                ],
+                "type": "object",
+                "properties": {
+                    "from": {
+                        "title": "From",
+                        "type": "string"
+                    },
+                    "callType": {
+                        "title": "Calltype",
+                        "type": "string"
+                    },
+                    "gas": {
+                        "title": "Gas",
+                        "type": "string"
+                    },
+                    "input": {
+                        "title": "Input",
+                        "type": "string"
+                    },
+                    "to": {
+                        "title": "To",
+                        "type": "string"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    }
+                }
+            },
+            "ParityTraceResult": {
+                "title": "ParityTraceResult",
+                "required": [
+                    "gasUsed",
+                    "output"
+                ],
+                "type": "object",
+                "properties": {
+                    "gasUsed": {
+                        "title": "Gasused",
+                        "type": "string"
+                    },
+                    "output": {
+                        "title": "Output",
+                        "type": "string"
+                    }
+                }
+            },
+            "RequestExample": {
+                "title": "RequestExample",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "method",
+                    "params"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "default": 1,
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "default": "2.0",
+                        "example": "2.0"
+                    },
+                    "method": {
+                        "title": "Method",
+                        "type": "string",
+                        "default": "trace_transaction"
+                    },
+                    "params": {
+                        "title": "Params",
+                        "type": "array",
+                        "items": {},
+                        "default": [
+                            "0x0b8f9635aad56d18381d2fd7ad0578cd54fb316b0b017948a3048915cfd29034"
+                        ]
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "jsonrpc": "2.0",
+                    "method": "trace_transaction",
+                    "params": [
+                        "0x0b8f9635aad56d18381d2fd7ad0578cd54fb316b0b017948a3048915cfd29034"
+                    ]
+                }
+            },
+            "ResponseParityTraces": {
+                "title": "ResponseParityTraces",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "result"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "example": "2.0"
+                    },
+                    "result": {
+                        "title": "Result",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ParityTrace"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,92 @@
+---
+title: "Reverse Resolve ENS Domain"
+---
+
+Reverse resolving an ENS name involves retrieving the address associated with a given ENS name. This can be useful in cases where you need to verify the ownership of an ENS name or interact with a smart contract associated with the name. By using Chainbase API [Reverse resolve ENS domain](/api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain), you can easily reverse resolve an ENS name and retrieve the associated address on Ethereum or other chains.
+
+It's important to note that reverse resolving an ENS name only works for names that have been registered on the blockchain. If a name has not been registered, it will not have an associated address and therefore cannot be reverse resolved.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. A wallet address as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/3e13e42-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0x57511688c0ca7Cc7C25B90aE51C62B64652136Ac'; // Take our CTO Xiaocong's wallet address as an example.
+
+fetch(`https://api.chainbase.online/v1/ens/reverse?chain_id=${network_id}&address=${wallet_addr}`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0x57511688c0ca7Cc7C25B90aE51C62B64652136Ac'; // Take our CTO Xiaocong's wallet address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/ens/reverse?chain_id=${network_id}&address=${wallet_addr}`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print the reversed resolved ENS domain
+
+Chainbase API [Reverse resolve ENS domain](/api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain) takes the chain id and wallet address as parameters, and returns the reversed resolved ENS domain name.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the corresponding domain name of Xiaocong’s wallet on Ethereum is `lxcong`, which means you can get the wallet address using `lxcong.eth`.
+
+```jsx
+[
+  {
+    "address": "0x57511688c0ca7cc7c25b90ae51c62b64652136ac",
+    "expiration_time": "2023-04-17T14:19:21Z",
+    "name": "lxcong",
+    "owner": "0x57511688c0ca7Cc7C25B90aE51C62B64652136Ac",
+    "registrant": "0x57511688c0ca7cc7c25b90ae51c62b64652136ac",
+    "registrant_time": "2022-04-17T08:30:09Z",
+    "resolver": "0x4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41",
+    "text_records": {},
+    "token_id": "63135721284494715790867739452503301817186787830065141439742276093364926543362"
+  }
+]
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Reverse resolve ENS domain](/api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

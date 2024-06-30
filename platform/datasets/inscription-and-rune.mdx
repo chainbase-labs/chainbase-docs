@@ -1,0 +1,47 @@
+---
+title: "Inscription & Rune Data Support"
+---
+
+## Inscription & Rune Overview
+
+Chainbase is built on the Streaming Warehouse prepared for the blockchain, constructing datasets in various fields. We hope to contribute to the Data field for BTC ecology under Inscription & Rune, making it easier and more efficient for developers to join the BTC ecosystem.
+
+## Why Inscription & Rune is a Challenge from a Data Perspective in the Future
+
+- Theoretically, all blockchains can run the Inscription protocol. Due to their low barrier to entry, throughput and storage will become challenges.
+- The protocol is in its early stages, some indexers are still in the paper stage and have not been implemented. This requires infrastructure capabilities.
+- The current implementation of indexers is more to solve the asset rights of Inscription & Rune off-chain, while the mining of blockchain data requires more capabilities.
+
+## What has Chainbase done?
+
+### Integrating Community Indexer
+
+At present, Inscription & Rune generally open source protocol indexer, to ensure the legitimacy of off-chain asset verification and provide simple query services. Chainbase hopes to stay integrated with the community, continuously ingesting data into the Chainbase data platform to facilitate the re-mining of data value and create more data applications. At the same time, it can contribute code to the community's indexer.
+
+![](https://files.readme.io/efa8bd6-image.png)
+
+### Unify Data Abstraction Capability
+
+Due to the lack of standardization in the Inscription & Rune's indexer, different indexer protocols use different languages and repeatedly build with different business logic. For example, all indexers will implement balance calculations related to the tick. The platform-based capability of chainbase can unify this part of data abstraction logic, integrating more inscription protocols at a lower cost.
+
+![](https://files.readme.io/28b55ed-image.png)
+
+### Make Developers Better Use Inscription & Rune Data
+
+With the data platform capability based on chainbase, developers can explore more data value. For example
+
+- Insight into investment opportunities on Inscription & Rune based on the product features of datacloud, such as the excavation of smart money
+- The ability to actively push based on sync, develop robots based on message flow
+- Integrate Inscription & Rune asset data into wallet applications and more based on web3 APIs
+
+![](https://files.readme.io/0416381-image.png)
+
+## Dataset Supported
+
+* [brc20.token_balances](/catalog/Bitcoin/Abstracted/brc20_token_balances)
+* [brc20.token_activities](/catalog/Bitcoin/Abstracted/brc20_token_activities)
+* [brc20.token_info](/catalog/Bitcoin/Abstracted/brc20_token_info)
+* [pipe.token_balances](/catalog/Bitcoin/Abstracted/pipe_token_balances)
+* [pipe.token_activities](/catalog/Bitcoin/Abstracted/pipe_token_activities)
+* [pipe.token_info](/catalog/Bitcoin/Abstracted/pipe_token_info)
+

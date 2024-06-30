@@ -1,0 +1,141 @@
+---
+title: "Get all transfers of a NFT collection"
+---
+
+If you're interested in tracking the transfers of an NFT collection, there are a few steps you can take to easily access this information. First, you need to find the contract address of the NFT collection you're interested in. You can usually find this on the collection's website or on a marketplace where the collection is listed. After you get the contract address, you can use Chainbase to view all the transactions related to that collection. With Chainbase API, you can easily access all the transfers of an NFT collection and gain valuable insights into the collection's activity.
+
+Once you have these results, you can analyze the data to see who owns each NFT and when it was transferred. This can be useful for tracking the value of a particular NFT or for understanding the buying and selling patterns of a collection's community.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. An NFT contract address as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/d07df31-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take the contract address of Azuki as an example.
+
+fetch(`https://api.chainbase.online/v1/nft/transfers?chain_id=${network_id}&contract_address=${contract_addr}&page=1&limit=5`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take the contract address of Azuki as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/nft/transfers?chain_id=${network_id}&contract_address=${contract_addr}&page=1&limit=5`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print all transfers of an NFT collection
+
+Chainbase API [Get NFT owners by collection](/api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection) takes the chain id and contract address as parameters, and returns all transfers of an NFT collection. You can also filter the results using constraints like block number and timestamp.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the first five transfers of Azuki on Ethereum are as follows by the time of Mar. 23rd, 2023.
+
+```jsx
+[
+  {
+    block_number: 16892442,
+    block_timestamp: '2023-03-23T19:53:59Z',
+    from_address: '0x77e3e957082ca648c1c5b0f3e6aec00ab1245186',
+    log_index: 244,
+    operator_address: '',
+    to_address: '0xc58d63d59ad68930c9fdff6f1ac479c5c9941ef4',
+    token_id: '0x1719',
+    transaction_hash: '0xd4e351146e6bb87fc945bd334a98ab886473c6acdf52468ae69e35c3944b0c90',
+    transaction_index: 108,
+    value: '0'
+  },
+  {
+    block_number: 16892439,
+    block_timestamp: '2023-03-23T19:53:23Z',
+    from_address: '0xfbff2739978790aa7655fb1b75bb1811e347c1fd',
+    log_index: 229,
+    operator_address: '',
+    to_address: '0x77e3e957082ca648c1c5b0f3e6aec00ab1245186',
+    token_id: '0x1e72',
+    transaction_hash: '0x9b6f9c66adbdc0fd04c3e338bc35a076a8300d8dedfeb60f6110c8b0986f907f',
+    transaction_index: 99,
+    value: '0'
+  },
+  {
+    block_number: 16892256,
+    block_timestamp: '2023-03-23T19:16:23Z',
+    from_address: '0x23d01763c1d3f5f0e8f2302cb143a4d069c816b6',
+    log_index: 266,
+    operator_address: '',
+    to_address: '0x3b968d2d299b895a5fcf3bba7a64ad0f566e6f88',
+    token_id: '0x04ea',
+    transaction_hash: '0x01f8a9c333611a64b24fc29ba72c04e09c4582621b910b6c8829312fd5759a9e',
+    transaction_index: 133,
+    value: '0'
+  },
+  {
+    block_number: 16892256,
+    block_timestamp: '2023-03-23T19:16:23Z',
+    from_address: '0x3b968d2d299b895a5fcf3bba7a64ad0f566e6f88',
+    log_index: 274,
+    operator_address: '',
+    to_address: '0x70b97a0da65c15dfb0ffa02aee6fa36e507c2762',
+    token_id: '0x04ea',
+    transaction_hash: '0x01f8a9c333611a64b24fc29ba72c04e09c4582621b910b6c8829312fd5759a9e',
+    transaction_index: 133,
+    value: '0'
+  },
+  {
+    block_number: 16892256,
+    block_timestamp: '2023-03-23T19:16:23Z',
+    from_address: '0x70b97a0da65c15dfb0ffa02aee6fa36e507c2762',
+    log_index: 276,
+    operator_address: '',
+    to_address: '0x5f6ac80cdb9e87f3cfa6a90e5140b9a16a361d5c',
+    token_id: '0x04ea',
+    transaction_hash: '0x01f8a9c333611a64b24fc29ba72c04e09c4582621b910b6c8829312fd5759a9e',
+    transaction_index: 133,
+    value: '0'
+  }
+]
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get NFT owners by collection](/api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

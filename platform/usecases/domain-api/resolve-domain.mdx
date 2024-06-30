@@ -1,0 +1,98 @@
+---
+title: "Resolve ENS Domain"
+---
+
+To resolve an ENS domain name, you can use Chainbase API [Resolve ENS domain](/api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain). The steps are as follows.
+
+An ENS (Ethereum Name Service) domain name is a unique identifier that points to an Ethereum address. It is a decentralized naming system built on the Ethereum blockchain. Resolving an ENS domain name means translating it into the corresponding Ethereum address. It is important to resolve an ENS domain name because it makes it easier to send and receive cryptocurrency payments.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. An ENS domain name as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/a917ffc-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+domain = 'paradigm.eth'; // Take paradigm.eth as an example.
+
+fetch(`https://api.chainbase.online/v1/ens/records?chain_id=${network_id}&domain=${domain}`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+domain = 'paradigm.eth'; // Take paradigm.eth as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/ens/records?chain_id=${network_id}&domain=${domain}`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print the resolved address
+
+Chainbase API [Resolve ENS domain](/api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain) takes the chain id and an ENS domain name as parameters, and returns the resolved address related to the domain name.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, data returned is as follows by the time of Mar. 23rd, 2023.
+
+```jsx
+{
+  "name": "paradigm",
+  "address": "0x29ecfa2bee3538bb45d5017141a2e36208f1c082",
+  "registrant": "0x29ecfa2bee3538bb45d5017141a2e36208f1c082",
+  "owner": "0x29ecfA2BEe3538bB45D5017141a2e36208f1C082",
+  "resolver": "0x4976fb03c32e5b8cfe2b6ccb31c09ba78ebaba41",
+  "registrant_time": "2020-08-30T00:21:53Z",
+  "expiration_time": "2021-08-30T06:11:05Z",
+  "token_id": "25678324544658514891171433701500781853442152332474238876092807294041322428124",
+  "text_records": {
+    "avatar": "https://sushi.com/static/media/logo.dec926df.png",
+    "com.github": "andrecronje",
+    "com.twitter": "a16z",
+    "description": "Skate on the Paradigm and shift it when I feel like",
+    "email": "careers@mcdonalds.com",
+    "eth.ens.delegate": "https://discuss.ens.domains/t/ens-dao-delegate-applications/815/1045",
+    "url": "https://www.forbes.com/sites/stevenehrlich/2021/10/06/the-richest-under-30-in-the-world-all-thanks-to-crypto"
+  }
+}
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Resolve ENS domain](/api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

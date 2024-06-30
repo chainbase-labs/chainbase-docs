@@ -1,0 +1,210 @@
+openapi: '3.0.2'
+info:
+  title: Data Cloud Task API
+  version: '1.0'
+servers:
+  - url: https://api.chainbase.com/api/v1
+paths:
+  /dw/query:
+    post:
+      parameters:
+        - $ref: '#/components/parameters/X-API-KEY'
+        - $ref: '#/components/parameters/Content-Type'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  example: "select number, transactions_count from ethereum.blocks order by number desc limit 3000;"
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "sql is empty"
+                  code:
+                    type: integer
+                    format: int32
+                    example: 1001
+                  data:
+                    type: array
+                    example: []
+  /query/execute:
+    post:
+      parameters:
+        - $ref: '#/components/parameters/X-API-KEY'
+        - $ref: '#/components/parameters/Content-Type'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sql:
+                  type: string
+                  example: "SELECT * FROM ethereum.blocks LIMIT 10"
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "sql is empty"
+                  code:
+                    type: integer
+                    format: int32
+                    example: 1001
+                  data:
+                    type: array
+                    example: []
+  /execution/{execution_id}/result:
+    get:
+      parameters:
+        - name: execution_id
+          description: The ID of the execution
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/X-API-KEY'
+        - $ref: '#/components/parameters/Content-Type'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+  /execution/{execution_id}/status:
+    get:
+      parameters:
+        - name: execution_id
+          description: The ID of the execution
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/X-API-KEY'
+        - $ref: '#/components/parameters/Content-Type'
+      responses:
+# {
+#   "code": 200,
+#   "data": [
+#     {
+#       "executionId": "4676570409dea44d1d9f8414508b7744",
+#       "status": "FINISHED",
+#       "queryId": 0,
+#       "message": "",
+#       "progress": 100,
+#       "submittedAt": "2023-12-01T08:48:30.486Z",
+#       "expiresAt": "2023-12-01T09:18:31.030Z",
+#       "executionStartedAt": "2023-12-01T08:48:31.014Z",
+#       "executionEndedAt": "2023-12-01T08:48:31.030Z"
+#     }
+#   ],
+#   "message": "success"
+# }
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        executionId:
+                          type: string
+                          example: "4676570409dea44d1d9f8414508b7744"
+                        status:
+                          type: string
+                          example: "FINISHED"
+                        queryId:
+                          type: integer
+                          format: int32
+                          example: 0
+                        message:
+                          type: string
+                          example: ""
+                        progress:
+                          type: integer
+                          format: int32
+                          example: 100
+                        submittedAt:
+                          type: string
+                          format: date-time
+                          example: "2023-12-01T08:48:30.486Z"
+                        expiresAt:
+                          type: string
+                          format: date-time
+                          example: "2023-12-01T09:18:31.030Z"
+                        executionStartedAt:
+                          type: string
+                          format: date-time
+                          example: "2023-12-01T08:48:31.014Z"
+                        executionEndedAt:
+                          type: string
+                          format: date-time
+                          example: "2023-12-01T08:48:31.030Z"
+                  message:
+                    type: string
+                    example: "success"
+# {
+#   "message": "query task not found: xxxx",
+#   "data": [],
+#   "code": 1001
+# }
+        '400':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "query task not found: xxxx"
+                  code:
+                    type: integer
+                    format: int32
+                    example: 1001
+                  data:
+                    type: array
+                    example: []
+
+components:
+  parameters:
+    X-API-KEY:
+      name: X-API-KEY
+      in: header
+      required: true
+      schema:
+        type: string
+    Content-Type:
+      name: Content-Type
+      in: header
+      required: true
+      schema:
+        type: string
+        example: "application/json"

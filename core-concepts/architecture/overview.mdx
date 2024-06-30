@@ -1,0 +1,51 @@
+---
+title: "Overview"
+---
+
+# **Architecture**
+
+<img className="block" src="/images/overview.png" alt="overview" />
+
+# Module Introduction
+
+### **Data Accessibility Layer**
+
+The Data Accessibility Layer manages data access and storage in the network, is compatible with data access interfaces for both streaming and batch scenarios, and provides data validity verification. It includes:
+
+- **Data Access Interface:** Provides access to both batch and streaming data.
+- **Data Storage:** Supports various storage solutions, including Lakehouse, Arweave, S3, and IPFS.
+- **Data Proof:** Implements zk-proofs and storage-based consensus paradigms to ensure data integrity and availability.
+
+### **Consensus Layer**
+
+The consensus layer ensures that all nodes in the network reach a consensus on data and status consistency, based on CometBFT's instant finality, achieving second-level data freshness. Including:
+
+- **Consensus Algorithm:** Based on CometBFT and DPoS (Delegated Proof of Stake) to achieve efficient and secure consensus.
+- **ABCI++:** An extension of Cosmos network's ABI, responsible for converting the state of the Chainbase Virtual Machine (CVM) to a format compatible with the CometBFT consensus engine.
+- **Stake Aggregator:** Aggregates staked tokens from various Cosmos ecosystem sources to ensure network security.
+
+### **Execution Layer**
+
+The execution layer is responsible for large-scale data processing and execution of Manuscripts' data transformation logic. Including:
+
+- **Chainbase Virtual Machine (CVM):** A virtual machine that provides parallel computing capabilities to execute Manuscripts
+  - **Parallel Execution Engine:** Utilizes multithreading for parallel data processing, enhancing performance and throughput.
+  - **ChainbaseDB (CDB):** A database system that supports multiple data storage engines, including VectorDB, GraphDB, and KV storage.
+- **Eigenlayer AVS (Proof Verification System):** Introducing the Ethereum economic security brought by Restake, making the CVM running environment fully decentralized
+
+### **Dual Staked Security**
+
+This module enhances the network security of the consensus layer and execution layer in the dual-chain architecture through a double staked mechanism. Including:
+
+- Shared Staked Pool:
+  - Native Token Stake: $CNB native token captures network value
+  - Eigenlayer Restake: Introduces Ethereum tokens with low volatility and deep liquidity
+- Double Staked Model: By aggregating all validators' stake and their power mapping for various assets, the total cryptographic economic security is calculated.
+
+### Manuscripts
+
+Manuscripts defines the standard schema that different data sources need to follow when converting into datasets.
+
+### CVM Interface
+
+The CVM Interface provides a set of standardized interface protocols for interacting and communicating with CVM, allowing developers to write and manage Manuscripts on the network, as well as access Dataset in the data network.

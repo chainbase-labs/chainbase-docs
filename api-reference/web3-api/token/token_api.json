@@ -1,0 +1,1297 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "\ud83e\ude99 Token API",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.chainbase.online",
+            "description": "production server"
+        }
+    ],
+    "paths": {
+        "/v1/token/metadata": {
+            "get": {
+                "tags": [
+                    "Token Metadata"
+                ],
+                "summary": "Get token metadata",
+                "description": "Get the metadata of a specified token.",
+                "operationId": "GetTokenMetadata",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the token contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the token contract"
+                        },
+                        "example": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetTokenMetadata"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token/transfers": {
+            "get": {
+                "tags": [
+                    "Token Transfers"
+                ],
+                "summary": "Get token transfers by contract",
+                "description": "Retrieves historical token transfer transactions for any ERC20 contract.",
+                "operationId": "GetTokenTransfers",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the token contract",
+                        "required": false,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the token contract"
+                        },
+                        "example": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": false,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive from block number (hex string or int)",
+                        "required": false,
+                        "schema": {
+                            "title": "From Block",
+                            "type": "string",
+                            "description": "Inclusive from block number (hex string or int)"
+                        },
+                        "name": "from_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive to block number (hex string, int, or 'latest')",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "Inclusive to block number (hex string, int, or 'latest')"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive start timestamp",
+                        "required": false,
+                        "schema": {
+                            "title": "From Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive start timestamp"
+                        },
+                        "name": "from_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive end timestamp",
+                        "required": false,
+                        "schema": {
+                            "title": "End Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive end timestamp"
+                        },
+                        "name": "end_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetTokenTransfers"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token/holders": {
+            "get": {
+                "tags": [
+                    "Token Holders"
+                ],
+                "summary": "Get token holders",
+                "description": "Get the list of holders of the specified contract.",
+                "operationId": "GetTokenHolders",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the token contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the token contract"
+                        },
+                        "example": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetTokenHolds"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token/top-holders": {
+            "get": {
+                "tags": [
+                    "Token Holders"
+                ],
+                "summary": "Get top token holders",
+                "description": "Get the list of top holders of the specified contract.",
+                "operationId": "GetTopTokenHolders",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the token contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the token contract"
+                        },
+                        "example": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetTopTokenHolder"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token/price": {
+            "get": {
+                "tags": [
+                    "Market Data"
+                ],
+                "summary": "Get token price",
+                "description": "Get the price of the specified token.",
+                "operationId": "GetTokenPrice",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the token contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the token contract"
+                        },
+                        "example": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetTokenPrice"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/token/price/history": {
+            "get": {
+                "tags": [
+                    "Market Data"
+                ],
+                "summary": "Get token price history",
+                "description": "Get the historical price of the specified token.",
+                "operationId": "GetTokenPriceHistory",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the token contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the token contract"
+                        },
+                        "example": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive start timestamp",
+                        "required": true,
+                        "schema": {
+                            "title": "From Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive start timestamp"
+                        },
+                        "example": 1672502400,
+                        "name": "from_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive end timestamp, the interval should not exceed 90 days",
+                        "required": true,
+                        "schema": {
+                            "title": "End Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive end timestamp, the interval should not exceed 90 days"
+                        },
+                        "example": 1677524800,
+                        "name": "end_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetTokenPriceHistory"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Erc20BalanceDTO": {
+                "title": "Erc20BalanceDTO",
+                "required": [
+                    "wallet_address",
+                    "original_amount"
+                ],
+                "type": "object",
+                "properties": {
+                    "wallet_address": {
+                        "title": "Wallet Address",
+                        "type": "string"
+                    },
+                    "original_amount": {
+                        "title": "Original Amount",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "title": "Amount",
+                        "type": "string"
+                    },
+                    "usd_value": {
+                        "title": "Usd Value",
+                        "type": "string"
+                    }
+                }
+            },
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseGetTokenHolds": {
+                "title": "ResponseGetTokenHolds",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetTokenMetadata": {
+                "title": "ResponseGetTokenMetadata",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/TokenMetaBase"
+                    }
+                }
+            },
+            "ResponseGetTokenPrice": {
+                "title": "ResponseGetTokenPrice",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/TokenPrice"
+                    }
+                }
+            },
+            "ResponseGetTokenPriceHistory": {
+                "title": "ResponseGetTokenPriceHistory",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TokenPrice"
+                        }
+                    }
+                }
+            },
+            "ResponseGetTokenTransfers": {
+                "title": "ResponseGetTokenTransfers",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TokenTransfer"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetTopTokenHolder": {
+                "title": "ResponseGetTopTokenHolder",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Erc20BalanceDTO"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "TokenMetaBase": {
+                "title": "TokenMetaBase",
+                "required": [
+                    "contract_address",
+                    "decimals",
+                    "name",
+                    "symbol"
+                ],
+                "type": "object",
+                "properties": {
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string",
+                        "description": "ERC-20 contract address."
+                    },
+                    "decimals": {
+                        "title": "Decimals",
+                        "type": "integer",
+                        "description": "The number of decimals the token uses."
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the ERC-20 token."
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the ERC-20 token."
+                    },
+                    "total_supply": {
+                        "title": "Total Supply",
+                        "type": "string",
+                        "description": "The total supply of the ERC-20 token."
+                    },
+                    "logos": {
+                        "title": "Logos",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TokenMetaLogo"
+                        },
+                        "description": "List of logo images for the ERC-20 token."
+                    },
+                    "urls": {
+                        "title": "Urls",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TokenMetaURL"
+                        },
+                        "description": "List of urls for the ERC-20 token."
+                    },
+                    "current_usd_price": {
+                        "title": "Current Usd Price",
+                        "type": "number",
+                        "description": "The current price of the ERC-20 token in USD."
+                    }
+                }
+            },
+            "TokenMetaLogo": {
+                "title": "TokenMetaLogo",
+                "required": [
+                    "uri",
+                    "width",
+                    "height"
+                ],
+                "type": "object",
+                "properties": {
+                    "uri": {
+                        "title": "Uri",
+                        "type": "string",
+                        "description": "URI for the logo image."
+                    },
+                    "width": {
+                        "title": "Width",
+                        "type": "integer",
+                        "description": "The logo image's approximate width in pixels."
+                    },
+                    "height": {
+                        "title": "Height",
+                        "type": "integer",
+                        "description": "The logo image's approximate height in pixels."
+                    }
+                }
+            },
+            "TokenMetaURL": {
+                "title": "TokenMetaURL",
+                "required": [
+                    "name",
+                    "url"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the link."
+                    },
+                    "url": {
+                        "title": "Url",
+                        "type": "string",
+                        "description": "The URL of the link."
+                    }
+                }
+            },
+            "TokenPrice": {
+                "title": "TokenPrice",
+                "required": [
+                    "price",
+                    "symbol",
+                    "decimals",
+                    "updated_at"
+                ],
+                "type": "object",
+                "properties": {
+                    "price": {
+                        "title": "Price",
+                        "type": "number",
+                        "description": "The price of the ERC-20 token in USD."
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the ERC-20 token."
+                    },
+                    "decimals": {
+                        "title": "Decimals",
+                        "type": "integer",
+                        "description": "The number of decimals of the ERC-20 token."
+                    },
+                    "updated_at": {
+                        "title": "Updated At",
+                        "type": "string",
+                        "description": "The updated time of the price for the ERC-20 token.",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "TokenTransfer": {
+                "title": "TokenTransfer",
+                "required": [
+                    "block_number",
+                    "block_timestamp",
+                    "transaction_index",
+                    "log_index",
+                    "transaction_hash",
+                    "from_address",
+                    "to_address",
+                    "value"
+                ],
+                "type": "object",
+                "properties": {
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer"
+                    },
+                    "block_timestamp": {
+                        "title": "Block Timestamp",
+                        "type": "string"
+                    },
+                    "transaction_index": {
+                        "title": "Transaction Index",
+                        "type": "integer"
+                    },
+                    "log_index": {
+                        "title": "Log Index",
+                        "type": "integer"
+                    },
+                    "transaction_hash": {
+                        "title": "Transaction Hash",
+                        "type": "string"
+                    },
+                    "from_address": {
+                        "title": "From Address",
+                        "type": "string"
+                    },
+                    "to_address": {
+                        "title": "To Address",
+                        "type": "string"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

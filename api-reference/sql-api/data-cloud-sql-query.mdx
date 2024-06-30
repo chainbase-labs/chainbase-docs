@@ -1,0 +1,37 @@
+---
+title: "Data Cloud SQL Query (Classic)"
+openapi: "post /dw/query"
+---
+
+## Example
+
+Query the hashes of the last 3,000 blocks in Ethereum and the number of transactions in each block:
+
+```bash
+curl -X "POST" "https://api.chainbase.online/v1/dw/query" \
+     -H 'X-API-KEY: YOUR-API-KEY ' \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "query": "select number, transactions_count from ethereum.blocks order by number desc limit 3000;"
+}'
+```
+
+If there are more than 1000 rows, you need to paginate through the`task_id` and `page` to get all the results:
+
+```bash
+curl -X "POST" "https://api.chainbase.online/v1/dw/query" \
+     -H 'X-API-KEY: YOUR-API-KEY ' \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+       "task_id": "xxxxxxxxxxxxxxxxxxxxx",
+       "page": 2
+}'
+```
+
+<Note>
+🚧 Note
+
+1. When `quey_id` is passed in, the content of query will be ignored
+2. The executed request generates a `task_id`, which is valid for 1 hour
+3. A maximum of 100,000 pieces of data are allowed to be obtained from the request, and 1,000 results are paginated per page
+</Note>

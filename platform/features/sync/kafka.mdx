@@ -1,0 +1,107 @@
+---
+title: "Kafka"
+---
+
+## Overview
+
+**The Cloud-Native Kafka**, It was designed to a **robust and high-throughput**, adept at handling vast volumes of data with unparalleled efficiency. Its core attributes, such as High Throughput and Low Latency, make it an ideal choice for applications that demand rapid and consistent data transfer.
+
+With its inherent **Reliability and Replayability**, Cloud-Native Kafka ensures that no piece of data is ever lost in the shuffle. Whether you're dealing with **high-frequency** trading platforms in the **DeFi** or managing** large-scale dApp** user activities, Its capabilities offer a distinct advantage in the bustling world of Web3.
+
+<Frame>
+    <img src="https://files.readme.io/8dfd112-image.png" />
+</Frame>
+
+## Scenarios
+
+- **High-frequency Trades Analysis in DEX**: Cloud-Native Kafka's ability to handle large amounts of real-time trade data provides exchanges with **instant trade** analytics, aiding traders in making more informed decisions. Its **high throughput** ensures that during peak trading times, every piece of trade data is accurately captured.
+- **Liquidity Monitoring in DeFi**: In DeFi, the rate of liquidity changes can be swift. Cloud-Native Kafka tracks these changes in real-time, offering users the latest liquidity information, thereby assisting them in making timely investment decisions.
+- **Real-time in NFT Markets**: In NFT markets, tracking its dynamics event in real-time becomes crucial. Cloud-Native Kafka captures every purchase, sale, or auction event, offering market participants the latest market trends.
+
+## Benefits
+
+Here are the core benefits the Chainbase Cloud-Native Kafka could offer:
+
+- **High Throughput**: Tailored for large-scale Web3 data updates, The Cloud-Native Kafka ensures that data transmission is done efficiently and at unparalleled speeds.
+- **Reliability**: With redundant data storage across a distributed system, Chainbase Cloud-Native Kafka guarantees data preservation and accessibility, and keep the service 7/24 reliable.
+- **Low Latency**: Benefit from near-instantaneous data transmission with Kafka's low latency feature. Whether it's for real-time analytics or time-sensitive applications, Kafka ensures minimal delay from data generation to consumption.
+- **Replayability**: Dive back into past data streams at any point, enabling a comprehensive review and ensuring Web3 data integrity and accuracy over time.
+
+## Quick Start
+
+### 1. Enable Kafka Integration
+
+When you enter the `Sync - Kafka` integration, you will see the integration-enable panel as below. Just click the `enable` button to turn on the integration. the system would automatically initialize the `Consumer-Group` which bind to account.
+
+<Frame caption="Enable Kafka Integration">
+	<img src="https://files.readme.io/3287235-image.png" />
+</Frame>
+
+<Frame caption="BootStrap Server & Consumer Group">
+	<img src="https://files.readme.io/ed49281-image.png" />
+</Frame>
+
+Once you have enable the integration. The `Bootstrap Servers` & `Consumer Group` connection information has show on the top-left.
+
+## 2. Create Kafka Credentials(Key:Secret)
+
+And next, you must to create a credentials before you need to connect the Cloud-Native kafka. Just click the `Credentials` to create.
+
+<Frame>
+	<img src="https://files.readme.io/c30eb9d-image.png" />
+</Frame>
+
+Once you click the `create` button, the credentials will be initialized and show on the popup
+
+<Warning>
+📣 WARN: Download or Copy to save the Credentials which just show once when created. You must create a credential when connecting a new topic, **A new Topic corresponds to a new certificate**
+</Warning>
+
+<Frame>
+    <img src="https://files.readme.io/c79ef80-image.png" />
+</Frame>
+<Frame>
+    <img src="https://files.readme.io/f5a0065-image.png" />
+</Frame>
+
+The credentials created would be show in table as above.
+
+### 3. Choose the dataset to preview the format
+
+<Frame>
+    <img src="https://files.readme.io/3e2da3e-image.png" />
+</Frame>
+
+<Frame caption="Preview dataset format">
+	<img src="https://files.readme.io/24fab6a-image.png" />
+</Frame>
+
+#### Supported Topics
+
+When using kafka to consume data, you can use the topics listed in the table below as the `Kafka Topic`.
+
+| Network | Kafka Topics |
+|---------|--------------|
+| ethereum | ethereum_blocks  <br />ethereum_contracts  <br />ethereum_erc20_transfer  <br />ethereum_transactions  <br />ethereum_logs  <br />ethereum_traces |
+| optimism | optimism_blocks  <br />optimism_contracts  <br />optimism_erc20_transfer  <br />optimism_transactions  <br />optimism_logs  <br />optimism_traces |
+| bsc | bsc_blocks  <br />bsc_contracts  <br />bsc_erc20_transfer  <br />bsc_transactions  <br />bsc_logs bsc_traces |
+| polygon | polygon_blocks  <br />polygon_contracts  <br />polygon_erc20_transfer  <br />polygon_transactions  <br />polygon_logs  <br />polygon_traces |
+| avalanche | avalanche_blocks  <br />avalanche_contracts  <br />avalanche_erc20_transfer  <br />avalanche_transactions  <br />avalanche_logs  <br />avalanche_traces |
+| arbitrum | arbitrum_blocks  <br />arbitrum_contracts  <br />arbitrum_erc20_transfer  <br />arbitrum_transactions  <br />arbitrum_logs  <br />arbitrum_traces |
+| base | base_blocks  <br />base_contracts  <br />base_erc20_transfer  <br />base_transactions  <br />base_logs  <br />base_traces |
+| zksync | zksync_blocks  <br />zksync_contracts  <br />zksync_erc20_transfer  <br />zksync_transactions  <br />zksync_logs  <br />zksync_traces |
+
+
+### 4. Connect with Credentials
+
+Just continue with the button, The examples of different language would be show to u as the `step-2 connect with client`
+
+<Frame>
+    <img src="https://files.readme.io/72bc398-image.png" />
+</Frame>
+
+## References
+
+***
+
+[The Cloud-Native Kafka: Boosting Data Synchronization Reliability and Consistency](https://chainbase.com/blog/article/the-cloud-native-kafka-boosting-data-synchronization-reliability-and-consistency)

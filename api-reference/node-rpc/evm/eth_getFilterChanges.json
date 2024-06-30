@@ -1,0 +1,222 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "EVM JSON-RPC API: eth_getFilterChanges",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://{network}.s.chainbase.online/v1",
+            "variables": {
+                "network": {
+                    "enum": [
+                        "ethereum-mainnet",
+                        "ethereum-goerli",
+                        "polygon-mainnet",
+                        "polygon-mumbai",
+                        "bsc-mainnet",
+                        "bsc-testnet",
+                        "avalanche-mainnet",
+                        "avalanche-testnet",
+                        "fantom-mainnet",
+                        "fantom-testnet",
+                        "arbitrum-mainnet",
+                        "arbitrum-goerli",
+                        "optimism-mainnet",
+                        "base-mainnet",
+                        "base-goerli",
+                        "zksync-mainnet",
+                        "zksync-testnet"
+                    ],
+                    "default": "ethereum-mainnet"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/{api-key}": {
+            "post": {
+                "summary": "eth_getFilterChanges",
+                "description": "Returns an array of objects of type Log\n\nan array of block hashes (for eth_newBlockFilter) \nor an array of transaction hashes (for eth_newPendingTransactionFilter) \nor an empty array if nothing has changed since the last poll.\n\n**Note**\n\nIn solidity: The first topic is the hash of the signature of the event \n(if you have not declared the event anonymous.\n\n**Parameters**\n\n- `QUANTITY` - The filter id\n\n**Returns**\n\n- `Object` - An object of type FilterLog is defined as\n  - `removed`: `BOOLEAN` - true when the log was removed, due to a chain reorganization. \n  false if its a valid log\n  - `logIndex`: `QUANTITY` - Integer of the log index position in the block. null when its pending log\n  - `transactionIndex`: `QUANTITY` - Integer of the transactions index position log was created from. \n  null when its pending log\n  - `transactionHash`: `DATA`, 32 Bytes - hash of the transactions this log was created from. \n  null when its pending log\n  - `blockHash`: `DATA`, 32 Bytes - hash of the block where this log was in. null when its pending. \n  null when its pending log\n  - `blockNumber`: `QUANTITY` - The block number where this log was in. null when its pending. \n  null when its pending log\n  - `address`: `DATA`, 20 Bytes - address from which this log originated\n  - `data`: `DATA` - contains one or more 32 Bytes non-indexed arguments of the log\n  - `topics`: `Array of DATA` - Array of 0 to 4 32 Bytes DATA of indexed log arguments.",
+                "operationId": "evm-eth-getFilterChanges",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "name": "api-key",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestExample"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseFilter"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Log": {
+                "title": "Log",
+                "required": [
+                    "address",
+                    "blockHash",
+                    "blockNumber",
+                    "data",
+                    "logIndex",
+                    "removed",
+                    "transactionHash",
+                    "transactionIndex"
+                ],
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "title": "Address",
+                        "type": "string",
+                        "description": "Sender of the transaction"
+                    },
+                    "blockHash": {
+                        "title": "Blockhash",
+                        "type": "string"
+                    },
+                    "blockNumber": {
+                        "title": "Blocknumber",
+                        "type": "string"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "string"
+                    },
+                    "logIndex": {
+                        "title": "Logindex",
+                        "type": "string"
+                    },
+                    "removed": {
+                        "title": "Removed",
+                        "type": "boolean"
+                    },
+                    "topics": {
+                        "title": "Topics",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "transactionHash": {
+                        "title": "Transactionhash",
+                        "type": "string"
+                    },
+                    "transactionIndex": {
+                        "title": "Transactionindex",
+                        "type": "string"
+                    }
+                }
+            },
+            "RequestExample": {
+                "title": "RequestExample",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "method",
+                    "params"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "default": 1,
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "default": "2.0",
+                        "example": "2.0"
+                    },
+                    "method": {
+                        "title": "Method",
+                        "type": "string",
+                        "default": "eth_getFilterChanges"
+                    },
+                    "params": {
+                        "title": "Params",
+                        "type": "array",
+                        "items": {},
+                        "default": [
+                            "0x1234"
+                        ]
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "jsonrpc": "2.0",
+                    "method": "eth_getFilterChanges",
+                    "params": [
+                        "0x1234"
+                    ]
+                }
+            },
+            "ResponseFilter": {
+                "title": "ResponseFilter",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "result"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "example": "2.0"
+                    },
+                    "result": {
+                        "title": "Result",
+                        "anyOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Log"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

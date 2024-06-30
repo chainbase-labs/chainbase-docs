@@ -1,0 +1,2676 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "\ud83d\uddbc NFT API",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.chainbase.online",
+            "description": "production server"
+        }
+    ],
+    "paths": {
+        "/v1/nft/transfers": {
+            "get": {
+                "tags": [
+                    "NFT Transfers"
+                ],
+                "summary": "Get NFT transfers by collection",
+                "description": "Get the historical transfer transactions for a specified contract address.",
+                "operationId": "GetNFTTransfers",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": false,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "NFT token id in hex or num string",
+                        "required": false,
+                        "schema": {
+                            "title": "Token Id",
+                            "type": "string",
+                            "description": "NFT token id in hex or num string"
+                        },
+                        "example": "1",
+                        "name": "token_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": false,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive from block number (hex string or int)",
+                        "required": false,
+                        "schema": {
+                            "title": "From Block",
+                            "type": "string",
+                            "description": "Inclusive from block number (hex string or int)"
+                        },
+                        "name": "from_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive to block number (hex string, int, or 'latest')",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "Inclusive to block number (hex string, int, or 'latest')"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive start timestamp",
+                        "required": false,
+                        "schema": {
+                            "title": "From Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive start timestamp"
+                        },
+                        "name": "from_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive end timestamp",
+                        "required": false,
+                        "schema": {
+                            "title": "End Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive end timestamp"
+                        },
+                        "name": "end_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTTransfers"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/metadata": {
+            "get": {
+                "tags": [
+                    "NFT Metadata"
+                ],
+                "summary": "Get NFT metadata",
+                "description": "Get the metadata associated with the specified NFT.",
+                "operationId": "GetNFTMetadata",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "NFT token id in hex or num string",
+                        "required": true,
+                        "schema": {
+                            "title": "Token Id",
+                            "type": "string",
+                            "description": "NFT token id in hex or num string"
+                        },
+                        "example": "1",
+                        "name": "token_id",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTMetadata"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/collection": {
+            "get": {
+                "tags": [
+                    "NFT Collections"
+                ],
+                "summary": "Get NFT collection metadata",
+                "description": "Query NFT collection metadata.",
+                "operationId": "GetNFTCollection",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/collection/items": {
+            "get": {
+                "tags": [
+                    "NFT Collections"
+                ],
+                "summary": "Get NFT collection items",
+                "description": "Query NFT collection items metadata.",
+                "operationId": "GetNFTCollectionItems",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTCollectionItems"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/search": {
+            "get": {
+                "tags": [
+                    "NFT Collections"
+                ],
+                "summary": "Search for NFT collections using names and contract addresses",
+                "description": "Return a list of NFT Collection search results.\n\nSearch by name or query a specified contract address.",
+                "operationId": "GetNFTSearch",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Fuzzy search for NFT names.",
+                        "required": true,
+                        "schema": {
+                            "title": "Name",
+                            "type": "string",
+                            "description": "Fuzzy search for NFT names."
+                        },
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Used to accurately query specified collection.",
+                        "required": false,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "Used to accurately query specified collection."
+                        },
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseSearchNFT"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/owner": {
+            "get": {
+                "tags": [
+                    "NFT Ownership"
+                ],
+                "summary": "Get NFT owner by token",
+                "description": "Get the current owner for a specified NFT token.",
+                "operationId": "GetNFTOwner",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "NFT token id in hex or num string",
+                        "required": true,
+                        "schema": {
+                            "title": "Token Id",
+                            "type": "string",
+                            "description": "NFT token id in hex or num string"
+                        },
+                        "example": "1",
+                        "name": "token_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTOwner"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/owners": {
+            "get": {
+                "tags": [
+                    "NFT Ownership"
+                ],
+                "summary": "Get NFT owners by collection",
+                "description": "Get all owners for a specified NFT collection.",
+                "operationId": "GetNFTOwners",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTOwners"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/owner/history": {
+            "get": {
+                "tags": [
+                    "NFT Ownership"
+                ],
+                "summary": "Get NFT owner history by token",
+                "description": "Get the list of historical owner addresses for a specified NFT token.",
+                "operationId": "GetNFTOwnerHistory",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": false,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "NFT token id in hex or num string",
+                        "required": false,
+                        "schema": {
+                            "title": "Token Id",
+                            "type": "string",
+                            "description": "NFT token id in hex or num string"
+                        },
+                        "example": "1",
+                        "name": "token_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive from block number (hex string or int)",
+                        "required": false,
+                        "schema": {
+                            "title": "From Block",
+                            "type": "string",
+                            "description": "Inclusive from block number (hex string or int)"
+                        },
+                        "name": "from_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive to block number (hex string, int, or 'latest')",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "Inclusive to block number (hex string, int, or 'latest')"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive start timestamp",
+                        "required": false,
+                        "schema": {
+                            "title": "From Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive start timestamp"
+                        },
+                        "name": "from_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive end timestamp",
+                        "required": false,
+                        "schema": {
+                            "title": "End Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive end timestamp"
+                        },
+                        "name": "end_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTOwnerHistory"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/floor_price": {
+            "get": {
+                "tags": [
+                    "NFT Marketplace Data"
+                ],
+                "summary": "Get floor price by collection",
+                "description": "Get the current floor price of an NFT collection.",
+                "operationId": "GetNFTFloorPrice",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTPrice"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/price/history": {
+            "get": {
+                "tags": [
+                    "NFT Marketplace Data"
+                ],
+                "summary": "Get floor price history by collection",
+                "description": "Get the historical floor prices of an NFT collection.",
+                "operationId": "GetNFTPriceHistory",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive start timestamp",
+                        "required": true,
+                        "schema": {
+                            "title": "From Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive start timestamp"
+                        },
+                        "name": "from_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive end timestamp",
+                        "required": true,
+                        "schema": {
+                            "title": "End Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive end timestamp"
+                        },
+                        "name": "end_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTPriceHistory"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/collection/trending": {
+            "get": {
+                "tags": [
+                    "NFT Marketplace Data"
+                ],
+                "summary": "Get trending collections by marketplace",
+                "description": "Get the trending NFT collections on marketplaces over a period of time.",
+                "operationId": "GetNFTCollectionTrending",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "1h, 12h, 24h, 1d, 7d, 15d, 30d, 60d, 90d, default 7d",
+                        "required": false,
+                        "schema": {
+                            "title": "Range",
+                            "type": "string",
+                            "description": "1h, 12h, 24h, 1d, 7d, 15d, 30d, 60d, 90d, default 7d",
+                            "default": "7d"
+                        },
+                        "example": "7d",
+                        "name": "range",
+                        "in": "query"
+                    },
+                    {
+                        "description": "'opensea', 'x2y2', 'looksrare'. Default 'all'.",
+                        "required": false,
+                        "schema": {
+                            "title": "Exchange Name",
+                            "type": "string",
+                            "description": "'opensea', 'x2y2', 'looksrare'. Default 'all'.",
+                            "default": "all"
+                        },
+                        "name": "exchange_name",
+                        "in": "query"
+                    },
+                    {
+                        "description": "volume_desc, volume_asc, sales_desc, sales_asc, floor_price_change_desc, floor_price_change_asc. Default volume_desc.",
+                        "required": false,
+                        "schema": {
+                            "title": "Sort",
+                            "type": "string",
+                            "description": "volume_desc, volume_asc, sales_desc, sales_asc, floor_price_change_desc, floor_price_change_asc. Default volume_desc.",
+                            "default": "volume_desc"
+                        },
+                        "name": "sort",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetNFTTrending"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/nft/rarity": {
+            "get": {
+                "tags": [
+                    "NFT Metadata"
+                ],
+                "summary": "Get NFT rarity",
+                "operationId": "GetNFTRarity",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "NFT token id in hex or num string",
+                        "required": false,
+                        "schema": {
+                            "title": "Token Id",
+                            "type": "string",
+                            "description": "NFT token id in hex or num string"
+                        },
+                        "example": "1",
+                        "name": "token_id",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Rank Min",
+                            "type": "integer",
+                            "default": 0
+                        },
+                        "name": "rank_min",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Rank Max",
+                            "type": "integer",
+                            "default": 0
+                        },
+                        "name": "rank_max",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 10000.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseNFTRarity"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string"
+                    }
+                }
+            },
+            "GetNFTTrendingData": {
+                "title": "GetNFTTrendingData",
+                "required": [
+                    "avg_price",
+                    "collection",
+                    "contract_address",
+                    "exchange_name",
+                    "floor_price",
+                    "floor_price_change",
+                    "last_floor_price",
+                    "latest_trade_time",
+                    "sales",
+                    "volume"
+                ],
+                "type": "object",
+                "properties": {
+                    "avg_price": {
+                        "title": "Avg Price",
+                        "type": "number"
+                    },
+                    "collection": {
+                        "$ref": "#/components/schemas/NFTCollection"
+                    },
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string"
+                    },
+                    "exchange_name": {
+                        "title": "Exchange Name",
+                        "type": "string"
+                    },
+                    "floor_price": {
+                        "title": "Floor Price",
+                        "type": "number"
+                    },
+                    "floor_price_change": {
+                        "title": "Floor Price Change",
+                        "type": "number"
+                    },
+                    "last_floor_price": {
+                        "title": "Last Floor Price",
+                        "type": "number"
+                    },
+                    "latest_trade_time": {
+                        "title": "Latest Trade Time",
+                        "type": "string"
+                    },
+                    "sales": {
+                        "title": "Sales",
+                        "type": "integer"
+                    },
+                    "volume": {
+                        "title": "Volume",
+                        "type": "number"
+                    }
+                }
+            },
+            "NFTAsset": {
+                "title": "NFTAsset",
+                "required": [
+                    "blockchain",
+                    "contract_address",
+                    "token_id",
+                    "erc_type",
+                    "name",
+                    "owner",
+                    "symbol",
+                    "image_uri",
+                    "mint_time",
+                    "mint_transaction_hash",
+                    "token_uri"
+                ],
+                "type": "object",
+                "properties": {
+                    "blockchain": {
+                        "title": "Blockchain",
+                        "type": "string",
+                        "description": "The blockchain name."
+                    },
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string",
+                        "description": "The contract address."
+                    },
+                    "token_id": {
+                        "title": "Token Id",
+                        "type": "string",
+                        "description": "The token ID number."
+                    },
+                    "erc_type": {
+                        "title": "Erc Type",
+                        "type": "string",
+                        "description": "ERC standard related to the contract."
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the NFT contract."
+                    },
+                    "owner": {
+                        "title": "Owner",
+                        "type": "string",
+                        "description": "The address who owns the token_id now "
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the NFT contract."
+                    },
+                    "image_uri": {
+                        "title": "Image Uri",
+                        "type": "string",
+                        "description": "The image of the NFT assets."
+                    },
+                    "mint_time": {
+                        "title": "Mint Time",
+                        "type": "integer",
+                        "description": "The ms timestamp when the token was minted."
+                    },
+                    "mint_transaction_hash": {
+                        "title": "Mint Transaction Hash",
+                        "type": "string",
+                        "description": "The transaction hash when the token was minted."
+                    },
+                    "token_uri": {
+                        "title": "Token Uri",
+                        "type": "string",
+                        "description": "The token URI of the NFT assets."
+                    },
+                    "metadata": {
+                        "title": "Metadata",
+                        "description": "The metadata of the NFT assets."
+                    },
+                    "traits": {
+                        "title": "Traits",
+                        "description": "List of traits of the NFT assets."
+                    },
+                    "rarity_score": {
+                        "title": "Rarity Score",
+                        "type": "number",
+                        "description": "The rarity score of the NFT assets."
+                    },
+                    "rarity_rank": {
+                        "title": "Rarity Rank",
+                        "type": "integer",
+                        "description": "The rarity rank of the NFT assets."
+                    }
+                }
+            },
+            "NFTCollection": {
+                "title": "NFTCollection",
+                "required": [
+                    "contract_address",
+                    "name",
+                    "symbol",
+                    "description",
+                    "owner",
+                    "erc_type",
+                    "banner_image_url",
+                    "image_url"
+                ],
+                "type": "object",
+                "properties": {
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string",
+                        "description": "The contract address of the NFT collection"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the NFT collection"
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the NFT contract"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string",
+                        "description": "The description of the NFT colleciton"
+                    },
+                    "owner": {
+                        "title": "Owner",
+                        "type": "string",
+                        "description": "The user address who owns the contract"
+                    },
+                    "deploy_block_number": {
+                        "title": "Deploy Block Number",
+                        "type": "integer",
+                        "description": "The block number when the contract was deployed."
+                    },
+                    "erc_type": {
+                        "title": "Erc Type",
+                        "type": "string",
+                        "description": "ERC standard related to the contract."
+                    },
+                    "banner_image_url": {
+                        "title": "Banner Image Url",
+                        "type": "string",
+                        "description": "The URL of the banner image."
+                    },
+                    "image_url": {
+                        "title": "Image Url",
+                        "type": "string",
+                        "description": "The URL of the image asset."
+                    },
+                    "media_info": {
+                        "title": "Media Info",
+                        "description": "The medio information."
+                    },
+                    "traits": {
+                        "title": "Traits",
+                        "description": "List of NFT collection traits."
+                    },
+                    "floor_prices": {
+                        "title": "Floor Prices",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTCollectionFloorPrice"
+                        },
+                        "description": "List of floor prices."
+                    }
+                }
+            },
+            "NFTCollectionFloorPrice": {
+                "title": "NFTCollectionFloorPrice",
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "title": "Value",
+                        "type": "string",
+                        "description": "The ammount of the ERC-20 token."
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the ERC-20 token."
+                    },
+                    "address": {
+                        "title": "Address",
+                        "type": "string",
+                        "description": "The address of the ERC-20 token."
+                    }
+                }
+            },
+            "NFTOwners": {
+                "title": "NFTOwners",
+                "required": [
+                    "address",
+                    "total"
+                ],
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "title": "Address",
+                        "type": "string"
+                    },
+                    "total": {
+                        "title": "Total",
+                        "type": "integer"
+                    }
+                }
+            },
+            "NFTPrice": {
+                "title": "NFTPrice",
+                "required": [
+                    "floor_price",
+                    "symbol",
+                    "updated_at"
+                ],
+                "type": "object",
+                "properties": {
+                    "floor_price": {
+                        "title": "Floor Price",
+                        "type": "number"
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "title": "Updated At",
+                        "type": "string"
+                    }
+                }
+            },
+            "NFTRarity": {
+                "title": "NFTRarity",
+                "required": [
+                    "token_id",
+                    "rank",
+                    "rank_share",
+                    "score",
+                    "total_supply"
+                ],
+                "type": "object",
+                "properties": {
+                    "token_id": {
+                        "title": "Token Id",
+                        "type": "string"
+                    },
+                    "rank": {
+                        "title": "Rank",
+                        "type": "integer"
+                    },
+                    "rank_share": {
+                        "title": "Rank Share",
+                        "type": "integer"
+                    },
+                    "score": {
+                        "title": "Score",
+                        "type": "number"
+                    },
+                    "total_supply": {
+                        "title": "Total Supply",
+                        "type": "integer"
+                    },
+                    "properties": {
+                        "title": "Properties",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTRarityProperties"
+                        }
+                    }
+                }
+            },
+            "NFTRarityProperties": {
+                "title": "NFTRarityProperties",
+                "required": [
+                    "trait_type",
+                    "value",
+                    "rate",
+                    "total"
+                ],
+                "type": "object",
+                "properties": {
+                    "trait_type": {
+                        "title": "Trait Type",
+                        "type": "string"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    },
+                    "rate": {
+                        "title": "Rate",
+                        "type": "number"
+                    },
+                    "total": {
+                        "title": "Total",
+                        "type": "integer"
+                    }
+                }
+            },
+            "NFTTransfers": {
+                "title": "NFTTransfers",
+                "required": [
+                    "block_number",
+                    "block_timestamp",
+                    "transaction_hash",
+                    "transaction_index",
+                    "log_index",
+                    "from_address",
+                    "to_address",
+                    "operator_address",
+                    "token_id",
+                    "value"
+                ],
+                "type": "object",
+                "properties": {
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer"
+                    },
+                    "block_timestamp": {
+                        "title": "Block Timestamp",
+                        "type": "string"
+                    },
+                    "transaction_hash": {
+                        "title": "Transaction Hash",
+                        "type": "string"
+                    },
+                    "transaction_index": {
+                        "title": "Transaction Index",
+                        "type": "integer"
+                    },
+                    "log_index": {
+                        "title": "Log Index",
+                        "type": "integer"
+                    },
+                    "from_address": {
+                        "title": "From Address",
+                        "type": "string"
+                    },
+                    "to_address": {
+                        "title": "To Address",
+                        "type": "string"
+                    },
+                    "operator_address": {
+                        "title": "Operator Address",
+                        "type": "string"
+                    },
+                    "token_id": {
+                        "title": "Token Id",
+                        "type": "string"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseGetNFTCollection": {
+                "title": "ResponseGetNFTCollection",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/NFTCollection"
+                    }
+                }
+            },
+            "ResponseGetNFTCollectionItems": {
+                "title": "ResponseGetNFTCollectionItems",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTAsset"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetNFTMetadata": {
+                "title": "ResponseGetNFTMetadata",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/NFTAsset"
+                    }
+                }
+            },
+            "ResponseGetNFTOwner": {
+                "title": "ResponseGetNFTOwner",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseGetNFTOwnerHistory": {
+                "title": "ResponseGetNFTOwnerHistory",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTTransfers"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetNFTOwners": {
+                "title": "ResponseGetNFTOwners",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTOwners"
+                        }
+                    }
+                }
+            },
+            "ResponseGetNFTPrice": {
+                "title": "ResponseGetNFTPrice",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/NFTPrice"
+                    }
+                }
+            },
+            "ResponseGetNFTPriceHistory": {
+                "title": "ResponseGetNFTPriceHistory",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTPrice"
+                        }
+                    }
+                }
+            },
+            "ResponseGetNFTTransfers": {
+                "title": "ResponseGetNFTTransfers",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTTransfers"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetNFTTrending": {
+                "title": "ResponseGetNFTTrending",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GetNFTTrendingData"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseNFTRarity": {
+                "title": "ResponseNFTRarity",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTRarity"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseSearchNFT": {
+                "title": "ResponseSearchNFT",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTAsset"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

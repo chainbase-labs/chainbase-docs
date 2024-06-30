@@ -1,0 +1,351 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "EVM JSON-RPC API: eth_getBlockByNumber",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://{network}.s.chainbase.online/v1",
+            "variables": {
+                "network": {
+                    "enum": [
+                        "ethereum-mainnet",
+                        "ethereum-goerli",
+                        "polygon-mainnet",
+                        "polygon-mumbai",
+                        "bsc-mainnet",
+                        "bsc-testnet",
+                        "avalanche-mainnet",
+                        "avalanche-testnet",
+                        "fantom-mainnet",
+                        "fantom-testnet",
+                        "arbitrum-mainnet",
+                        "arbitrum-goerli",
+                        "optimism-mainnet",
+                        "base-mainnet",
+                        "base-goerli",
+                        "zksync-mainnet",
+                        "zksync-testnet"
+                    ],
+                    "default": "ethereum-mainnet"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/{api-key}": {
+            "post": {
+                "summary": "eth_getBlockByNumber",
+                "description": "Returns information about a block given the block's number.\n\n**Parameters**\n\n- `QUANTITY|TAG` - Integer block number or one of \"earliest\", \"latest\" or \"pending\"\n- `Boolean` - If true it returns the full transaction objects, if false only the hashes of the transactions\n\n**Returns**\n\n- `Object` - An object of type Block defined as:\n- `number`: `QUANTITY` - The block number or null when pending\n- `hash`: `DATA`, 32 Bytes - Hash of the block or null when pending\n- `parentHash`: `DATA`, 32 Bytes - Hash of the parent block\n- `nonce`: `DATA`, 8 bytes - Hash of the proof of work or null when pending\n- `sha3Uncles`: `DATA`, 32 Bytes - SHA3 of the uncles data in the block\n- `logsBloom`: `DATA`, 256 Bytes - The bloom filter for the block's logs or null when pending\n- `transactionsRoot`: `DATA`, 32 Bytes - The root of the transaction trie of the block\n- `stateRoot`: `DATA`, 32 Bytes - The root of the final state trie of the block\n- `receiptsRoot`: `DATA`, 32 Bytes - The root of the receipts trie of the block\n- `miner`: `DATA`, 20 Bytes - The address of the beneficiary to whom the mining rewards were given\n- `difficulty`: `QUANTITY` - Integer of the difficulty for this block\n- `totalDifficulty`: `QUANTITY` - Integer of the total difficulty of the chain until this block\n- `extraData`: `DATA` - The extra data field of this block\n- `size`: `QUANTITY` - Integer the size of this block in bytes\n- `gasLimit`: `QUANTITY` - The maximum gas allowed in this block\n- `gasUsed`: `QUANTITY` - The total used gas by all transactions in this block\n- `timestamp`: `QUANTITY` - The unix timestamp for when the block was collated\n- `transactions`: `ARRAY` - Array of transaction objects, or 32 Bytes transaction hashes depending on the \nlast given parameter\n- `uncles`: `ARRAY` - Array of uncle hashes",
+                "operationId": "evm-eth-getBlockByNumber",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "name": "api-key",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestExample"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseBlock"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Block": {
+                "title": "Block",
+                "required": [
+                    "number",
+                    "hash",
+                    "parentHash",
+                    "nonce",
+                    "sha3Uncles",
+                    "logsBloom",
+                    "transactionsRoot",
+                    "stateRoot",
+                    "receiptsRoot",
+                    "miner",
+                    "difficulty",
+                    "extraData",
+                    "size",
+                    "gasLimit",
+                    "gasUsed",
+                    "timestamp",
+                    "transactions",
+                    "uncles"
+                ],
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "title": "Number",
+                        "type": "string",
+                        "description": "The hex representation of the block's height"
+                    },
+                    "hash": {
+                        "title": "Hash",
+                        "type": "string"
+                    },
+                    "parentHash": {
+                        "title": "Parenthash",
+                        "type": "string"
+                    },
+                    "nonce": {
+                        "title": "Nonce",
+                        "type": "string"
+                    },
+                    "sha3Uncles": {
+                        "title": "Sha3Uncles",
+                        "type": "string"
+                    },
+                    "logsBloom": {
+                        "title": "Logsbloom",
+                        "type": "string"
+                    },
+                    "transactionsRoot": {
+                        "title": "Transactionsroot",
+                        "type": "string"
+                    },
+                    "stateRoot": {
+                        "title": "Stateroot",
+                        "type": "string"
+                    },
+                    "receiptsRoot": {
+                        "title": "Receiptsroot",
+                        "type": "string"
+                    },
+                    "miner": {
+                        "title": "Miner",
+                        "type": "string"
+                    },
+                    "difficulty": {
+                        "title": "Difficulty",
+                        "type": "string"
+                    },
+                    "totalDifficulty": {
+                        "title": "Totaldifficulty",
+                        "type": "string"
+                    },
+                    "extraData": {
+                        "title": "Extradata",
+                        "type": "string"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "string"
+                    },
+                    "gasLimit": {
+                        "title": "Gaslimit",
+                        "type": "string"
+                    },
+                    "gasUsed": {
+                        "title": "Gasused",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "title": "Timestamp",
+                        "type": "string"
+                    },
+                    "transactions": {
+                        "title": "Transactions",
+                        "anyOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Tx"
+                                }
+                            }
+                        ]
+                    },
+                    "uncles": {
+                        "title": "Uncles",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "RequestExample": {
+                "title": "RequestExample",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "method",
+                    "params"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "default": 1,
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "default": "2.0",
+                        "example": "2.0"
+                    },
+                    "method": {
+                        "title": "Method",
+                        "type": "string",
+                        "default": "eth_getBlockByNumber"
+                    },
+                    "params": {
+                        "title": "Params",
+                        "type": "array",
+                        "items": {},
+                        "default": [
+                            "latest",
+                            false
+                        ]
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "jsonrpc": "2.0",
+                    "method": "eth_getBlockByNumber",
+                    "params": [
+                        "latest",
+                        false
+                    ]
+                }
+            },
+            "ResponseBlock": {
+                "title": "ResponseBlock",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "result"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "example": "2.0"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/Block"
+                    }
+                }
+            },
+            "Tx": {
+                "title": "Tx",
+                "required": [
+                    "blockHash",
+                    "blockNumber",
+                    "from",
+                    "gas",
+                    "gasPrice",
+                    "hash",
+                    "input",
+                    "nonce",
+                    "transactionIndex",
+                    "value",
+                    "v",
+                    "r",
+                    "s"
+                ],
+                "type": "object",
+                "properties": {
+                    "blockHash": {
+                        "title": "Blockhash",
+                        "type": "string"
+                    },
+                    "blockNumber": {
+                        "title": "Blocknumber",
+                        "type": "string"
+                    },
+                    "from": {
+                        "title": "From",
+                        "type": "string",
+                        "description": "The sender of the transaction"
+                    },
+                    "gas": {
+                        "title": "Gas",
+                        "type": "string"
+                    },
+                    "gasPrice": {
+                        "title": "Gasprice",
+                        "type": "string"
+                    },
+                    "hash": {
+                        "title": "Hash",
+                        "type": "string"
+                    },
+                    "input": {
+                        "title": "Input",
+                        "type": "string"
+                    },
+                    "nonce": {
+                        "title": "Nonce",
+                        "type": "string"
+                    },
+                    "to": {
+                        "title": "To",
+                        "type": "string"
+                    },
+                    "transactionIndex": {
+                        "title": "Transactionindex",
+                        "type": "string"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    },
+                    "v": {
+                        "title": "V",
+                        "type": "string"
+                    },
+                    "r": {
+                        "title": "R",
+                        "type": "string"
+                    },
+                    "s": {
+                        "title": "S",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

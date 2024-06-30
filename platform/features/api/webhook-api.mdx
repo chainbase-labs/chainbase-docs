@@ -1,0 +1,98 @@
+---
+title: "Webhook API"
+---
+
+In the rapidly evolving world of Web3, **Real-time responsiveness** are critical to building blockchain applications. However The traditional way of retrieving data from blockchain, which involves **periodically querying on-chain data**, is not only **inefficient** but can also result in data **lags**.
+
+That's why we need a **real-time way** to query on-chain data, and Webhook becomes a **simple, easy and customizable** way to achieve it.
+
+**Webhook** offers a useful mechanism that allows developers to set specific triggers, notifying applications instantaneously when particular events occur on the chain. This "**push**" rather than "**pull**" approach ensures data immediacy, significantly enhancing application responsiveness.
+
+The Primary **Advantages and Features** **Webhook** Provided：
+
+- **Real-time**: Applications can be notified the moment specific events transpire.
+- **Flexibility**: Developers can customize event listeners based on their requirements.
+- **Efficiency**: Compared to traditional polling methods, Webhook reduces the strain on networks and servers.
+
+## What is Webhook API?
+
+The Chainbase Webhook API enables you to receive real-time requests to your backends whenever the following events occur on dataset tables: `insert`, `update`, and `delete`.
+
+The Webhook API consists of two core concepts: **webhooks** and **filters**.
+
+## Webhook
+
+A webhook will send an HTTP POST request containing the event details to a webhook URL of your choice. To create a webhook, you can specify a URL to which notifications will be sent, a filter ID (from the filter you created, mentioned below), a dataset identifier, and a table identifier. Once a webhook is created, notifications will be received immediately for all on-chain events starting from the time of creation.
+
+### Payload
+
+The body of the HTTP POST requests sent to webhooks will contain a JSON object with the following fields:
+
+```json
+{
+    "data":{
+        "address":"0x55d50a035bc5830dac9f1a42b71c48cbad568d60",
+        "block_hash":"0xdd595590bc1eb8eea479f95fce8822eb1bba1d2e421f5899fb^C54f9048db3c827",
+        "block_number":46924501,
+        "block_timestamp":1693374057,
+        "data":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+        "item_id":"log_0x11ae2b44099642e3b236f76850997113515db81a60a2aa13538a79db6549a9ef_470",
+        "item_timestamp":"2023-08-30T05:40:57Z",
+        "log_index":470,
+        "topics":[
+            "0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62",
+            "0x000000000000000000000000282a99bc0c24a5fffa6f72ed1b9fcb0534943956",
+            "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "0x00000000000000000000000027952ff232b4fa21d7a39c29a967fd60215ffcb5"
+        ],
+        "transaction_hash":"0x11ae2b44099642e3b236f76850997113515db81a60a2aa13538a79db6549a9ef",
+        "transaction_index":27,
+        "type":"log"
+    },
+    "webhook_name":"massive-erc20-transfer",
+    "webhook_id":"403545ea-3208-498e-a3f8-53bf03140251"
+}
+```
+
+## Filter
+
+A filter is used to specify a subset of events which you want to receive notifications for.
+
+To create a filter, you can specify a set of entries. Each entry has two properties: field and values. The field property stands for the field name to filter on. The value property is a set of string values (e.g., 0x addresses) to be matched. Within each entry, the values are implicitly ORed. Across entries, the values are implicit ANDed.
+
+For example, the following filter will match both "A" or "B" for the `walletAddress` field and "x" for the `contractAddress` field.
+
+```json
+[
+  {
+    "field": "walletAddress",
+    "values": ["A", "B"]
+  },
+  {
+    "field": "contractAddress",
+    "values": ["x"]
+  }
+]
+```
+
+## The scope of webhooks and filters
+
+Webhooks and filters are scoped to the Chainbase account. This means that any API key associated with an Account can create, update, or delete a filter or webhook within the Account.
+
+Additionally, any API key belonging to the Account can view all filters and webhooks within the Account, including those created by other API keys within the same Account.
+
+## Error handling mechanism of webhook
+
+The webhook retry push time is initially 10s, increasing exponentially, with a maximum interval of 10 mins, and will keep pushing failed messages until success.
+
+## Webhook API Endpoint
+
+| Endpoint                                                                     | What to use it for?                     |
+| :--------------------------------------------------------------------------- | :-------------------------------------- |
+| [GetWebhook](/api-reference/webhook-api/get-webhook)               | Get specific webhook by id              |
+| [GetAllWebhooks](/api-reference/webhook-api/get-all-webhooks)      | Get all webhooks created in the account |
+| [CreateWebhook](/api-reference/webhook-api/create-webhook)         | Create webhook                          |
+| [UpdateWebhook](/api-reference/webhook-api/update-webhook)         | Update webhook                          |
+| [ActivateWebhook](/api-reference/webhook-api/activate-webhook)     | Activate webhook                        |
+| [DeactivateWebhook](/api-reference/webhook-api/deactivate-webhook) | Deactivate webhook                      |
+| [DeleteWebhook](/api-reference/webhook-api/delete-webhook)         | Delete webhook                          |

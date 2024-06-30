@@ -1,0 +1,1135 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "\ud83c\udfe6 Balance API",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.chainbase.online",
+            "description": "production server"
+        }
+    ],
+    "paths": {
+        "/v1/account/balance": {
+            "get": {
+                "tags": [
+                    "Token Balances"
+                ],
+                "summary": "Get native token balances",
+                "description": "Returns the balance for a specified address.",
+                "operationId": "GetAccountBalance",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "example": 1,
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetBalance"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/account/tokens": {
+            "get": {
+                "tags": [
+                    "Token Balances"
+                ],
+                "summary": "Get ERC20 token balances",
+                "description": "Retrieve all token balances for all ERC20 tokens for a specified address.\n\nBy default, it will return all token balances for all ERC20 tokens that the address has ever received.\nYou can specify a contract address to check the balance of a non-standard contract.",
+                "operationId": "GetAccountTokens",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the token contract, or filter multiple addresses, (max 100), eg:contract_address=0xdac17f958d2ee523a2206206994597c13d831ec7,0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                        "required": false,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the token contract, or filter multiple addresses, (max 100), eg:contract_address=0xdac17f958d2ee523a2206206994597c13d831ec7,0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+                        },
+                        "example": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetAccountTokens"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/account/portfolios": {
+            "get": {
+                "tags": [
+                    "Portfolio Balances"
+                ],
+                "summary": "Get portfolios in the protocol owned by address",
+                "description": "Returns a list of portfolios for the specified address.",
+                "operationId": "GetAccountPortfolios",
+                "parameters": [
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "An array of strings to restrict results to any of the supported chains:[\"ethereum\", \"polygon\"], or use network id:[1, 137] - if left empty, will default to all chains.",
+                        "required": false,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "An array of strings to restrict results to any of the supported chains:[\"ethereum\", \"polygon\"], or use network id:[1, 137] - if left empty, will default to all chains."
+                        },
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseAccountPortfolios"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/account/nfts": {
+            "get": {
+                "tags": [
+                    "NFT Balances"
+                ],
+                "summary": "Get NFTs owned by address",
+                "description": "Get the list of NFTs owned by an account.",
+                "operationId": "GetAccountNFTs",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The address of the NFT contract, or filter multiple addresses, (max 100), eg:contract_address=0xed5af388653567af2f388e6224dc7c4b3241c544,0x1a92f7381b9f03921564a437210bb9396471050c",
+                        "required": false,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "The address of the NFT contract, or filter multiple addresses, (max 100), eg:contract_address=0xed5af388653567af2f388e6224dc7c4b3241c545,0x1a92f7381b9f03921564a437210bb9396471050c"
+                        },
+                        "example": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetAccountNFTs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseDeFiPortfolio": {
+                "title": "BaseDeFiPortfolio",
+                "required": [
+                    "pool",
+                    "type",
+                    "assets_deposited"
+                ],
+                "type": "object",
+                "properties": {
+                    "pool": {
+                        "$ref": "#/components/schemas/Pool"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/DeFiType"
+                    },
+                    "assets_deposited": {
+                        "title": "Assets Deposited",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PortfolioAssetObject"
+                        }
+                    },
+                    "assets_rewarded": {
+                        "title": "Assets Rewarded",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PortfolioAssetObject"
+                        }
+                    },
+                    "stats": {
+                        "title": "Stats",
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/PortfolioStatus"
+                            }
+                        ],
+                        "default": {
+                            "usd_value": 0
+                        }
+                    }
+                }
+            },
+            "DeFiAsset": {
+                "title": "DeFiAsset",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "logo_url": {
+                        "title": "Logo Url",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "default": ""
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "default": ""
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string",
+                        "default": ""
+                    }
+                }
+            },
+            "DeFiType": {
+                "title": "DeFiType",
+                "enum": [
+                    "liquidity",
+                    "farming",
+                    "locked",
+                    "lending",
+                    "deposit"
+                ],
+                "type": "string",
+                "description": "An enumeration."
+            },
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string"
+                    }
+                }
+            },
+            "NFTCollectionFloorPrice": {
+                "title": "NFTCollectionFloorPrice",
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "title": "Value",
+                        "type": "string",
+                        "description": "The ammount of the ERC-20 token."
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the ERC-20 token."
+                    },
+                    "address": {
+                        "title": "Address",
+                        "type": "string",
+                        "description": "The address of the ERC-20 token."
+                    }
+                }
+            },
+            "NFTDetail": {
+                "title": "NFTDetail",
+                "required": [
+                    "contract_address",
+                    "erc_type",
+                    "mint_time",
+                    "mint_transaction_hash",
+                    "name",
+                    "owner",
+                    "symbol",
+                    "token_id",
+                    "token_uri",
+                    "image_uri",
+                    "total",
+                    "total_string"
+                ],
+                "type": "object",
+                "properties": {
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string",
+                        "description": "The contract address"
+                    },
+                    "erc_type": {
+                        "title": "Erc Type",
+                        "type": "string",
+                        "description": "ERC standard related to the contract."
+                    },
+                    "metadata": {
+                        "title": "Metadata",
+                        "type": "object",
+                        "description": "The metadata of the item."
+                    },
+                    "mint_time": {
+                        "title": "Mint Time",
+                        "type": "string",
+                        "description": "The timestamp when the item was minted.",
+                        "format": "date-time"
+                    },
+                    "mint_transaction_hash": {
+                        "title": "Mint Transaction Hash",
+                        "type": "string",
+                        "description": "The block number when the item was minted."
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the item."
+                    },
+                    "owner": {
+                        "title": "Owner",
+                        "type": "string",
+                        "description": "The user address who owns the item now (null if the item is an ERC-1155 NFT)."
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the NFT contract."
+                    },
+                    "token_id": {
+                        "title": "Token Id",
+                        "type": "string",
+                        "description": "The token ID number of the item."
+                    },
+                    "token_uri": {
+                        "title": "Token Uri",
+                        "type": "string",
+                        "description": "The token URI of the item."
+                    },
+                    "image_uri": {
+                        "title": "Image Uri",
+                        "type": "string",
+                        "description": "The image URI of the item."
+                    },
+                    "total": {
+                        "title": "Total",
+                        "type": "integer",
+                        "description": "The total amount of the item."
+                    },
+                    "total_string": {
+                        "title": "Total String",
+                        "type": "string",
+                        "description": "The total amount of item in string."
+                    },
+                    "traits": {
+                        "title": "Traits",
+                        "description": "List of traits of the item."
+                    },
+                    "rarity_score": {
+                        "title": "Rarity Score",
+                        "type": "number",
+                        "description": "The rarity score for the item."
+                    },
+                    "rarity_rank": {
+                        "title": "Rarity Rank",
+                        "type": "integer",
+                        "description": "The rarity rank for the item."
+                    },
+                    "floor_prices": {
+                        "title": "Floor Prices",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTCollectionFloorPrice"
+                        },
+                        "description": "List of floor prices."
+                    }
+                }
+            },
+            "Pool": {
+                "title": "Pool",
+                "required": [
+                    "address",
+                    "created_at"
+                ],
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "title": "Address",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "title": "Created At",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "PortfolioAssetObject": {
+                "title": "PortfolioAssetObject",
+                "required": [
+                    "asset",
+                    "amount"
+                ],
+                "type": "object",
+                "properties": {
+                    "asset": {
+                        "$ref": "#/components/schemas/DeFiAsset"
+                    },
+                    "amount": {
+                        "title": "Amount",
+                        "type": "number"
+                    },
+                    "usd_value": {
+                        "title": "Usd Value",
+                        "type": "number",
+                        "default": 0
+                    }
+                }
+            },
+            "PortfolioStatus": {
+                "title": "PortfolioStatus",
+                "type": "object",
+                "properties": {
+                    "usd_value": {
+                        "title": "Usd Value",
+                        "type": "number",
+                        "default": 0
+                    }
+                }
+            },
+            "ProjectPortfolios": {
+                "title": "ProjectPortfolios",
+                "required": [
+                    "id",
+                    "name",
+                    "blockchain",
+                    "portfolios"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "blockchain": {
+                        "title": "Blockchain",
+                        "type": "string"
+                    },
+                    "logo_url": {
+                        "title": "Logo Url",
+                        "type": "string"
+                    },
+                    "portfolios": {
+                        "title": "Portfolios",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BaseDeFiPortfolio"
+                        }
+                    }
+                }
+            },
+            "ResponseAccountPortfolios": {
+                "title": "ResponseAccountPortfolios",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProjectPortfolios"
+                        }
+                    }
+                }
+            },
+            "ResponseGetAccountNFTs": {
+                "title": "ResponseGetAccountNFTs",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/NFTDetail"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetAccountTokens": {
+                "title": "ResponseGetAccountTokens",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TokenMeta"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetBalance": {
+                "title": "ResponseGetBalance",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "string"
+                    }
+                }
+            },
+            "TokenMeta": {
+                "title": "TokenMeta",
+                "required": [
+                    "contract_address",
+                    "decimals",
+                    "name",
+                    "symbol",
+                    "balance"
+                ],
+                "type": "object",
+                "properties": {
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string",
+                        "description": "ERC-20 contract address."
+                    },
+                    "decimals": {
+                        "title": "Decimals",
+                        "type": "integer",
+                        "description": "The number of decimals the token uses."
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the ERC-20 token."
+                    },
+                    "symbol": {
+                        "title": "Symbol",
+                        "type": "string",
+                        "description": "The symbol of the ERC-20 token."
+                    },
+                    "total_supply": {
+                        "title": "Total Supply",
+                        "type": "string",
+                        "description": "The total supply of the ERC-20 token."
+                    },
+                    "logos": {
+                        "title": "Logos",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TokenMetaLogo"
+                        },
+                        "description": "List of logo images for the ERC-20 token."
+                    },
+                    "urls": {
+                        "title": "Urls",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TokenMetaURL"
+                        },
+                        "description": "List of urls for the ERC-20 token."
+                    },
+                    "current_usd_price": {
+                        "title": "Current Usd Price",
+                        "type": "number",
+                        "description": "The current price of the ERC-20 token in USD."
+                    },
+                    "balance": {
+                        "title": "Balance",
+                        "type": "string",
+                        "description": "The balance of the ERC-20 token for a given wallet."
+                    }
+                }
+            },
+            "TokenMetaLogo": {
+                "title": "TokenMetaLogo",
+                "required": [
+                    "uri",
+                    "width",
+                    "height"
+                ],
+                "type": "object",
+                "properties": {
+                    "uri": {
+                        "title": "Uri",
+                        "type": "string",
+                        "description": "URI for the logo image."
+                    },
+                    "width": {
+                        "title": "Width",
+                        "type": "integer",
+                        "description": "The logo image's approximate width in pixels."
+                    },
+                    "height": {
+                        "title": "Height",
+                        "type": "integer",
+                        "description": "The logo image's approximate height in pixels."
+                    }
+                }
+            },
+            "TokenMetaURL": {
+                "title": "TokenMetaURL",
+                "required": [
+                    "name",
+                    "url"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "description": "The name of the link."
+                    },
+                    "url": {
+                        "title": "Url",
+                        "type": "string",
+                        "description": "The URL of the link."
+                    }
+                }
+            }
+        }
+    }
+}

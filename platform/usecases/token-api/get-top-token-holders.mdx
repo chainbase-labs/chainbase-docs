@@ -1,0 +1,107 @@
+---
+title: "Get top token holders"
+---
+
+In this tutorial, we will showcase how to use Chainbase API [Get top token holders](/api-reference/web3-api/token/token-holders/get-top-token-holders) to get the top holders of a cryptocurrency deployed on Ethereum. You can use this information to contact the tope token holders and propose collaborations, partnerships, or other mutually beneficial arrangements.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. A token address as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/e5fe064-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+token_addr = '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'; // Take MATIC token address as an example.
+
+fetch(`https://api.chainbase.online/v1/token/top-holders?chain_id=${network_id}&contract_address=${token_addr}&page=1&limit=5`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+token_addr = '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'; // Take MATIC token address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/token/top-holders?chain_id=${network_id}&contract_address=${token_addr}&page=1&limit=5`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print token holders
+
+Chainbase API [Get top token holders](/api-reference/web3-api/token/token-holders/get-top-token-holders) takes the chain id and the contract address of a certain ERC20 token as parameters, and returns the top holders of that token. You can also set the parameters `page` and `limit` to do the pagination and get top holders.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the return data looks as follows by Apr. 4th, 2023.
+
+```json
+{
+  "count": 593525,
+  "holders": [
+    {
+      "wallet_address": "0x5e3ef299fddf15eaa0432e6e66473ace8c13d908",
+      "amount": "3814264335.329752",
+      "usd_value": "4167560569.389670"
+    },
+    {
+      "wallet_address": "0x401f6c983ea34274ec46f84d70b31c151321188b",
+      "amount": "910440417.955799",
+      "usd_value": "994769961.668955"
+    },
+    {
+      "wallet_address": "0xcd6507d87f605f5e95c12f7c4b1fc3279dc944ab",
+      "amount": "590639315.000000",
+      "usd_value": "645347281.551875"
+    },
+    {
+      "wallet_address": "0xb316fa9fa91700d7084d377bfdc81eb9f232f5ff",
+      "amount": "434226114.715070",
+      "usd_value": "474446308.590553"
+    },
+    {
+      "wallet_address": "0xcbfe11b78c2e6cb25c6eda2c6ff46cd4755c8fca",
+      "amount": "273304816.000000",
+      "usd_value": "298619674.582000"
+    }
+  ]
+}
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get top token holders](/api-reference/web3-api/token/token-holders/get-top-token-holders)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

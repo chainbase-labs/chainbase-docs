@@ -1,0 +1,63 @@
+---
+title: 'Developers'
+---
+
+## Developers
+
+Developers are both the demand and supply side of the network's data. Developers build manuscripts and publish them to the network to earn rewards, and at the same time, when they build Dapps, they query network data, becoming users of the network.
+
+### Local Development
+
+Developers use the `chainbase-sdk` to build manuscripts locally. The SDK provides a comprehensive set of tools and libraries that simplify the process of data transformation and querying.
+
+#### Setting Up the Development Environment
+
+To get started, developers need to set up their local development environment. This involves installing the necessary dependencies, configuring the SDK, and setting up a local blockchain node for testing.
+
+1. **Install Dependencies**: Ensure you have Node.js and npm installed. Then, install the `chainbase-sdk` using npm:
+   ```bash
+   npm install chainbase-sdk
+   ```
+2. **Configure the SDK**: Create a configuration file to specify the connection details for your local blockchain node and other settings.
+3. **Set Up Local Node**: Run a local blockchain node to simulate the network environment. This allows you to test your manuscripts in a controlled setting.
+refer to [how to run a node](xxx)
+
+### Testing and Validation
+
+After development, manuscripts can be deployed to our sandbox environment, where developers have the opportunity to validate their manuscripts in advance to ensure there are no indexing errors and that they work as expected.
+
+#### Sandbox Environment
+
+The sandbox environment mimics the main network but operates in isolation, allowing developers to test their manuscripts without affecting the live network. This environment provides tools for debugging and performance monitoring.
+
+1. **Deploy Manuscripts**: Use the SDK to deploy your manuscripts to the sandbox environment.
+2. **Run Tests**: Execute a series of tests to validate the functionality and performance of your manuscripts.
+3. **Debugging Tools**: Utilize the provided debugging tools to identify and fix any issues.
+
+### Publishing
+
+When developers are satisfied with their manuscripts, they can publish them to the network. This is an on-chain operation that registers the manuscript so that indexers (operators) can discover it.
+
+#### On-Chain Registration
+
+Publishing a manuscript involves an on-chain deploy that registers the manuscript with the network. This process ensures that the manuscript is indexed and available for querying by other network participants.
+
+1. **Prepare Manuscript**: Ensure your manuscript is finalized and thoroughly tested.
+2. **Initiate deploy**: Use the SDK to initiate the on-chain deploy for publishing your manuscript.
+3. **Confirmation**: Wait for the deploy to be confirmed on the blockchain. Once confirmed, your manuscript is officially published and indexed.
+
+### Earning Rewards
+
+By publishing manuscripts, developers can earn rewards based on the usage and value of their data transformations. The network incentivizes high-quality and frequently used manuscripts, providing a steady stream of rewards to active developers.
+
+1. **Usage-Based Rewards**: Earn rewards based on the number of queries and the amount of data processed by your manuscripts.
+2. **Quality Incentives**: High-quality manuscripts that provide valuable data transformations are eligible for additional incentives.
+for details refer to [tokenomics](../tokenomics.mdx)
+
+
+### Community and Support
+
+Join the Chainbase developer discord to collaborate with other developers, share knowledge, and get support. Contribute to the documentation and SDK development get potential reward.
+
+1. **[Discord](https://discord.gg/chainbase)**: Engage with other developers on the Chainbase Discord.
+2. **Contributions**: Contribute to the SDK and documentation to help improve the tools and resources available to all developers.

@@ -1,0 +1,155 @@
+---
+title: "Get NFT metadata"
+---
+
+The importance of NFT metadata lies in its ability to provide additional information about the NFT such as its name, description, image, and other attributes. This metadata is often used by marketplaces and collectors to display and search for NFTs. Additionally, the metadata can be used to verify the authenticity and ownership of an NFT.
+
+To get NFT metadata, you can use the [Get NFT metadata](/api-reference/web3-api/nft/nft-metadata/get-nft-metadata) function, which returns JSON-formated data that contains the metadata for the NFT.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. An NFT contract address as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/e44419d-image.png)## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take the contract address of Azuki as an example.
+token_id = '1'; // Token id should be in hex or num string. Here we take 1 as example.
+
+fetch(`https://api.chainbase.online/v1/nft/metadata?chain_id=${network_id}&contract_address=${contract_addr}&token_id=${token_id}`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take the contract address of Azuki as an example.
+token_id = '1'; // Token id should be in hex or num string. Here we take 1 as example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/nft/metadata?chain_id=${network_id}&contract_address=${contract_addr}&token_id=${token_id}`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print NFT metadata
+
+Chainbase API [Get NFT metadata](/api-reference/web3-api/nft/nft-metadata/get-nft-metadata) takes the chain id, NFT contract address and NFT token id as parameters, and returns the metadata of that NFT.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the metadata of Azuki with the first token id on Ethereum is as follows by the time of Mar. 23rd, 2023.
+
+```json
+{
+  "contract_address": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+  "name": "Azuki",
+  "symbol": "AZUKI",
+  "owner": "0xC8967D1537F7B995607A1DEa2B0C06E18A9756a2",
+  "token_id": "0x1",
+  "erc_type": "ERC721",
+  "image_uri": "https://ikzttp.mypinata.cloud/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/1.png",
+  "mint_time": "2022-01-12T04:17:28Z",
+  "mint_transaction_hash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",
+  "token_uri": "https://ikzttp.mypinata.cloud/ipfs/QmQFkLSQysj94s5GvTHPyzTxrawwtjgiiYS2TBLgrvw8CW/1",
+  "metadata": {
+    "name": "Azuki #1",
+    "image": "https://ikzttp.mypinata.cloud/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/1.png",
+    "attributes": [
+      {
+        "trait_type": "Type",
+        "value": "Human"
+      },
+      {
+        "trait_type": "Hair",
+        "value": "Pink Hairband"
+      },
+      {
+        "trait_type": "Clothing",
+        "value": "White Qipao with Fur"
+      },
+      {
+        "trait_type": "Eyes",
+        "value": "Daydreaming"
+      },
+      {
+        "trait_type": "Mouth",
+        "value": "Lipstick"
+      },
+      {
+        "trait_type": "Offhand",
+        "value": "Gloves"
+      },
+      {
+        "trait_type": "Background",
+        "value": "Off White D"
+      }
+    ]
+  },
+  "traits": [
+    {
+      "trait_type": "Type",
+      "value": "Human"
+    },
+    {
+      "trait_type": "Hair",
+      "value": "Pink Hairband"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "White Qipao with Fur"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Daydreaming"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Lipstick"
+    },
+    {
+      "trait_type": "Offhand",
+      "value": "Gloves"
+    },
+    {
+      "trait_type": "Background",
+      "value": "Off White D"
+    }
+  ]
+}
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get NFT metadata](/api-reference/web3-api/nft/nft-metadata/get-nft-metadata)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

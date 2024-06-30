@@ -1,0 +1,226 @@
+---
+title: "Overview"
+---
+
+## What is Data Cloud
+
+- DataCloud is a powerful online platform designed for on-chain data processing. It is tailored to provide extensive capabilities in data querying, analysis, and processing. This platform enables developers to swiftly and effectively analyze on-chain data, facilitating the creation of high-performance, low-latency APIs for streamlined Web3 application development.
+- This platform significantly simplifies the process from analyzing on-chain data to building high-performance APIs, especially suitable for applications requiring real-time data monitoring and dynamic data analysis.
+- DataCloud supports a wide range of users, from exchanges and DeFi application operators to market analysts, offering powerful tools to focus more on innovation and optimizing Web3 application features.
+
+
+## Features
+
+- **Unified Datasets (Raw / Decoded / Abstracted)**: The datasets have been unified, providing a more streamlined and efficient data handling experience.
+- **Parameterized Queries**: Introducing parameterized templates for more flexible and efficient data querying.
+- **File Explorer**: A new tool to explore and manage saved queries.
+- **Task API**: Replacing the SQL API, this new feature allows for more advanced and customizable data handling tasks.
+
+## QuickStart
+
+**Enter Data Cloud**: Access the [Data Cloud](https://console.chainbase.com/dataCloud) interface to start your data exploration.
+
+**Input a Simple SQL Query**: Use the following SQL query in the Data Cloud to extract information from Ethereum transaction data, focusing on a specific block number:
+
+```sql
+select
+    block_timestamp,
+    block_number,
+    _value,
+    _from,
+    _to
+FROM ethereum.erc20_transfer
+WHERE block_number = 17089970
+```
+
+This query retrieves details such as the timestamp of the block, block number, originating address, transaction value, and the transaction hash, specifically targeting transactions in block number 17089970 on the Ethereum blockchain.
+
+**Execute the Query**: Run this query within Data Cloud to pull the specified data from the Ethereum blockchain.
+
+![](https://files.readme.io/91fd400-image.png)
+
+**Introduction to Custom Parameters**: In Data Cloud, you have the ability to use a dedicated parameter input box, which allows for the customization of query parameters. This feature enhances the flexibility and user-friendliness of SQL queries.
+
+**Setting Up a Query with Custom Parameters**: Here’s an example of how you can structure an SQL query using a custom parameter for the block number:
+
+![](https://files.readme.io/f7da96e-image.png)
+
+```sql
+SELECT
+    block_timestamp,
+    block_number,
+    from_address,
+    value,
+    gas,
+    hash
+FROM ethereum.transactions
+WHERE block_number = {blocknumber}
+```
+
+**Using the Custom Parameter Box**: When you run this query, use the custom parameter box to input or select the desired block number. This input will replace the {blocknumber} placeholder in the query, allowing you to retrieve data for that specific block on the Ethereum blockchain with ease.
+
+![](https://files.readme.io/8249d4d-image.png)
+
+**Save your query to File Explorer：**
+
+After saving your SQL query, it will be visible and accessible at any time within the "File Explorer" on the left side. This tool is meticulously designed to simplify your navigation and management of saved queries. With easy access to these entries in the file management panel, complemented by the search functionality at the top, you can quickly locate and retrieve previously saved queries, significantly enhancing the efficiency of your development workflow in data analysis and database management. The "File Explorer" serves as a centralized platform for viewing and organizing SQL queries, further enabling developers to manage and execute data operations with great efficiency.
+
+Finally, by clicking on "Generate API," you can create an API endpoint that allows you to invoke the data seen in Data Cloud within your own programs, offering a 'what you see is what you get' convenience. Additionally, you have the flexibility to select from different programming languages according to your tech stack, ensuring seamless integration into your development environment.
+
+```typescript
+
+const apiKey = "your-api-key";
+const queryId = "424242";
+
+const headers = {
+  "API-KEY": apiKey,
+  "CONTENT-TYPE": "application/json",
+};
+
+async function executeQuery(queryId) {
+  return await fetch(
+    `https://api.chainbasehq.com/v1/query/${queryId}/execute`,
+    { method: "POST", headers }
+  )
+    .then((response) => response.json())
+    .then((data) => data.data[0].executionId);
+}
+
+async function checkStatus(executionId) {
+  return await fetch(
+    `https://api.chainbasehq.com/v1/execution/${executionId}/status`,
+    { headers }
+  )
+    .then((response) => response.json())
+    .then((data) => data.data[0].status);
+}
+
+async function getResults(executionId) {
+  return await fetch(
+    `https://api.chainbasehq.com/v1/execution/${executionId}/results`,
+    { headers }
+  ).then((response) => response.json());
+}
+
+async function main() {
+  const executionId = await executeQuery(queryId);
+  let status;
+  do {
+    status = await checkStatus(executionId);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  } while (status !== "FINISHED" && status !== "FAILED");
+
+  return await getResults(executionId);
+}
+
+main().then(console.log);
+```
+
+![](https://files.readme.io/70d9592-image.png)
+
+## SQL Example
+
+**Query the total cross-chain amount for a user:**
+
+```sql
+SELECT
+    'out' as type,
+    project,
+    token,
+    from_chain,
+    to_chain,
+    sum(cast(amount as decimal(38, 0))) as total
+FROM
+    bridge_ethereum.transfers
+WHERE
+    "from" = '0xf99d58e463a2e07e5692127302c20a191861b4d6'
+group by
+    project,
+    token,
+    from_chain,
+    to_chain
+UNION ALL
+SELECT
+    'in' as type,
+    project,
+    token,
+    from_chain,
+    to_chain,
+    sum(cast(amount as decimal(38, 0))) as total
+FROM
+    bridge_ethereum.transfers
+WHERE
+    "to" = '0xf99d58e463a2e07e5692127302c20a191861b4d6'
+group by
+    project,
+    token,
+    from_chain,
+    to_chain
+```
+
+This query consists of two parts: one part calculates the total amount of funds sent from a specific address (marked as 'out'), and the other part calculates the total amount of funds sent to that address (marked as 'in'). The two parts are combined using UNION ALL to provide a complete view of the total cross-chain transfer amount.
+
+**Query the total liquidity provided by the user for each liquidity pool.**
+
+```sql
+select
+    project,
+    pool,
+    token_address,
+    sum(cast(amount as decimal(38, 0)))
+from
+    dex_ethereum.liquidity
+where
+    "from" = '{{UserAddress}}'
+    or "to" = '{{UserAddress}}'
+group by
+    project,
+    pool,
+    token_address
+```
+
+**Query for token holdings**
+
+```sql
+select
+    *
+from
+    ethereum.erc20_balances b
+    left join ethereum.token_metas t on t.contract_address = b.contract_address
+where
+    wallet_address = '0x2e12979da9ad061ccc204c00d0e3a477a8cc4aea'
+limit
+    10
+```
+
+**Query the total amount of loans and collateral for a user.**
+
+```sql
+with
+    lending_raw as (
+        select
+            project,
+            asset,
+            category,
+            sum(cast(amount as decimal(38, 0))) as total_amount
+        from
+            lending_ethereum.feeds
+        where
+            account = '{{UserAddress}}'
+        group by
+            project,
+            asset,
+            category
+    )
+select
+    project,
+    asset,
+    category,
+    total_amount / t.decimals as volume,
+    t.name
+from
+    lending_raw l
+    left join ethereum.token_metas t on t.contract_address = l.asset
+```
+
+DataCloud fundamentally transforms how we interact with blockchain data, offering unprecedented flexibility and efficiency for all Web3 developers. As you embark on this journey of exploration and innovation, Chainbase will be your ultimate partner, guiding you through the ever-evolving realm of Web3 development.

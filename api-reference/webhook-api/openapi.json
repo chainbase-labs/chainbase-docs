@@ -1,0 +1,1034 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "webhook API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.chainbase.online/v1/"
+        }
+    ],
+    "components": {
+        "securitySchemes": {}
+    },
+    "security": [
+        {}
+    ],
+    "paths": {
+        "/webhooks": {
+            "get": {
+                "summary": "Get All Webhooks",
+                "description": "Get all webhooks in the account.",
+                "operationId": "get-all-webhooks",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "YOUR-API-KEY",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "demo"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "Offset of the webhooks pagination",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 0
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit of the webhooks pagination",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 10
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status of the webhook",
+                        "schema": {
+                            "type": "string",
+                            "default": "-1"
+                        }
+                    },
+                    {
+                        "name": "data_source",
+                        "in": "query",
+                        "description": "Data source the webhook subscribe to",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":0,\"msg\":\"ok\",\"data\":{\"total\":2,\"data\":[{\"webhook_id\":\"9748042d-0eee-4baf-b508-1c5ec8c07686\",\"filters\":[],\"webhook_name\":\"massive-logs\",\"webhook_url\":\"https://gtsfh5g3c4.hk.aircode.run/erc20transfer\",\"data_source\":\"ethereum_logs\",\"additional_headers\":[],\"created_at\":\"2023-08-20T07:14:58.872523Z\",\"updated_at\":\"2023-08-20T07:14:58.872523Z\",\"status\":0},{\"webhook_id\":\"eefbb329-4009-4372-91e5-c906fed17db1\",\"filters\":[],\"webhook_name\":\"massive-erc20-transfer\",\"webhook_url\":\"http://receive-service.chainbase-uat.svc.cluster.local:8080\",\"data_source\":\"ethereum_logs\",\"additional_headers\":[{\"name\":\"Authorization\",\"value\":\"Bearer xyz\"}],\"created_at\":\"2023-08-25T07:27:15.611135Z\",\"updated_at\":\"2023-08-25T07:27:15.611135Z\",\"status\":0}]}}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 2,
+                                                    "default": 0
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "webhook_id": {
+                                                                "type": "string",
+                                                                "example": "9748042d-0eee-4baf-b508-1c5ec8c07686"
+                                                            },
+                                                            "filters": {
+                                                                "type": "array"
+                                                            },
+                                                            "webhook_name": {
+                                                                "type": "string",
+                                                                "example": "massive-logs"
+                                                            },
+                                                            "webhook_url": {
+                                                                "type": "string",
+                                                                "example": "https://gtsfh5g3c4.hk.aircode.run/erc20transfer"
+                                                            },
+                                                            "data_source": {
+                                                                "type": "string",
+                                                                "example": "ethereum_logs"
+                                                            },
+                                                            "additional_headers": {
+                                                                "type": "array"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-20T07:14:58.872523Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-20T07:14:58.872523Z"
+                                                            },
+                                                            "status": {
+                                                                "type": "integer",
+                                                                "example": 0,
+                                                                "default": 0
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":-1,\"msg\":\"auth verify-secret-key error\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": -1,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "auth verify-secret-key error"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            },
+            "post": {
+                "summary": "Create Webhook",
+                "description": "Create webhook to receive message.",
+                "operationId": "create-webhook",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "YOUR-API-KEY",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "demo"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "webhook_name",
+                                    "webhook_url",
+                                    "data_source"
+                                ],
+                                "properties": {
+                                    "webhook_name": {
+                                        "type": "string",
+                                        "description": "Name of the webhook"
+                                    },
+                                    "webhook_url": {
+                                        "type": "string",
+                                        "description": "URL of the webhook"
+                                    },
+                                    "data_source": {
+                                        "type": "string",
+                                        "description": "Data source the webhook subscribe to"
+                                    },
+                                    "filters": {
+                                        "type": "array",
+                                        "description": "Filter Object",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "description": "Name of the field matched in the filter."
+                                                },
+                                                "values": {
+                                                    "type": "array",
+                                                    "description": "Values matched in the filter",
+                                                    "default": [],
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "additional_headers": {
+                                        "type": "array",
+                                        "description": "Additional headers would be added into the webhook POST when push message is matched.",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "Key of the header"
+                                                },
+                                                "value": {
+                                                    "type": "string",
+                                                    "description": "Value of the header"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":0,\"msg\":\"create job success\",\"data\":{\"webhook_id\":\"460009d1-f7ce-43a9-9747-681054ffb462\",\"filters\":[{\"field\":\"contract_address\",\"values\":[\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\",\"0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599\",\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"0xdAC17F958D2ee523a2206206994597C13D831ec7\"]}],\"webhook_name\":\"massive-erc20-transfer\",\"webhook_url\":\"https://gtsfh5g3c4.hk.aircode.run/erc20transfer\",\"data_source\":\"ethereum_erc20_transfer\",\"additional_headers\":[{\"name\":\"Authorization\",\"value\":\"Bearer xyz\"}],\"created_at\":\"2023-08-23T03:27:28.281175Z\",\"updated_at\":\"2023-08-23T03:27:28.281175Z\",\"status\":0}}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "create job success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "webhook_id": {
+                                                    "type": "string",
+                                                    "example": "460009d1-f7ce-43a9-9747-681054ffb462"
+                                                },
+                                                "filters": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "field": {
+                                                                "type": "string",
+                                                                "example": "contract_address"
+                                                            },
+                                                            "values": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "string",
+                                                                    "example": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "webhook_name": {
+                                                    "type": "string",
+                                                    "example": "massive-erc20-transfer"
+                                                },
+                                                "webhook_url": {
+                                                    "type": "string",
+                                                    "example": "https://gtsfh5g3c4.hk.aircode.run/erc20transfer"
+                                                },
+                                                "data_source": {
+                                                    "type": "string",
+                                                    "example": "ethereum_erc20_transfer"
+                                                },
+                                                "additional_headers": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Authorization"
+                                                            },
+                                                            "value": {
+                                                                "type": "string",
+                                                                "example": "Bearer xyz"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-23T03:27:28.281175Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-23T03:27:28.281175Z"
+                                                },
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 0,
+                                                    "default": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":-1,\"msg\":\"auth verify-secret-key error\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": -1,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "auth verify-secret-key error"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/webhooks/{webhook_id}": {
+            "patch": {
+                "summary": "Update Webhook",
+                "description": "Update webhook the account created before.",
+                "operationId": "update-webhook",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "YOUR-API-KEY",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "demo"
+                        }
+                    },
+                    {
+                        "name": "webhook_id",
+                        "in": "path",
+                        "description": "Webhook to be updated",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "webhook_id"
+                                ],
+                                "properties": {
+                                    "webhook_name": {
+                                        "type": "string",
+                                        "description": "Name of the webhook"
+                                    },
+                                    "webhook_url": {
+                                        "type": "string",
+                                        "description": "URL of the webhook"
+                                    },
+                                    "filters": {
+                                        "type": "array",
+                                        "description": "Filter object to filter message",
+                                        "items": {
+                                            "properties": {
+                                                "field": {
+                                                    "type": "string",
+                                                    "description": "Name of the field matched in the filter."
+                                                },
+                                                "values": {
+                                                    "type": "array",
+                                                    "description": "Values matched in the filter",
+                                                    "default": [],
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "additional_headers": {
+                                        "type": "array",
+                                        "description": "Additional headers would be added into the webhook POST when push message is matched.",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "Key of the header"
+                                                },
+                                                "value": {
+                                                    "type": "string",
+                                                    "description": "Value of the header"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "webhook_id": {
+                                        "type": "string",
+                                        "description": "The ID of Webhook to be updated"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":0,\"msg\":\"success\",\"data\":{\"webhook_id\":\"235418e9-eb46-4d88-9012-64b76c63bf0c\",\"filters\":[{\"field\":\"contract_address\",\"values\":[\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\",\"0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599\",\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"0xdAC17F958D2ee523a2206206994597C13D831ec7\"]}],\"webhook_name\":\"massive-erc20-transfer\",\"webhook_url\":\"https://gtsfh5g3c4.hk.aircode.run/erc20transfer\",\"data_source\":\"ethereum_erc20_transfer\",\"additional_headers\":[{\"name\":\"Authorization\",\"value\":\"Bearer xyz\"}],\"created_at\":\"2023-08-18T10:40:35.203691Z\",\"updated_at\":\"2023-08-23T03:04:22.854101Z\",\"status\":1}}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "webhook_id": {
+                                                    "type": "string",
+                                                    "example": "235418e9-eb46-4d88-9012-64b76c63bf0c"
+                                                },
+                                                "filters": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "field": {
+                                                                "type": "string",
+                                                                "example": "contract_address"
+                                                            },
+                                                            "values": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "string",
+                                                                    "example": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "webhook_name": {
+                                                    "type": "string",
+                                                    "example": "massive-erc20-transfer"
+                                                },
+                                                "webhook_url": {
+                                                    "type": "string",
+                                                    "example": "https://gtsfh5g3c4.hk.aircode.run/erc20transfer"
+                                                },
+                                                "data_source": {
+                                                    "type": "string",
+                                                    "example": "ethereum_erc20_transfer"
+                                                },
+                                                "additional_headers": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string",
+                                                                "example": "Authorization"
+                                                            },
+                                                            "value": {
+                                                                "type": "string",
+                                                                "example": "Bearer xyz"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-18T10:40:35.203691Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-23T03:04:22.854101Z"
+                                                },
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 1,
+                                                    "default": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":-1,\"msg\":\"auth verify-secret-key error\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": -1,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "auth verify-secret-key error"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "summary": "Delete Webhook",
+                "description": "Delete the webhook from the account",
+                "operationId": "delete-webhook",
+                "parameters": [
+                    {
+                        "name": "webhook_id",
+                        "in": "path",
+                        "description": "Webhook to be deleted",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "YOUR-API-KEY",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "demo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":0,\"msg\":\"delete webhook ok\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "delete webhook ok"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":-1,\"msg\":\"internal error:sql: no rows in result set\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": -1,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "internal error:sql: no rows in result set"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            },
+            "get": {
+                "summary": "Get Webhook",
+                "description": "Get specific webhook info",
+                "operationId": "get-webhook",
+                "parameters": [
+                    {
+                        "name": "webhook_id",
+                        "in": "path",
+                        "description": "Webhook ID to be queried",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "YOUR-API-KEY",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "demo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":0,\"msg\":\"ok\",\"data\":{\"total\":1,\"data\":[{\"webhook_id\":\"cebcd999-882c-4279-ab60-10e85dfd8610\",\"filters\":[{\"field\":\"contract_address\",\"values\":[\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\",\"0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599\",\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"0xdAC17F958D2ee523a2206206994597C13D831ec7\"]}],\"webhook_name\":\"massive-erc20-transfer\",\"webhook_url\":\"https://gtsfh5g3c4.hk.aircode.run/erc20transfer\",\"data_source\":\"polygon_logs\",\"additional_headers\":[{\"name\":\"Authorization\",\"value\":\"Bearer xyz\"}],\"created_at\":\"2023-08-28T08:58:31.529726Z\",\"updated_at\":\"2023-08-28T09:00:19.129449Z\",\"status\":\"deactivated\"}]}}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 1,
+                                                    "default": 0
+                                                },
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "webhook_id": {
+                                                                "type": "string",
+                                                                "example": "cebcd999-882c-4279-ab60-10e85dfd8610"
+                                                            },
+                                                            "filters": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "field": {
+                                                                            "type": "string",
+                                                                            "example": "contract_address"
+                                                                        },
+                                                                        "values": {
+                                                                            "type": "array",
+                                                                            "items": {
+                                                                                "type": "string",
+                                                                                "example": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "webhook_name": {
+                                                                "type": "string",
+                                                                "example": "massive-erc20-transfer"
+                                                            },
+                                                            "webhook_url": {
+                                                                "type": "string",
+                                                                "example": "https://gtsfh5g3c4.hk.aircode.run/erc20transfer"
+                                                            },
+                                                            "data_source": {
+                                                                "type": "string",
+                                                                "example": "polygon_logs"
+                                                            },
+                                                            "additional_headers": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "name": {
+                                                                            "type": "string",
+                                                                            "example": "Authorization"
+                                                                        },
+                                                                        "value": {
+                                                                            "type": "string",
+                                                                            "example": "Bearer xyz"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-28T08:58:31.529726Z"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-28T09:00:19.129449Z"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "example": "deactivated"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":-1,\"msg\":\"internal error:sql: no rows in result set\",\"data\":[]}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": -1,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "internal error:sql: no rows in result set"
+                                        },
+                                        "data": {
+                                            "type": "array"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/webhooks/{webhook_id}/activate": {
+            "post": {
+                "summary": "Activate Webhook",
+                "description": "Activate webhook you created before.",
+                "operationId": "activate-webhook",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "YOUR-API-KEY",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "demo"
+                        }
+                    },
+                    {
+                        "name": "webhook_id",
+                        "in": "path",
+                        "description": "Webhook to be activated",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":0,\"msg\":\"ok\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":-1,\"msg\":\"webhook activate request pending\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": -1,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "webhook activate request pending"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/webhooks/{webhook_id}/deactivate": {
+            "post": {
+                "summary": "Deactivate Webhook",
+                "description": "Deactivate webhook the running webhook job.",
+                "operationId": "deactivate-webhook",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "YOUR-API-KEY",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "demo"
+                        }
+                    },
+                    {
+                        "name": "webhook_id",
+                        "in": "path",
+                        "description": "Webhook to be deactivated",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":0,\"msg\":\"ok\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 0,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "ok"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\"code\":-1,\"msg\":\"webhook already deactivated\",\"data\":null}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": -1,
+                                            "default": 0
+                                        },
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "webhook already deactivated"
+                                        },
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "x-readme": {
+        "headers": [],
+        "explorer-enabled": true,
+        "proxy-enabled": true
+    },
+    "x-readme-fauxas": true
+}
