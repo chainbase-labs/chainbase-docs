@@ -1,0 +1,23 @@
+---
+title: "Write Efficient Queries"
+---
+
+## Tips for writing efficient queries
+
+When you write a query, you want to make sure it runs as efficiently as possible. Here are some tips to help you write efficient queries:
+
+1. **Limit the columns in the `SELECT` clause**: Only request the columns you need, as it reduces the amount of data the query engine needs to process.
+
+2. **Use the `LIMIT` clause**: If you are only interested in a specific number of rows, use the `LIMIT` clause to avoid processing more data than necessary.
+
+3. **Filter early and use predicate pushdown**: Apply filters as early as possible in the query to reduce the amount of data being processed. This takes advantage of predicate pushdown, which pushes filter conditions down to the storage layer, reducing the amount of data read from storage. For example, if you only need data from a specific date range, filter on the date column as early as possible.
+
+4. **Use `UNION ALL` instead of `UNION`**: If you’re combining the results of multiple queries, use `UNION ALL` instead of `UNION` to avoid the overhead of removing duplicate rows.
+
+5. **Only order when necessary**: Ordering results can be computationally expensive. If you don’t need ordered results, avoid using `ORDER BY`.
+
+6. **Always use the actual data while filtering**: Do not use functions on the filter columns: For example, if you want to filter on a date, do not use date_trunc('day', block_timestamp) > '2022-01-01'. Instead, use block_timestamp > '2022-01-01'. The first example will not be able to use the min/max values of the block_time column to skip entire parquet files or row groups within files while scanning through a table, while the second example will. The same goes for other functions, such as substr, lower, upper etc.
+
+7. **Use the `EXPLAIN` command**: Use the `EXPLAIN` command to understand how the query engine processes your query. This can help you identify potential performance bottlenecks and optimize your queries accordingly.
+
+8. **Use `UNION ALL` instead of `OR`**: If you need to combine the results of multiple queries, use `UNION ALL` instead of `OR` to avoid the overhead of removing duplicate rows. For example, instead of using `SELECT * FROM table WHERE column = 'value1' OR column = 'value2'`, use `SELECT * FROM table WHERE column = 'value1' UNION ALL SELECT * FROM table WHERE column = 'value2'`.

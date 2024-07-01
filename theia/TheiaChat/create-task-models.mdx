@@ -1,0 +1,37 @@
+---
+title: 'How to Create Task Models'
+---
+
+## Methodology
+
+Theia Task Models is constructed using prompt and data engineering. We introduce these novel concepts including prompt engineering, RAG, and model self-tuning, which is used to build Theia Task Models.
+
+### 1. Prompt Engineering
+
+Prompt engineering refers to a series of instruction for Theia. It can trigger Theia to wake up specific capability in some field and work as a task model as instructed. The instruction should be clear and the output format can be defined. To build a good task model, we normally tell Theia three important messages: role, hint for reasoning and generation, and goal.
+
+For example, to build a crypto investment adivsor, we can write the prompt including the three messages:
+   - **Role:** Theia, you are an investment advisor.
+   - **Hint:** Whenever I provide you a whitepaper of a project, please analyze the whitepaper and search the news of this project. 
+   - **Goal:** Then generate an investment advisory report.
+
+Thus, the complete prompt is "Theia, you are an investment advisor. Whenever I provide you a whitepaper of a project, please analyze the whitepaper and news of this project. Then generate an investment advisory report."
+
+### 2. Retrieval-Augmented Generation (RAG)
+
+RAG is a method to integrates retrieval-based models with AI models, utilizing the intelligence of AI to analyze data and generate results according to specific objectives. It mainly consists of three steps:
+   - **Data Retrieval:** Retrieve relevant information from external datasets, e.g., the price variation of BTC in the past 3 months. 
+   - **Task Objective:** Define the objective of RAG by prompt engineering, e.g., "find the buying and selling signals according to the MACD".
+   - **Augmented Generation:** Input the retrieved data into the Theia Task Model to get the augmented results. 
+
+Note that the data quality is one of the keys that decides the success of RAG. However, to obtain high-quality on-chain data, developers usually spent lots of time on extracting and aggregating data from blockchain. In Theia ecosystem, we are supported by Chainbase omnichain datanetwork, therefore providing massive high-quality data for users to build Theia task model in a cost-ffective and efficient fashion.
+
+### 3. Model Self-Tuning
+
+Though prompt engineering and RAG can utilize the capabilities of Theia, the intelligence of Theia is actually not improved in the parameter level, e.g., the intrinsic IQ of Theia. To really increase the IQ of Theia for higher-level task, model self-tuning is proposed. As our community uses Theia and its task models, many dialogues data are generated. They are the new "courses and books" Theia needs to read and learn. Furthermore, the developers are encouraged to upload manually labelled data that is also valuable to increase the Theia intelligence. The more data Theia sees, the higher intelligence it has.
+
+The model self-tuning is based on the **Decentralized Weight-Decomposed Low-Rank Adaptation ($D^2ORA$)** algorithm that fine-tunes Theia periodically. The $D^2ORA$ algorithm focuses on updating the crypto-specific parameter matrix, ensuring that Theia Task Models continually enhance their expertise in the crypto domain as more and more users build task models upon Theia.
+
+## How to create Theia Task Models in Theia?
+
+Coming soon (Phase 3)

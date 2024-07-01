@@ -1,0 +1,84 @@
+---
+title: "Webhook"
+---
+
+<Note>
+🎉 Webhook API is in Beta!
+
+[Webhook API](/api-reference/webhook-api/get-all-webhooks) enables you to receive real-time requests to your backends whenever the following events occur on dataset tables: `insert`, `update`
+</Note>
+
+## Overview
+
+In Web3, Webhooks are designed as a powerful and convenient toolkit designed to bridge the gap between On-Chain events and Off-Chain monitors. By providing real-time monitoring capabilities, Webhook ensures that users are always on the pulse of the decentralized world.
+
+Its core advantages are its **real-time, customizability and reliability**. Whether you're a dApp developer looking to enhance your user experience or a business looking for seamless blockchain integration, Webhook's real-time data synchronization gives you a competitive advantage in the fast-paced Web3.
+
+<Frame>
+    <img src="https://files.readme.io/b09a077-image.png" />
+</Frame>
+
+## Scenarios
+
+From transactions monitoring to DeFi, and NFT dApps building, Webhook become more and more popular in Web3 toolkits and dApps development. We could not only develop a bunch of On-Chain data monitoring toolkits but also build some complex dApps. Here are some examples
+
+- **Monitor Assets**: Get real-time notifications when an asset is being sent, received, staked, swapped, or burned. This is particularly useful for exchanges and DeFi applications where the dynamics of assets are frequently changing.
+- **Real-Time Wallet Notifications**: Monitor when an address sends, receives, stakes, swaps, or burns assets. This feature can also be used in tracking unauthorized transactions for security purposes.
+- **Token Sales Activities**: Receive notifications when someone participates in your token sale. This could significantly enhance marketing and sales strategies by understanding investor behavior in real-time.
+- **Smart Contract Event Monitoring**: Trigger on-chain events based on your filters. Real-time contract interaction information can be obtained through the webhook. For example, when a smart contract method is invoked or the state variables change.
+- **NFT trade tracking**: Use webhooks to monitor the release and trading activities of specific artists or series of NFTs. Both collectors and market investors can be notified in real-time, greatly increasing their chances of bidding for the works.
+
+## Benefits
+
+Here are the features and benefits Chainbase Webhook could offer:
+
+- **Real-time**: With Chainbase Webhook, Instead of periodically polling the server, receive notifications immediate the moment specific events occur. The real-time capability offering users a seamless experience.
+- **Customizability**: Tailor your notifications to fit your unique needs. you have the flexibility to specify which events trigger notifications, allowing for a more relevant and streamlined data flow.
+- **Reliable**: Consistency is key, you're guaranteed a reliable stream of notifications. Engineered to handle high volumes of data, you can trust our system to deliver the information you need
+
+## Quick Start
+
+Here is an quick-started example illustrated how to use Chainbase Webhook to monitor On-Chain events in minutes.
+
+### 1. Setup Webhook Listener
+
+With webhook.site service you could quick and easy to setup a Webhook monitor service that could be used to test the Webhook you created.
+As the figure show. You could click the `copy` button to copy the Webhook URL to paste in the `Webhook` configuration
+
+<Frame caption="Webhook.site Test Service">
+    <img src="https://files.readme.io/28d7d09-image.png" />
+</Frame>
+
+
+### 2. Create your Webhook
+
+By logging into the [Chainbase console](https://console.chainbase.com/sync/webhook). Just click `Create Webhook` as figure show. You could create a Webhook to listen the specific datasets like `ethereum` logs or transactions and so on.
+
+<Frame caption="Webhook Management">
+    <img src="https://files.readme.io/d7c05da-image.png" />
+</Frame>
+
+<Frame caption="Create Webhook">
+    <img src="https://files.readme.io/dac4b60-image.png" />
+</Frame>
+
+### 3. Add filter to Webhook
+
+Once you have created the Webhook. If you want to filter the specific `address`,  you could select the `Address` field in `Filter` panel and edit to input the address value you want to monitor.
+
+<Frame caption="Specify the Address Filter">
+    <img src="https://files.readme.io/7eb2aef-image.png" />
+</Frame>
+
+### 4. Monitor real-time events
+
+You could see the created Webhook has been listed in the table below. and open the webhook.site you setup. the events are continues to push on the left panel.
+
+<Frame caption="Monitor Webhook Events">
+    <img src="https://files.readme.io/289f4a7-image.png" />
+</Frame>
+
+## References
+
+- [Webhook API Endpoints](https://docs.chainbase.com/reference/get-webhook)
+- [How To Monitor Large Funds Transfers By Webhook | Chainbase Blog](https://chainbase.com/blog/article/how-to-monitor-large-funds-transfers-by-webhook)

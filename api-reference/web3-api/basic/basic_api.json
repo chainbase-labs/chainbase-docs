@@ -1,0 +1,1370 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "\ud83d\udee0\ufe0f Basic API",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.chainbase.online",
+            "description": "production server"
+        }
+    ],
+    "paths": {
+        "/v1/block/number/latest": {
+            "get": {
+                "tags": [
+                    "Block"
+                ],
+                "summary": "Get latest block number",
+                "description": "Get the latest block height of blockchain network.",
+                "operationId": "GetBlockNumberLatest",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetLastBlockNumber"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/block/detail": {
+            "get": {
+                "tags": [
+                    "Block"
+                ],
+                "summary": "Get block by number",
+                "description": "Get the detail of a block by the given block humber.",
+                "operationId": "GetBlockDetail",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Block number",
+                        "required": true,
+                        "schema": {
+                            "title": "Number",
+                            "type": "string",
+                            "description": "Block number"
+                        },
+                        "name": "number",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetBlockDetail"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/tx/detail": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Get transaction",
+                "description": "Get the detail of a transaction given the transaction hash.\n\nProvide the param \"hash\" or (\"block_number\" and \"tx_index\"). If both params are provided,\n\"hash\" will be used.",
+                "operationId": "GetTxDetail",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The transaction hash",
+                        "required": false,
+                        "schema": {
+                            "title": "Hash",
+                            "type": "string",
+                            "description": "The transaction hash"
+                        },
+                        "example": "0xea1093d492a1dcb1bef708f771a99a96ff05dcab81ca76c31940300177fcf49f",
+                        "name": "hash",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Block number of the transaction",
+                        "required": false,
+                        "schema": {
+                            "title": "Block Number",
+                            "type": "integer",
+                            "description": "Block number of the transaction"
+                        },
+                        "name": "block_number",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Index of the transaction",
+                        "required": false,
+                        "schema": {
+                            "title": "Tx Index",
+                            "type": "integer",
+                            "description": "Index of the transaction"
+                        },
+                        "name": "tx_index",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetTxDetail"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/account/txs": {
+            "get": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Get transactions by account",
+                "description": "Returns the transactions from the address.",
+                "operationId": "GetAccountTxs",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "string",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive from block number (hex string or int)",
+                        "required": false,
+                        "schema": {
+                            "title": "From Block",
+                            "type": "string",
+                            "description": "Inclusive from block number (hex string or int)"
+                        },
+                        "name": "from_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive to block number (hex string, int, or 'latest')",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "Inclusive to block number (hex string, int, or 'latest')"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive from block number (hex string or int)",
+                        "required": false,
+                        "schema": {
+                            "title": "From Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive from block number (hex string or int)"
+                        },
+                        "name": "from_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive end timestamp",
+                        "required": false,
+                        "schema": {
+                            "title": "End Timestamp",
+                            "type": "integer",
+                            "description": "Inclusive end timestamp"
+                        },
+                        "name": "end_timestamp",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetAccountTxs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/contract/events": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Get events by contract",
+                "description": "Gets the list of events for the specified contract.",
+                "operationId": "GetContractEvents",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a contract address",
+                        "required": true,
+                        "schema": {
+                            "title": "Contract Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a contract address"
+                        },
+                        "name": "contract_address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive from block number (hex string or int)",
+                        "required": false,
+                        "schema": {
+                            "title": "From Block",
+                            "type": "string",
+                            "description": "Inclusive from block number (hex string or int)"
+                        },
+                        "name": "from_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Inclusive to block number (hex string, int, or 'latest')",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "Inclusive to block number (hex string, int, or 'latest')"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseContractEvents"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/contract/call": {
+            "post": {
+                "tags": [
+                    "Contract"
+                ],
+                "summary": "Contract call",
+                "description": "Calls a specific function for the specified contract.",
+                "operationId": "ContractCall",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContractCallBody"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseContractCall"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BlockDetail": {
+                "title": "BlockDetail",
+                "required": [
+                    "number",
+                    "hash",
+                    "parent_hash",
+                    "timestamp",
+                    "difficulty",
+                    "extra_data",
+                    "gas_limit",
+                    "gas_used",
+                    "base_fee_per_gas",
+                    "miner",
+                    "mix_hash",
+                    "nonce",
+                    "receipts_root",
+                    "sha3_uncles",
+                    "size",
+                    "state_root",
+                    "transactions_root",
+                    "transactions_count",
+                    "uncles_count",
+                    "withdrawals_count"
+                ],
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "title": "Number",
+                        "type": "integer"
+                    },
+                    "hash": {
+                        "title": "Hash",
+                        "type": "string"
+                    },
+                    "parent_hash": {
+                        "title": "Parent Hash",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "title": "Timestamp",
+                        "type": "string"
+                    },
+                    "difficulty": {
+                        "title": "Difficulty",
+                        "type": "string"
+                    },
+                    "extra_data": {
+                        "title": "Extra Data",
+                        "type": "string"
+                    },
+                    "gas_limit": {
+                        "title": "Gas Limit",
+                        "type": "integer"
+                    },
+                    "gas_used": {
+                        "title": "Gas Used",
+                        "type": "integer"
+                    },
+                    "base_fee_per_gas": {
+                        "title": "Base Fee Per Gas",
+                        "type": "integer"
+                    },
+                    "miner": {
+                        "title": "Miner",
+                        "type": "string"
+                    },
+                    "mix_hash": {
+                        "title": "Mix Hash",
+                        "type": "string"
+                    },
+                    "nonce": {
+                        "title": "Nonce",
+                        "type": "string"
+                    },
+                    "receipts_root": {
+                        "title": "Receipts Root",
+                        "type": "string"
+                    },
+                    "sha3_uncles": {
+                        "title": "Sha3 Uncles",
+                        "type": "string"
+                    },
+                    "size": {
+                        "title": "Size",
+                        "type": "integer"
+                    },
+                    "state_root": {
+                        "title": "State Root",
+                        "type": "string"
+                    },
+                    "transactions_root": {
+                        "title": "Transactions Root",
+                        "type": "string"
+                    },
+                    "transactions_count": {
+                        "title": "Transactions Count",
+                        "type": "integer"
+                    },
+                    "uncles_count": {
+                        "title": "Uncles Count",
+                        "type": "integer"
+                    },
+                    "withdrawals_count": {
+                        "title": "Withdrawals Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ContractCallBody": {
+                "title": "ContractCallBody",
+                "required": [
+                    "chain_id",
+                    "contract_address",
+                    "function_name",
+                    "abi",
+                    "params",
+                    "to_block"
+                ],
+                "type": "object",
+                "properties": {
+                    "chain_id": {
+                        "title": "Chain Id",
+                        "type": "integer"
+                    },
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string"
+                    },
+                    "function_name": {
+                        "title": "Function Name",
+                        "type": "string"
+                    },
+                    "abi": {
+                        "title": "Abi",
+                        "type": "string"
+                    },
+                    "params": {
+                        "title": "Params",
+                        "type": "array",
+                        "items": {}
+                    },
+                    "to_block": {
+                        "title": "To Block",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "chain_id": 1,
+                    "contract_address": "0xed5af388653567af2f388e6224dc7c4b3241c544",
+                    "function_name": "name",
+                    "abi": "[\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"maxBatchSize_\",\n        \"type\": \"uint256\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"collectionSize_\",\n        \"type\": \"uint256\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"amountForAuctionAndDev_\",\n        \"type\": \"uint256\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"amountForDevs_\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"constructor\"\n  },\n  {\n    \"anonymous\": false,\n    \"inputs\": [\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"owner\",\n        \"type\": \"address\"\n      },\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"approved\",\n        \"type\": \"address\"\n      },\n      {\n        \"indexed\": true,\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"Approval\",\n    \"type\": \"event\"\n  },\n  {\n    \"anonymous\": false,\n    \"inputs\": [\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"owner\",\n        \"type\": \"address\"\n      },\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"operator\",\n        \"type\": \"address\"\n      },\n      {\n        \"indexed\": false,\n        \"internalType\": \"bool\",\n        \"name\": \"approved\",\n        \"type\": \"bool\"\n      }\n    ],\n    \"name\": \"ApprovalForAll\",\n    \"type\": \"event\"\n  },\n  {\n    \"anonymous\": false,\n    \"inputs\": [\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"previousOwner\",\n        \"type\": \"address\"\n      },\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"newOwner\",\n        \"type\": \"address\"\n      }\n    ],\n    \"name\": \"OwnershipTransferred\",\n    \"type\": \"event\"\n  },\n  {\n    \"anonymous\": false,\n    \"inputs\": [\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"from\",\n        \"type\": \"address\"\n      },\n      {\n        \"indexed\": true,\n        \"internalType\": \"address\",\n        \"name\": \"to\",\n        \"type\": \"address\"\n      },\n      {\n        \"indexed\": true,\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"Transfer\",\n    \"type\": \"event\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"AUCTION_DROP_INTERVAL\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"AUCTION_DROP_PER_STEP\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"AUCTION_END_PRICE\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"AUCTION_PRICE_CURVE_LENGTH\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"AUCTION_START_PRICE\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"\",\n        \"type\": \"address\"\n      }\n    ],\n    \"name\": \"allowlist\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"allowlistMint\",\n    \"outputs\": [],\n    \"stateMutability\": \"payable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"amountForAuctionAndDev\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"amountForDevs\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"to\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"approve\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"quantity\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"auctionMint\",\n    \"outputs\": [],\n    \"stateMutability\": \"payable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"owner\",\n        \"type\": \"address\"\n      }\n    ],\n    \"name\": \"balanceOf\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"quantity\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"devMint\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint64\",\n        \"name\": \"mintlistPriceWei\",\n        \"type\": \"uint64\"\n      },\n      {\n        \"internalType\": \"uint64\",\n        \"name\": \"publicPriceWei\",\n        \"type\": \"uint64\"\n      },\n      {\n        \"internalType\": \"uint32\",\n        \"name\": \"publicSaleStartTime\",\n        \"type\": \"uint32\"\n      }\n    ],\n    \"name\": \"endAuctionAndSetupNonAuctionSaleInfo\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"getApproved\",\n    \"outputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"\",\n        \"type\": \"address\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"_saleStartTime\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"getAuctionPrice\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"getOwnershipData\",\n    \"outputs\": [\n      {\n        \"components\": [\n          {\n            \"internalType\": \"address\",\n            \"name\": \"addr\",\n            \"type\": \"address\"\n          },\n          {\n            \"internalType\": \"uint64\",\n            \"name\": \"startTimestamp\",\n            \"type\": \"uint64\"\n          }\n        ],\n        \"internalType\": \"struct ERC721A.TokenOwnership\",\n        \"name\": \"\",\n        \"type\": \"tuple\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"owner\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"address\",\n        \"name\": \"operator\",\n        \"type\": \"address\"\n      }\n    ],\n    \"name\": \"isApprovedForAll\",\n    \"outputs\": [\n      {\n        \"internalType\": \"bool\",\n        \"name\": \"\",\n        \"type\": \"bool\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"publicPriceWei\",\n        \"type\": \"uint256\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"publicSaleKey\",\n        \"type\": \"uint256\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"publicSaleStartTime\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"isPublicSaleOn\",\n    \"outputs\": [\n      {\n        \"internalType\": \"bool\",\n        \"name\": \"\",\n        \"type\": \"bool\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"maxPerAddressDuringMint\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"name\",\n    \"outputs\": [\n      {\n        \"internalType\": \"string\",\n        \"name\": \"\",\n        \"type\": \"string\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"nextOwnerToExplicitlySet\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"owner\",\n        \"type\": \"address\"\n      }\n    ],\n    \"name\": \"numberMinted\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"owner\",\n    \"outputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"\",\n        \"type\": \"address\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"ownerOf\",\n    \"outputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"\",\n        \"type\": \"address\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"quantity\",\n        \"type\": \"uint256\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"callerPublicSaleKey\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"publicSaleMint\",\n    \"outputs\": [],\n    \"stateMutability\": \"payable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"renounceOwnership\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"from\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"address\",\n        \"name\": \"to\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"safeTransferFrom\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"from\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"address\",\n        \"name\": \"to\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      },\n      {\n        \"internalType\": \"bytes\",\n        \"name\": \"_data\",\n        \"type\": \"bytes\"\n      }\n    ],\n    \"name\": \"safeTransferFrom\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"saleConfig\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint32\",\n        \"name\": \"auctionSaleStartTime\",\n        \"type\": \"uint32\"\n      },\n      {\n        \"internalType\": \"uint32\",\n        \"name\": \"publicSaleStartTime\",\n        \"type\": \"uint32\"\n      },\n      {\n        \"internalType\": \"uint64\",\n        \"name\": \"mintlistPrice\",\n        \"type\": \"uint64\"\n      },\n      {\n        \"internalType\": \"uint64\",\n        \"name\": \"publicPrice\",\n        \"type\": \"uint64\"\n      },\n      {\n        \"internalType\": \"uint32\",\n        \"name\": \"publicSaleKey\",\n        \"type\": \"uint32\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address[]\",\n        \"name\": \"addresses\",\n        \"type\": \"address[]\"\n      },\n      {\n        \"internalType\": \"uint256[]\",\n        \"name\": \"numSlots\",\n        \"type\": \"uint256[]\"\n      }\n    ],\n    \"name\": \"seedAllowlist\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"operator\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"bool\",\n        \"name\": \"approved\",\n        \"type\": \"bool\"\n      }\n    ],\n    \"name\": \"setApprovalForAll\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint32\",\n        \"name\": \"timestamp\",\n        \"type\": \"uint32\"\n      }\n    ],\n    \"name\": \"setAuctionSaleStartTime\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"string\",\n        \"name\": \"baseURI\",\n        \"type\": \"string\"\n      }\n    ],\n    \"name\": \"setBaseURI\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"quantity\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"setOwnersExplicit\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint32\",\n        \"name\": \"key\",\n        \"type\": \"uint32\"\n      }\n    ],\n    \"name\": \"setPublicSaleKey\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"bytes4\",\n        \"name\": \"interfaceId\",\n        \"type\": \"bytes4\"\n      }\n    ],\n    \"name\": \"supportsInterface\",\n    \"outputs\": [\n      {\n        \"internalType\": \"bool\",\n        \"name\": \"\",\n        \"type\": \"bool\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"symbol\",\n    \"outputs\": [\n      {\n        \"internalType\": \"string\",\n        \"name\": \"\",\n        \"type\": \"string\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"index\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"tokenByIndex\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"owner\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"index\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"tokenOfOwnerByIndex\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"tokenURI\",\n    \"outputs\": [\n      {\n        \"internalType\": \"string\",\n        \"name\": \"\",\n        \"type\": \"string\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"totalSupply\",\n    \"outputs\": [\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"stateMutability\": \"view\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"from\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"address\",\n        \"name\": \"to\",\n        \"type\": \"address\"\n      },\n      {\n        \"internalType\": \"uint256\",\n        \"name\": \"tokenId\",\n        \"type\": \"uint256\"\n      }\n    ],\n    \"name\": \"transferFrom\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [\n      {\n        \"internalType\": \"address\",\n        \"name\": \"newOwner\",\n        \"type\": \"address\"\n      }\n    ],\n    \"name\": \"transferOwnership\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  },\n  {\n    \"inputs\": [],\n    \"name\": \"withdrawMoney\",\n    \"outputs\": [],\n    \"stateMutability\": \"nonpayable\",\n    \"type\": \"function\"\n  }\n]\n",
+                    "to_block": "latest"
+                }
+            },
+            "ContractEventsData": {
+                "title": "ContractEventsData",
+                "required": [
+                    "block_number",
+                    "function",
+                    "method_id",
+                    "transaction_hash",
+                    "transaction_index"
+                ],
+                "type": "object",
+                "properties": {
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer"
+                    },
+                    "function": {
+                        "title": "Function",
+                        "type": "string"
+                    },
+                    "method_id": {
+                        "title": "Method Id",
+                        "type": "string"
+                    },
+                    "transaction_hash": {
+                        "title": "Transaction Hash",
+                        "type": "string"
+                    },
+                    "transaction_index": {
+                        "title": "Transaction Index",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string"
+                    }
+                }
+            },
+            "GetLastBlockNumberData": {
+                "title": "GetLastBlockNumberData",
+                "required": [
+                    "number",
+                    "hash"
+                ],
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "title": "Number",
+                        "type": "integer"
+                    },
+                    "hash": {
+                        "title": "Hash",
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseContractCall": {
+                "title": "ResponseContractCall",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {}
+                    }
+                }
+            },
+            "ResponseContractEvents": {
+                "title": "ResponseContractEvents",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContractEventsData"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetAccountTxs": {
+                "title": "ResponseGetAccountTxs",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TxDetail"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseGetBlockDetail": {
+                "title": "ResponseGetBlockDetail",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/BlockDetail"
+                    }
+                }
+            },
+            "ResponseGetLastBlockNumber": {
+                "title": "ResponseGetLastBlockNumber",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/GetLastBlockNumberData"
+                    }
+                }
+            },
+            "ResponseGetTxDetail": {
+                "title": "ResponseGetTxDetail",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/TxDetail"
+                    }
+                }
+            },
+            "TxDetail": {
+                "title": "TxDetail",
+                "required": [
+                    "type",
+                    "status",
+                    "block_number",
+                    "block_timestamp",
+                    "transaction_hash",
+                    "transaction_index",
+                    "from_address",
+                    "to_address",
+                    "value",
+                    "input",
+                    "nonce",
+                    "contract_address",
+                    "gas",
+                    "gas_price",
+                    "gas_used",
+                    "effective_gas_price",
+                    "cumulative_gas_used",
+                    "max_fee_per_gas",
+                    "max_priority_fee_per_gas",
+                    "tx_fee",
+                    "saving_fee",
+                    "burnt_fee"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "title": "Type",
+                        "type": "integer",
+                        "description": "tx type, 0: LegacyTx, 1: AccessListTx, 2: DynamicFeeTx, 3: BlobTx"
+                    },
+                    "status": {
+                        "title": "Status",
+                        "type": "integer",
+                        "description": "tx status, 0: failed, 1: success"
+                    },
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer",
+                        "description": "block number"
+                    },
+                    "block_timestamp": {
+                        "title": "Block Timestamp",
+                        "type": "string",
+                        "description": "block time",
+                        "format": "date-time"
+                    },
+                    "transaction_hash": {
+                        "title": "Transaction Hash",
+                        "type": "string",
+                        "description": "transaction hash"
+                    },
+                    "transaction_index": {
+                        "title": "Transaction Index",
+                        "type": "integer",
+                        "description": "transaction index"
+                    },
+                    "from_address": {
+                        "title": "From Address",
+                        "type": "string",
+                        "description": "from address"
+                    },
+                    "to_address": {
+                        "title": "To Address",
+                        "type": "string",
+                        "description": "to address"
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string",
+                        "description": "tx value"
+                    },
+                    "input": {
+                        "title": "Input",
+                        "type": "string",
+                        "description": "tx input"
+                    },
+                    "nonce": {
+                        "title": "Nonce",
+                        "type": "integer",
+                        "description": "from address nonce"
+                    },
+                    "contract_address": {
+                        "title": "Contract Address",
+                        "type": "string",
+                        "description": "contract address, when tx is contract creation tx"
+                    },
+                    "gas": {
+                        "title": "Gas",
+                        "type": "integer",
+                        "description": "gas limit"
+                    },
+                    "gas_price": {
+                        "title": "Gas Price",
+                        "type": "integer",
+                        "description": "gas price"
+                    },
+                    "gas_used": {
+                        "title": "Gas Used",
+                        "type": "integer",
+                        "description": "gas used"
+                    },
+                    "effective_gas_price": {
+                        "title": "Effective Gas Price",
+                        "type": "integer",
+                        "description": "effective gas price"
+                    },
+                    "cumulative_gas_used": {
+                        "title": "Cumulative Gas Used",
+                        "type": "integer",
+                        "description": "cumulative gas used"
+                    },
+                    "max_fee_per_gas": {
+                        "title": "Max Fee Per Gas",
+                        "type": "integer",
+                        "description": "max fee per gas"
+                    },
+                    "max_priority_fee_per_gas": {
+                        "title": "Max Priority Fee Per Gas",
+                        "type": "integer",
+                        "description": "max priority fee per gas"
+                    },
+                    "tx_fee": {
+                        "title": "Tx Fee",
+                        "type": "integer",
+                        "description": "tx fee"
+                    },
+                    "saving_fee": {
+                        "title": "Saving Fee",
+                        "type": "integer",
+                        "description": "saving fee"
+                    },
+                    "burnt_fee": {
+                        "title": "Burnt Fee",
+                        "type": "integer",
+                        "description": "burnt fee"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,199 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "EVM JSON-RPC API: debug_traceBlockByNumber",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://{network}.s.chainbase.online/v1",
+            "variables": {
+                "network": {
+                    "enum": [
+                        "ethereum-mainnet",
+                        "polygon-mainnet",
+                        "bsc-mainnet"
+                    ],
+                    "default": "ethereum-mainnet"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/{api-key}": {
+            "post": {
+                "summary": "debug_traceBlockByNumber",
+                "description": "Returns Geth style Block traces.\n\n**Parameters**\n\n- DATA, 32 Bytes - hash of transaction to trace.\n- OBJECT, Object - An object of type tracer\n    - tracer: callTracer or prestateTracer  \n\n**Returns**\n\nTRACES - An array of traces as per Geth",
+                "operationId": "evm-debug-traceBlockByNumber",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "name": "api-key",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestExample"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCalls"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Call": {
+                "title": "Call",
+                "required": [
+                    "from",
+                    "gas",
+                    "gasUsed",
+                    "to",
+                    "input",
+                    "value",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "from": {
+                        "title": "From",
+                        "type": "string",
+                        "description": "The sender of the transaction"
+                    },
+                    "gas": {
+                        "title": "Gas",
+                        "type": "string"
+                    },
+                    "gasUsed": {
+                        "title": "Gasused",
+                        "type": "string"
+                    },
+                    "to": {
+                        "title": "To",
+                        "type": "string"
+                    },
+                    "input": {
+                        "title": "Input",
+                        "type": "string"
+                    },
+                    "calls": {
+                        "title": "Calls",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Call"
+                        }
+                    },
+                    "value": {
+                        "title": "Value",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string"
+                    }
+                }
+            },
+            "RequestExample": {
+                "title": "RequestExample",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "method",
+                    "params"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "default": 1,
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "default": "2.0",
+                        "example": "2.0"
+                    },
+                    "method": {
+                        "title": "Method",
+                        "type": "string",
+                        "default": "debug_traceBlockByNumber"
+                    },
+                    "params": {
+                        "title": "Params",
+                        "type": "array",
+                        "items": {},
+                        "default": [
+                            "0xed14e5",
+                            {
+                                "tracer": "callTracer"
+                            }
+                        ]
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "jsonrpc": "2.0",
+                    "method": "debug_traceBlockByNumber",
+                    "params": [
+                        "0xed14e5",
+                        {
+                            "tracer": "callTracer"
+                        }
+                    ]
+                }
+            },
+            "ResponseCalls": {
+                "title": "ResponseCalls",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "result"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "example": "2.0"
+                    },
+                    "result": {
+                        "title": "Result",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Call"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

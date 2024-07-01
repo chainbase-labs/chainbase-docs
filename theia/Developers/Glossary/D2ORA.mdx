@@ -1,0 +1,112 @@
+---
+title: 'Decentralized DORA Tuning'
+---
+
+### Abstract
+
+$D^2ORA$ (Decentralized Weight-Decomposed Low-Rank Adaptation) extends the DoRA algorithm to a decentralized environment, enabling distributed training across multiple servers. 
+
+### $D^2ORA$ Algorithm
+
+#### Step 1: Initialization
+
+We first initialize the parameter matrices of Theia and the low-rank matrices.
+
+- **Magnitude Vector Initialization**:
+  Initialize the magnitude vector $m$ using the column-wise norm of the pre-trained weight matrix $W_0$:
+  $$
+  m = ||W_0||_c
+  $$
+
+- **Directional Matrix Initialization**:
+  Set the directional matrix $V$ to the pre-trained weight matrix $W_0$:
+  $$
+  V = W_0
+  $$
+
+- **Low-Rank Matrices Initialization**:
+  Initialize the low-rank matrices $B$ and $A$ for the LoRA method.
+
+#### Step 2: Decomposition
+
+Decompose the pre-trained weight matrix $W_0$ into its magnitude and direction components. The pre-trained weight is directly derived from the NLP model.
+
+- **Magnitude Decomposition**:
+  $$
+  m = ||W_0||_c
+  $$
+
+- **Directional Decomposition**:
+  $$
+  V = W_0 / ||W_0||_c
+  $$
+
+#### Step 3: Distributed Training
+
+For each server in the decentralized network, perform the following:
+
+- **Distribution**:
+  Distribute the initialized $m$, $V$, $B$, and $A$ to all servers.
+
+- **Iterations**:
+  For each iteration $t$ from 1 to $T$:
+
+  - **Weight Update Calculation**:
+    Compute the weight update $\Delta W$ using the low-rank adaptation method:
+    $$
+    \Delta W = BA
+    $$
+
+  - **Magnitude Vector Update**:
+    Update the magnitude vector $m$:
+    $$
+    m = m - \eta \nabla_m L(m, V)
+    $$
+
+  - **Directional Matrix Update**:
+    Update the low-rank matrices $B$ and $A$ with gradient descent:
+    $$
+    B = B - \eta \nabla_B L(B, A)
+    $$
+    $$
+    A = A - \eta \nabla_A L(B, A)
+    $$
+
+#### Step 4: Aggregation
+
+After all iterations are completed, collect updates from all servers and aggregate them:
+
+- **Magnitude Vector Aggregation**:
+  $$
+  m' = \text{aggregate}(m)
+  $$
+
+- **Directional Matrix Aggregation**:
+  $$
+  V' = \text{aggregate}(V)
+  $$
+
+- **Low-Rank Matrices Aggregation**:
+  $$
+  B' = \text{aggregate}(B)
+  $$
+  $$
+  A' = \text{aggregate}(A)
+  $$
+
+#### Step 5: Merging
+
+Merge the updated components to form the final weight matrix:
+
+- **Final Weights Calculation**:
+  $$
+  W' = m' \frac{V'}{||V'||_c} + B'A'
+  $$
+
+#### Step 6: Return Updated Weights
+
+Return the updated weights $W'$ as the final output of the algorithm. We use it as the weight parameters of Theia.
+
+### Summary
+
+D^2ORA enhances the capabilities of DoRA by enabling decentralized training across multiple servers. This approach leverages blockchain technology to ensure trustworthiness, making it suitable for training AI models in a distributed and secure environment.

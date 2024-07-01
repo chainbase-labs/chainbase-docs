@@ -1,0 +1,74 @@
+---
+title: "Get native token balances by address"
+---
+
+Getting the token balances of an account is an essential task when dealing with cryptocurrencies, as it allows you to know the amount of tokens that an account holds. The Web3 APIs from Chainbase provide the ability to get all transactions and account balances in a straightforward way. By following the steps below, you can seamlessly get the native token balances of an account on a certain chain through a single API call using Chainbase API.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. A known wallet address as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/eb3531c-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'; // Take Vitalik's wallet address as an example.
+
+fetch(`https://api.chainbase.online/v1/account/balance?chain_id=${network_id}&address=${wallet_addr}`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'; // Take Vitalik's wallet address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/account/balance?chain_id=${network_id}&address=${wallet_addr}`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print native token balances
+
+Chainbase API [Get native token balances](/api-reference/web3-api/balance/token-balances/get-native-token-balances) takes the chain id and wallet address as parameters, and returns the value of native token balances.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the native token balances of Vitalik’s wallet on Ethereum is `0x122b7e019d9a0431a15` by the time of Mar. 17th, 2023.
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get native token balances](/api-reference/web3-api/balance/token-balances/get-native-token-balances)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

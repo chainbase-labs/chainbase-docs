@@ -1,0 +1,71 @@
+---
+title: 'Generate to Defend (G2D)'
+---
+
+## Necessity
+For any AI models, adversarial attacks occur because attackers exploit vulnerabilities in the model's parameters by crafting inputs that cause the model to make incorrect predictions. These attacks are particularly effective when the model parameters remain static, allowing attackers ample time to probe and understand the model's weaknesses. The necessity of the Generate to Defend (G2D) algorithm arises from the need to counteract these attacks by periodically regenerating model parameters, thereby preventing attackers from gaining prolonged access to a consistent set of parameters. By continually altering the model parameters while maintaining performance, G2D disrupts the attackers' ability to reliably exploit the model, thus enhancing its robustness against adversarial threats, similar to frequently changing passwords to increase security.
+
+### Generate to Defend (G2D) Algorithm
+
+The G2D algorithm periodically generates new model parameters to prevent adversarial attacks by ensuring that the model parameters are not exposed for extended periods. The key idea is to tailor a diffusion model to create new parameters that maintain the model's performance while being sufficiently different from the original parameters. This is achieved by adding a regularizer to the diffusion process that maximizes the L1 distance between the generated parameters and the original parameters.
+
+**1. Preliminaries of Diffusion Models:**
+
+Diffusion models consist of forward and reverse processes indexed by timesteps. We summarize these processes below:
+
+**Forward Process:**
+Given a sample $x_0 \sim q(x)$, Gaussian noise is progressively added for $T$ steps to obtain $x_1, x_2, \ldots, x_T$. This process is described by:
+
+$$
+q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1 - \beta_t} x_{t-1}, \beta_t I)
+$$
+
+**Reverse Process:**
+The reverse process aims to train a denoising network to remove the noise from $x_t$, moving backward from $x_T$ to $x_0$:
+
+$$
+p_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
+$$
+
+The denoising network is optimized using the negative log-likelihood:
+
+$$
+L_{dm} = \text{KL}(q(x_{t-1} | x_t, x_0) \parallel p_\theta(x_{t-1} | x_t))
+$$
+
+**2. Embedding Model into Compact Space:**
+
+To prepare the data, we train an autoencoder to extract latent representations of the model parameters. The encoding and decoding processes are formulated as:
+
+$$
+Z = f_{\text{encoder}}(V + \xi_V, \sigma)
+V' = f_{\text{decoder}}(Z + \xi_Z, \rho)
+$$
+
+where $V$ is the set of model parameters, $Z$ is the latent representation, $\xi_V$ and $\xi_Z$ are added Gaussian noise, and $\sigma$ and $\rho$ are parameters of the encoder and decoder, respectively. The autoencoder is trained by minimizing the mean square error (MSE) loss:
+
+$$
+L_{MSE} = \frac{1}{K} \sum_{k=1}^K \| v_k - v'_k \|^2
+$$
+
+**3. Training Diffusion Models with Regularizer:**
+
+We modify the diffusion process to include a regularizer that maximizes the L1 distance between the generated parameters and the original parameters. The training objective for the diffusion model with the additional regularizer is given by:
+
+$$
+\theta \leftarrow \theta - \nabla_\theta \left( \| \epsilon - \epsilon_\theta (\sqrt{\bar{\alpha}_t} z_k^0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, t) \|^2 + \lambda \| \theta_{\text{gen}} - \theta_{\text{orig}} \|_1 \right)
+$$
+
+where $\lambda$ is a hyperparameter that controls the importance of the regularizer, $\theta_{\text{gen}}$ are the generated parameters, and $\theta_{\text{orig}}$ are the original parameters.
+
+**4. Model Generation:**
+
+During inference, random noise is fed into the trained diffusion model and decoder to generate new sets of model parameters:
+
+$$
+\theta_{\text{gen}} = f_{\text{decoder}}( \text{ReverseProcess}(\text{Random Noise}))
+$$
+
+These generated parameters are then used to replace the existing model parameters, ensuring the model's resilience against adversarial attacks by frequently updating its parameters. This modified diffusion process ensures that the new parameters are significantly different from the original ones, thereby enhancing the model's defense against adversarial attacks while maintaining its performance.
+
+After the model is trained, the Step 4 is executed periodically to randomize AI model parameters, so that the cost of attack is significantly increased. The more frequent we generate, the safer our AI model become. To generate a new parameter, only a diffusion process is inferenced in a cost-effective manner.

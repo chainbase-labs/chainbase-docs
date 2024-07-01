@@ -1,0 +1,3833 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "\ud83d\udc1a Inscription API",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.chainbase.online",
+            "description": "production server"
+        }
+    ],
+    "paths": {
+        "/v1/insc/eths/account/balance": {
+            "get": {
+                "tags": [
+                    "Inscription Eths"
+                ],
+                "summary": "Get Account Balance From Eths",
+                "description": "Get Eths Account Balance.",
+                "operationId": "GetINSCEthsAccountBalance",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountBalance"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/eths/account/activities": {
+            "get": {
+                "tags": [
+                    "Inscription Eths"
+                ],
+                "summary": "Get Account Activities From Eths",
+                "description": "Get Eths Account Activities.",
+                "operationId": "GetINSCEthsAccountActivities",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name",
+                            "default": ""
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/eths/tick": {
+            "get": {
+                "tags": [
+                    "Inscription Eths"
+                ],
+                "summary": "Get Tick Detail From Eths",
+                "description": "Get Eths Tick Detail.",
+                "operationId": "GetINSCEthsTick",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTick"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/eths/tick/range": {
+            "get": {
+                "tags": [
+                    "Inscription Eths"
+                ],
+                "summary": "Get Tick(s) Detail From Eths",
+                "description": "Get Eths Ticks",
+                "operationId": "GetINSCEthsTicks",
+                "parameters": [
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick list, max 100 items: tick=a&tick=b",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "tick list, max 100 items: tick=a&tick=b"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTicks"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/eths/tick/top-holders": {
+            "get": {
+                "tags": [
+                    "Inscription Eths"
+                ],
+                "summary": "Get TopHolders From Eths",
+                "description": "Get Eths TopHolders",
+                "operationId": "GetINSCEthsTopHolders",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTopHolders"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/eths/tick/activities": {
+            "get": {
+                "tags": [
+                    "Inscription Eths"
+                ],
+                "summary": "Get Tick Activities From Eths",
+                "description": "Get Eths Tick Activities",
+                "operationId": "GetINSCEthsTickActivities",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTickActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/pipe/account/balance": {
+            "get": {
+                "tags": [
+                    "Inscription Pipe"
+                ],
+                "summary": "Get Account Balance From Pipe",
+                "description": "Get Pipe Account Balance.",
+                "operationId": "GetINSCPipeAccountBalance",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountBalance"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/pipe/account/activities": {
+            "get": {
+                "tags": [
+                    "Inscription Pipe"
+                ],
+                "summary": "Get Account Activities From Pipe",
+                "description": "Get Pipe Account Activities.",
+                "operationId": "GetINSCPipeAccountActivities",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name",
+                            "default": ""
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/pipe/tick": {
+            "get": {
+                "tags": [
+                    "Inscription Pipe"
+                ],
+                "summary": "Get Tick Detail From Pipe",
+                "description": "Get Pipe Tick Detail.",
+                "operationId": "GetINSCPipeTick",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTick"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/pipe/tick/range": {
+            "get": {
+                "tags": [
+                    "Inscription Pipe"
+                ],
+                "summary": "Get Tick(s) Detail From Pipe",
+                "description": "Get Pipe Ticks",
+                "operationId": "GetINSCPipeTicks",
+                "parameters": [
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick list, max 100 items: tick=a&tick=b",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "tick list, max 100 items: tick=a&tick=b"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTicks"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/pipe/tick/top-holders": {
+            "get": {
+                "tags": [
+                    "Inscription Pipe"
+                ],
+                "summary": "Get TopHolders From Pipe",
+                "description": "Get Pipe TopHolders",
+                "operationId": "GetINSCPipeTopHolders",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTopHolders"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/pipe/tick/activities": {
+            "get": {
+                "tags": [
+                    "Inscription Pipe"
+                ],
+                "summary": "Get Tick Activities From Pipe",
+                "description": "Get Pipe Tick Activities",
+                "operationId": "GetINSCPipeTickActivities",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTickActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/brc20/account/balance": {
+            "get": {
+                "tags": [
+                    "Inscription BRC20"
+                ],
+                "summary": "Get Account Balance From BRC20",
+                "description": "Get BRC20 Account Balance.",
+                "operationId": "GetINSCBRC20AccountBalance",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountBalance"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/brc20/account/activities": {
+            "get": {
+                "tags": [
+                    "Inscription BRC20"
+                ],
+                "summary": "Get Account Activities From BRC20",
+                "description": "Get BRC20 Account Activities.",
+                "operationId": "GetINSCBRC20AccountActivities",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name",
+                            "default": ""
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/brc20/tick": {
+            "get": {
+                "tags": [
+                    "Inscription BRC20"
+                ],
+                "summary": "Get Tick Detail From brc20",
+                "description": "Get BRC20 Tick Detail.",
+                "operationId": "GetINSCBRC20Tick",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTick"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/brc20/tick/range": {
+            "get": {
+                "tags": [
+                    "Inscription BRC20"
+                ],
+                "summary": "Get Tick(s) Detail From BRC20",
+                "description": "Get BRC20 Ticks",
+                "operationId": "GetINSCBRC20Ticks",
+                "parameters": [
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick list, max 100 items: tick=a&tick=b",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "tick list, max 100 items: tick=a&tick=b"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTicks"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/brc20/tick/top-holders": {
+            "get": {
+                "tags": [
+                    "Inscription BRC20"
+                ],
+                "summary": "Get TopHolders From BRC20",
+                "description": "Get BRC20 TopHolders",
+                "operationId": "GetINSCBRC20TopHolders",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTopHolders"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/brc20/tick/activities": {
+            "get": {
+                "tags": [
+                    "Inscription BRC20"
+                ],
+                "summary": "Get Tick Activities From BRC20",
+                "description": "Get BRC20 Tick Activities",
+                "operationId": "GetINSCBRC20TickActivities",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTickActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/asc20/account/balance": {
+            "get": {
+                "tags": [
+                    "Inscription ASC20"
+                ],
+                "summary": "Get Account Balance From ASC20",
+                "description": "Get ASC20 Account Balance.",
+                "operationId": "GetINSCASC20AccountBalance",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountBalance"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/asc20/account/activities": {
+            "get": {
+                "tags": [
+                    "Inscription ASC20"
+                ],
+                "summary": "Get Account Activities From ASC20",
+                "description": "Get ASC20 Account Activities.",
+                "operationId": "GetINSCASC20AccountActivities",
+                "parameters": [
+                    {
+                        "description": "wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "type": "string",
+                            "description": "wallet address"
+                        },
+                        "example": "",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick name",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name",
+                            "default": ""
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCAccountActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/asc20/tick": {
+            "get": {
+                "tags": [
+                    "Inscription ASC20"
+                ],
+                "summary": "Get Tick Detail From ASC20",
+                "description": "Get ASC20 Tick Detail.",
+                "operationId": "GetINSCASC20Tick",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTick"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/asc20/tick/range": {
+            "get": {
+                "tags": [
+                    "Inscription ASC20"
+                ],
+                "summary": "Get Tick(s) Detail From ASC20",
+                "description": "Get ASC20 Ticks",
+                "operationId": "GetINSCASC20Ticks",
+                "parameters": [
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "description": "tick list, max 100 items: tick=a&tick=b",
+                        "required": false,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "tick list, max 100 items: tick=a&tick=b"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTicks"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/asc20/tick/top-holders": {
+            "get": {
+                "tags": [
+                    "Inscription ASC20"
+                ],
+                "summary": "Get TopHolders From ASC20",
+                "description": "Get ASC20 TopHolders",
+                "operationId": "GetINSCASC20TopHolders",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTopHolders"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/insc/asc20/tick/activities": {
+            "get": {
+                "tags": [
+                    "Inscription ASC20"
+                ],
+                "summary": "Get Tick Activities From ASC20",
+                "description": "Get ASC20 Tick Activities",
+                "operationId": "GetINSCASC20TickActivities",
+                "parameters": [
+                    {
+                        "description": "tick name",
+                        "required": true,
+                        "schema": {
+                            "title": "Tick",
+                            "type": "string",
+                            "description": "tick name"
+                        },
+                        "example": "",
+                        "name": "tick",
+                        "in": "query"
+                    },
+                    {
+                        "description": "id",
+                        "required": false,
+                        "schema": {
+                            "title": "Id",
+                            "type": "string",
+                            "description": "id"
+                        },
+                        "example": "",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The page offset",
+                        "required": false,
+                        "schema": {
+                            "title": "Page",
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The page offset",
+                            "default": 1
+                        },
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "description": "The desired page size limit. Less or equal than 100",
+                        "required": false,
+                        "schema": {
+                            "title": "Limit",
+                            "maximum": 100.0,
+                            "minimum": 1.0,
+                            "type": "integer",
+                            "description": "The desired page size limit. Less or equal than 100",
+                            "default": 20
+                        },
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseINSCTickActivities"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string"
+                    }
+                }
+            },
+            "INSCAccountBalance": {
+                "title": "INSCAccountBalance",
+                "required": [
+                    "block_timestamp",
+                    "block_number",
+                    "tick",
+                    "id",
+                    "wallet_address",
+                    "total_supply",
+                    "amount"
+                ],
+                "type": "object",
+                "properties": {
+                    "block_timestamp": {
+                        "title": "Block Timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer"
+                    },
+                    "tick": {
+                        "title": "Tick",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "wallet_address": {
+                        "title": "Wallet Address",
+                        "type": "string"
+                    },
+                    "total_supply": {
+                        "title": "Total Supply",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "title": "Amount",
+                        "type": "string"
+                    }
+                }
+            },
+            "INSCTick": {
+                "title": "INSCTick",
+                "required": [
+                    "block_timestamp",
+                    "block_number",
+                    "tx_index",
+                    "tx_hash",
+                    "tick",
+                    "id",
+                    "max_supply",
+                    "lim",
+                    "wlim",
+                    "dec",
+                    "creator",
+                    "minted",
+                    "holders"
+                ],
+                "type": "object",
+                "properties": {
+                    "block_timestamp": {
+                        "title": "Block Timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer"
+                    },
+                    "tx_index": {
+                        "title": "Tx Index",
+                        "type": "integer"
+                    },
+                    "tx_hash": {
+                        "title": "Tx Hash",
+                        "type": "string"
+                    },
+                    "tick": {
+                        "title": "Tick",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "max_supply": {
+                        "title": "Max Supply",
+                        "type": "string"
+                    },
+                    "lim": {
+                        "title": "Lim",
+                        "type": "string"
+                    },
+                    "wlim": {
+                        "title": "Wlim",
+                        "type": "string"
+                    },
+                    "dec": {
+                        "title": "Dec",
+                        "type": "string"
+                    },
+                    "creator": {
+                        "title": "Creator",
+                        "type": "string"
+                    },
+                    "minted": {
+                        "title": "Minted",
+                        "type": "string"
+                    },
+                    "holders": {
+                        "title": "Holders",
+                        "type": "string"
+                    }
+                }
+            },
+            "INSCTokenActivities": {
+                "title": "INSCTokenActivities",
+                "required": [
+                    "block_timestamp",
+                    "block_number",
+                    "tx_index",
+                    "tx_hash",
+                    "log_index",
+                    "type",
+                    "tick",
+                    "id",
+                    "amt",
+                    "from_address",
+                    "to_address"
+                ],
+                "type": "object",
+                "properties": {
+                    "block_timestamp": {
+                        "title": "Block Timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer"
+                    },
+                    "tx_index": {
+                        "title": "Tx Index",
+                        "type": "integer"
+                    },
+                    "tx_hash": {
+                        "title": "Tx Hash",
+                        "type": "string"
+                    },
+                    "log_index": {
+                        "title": "Log Index",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "title": "Type",
+                        "type": "string"
+                    },
+                    "tick": {
+                        "title": "Tick",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "amt": {
+                        "title": "Amt",
+                        "type": "string"
+                    },
+                    "from_address": {
+                        "title": "From Address",
+                        "type": "string"
+                    },
+                    "to_address": {
+                        "title": "To Address",
+                        "type": "string"
+                    }
+                }
+            },
+            "INSCTokenInfo": {
+                "title": "INSCTokenInfo",
+                "required": [
+                    "block_timestamp",
+                    "block_number",
+                    "tx_index",
+                    "tx_hash",
+                    "tick",
+                    "id",
+                    "max_supply",
+                    "lim",
+                    "wlim",
+                    "dec",
+                    "creator"
+                ],
+                "type": "object",
+                "properties": {
+                    "block_timestamp": {
+                        "title": "Block Timestamp",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "block_number": {
+                        "title": "Block Number",
+                        "type": "integer"
+                    },
+                    "tx_index": {
+                        "title": "Tx Index",
+                        "type": "integer"
+                    },
+                    "tx_hash": {
+                        "title": "Tx Hash",
+                        "type": "string"
+                    },
+                    "tick": {
+                        "title": "Tick",
+                        "type": "string"
+                    },
+                    "id": {
+                        "title": "Id",
+                        "type": "string"
+                    },
+                    "max_supply": {
+                        "title": "Max Supply",
+                        "type": "string"
+                    },
+                    "lim": {
+                        "title": "Lim",
+                        "type": "string"
+                    },
+                    "wlim": {
+                        "title": "Wlim",
+                        "type": "string"
+                    },
+                    "dec": {
+                        "title": "Dec",
+                        "type": "string"
+                    },
+                    "creator": {
+                        "title": "Creator",
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseINSCAccountActivities": {
+                "title": "ResponseINSCAccountActivities",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/INSCTokenActivities"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseINSCAccountBalance": {
+                "title": "ResponseINSCAccountBalance",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/INSCAccountBalance"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseINSCTick": {
+                "title": "ResponseINSCTick",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/INSCTick"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseINSCTickActivities": {
+                "title": "ResponseINSCTickActivities",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/INSCTokenActivities"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseINSCTicks": {
+                "title": "ResponseINSCTicks",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/INSCTokenInfo"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseINSCTopHolders": {
+                "title": "ResponseINSCTopHolders",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/INSCAccountBalance"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}

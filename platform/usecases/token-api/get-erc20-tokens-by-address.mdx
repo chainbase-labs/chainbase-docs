@@ -1,0 +1,112 @@
+---
+title: "Get ERC20 tokens owned by address"
+---
+
+If you’re into cryptocurrency, you might want to use Chainbase API [Get ERC20 token balances](/api-reference/web3-api/balance/token-balances/get-erc20-token-balances) to build a simple wallet to check the balances! This API returns all ERC20 token balances that an address owns. You can also use this API to automate the process of checking your token balances, and save yourself a lot of time and effort.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. A known wallet address as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/1db103d-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'; // Take Vitalik's wallet address as an example.
+
+fetch(`https://api.chainbase.online/v1/account/tokens?chain_id=${network_id}&address=${wallet_addr}&limit=5&page=1`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'; // Take Vitalik's wallet address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/account/tokens?chain_id=${network_id}&address=${wallet_addr}&limit=5&page=1`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print the ERC20 token balances
+
+Chainbase API [Get ERC20 token balances](/api-reference/web3-api/balance/token-balances/get-erc20-token-balances) takes the chain id and wallet address as parameters, and returns all ERC20 token balances that this wallet owns. You can also specify a certain token by feeding an address in the `contract_address` field.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the balances of some ERC20 tokens owned by Vitalik on Ethereum are as follows.
+
+```jsx
+{
+  "balance": "0x2386f26fc10000",
+  "contract_address": "0x954b7997b8bfa9b3d642c477549e284551012f05",
+  "decimals": 9,
+  "name": "Eterium",
+  "symbol": "ETE"
+},
+{
+  "balance": "0x97e328b058fe88019f7b",
+  "contract_address": "0xff58ece2d4584139e3f136e18cae27deda947d3b",
+  "decimals": 18,
+  "name": "Uniswap V2",
+  "symbol": "UNI-V2"
+},
+{
+  "balance": "0x186a0",
+  "contract_address": "0xa6de609807c7258a0d34f5307c1808f062a59794",
+  "decimals": 0,
+  "name": "$ USDCDrop.com",
+  "symbol": "$ USDCDrop.com <- Visit to claim"
+},
+{
+  "balance": "0x36f4bc072a511af5",
+  "contract_address": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+  "decimals": 18,
+  "name": "dYdX",
+  "symbol": "DYDX"
+},
+{
+  "balance": "0x4700c3e20f38dcc",
+  "contract_address": "0xa0a85f43c5e286187266833a5e986cb8a1a8b9f9",
+  "decimals": 9,
+  "name": "Apollo 11",
+  "symbol": "APOLLO"
+}
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get ERC20 token balances](/api-reference/web3-api/balance/token-balances/get-erc20-token-balances)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

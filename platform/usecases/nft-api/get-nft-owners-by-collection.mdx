@@ -1,0 +1,163 @@
+---
+title: "Get NFT owners by collection"
+---
+
+If you’re interested in the market of NFTs, it’s essential to know who the current owners of particular NFT collection are. Here are some steps to follow to get the owner information:
+
+1. First, you need to identify the blockchain platform that the NFT collection is built on. Popular blockchain platforms for NFTs include Ethereum, Polygon, Binance Smart Chain, and so on.
+2. Once you know the blockchain platform, you can use a blockchain explorer to search for the NFT contract address. A blockchain explorer is a tool that allows you to view transaction data on the blockchain.
+3. After you find the NFT contract address, you can use Chainbase API [Get NFT owners by collection](/api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection) to get all the owners of that NFT collection.
+
+The following tutorial shows how to use Chainbase to get all the owners of a certain NFT collection. With this information, you can see who the largest holder of an NFT collection is.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. The contract address of a known NFT collection as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/d0ae1d1-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take Azuki's contract address as an example.
+
+fetch(`https://api.chainbase.online/v1/nft/owners?chain_id=${network_id}&contract_address=${contract_addr}`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take Azuki's contract address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/nft/owners?chain_id=${network_id}&contract_address=${contract_addr}`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print the owners of the NFT collection
+
+Chainbase API [Get NFT owners by collection](/api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection) takes the chain id and NFT contract address as parameters, and returns the holders’ address and the corresponding total. You can also get the total holder number in the `count` column of the returned data.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the `data` column of the returned data looks as follows.
+
+```jsx
+{
+  "address": "0xd46c8648f2ac4ce1a1aace620460fbd24f640853",
+  "total": 374
+},
+{
+  "address": "0xff3879b8a363aed92a6eaba8f61f1a96a9ec3c1e",
+  "total": 290
+},
+{
+  "address": "0x29469395eaf6f95920e59f858042f0e28d98a20b",
+  "total": 224
+},
+{
+  "address": "0x8e0788650afeedfb26f26bee874aed02688b2108",
+  "total": 117
+},
+{
+  "address": "0x54be3a794282c030b15e43ae2bb182e14c409c5e",
+  "total": 113
+},
+{
+  "address": "0x2ae6b0630ebb4d155c6e04fcb16840ffa77760aa",
+  "total": 112
+},
+{
+  "address": "0x0377aa308c44855217a1d900f39828d5d9def153",
+  "total": 101
+},
+{
+  "address": "0xb9330e17d30c57b4b192ae58140a72e0bfd3b718",
+  "total": 91
+},
+{
+  "address": "0x5d7aaa862681920ea4f350a670816b0977c80b37",
+  "total": 91
+},
+{
+  "address": "0x071b1116cc023763885865cfcc2e1daccc277419",
+  "total": 90
+},
+{
+  "address": "0x1e1936adba1d18be91694727086e40647decf375",
+  "total": 71
+},
+{
+  "address": "0x5e850e5a673dc4c9ce7790a0b2790937b11c8008",
+  "total": 70
+},
+{
+  "address": "0xa8189c566c8b602e23b016da819c11dae50160d6",
+  "total": 69
+},
+{
+  "address": "0xf6fe23577bd0e7a70421706ee1a4c526cadcbaf3",
+  "total": 63
+},
+{
+  "address": "0x96d3b7f663ed680f316781680464045f3458440b",
+  "total": 59
+},
+{
+  "address": "0x72695c2af4193029e0669f2c01d84b619d8c25e7",
+  "total": 49
+},
+{
+  "address": "0x04d7c2ee4cdbac9a0fc46d3e35e79aba5cca471d",
+  "total": 47
+},
+{
+  "address": "0xb0e59b0cf8f705f94c3d523aebbf8d4703a24fad",
+  "total": 44
+},
+{
+  "address": "0xd4f072b18c7a31d50bbf1df729b68e9ace7bc0d9",
+  "total": 41
+},
+{
+  "address": "0x3d9623f9f8c682d949be2bcaf3f692ab9c40b1d4",
+  "total": 40
+}
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get NFT owners by collection](/api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

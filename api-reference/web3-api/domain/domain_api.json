@@ -1,0 +1,863 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "\ud83d\udce8 Domain API",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.chainbase.online",
+            "description": "production server"
+        }
+    ],
+    "paths": {
+        "/v1/account/ens": {
+            "get": {
+                "tags": [
+                    "ENS Domain Endpoints"
+                ],
+                "summary": "Get ENS domains",
+                "description": "Gets a list of ENS domains held by a given address.",
+                "operationId": "GetAccountENS",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseAccountENS"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/ens/records": {
+            "get": {
+                "tags": [
+                    "ENS Domain Endpoints"
+                ],
+                "summary": "Resolve ENS domain",
+                "description": "Resolves a ETH address given an ENS Domain.",
+                "operationId": "GetENSRecords",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "ENS Domain",
+                        "required": true,
+                        "schema": {
+                            "title": "Domain",
+                            "type": "string",
+                            "description": "ENS Domain"
+                        },
+                        "example": "vitalik.eth",
+                        "name": "domain",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseENSRecords"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/ens/reverse": {
+            "get": {
+                "tags": [
+                    "ENS Domain Endpoints"
+                ],
+                "summary": "Reverse resolve ENS domain",
+                "description": "Reverse resolves a given ETH address to its ENS domain.",
+                "operationId": "GetENSReverse",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseENSReverse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/space-id/records": {
+            "get": {
+                "tags": [
+                    "SPACE ID Domain Endpoints"
+                ],
+                "summary": "Resolve SPACE ID domain",
+                "description": "Resolves a BNB address given an BNB Domain.",
+                "operationId": "GetSPACEIDRecords",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "56",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "SPACE ID domain",
+                        "required": true,
+                        "schema": {
+                            "title": "Domain",
+                            "type": "string",
+                            "description": "SPACE ID domain"
+                        },
+                        "example": "0xzzir.bnb",
+                        "name": "domain",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetSpaceIdRecords"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/space-id/reverse": {
+            "get": {
+                "tags": [
+                    "SPACE ID Domain Endpoints"
+                ],
+                "summary": "Reverse resolve SPACE ID domain",
+                "description": "Reverse resolves SPACE ID domain from an BNB address.",
+                "operationId": "GetSPACEIDReverse",
+                "parameters": [
+                    {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "56",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "example": "0x0000000000d14562212733c7da3923dfe2613603",
+                        "name": "address",
+                        "in": "query"
+                    },
+                    {
+                        "description": "block decimal number, hex number or 'latest'",
+                        "required": false,
+                        "schema": {
+                            "title": "To Block",
+                            "type": "string",
+                            "description": "block decimal number, hex number or 'latest'"
+                        },
+                        "example": "latest",
+                        "name": "to_block",
+                        "in": "query"
+                    },
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseGetSpaceIdReverse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ENS": {
+                "title": "ENS",
+                "required": [
+                    "registrant_time",
+                    "expiration_time",
+                    "token_id",
+                    "text_records"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "address": {
+                        "title": "Address",
+                        "type": "string"
+                    },
+                    "registrant": {
+                        "title": "Registrant",
+                        "type": "string"
+                    },
+                    "owner": {
+                        "title": "Owner",
+                        "type": "string"
+                    },
+                    "resolver": {
+                        "title": "Resolver",
+                        "type": "string"
+                    },
+                    "registrant_time": {
+                        "title": "Registrant Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "expiration_time": {
+                        "title": "Expiration Time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "token_id": {
+                        "title": "Token Id",
+                        "type": "string"
+                    },
+                    "text_records": {
+                        "title": "Text Records",
+                        "type": "object"
+                    }
+                }
+            },
+            "ErrorMessage": {
+                "title": "ErrorMessage",
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string"
+                    }
+                }
+            },
+            "ResponseAccountENS": {
+                "title": "ResponseAccountENS",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ENS"
+                        }
+                    },
+                    "next_page": {
+                        "title": "Next Page",
+                        "type": "integer"
+                    },
+                    "count": {
+                        "title": "Count",
+                        "type": "integer"
+                    }
+                }
+            },
+            "ResponseENSRecords": {
+                "title": "ResponseENSRecords",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/ENS"
+                    }
+                }
+            },
+            "ResponseENSReverse": {
+                "title": "ResponseENSReverse",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ENS"
+                        }
+                    }
+                }
+            },
+            "ResponseGetSpaceIdRecords": {
+                "title": "ResponseGetSpaceIdRecords",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/ENS"
+                    }
+                }
+            },
+            "ResponseGetSpaceIdReverse": {
+                "title": "ResponseGetSpaceIdReverse",
+                "required": [
+                    "data"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ENS"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

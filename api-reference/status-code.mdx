@@ -1,0 +1,27 @@
+---
+title: API Status Code
+---
+
+## JSON-RPC API
+
+| Status Code | Description                                                                                                              | Message                                    |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- |
+| \-32000     | Error code flag for backward compatibility.                                                                              | Something happened, Please try again Later |
+| \-32600     | This is an invalid request, check the request package.                                                                   | Invalid Request                            |
+| \-32601     | The corresponding method is not found. You need to check whether this is the interface supported by the client standard. | Method not found                           |
+| \-32602     | This method uses the wrong parameter. (Check to see if the parameter is forgotten or too many.)                          | Invalid params                             |
+| \-32603     | There may be a network voice fault. Try again later.                                                                     | Internal error                             |
+| \-32700     | The parsing process sounds an error.                                                                                     | Parse error                                |
+
+## HTTP API
+
+| Status Code        | Message           | Description                                                                                             |
+| :----------------- | :---------------- | :------------------------------------------------------------------------------------------------------ |
+| 200                | OK                | Everything worked as expected.                                                                          |
+| 400                | Bad Request       | The request was unacceptable, often due to missing a required parameter.                                |
+| 401                | Unauthorized      | The request requires authentication. After logging in, the server may return this response to the page. |
+| 402                | Request Failed    | The parameters were valid but the request failed.                                                       |
+| 403                | Forbidden         | The server rejects the request.                                                                         |
+| 404                | Not Found         | The requested resource doesn't exist.                                                                   |
+| 429                | Too Many Requests | Too many requests hit the API request rate limit.                                                       |
+| 500, 502, 503, 504 | Server Errors     | Something went wrong on Chainbase's end. (These are rare.)                                              |

@@ -1,0 +1,50 @@
+---
+title: "Data Cloud API (Deprecated)"
+---
+
+<Warning>
+❗️ Warning
+
+Version Classic will not update new features. Recommend using our latest version of the [DataCloud API.](/platform/features/api/sql-api/datacloud-task-api)
+</Warning>
+
+<Info>
+📘 Don’t have an API key?
+
+Go to [console.chainbase.com](https://console.chainbase.com/) to create an account and a new API key.
+</Info>
+
+## What is Data Cloud?
+
+The Chainbase Data Cloud lets you run your low-latency queries through an endpoint to leverage all our indexed datasets for your custom needs. Chainbase's [Data Cloud](/platform/datasets/overview) is a fully managed online data warehouse service for Web3 developers.  Developers can query the data warehouse through the **API** to access our datasets with zero infra cost.  And the **Data Cloud**'s scalable, distributed analytical data engine and intelligent data modeling allow you to query terabytes of data **in seconds**.
+
+## Quickstart
+
+Query the hashes of the last 3,000 blocks in Ethereum and the number of transactions in each block:
+
+```bash
+curl -X "POST" "https://api.chainbase.online/v1/dw/query" \
+     -H 'X-API-KEY: YOUR-API-KEY ' \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "query": "select number, transactions_count from ethereum.blocks order by number desc limit 3000;"
+}'
+```
+
+If there are more than 1000 rows, you need to paginate through the`task_id` and `page` to get all the results:
+
+```bash
+curl -X "POST" "https://api.chainbase.online/v1/dw/query" \
+     -H 'X-API-KEY: YOUR-API-KEY ' \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+       "task_id": "xxxxxxxxxxxxxxxxxxxxx",
+       "page": 2
+}'
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [SQL API (Classic)](/api-reference/sql-api/data-cloud-sql-query)

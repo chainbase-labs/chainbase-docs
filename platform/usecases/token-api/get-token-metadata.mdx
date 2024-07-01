@@ -1,0 +1,84 @@
+---
+title: "Get Token Metadata"
+---
+
+If you want to automatically get the metadata of some ERC20 tokens, definitely check out Chainbase API [Get token metadata](/api-reference/web3-api/token/token-metadata/get-token-metadata). You can easily retrieve the metadata for any ERC20 token with its contract address by using Chainbase API.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. A contract address of an ERC20 token as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/f7e1816-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'; // Take Matic Token's contract address as an example.
+
+fetch(`https://api.chainbase.online/v1/token/metadata?chain_id=${network_id}&contract_address=${contract_addr}`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'; // Take Matic Token's contract address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/token/metadata?chain_id=${network_id}&contract_address=${contract_addr}`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print metadata of an ERC20 token
+
+Chainbase API [Get token metadata](/api-reference/web3-api/token/token-metadata/get-token-metadata) takes the chain id and token contract address as parameters, and returns the metadata of the ERC20 token.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the data returned looks as follows.
+
+```jsx
+{
+	"contract_address": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+	"name": "Matic Token",
+	"symbol": "MATIC",
+	"decimals": 18,
+	"total_supply": "0x204fce5e3e25026110000000"
+}
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get token metadata](/api-reference/web3-api/token/token-metadata/get-token-metadata)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

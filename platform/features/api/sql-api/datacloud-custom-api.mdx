@@ -1,0 +1,23 @@
+---
+title: "Data Cloud Custom API (Alpha)"
+description: "A data request method supporting high-concurrency scenarios."
+---
+
+The Custom API functionality is designed to offer an efficient and reliable data processing solution, by automatically updating and persistently storing users' SQL query results according to a predetermined schedule in a relational database engineered to handle high concurrency and high throughput demands. This strategy, by sacrificing a certain degree of data real-time accuracy, achieves optimization in reducing response time and enhancing the number of requests processed. Compared to our Task API, the distinctiveness of the Custom API functionality lies in its less stringent requirement for data immediacy.
+
+- **Task API**:  Asynchronous real-time requests with high data freshness (less concurrency scenarios).
+- **Custom API**: High concurrency and low latency (with slightly reduced data freshness,at least 5 minutes).
+
+![](https://files.readme.io/507a0b7-image.png)
+
+![](https://files.readme.io/1398f86-image.png)
+
+![](https://files.readme.io/a0204dd-image.png)
+
+![](https://files.readme.io/a5ea53e-image.png)
+
+![](https://files.readme.io/df39799-image.png)
+
+![](https://files.readme.io/8e2ecb8-image.png)
+
+![](https://files.readme.io/218aafc-image.png)

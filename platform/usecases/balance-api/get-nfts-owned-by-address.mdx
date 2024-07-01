@@ -1,0 +1,164 @@
+---
+title: "Get all NFTs owned by an address"
+---
+
+It’s important for a wallet to view all NFTs it holds. Chainbase offers a specific API endpoint for retrieving all NFTs owned by a wallet address.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. A wallet address as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/747aea7-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'; // Take Vitalik's wallet address as an example.
+
+fetch(`https://api.chainbase.online/v1/account/nfts?chain_id=${network_id}&address=${wallet_addr}&page=1&limit=5`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+wallet_addr = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'; // Take Vitalik's wallet address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/account/nfts?chain_id=${network_id}&address=${wallet_addr}&page=1&limit=5`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print NFTs owned by the wallet
+
+Chainbase API [Get NFTs owned by address](/api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address) takes the chain id and wallet address as parameters, and returns the NFTs owned by the input wallet.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, five of the NFTs owned by Vitalik are as follows.
+
+```jsx
+[
+  {
+    contract_address: '0xc54567b294d7ec7807529fbaec71d326543453c5',
+    erc_type: 'ERC721',
+    image_uri: 'ipfs://QmVaTJSCgGFyfcd4hsaTN2ZMDh2hErpCtY9xMP9USdZqt1',
+    metadata: {
+      attributes: [Array],
+      description: "CoinStats GLXY is for the starry-eyed and galaxy-brained. It's for those whose spaceship has landed on CoinStats planet, who appreciate the mysterious glow the cosmic entities on our orbit give off. Enjoy the kitsch!",
+      image: 'ipfs://QmVaTJSCgGFyfcd4hsaTN2ZMDh2hErpCtY9xMP9USdZqt1',
+      name: 'CoinStats GLXY 1856'
+    },
+    mint_time: '2022-08-11T07:22:13Z',
+    mint_transaction_hash: '0x46a7b861a8f1e0290b6dc3095051bf03914701ea6b0a065455273c61fb6b3861',
+    name: 'CoinStatsGLXY',
+    owner: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+    symbol: 'GLXY',
+    token_id: '0x0740',
+    token_uri: 'ipfs://QmQyhH7CWpcRpZtuau7GzucbG4NnG2Uv3ZuAuvHGJWdys7/1856.json',
+    total: 1,
+    total_string: '1',
+    traits: null
+  },
+  {
+    contract_address: '0x495f947276749ce646f68ac8c248420045cb7b5e',
+    erc_type: 'ERC1155',
+    image_uri: '',
+    metadata: null,
+    mint_time: '0001-01-01T00:00:00Z',
+    mint_transaction_hash: '',
+    name: 'OpenSea Shared Storefront',
+    owner: '',
+    symbol: 'OPENSTORE',
+    token_id: '0x92c6b6b4a1817e76b56eb3e1724f9df6026dd63c000000000000410000000006',
+    token_uri: '',
+    total: 1,
+    total_string: '1',
+    traits: null
+  },
+  {
+    contract_address: '0x495f947276749ce646f68ac8c248420045cb7b5e',
+    erc_type: 'ERC1155',
+    image_uri: '',
+    metadata: null,
+    mint_time: '0001-01-01T00:00:00Z',
+    mint_transaction_hash: '',
+    name: 'OpenSea Shared Storefront',
+    owner: '',
+    symbol: 'OPENSTORE',
+    token_id: '0x92c6b6b4a1817e76b56eb3e1724f9df6026dd63c000000000000400000000006',
+    token_uri: '',
+    total: 1,
+    total_string: '1',
+    traits: null
+  },
+  {
+    contract_address: '0x495f947276749ce646f68ac8c248420045cb7b5e',
+    erc_type: 'ERC1155',
+    image_uri: '',
+    metadata: null,
+    mint_time: '0001-01-01T00:00:00Z',
+    mint_transaction_hash: '',
+    name: 'OpenSea Shared Storefront',
+    owner: '',
+    symbol: 'OPENSTORE',
+    token_id: '0x92c6b6b4a1817e76b56eb3e1724f9df6026dd63c0000000000003f0000000006',
+    token_uri: '',
+    total: 1,
+    total_string: '1',
+    traits: null
+  },
+  {
+    contract_address: '0x495f947276749ce646f68ac8c248420045cb7b5e',
+    erc_type: 'ERC1155',
+    image_uri: '',
+    metadata: null,
+    mint_time: '0001-01-01T00:00:00Z',
+    mint_transaction_hash: '',
+    name: 'OpenSea Shared Storefront',
+    owner: '',
+    symbol: 'OPENSTORE',
+    token_id: '0x92c6b6b4a1817e76b56eb3e1724f9df6026dd63c0000000000003e0000000006',
+    token_uri: '',
+    total: 1,
+    total_string: '1',
+    traits: null
+  }
+]
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get NFTs owned by address](/api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

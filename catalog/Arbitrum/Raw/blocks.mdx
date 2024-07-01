@@ -1,0 +1,42 @@
+---
+title: 'arbitrum.blocks'
+---
+
+### Table Description
+The arbitrum.blocks table stores crucial data about the Ethereum blockchain's block structure. Each block in the Ethereum blockchain contains a unique set of data that ensures the integrity and chronological order of transactions. Blocks are the building blocks of the Ethereum blockchain, and they contain several key components:
+
+1. Block Header: This includes metadata such as the block number, timestamp, parent block hash, and nonce. The header is essential for maintaining the blockchain's integrity and linking blocks together in a chain.
+
+2. Transactions: Each block includes a list of transactions that have been validated and added to the blockchain. These transactions consist of various operations, such as transfers of Ether, execution of smart contracts, and other state changes.
+
+3. Uncle Blocks (Ommer Blocks): These are blocks that were mined but not included in the main chain. They are referenced in the block to improve the chain's security and reward miners for their efforts.
+
+4. State Root: This is a cryptographic hash representing the state of the entire Ethereum network at the time the block was mined. It includes account balances, storage, and other state data.
+
+5. Receipts Root: This is a hash of the receipts of all transactions included in the block. Receipts contain information about the execution of transactions, such as gas used and logs generated.
+
+The arbitrum.blocks table provides a detailed and organized view of the blockchain's structure, allowing for efficient retrieval and analysis of blockchain data. This information is crucial for developers, researchers, and analysts working with the Ethereum blockchain, as it enables them to understand the state and evolution of the network.
+
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/arbitrum.blocks"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/arbitrum.blocks"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>

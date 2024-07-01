@@ -1,0 +1,137 @@
+---
+title: "Get all ERC20 transfers by contract"
+---
+
+If you want to automatically get all the transfers of an ERC20 token, try Chainbase API [Get token transfers by contract](/api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract). You can easily retrieve all the transfers for any ERC20 token with its contract address by using Chainbase API.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. A contract address of an ERC20 token as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+![](https://files.readme.io/3bcb41a-image.png)
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'; // Take Matic Token's contract address as an example.
+
+fetch(`https://api.chainbase.online/v1/token/transfers?chain_id=${network_id}&contract_address=${contract_addr}&page=1&limit=5`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'; // Take Matic Token's contract address as an example.
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/token/transfers?chain_id=${network_id}&contract_address=${contract_addr}&page=1&limit=5`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print metadata of an ERC20 token
+
+Chainbase API [Get token transfers by contract](/api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract) takes the chain id and token contract address as parameters, and returns all the transfers of that ERC20 token. If you want to know transfers related to one specific address, input the address information in the `address` field. You can also know the total transfer times through the `count` field in the returned data.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the data returned looks as follows.
+
+```jsx
+{
+  "block_number": 17182749,
+  "block_timestamp": "2023-05-03T21:06:23Z",
+  "from_address": "0x25feaf3f5f36b44d0cb5a9c735d205e66f94437c",
+  "log_index": 292,
+  "to_address": "0xa3fd5a303020f2eeee79d9fc4ae468bca6bccc56",
+  "transaction_hash": "0x443b17a0ea6418b4b0e467dd7c495034bf13c2be65dc8fca958f4a8ec7c53513",
+  "transaction_index": 137,
+  "tx_fee": 3918874072581520,
+  "tx_type": 2,
+  "value": "188992828092557071964"
+},
+{
+  "block_number": 17182747,
+  "block_timestamp": "2023-05-03T21:05:59Z",
+  "from_address": "0x0979850acd0133fbf330e3d2f2540e111b77e969",
+  "log_index": 329,
+  "to_address": "0x1522900b6dafac587d499a862861c0869be6e428",
+  "transaction_hash": "0xf1208710548fe0ac4ad9d6e3a2157adc741f8eeca0914d2cb680a18cb7ac42fd",
+  "transaction_index": 139,
+  "tx_fee": 4530117915638504,
+  "tx_type": 2,
+  "value": "2178406783020000000000"
+},
+{
+  "block_number": 17182742,
+  "block_timestamp": "2023-05-03T21:04:59Z",
+  "from_address": "0xd9a506404e71e1f461a1d532a1f748aa1a52c437",
+  "log_index": 259,
+  "to_address": "0x51a9f80cdfe9c6996d95e5f6b6d029ed7ddd5001",
+  "transaction_hash": "0x0d823b7261b741474d7635913abc315c4f188756b0e793b2eb5276f463efcb63",
+  "transaction_index": 95,
+  "tx_fee": 4091630857640924,
+  "tx_type": 2,
+  "value": "419123260000000000000"
+},
+{
+  "block_number": 17182734,
+  "block_timestamp": "2023-05-03T21:03:11Z",
+  "from_address": "0x21a31ee1afc51d94c2efccaa2092ad1028285549",
+  "log_index": 169,
+  "to_address": "0x0979850acd0133fbf330e3d2f2540e111b77e969",
+  "transaction_hash": "0x5b08286a38964c59925019f1f57b9b49270481cc97875bcc866d3eadb1f6a5cc",
+  "transaction_index": 66,
+  "tx_fee": 4178649496106592,
+  "tx_type": 2,
+  "value": "2178406783020000000000"
+},
+{
+  "block_number": 17182733,
+  "block_timestamp": "2023-05-03T21:02:59Z",
+  "from_address": "0x28c6c06298d514db089934071355e5743bf21d60",
+  "log_index": 216,
+  "to_address": "0xf23500fec72b26535a2d61383a665439919f287f",
+  "transaction_hash": "0xa135997a18e3aa2413b1e2cf262db44fa0418758c57dc0b5b1e8456fcedfba32",
+  "transaction_index": 72,
+  "tx_fee": 4095379462808136,
+  "tx_type": 2,
+  "value": "4133504000000000000000"
+}
+```
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get token transfers by contract](/api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.

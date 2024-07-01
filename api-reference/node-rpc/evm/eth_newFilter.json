@@ -1,0 +1,167 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "EVM JSON-RPC API: eth_newFilter",
+        "version": "v1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://{network}.s.chainbase.online/v1",
+            "variables": {
+                "network": {
+                    "enum": [
+                        "ethereum-mainnet",
+                        "ethereum-goerli",
+                        "polygon-mainnet",
+                        "polygon-mumbai",
+                        "bsc-mainnet",
+                        "bsc-testnet",
+                        "avalanche-mainnet",
+                        "avalanche-testnet",
+                        "fantom-mainnet",
+                        "fantom-testnet",
+                        "arbitrum-mainnet",
+                        "arbitrum-goerli",
+                        "optimism-mainnet",
+                        "base-mainnet",
+                        "base-goerli",
+                        "zksync-mainnet",
+                        "zksync-testnet"
+                    ],
+                    "default": "ethereum-mainnet"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/{api-key}": {
+            "post": {
+                "summary": "eth_newFilter",
+                "description": "Creates an arbitrary filter object, based on filter options, \nto notify when the state changes (logs). \n\nTo check if the state has changed, call `eth_getFilterChanges`.\n\n**note**\n\nFilters expire after 5 minutes of inactivity (no queries).\n\n**Note on specifying topic filters**\n\n- `[]` \u201canything\u201d\n- `[A]` \u201cA in first position (and anything after)\u201d\n- `[null, B]` \u201canything in first position AND B in second position (and anything after)\u201d\n- `[A, B]` \u201cA in first position AND B in second position (and anything after)\u201d\n- `[[A, B], [A, B]]` \u201c(A OR B) in first position AND (A OR B) in second position (and anything after)\u201d\n\n**Parameters**\n\n- `Object` - An object of type Filter\n  - `fromBlock`: `QUANTITY|TAG` - (optional, default \"latest\") Integer block number, \n  or \"earliest\", \"latest\" or \"pending\" for not yet mined transactions\n  - `toBlock`: `QUANTITY|TAG` - (optional, default \"latest\") Integer block number, \n  or \"earliest\", \"latest\" or \"pending\" for not yet mined transactions\n  - `address`: `DATA|Array of DATA`, 20 Bytes - (optional) Contract address or a list of addresses \n  from which logs should originate\n  - `topics`: `Array of DATA`, - (optional) Array of 32 Bytes DATA topics. Topics are order-dependent. \n  Each topic can also be an array of DATA with \"or\" options\n\n**Returns**\n\n- `QUANTITY` - A filter id",
+                "operationId": "evm-eth-newFilter",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "name": "api-key",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestExample"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseHash"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RequestExample": {
+                "title": "RequestExample",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "method",
+                    "params"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "default": 1,
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "default": "2.0",
+                        "example": "2.0"
+                    },
+                    "method": {
+                        "title": "Method",
+                        "type": "string",
+                        "default": "eth_newFilter"
+                    },
+                    "params": {
+                        "title": "Params",
+                        "type": "array",
+                        "items": {},
+                        "default": [
+                            {
+                                "toBlock": "0xeb7c9d",
+                                "fromBlock": "0xeb7c9d",
+                                "topics": [
+                                    "0x9d9af8e38d66c62e2c12f0225249fd9d721c54b83f48d9352c97c6cacdcb6f31"
+                                ],
+                                "address": "0x00000000006c3852cbef3e08e8df289169ede581"
+                            }
+                        ]
+                    }
+                },
+                "example": {
+                    "id": 1,
+                    "jsonrpc": "2.0",
+                    "method": "eth_newFilter",
+                    "params": [
+                        {
+                            "toBlock": "0xeb7c9d",
+                            "fromBlock": "0xeb7c9d",
+                            "topics": [
+                                "0x9d9af8e38d66c62e2c12f0225249fd9d721c54b83f48d9352c97c6cacdcb6f31"
+                            ],
+                            "address": "0x00000000006c3852cbef3e08e8df289169ede581"
+                        }
+                    ]
+                }
+            },
+            "ResponseHash": {
+                "title": "ResponseHash",
+                "required": [
+                    "id",
+                    "jsonrpc",
+                    "result"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "jsonrpc": {
+                        "title": "Jsonrpc",
+                        "type": "string",
+                        "example": "2.0"
+                    },
+                    "result": {
+                        "title": "Result",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

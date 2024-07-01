@@ -1,0 +1,8 @@
+footer div:last-child a{
+  display: none;
+}
+
+th, td {
+  border: 1px solid #ccc;          /* 每个单元格的边框颜色为浅灰色 */
+  padding: 8px 12px !important;
+}

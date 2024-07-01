@@ -1,0 +1,74 @@
+---
+title: "Get NFT owner by token"
+---
+
+If you’re interested in buying or selling an NFT from a specific owner, you can use Chainbase API [Get NFT owner by token](/api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token) to get the current owner address of an NFT. What you need to prepare as an input is the contract address of the NFT collection and the token id of the NFT that you want to query with. With the owner information returned by Chainbase, you can contact them directly or make an offer through a marketplace platform.
+
+## Overview - Tools you need to work with Chainbase
+
+1. A free account at [Chainbase](https://www.chainbase.com) with an API key.
+2. An IDE. Our examples are shown in JavaScript, you can use [VS Code](https://code.visualstudio.com/) as your IDE for example.
+3. The contract address of a known NFT collection and the token id of that specific NFT as your input.
+
+## Step 1: Set up a free account at Chainbase
+
+To better leverage the ability that Chainbase provides, you can register [here](http://www.chainbase.com/register) for a free account and access to different APIs and data cloud.
+
+After logging into Chainbase, visit the [dashboard](https://console.chainbase.com/) to get an overview. Create a new project in the console and get an API key.
+
+## Step 2: Write script using Chainbase API
+
+1. Using `fetch` in JavaScript.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take Azuki's contract address as an example.
+token_id = '1';
+
+fetch(`https://api.chainbase.online/v1/nft/owner?chain_id=${network_id}&contract_address=${contract_addr}&token_id=${token_id}`, {
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+}).then(response => response.json())
+    .then(data => console.log(data.data))
+    .catch(error => console.error(error));
+```
+
+2. Using `axios` in JavaScript. You need to install `axios` using `npm install axios --save` in the terminal first.
+
+```jsx
+network_id = '1'; // See https://docs.chainbase.com/reference/supported-chains to get the id of different chains.
+contract_addr = '0xed5af388653567af2f388e6224dc7c4b3241c544'; // Take Azuki's contract address as an example.
+token_id = '1';
+
+const axios = require('axios');
+const options = {
+    url: `https://api.chainbase.online/v1/nft/owner?chain_id=${network_id}&contract_address=${contract_addr}&token_id=${token_id}`,
+    method: 'GET',
+    headers: {
+        'x-api-key': CHAINBASE_API_KEY, // Replace the field with your API key.
+        'accept': 'application/json'
+    }
+};
+axios(options)
+    .then(response => console.log(response.data.data))
+    .catch(error => console.log(error));
+```
+
+## Step 3: Print the owner of the NFT
+
+Chainbase API [Get NFT owner by token](/api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token) takes the chain id, NFT contract address and NFT token id as parameters, and returns the owner address.
+
+To get data printed, run command `node <filename>.js` in the terminal. In this case, the address of `0xC8967D1537F7B995607A1DEa2B0C06E18A9756a2` is returned as the owner of the input NFT.
+
+## API Reference
+
+If you want to know more details on the endpoint and optional parameters, check out:
+
+- [Get NFT owner by token](/api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token)
+
+## Support
+
+If you meet any trouble following the tutorial, feel free to reach out to us in our [Discord](https://chainbase.com/discord) to get 24/7 community support.
