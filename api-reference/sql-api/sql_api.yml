@@ -73,7 +73,7 @@ paths:
                   data:
                     type: array
                     example: []
-  /execution/{execution_id}/result:
+  /execution/{execution_id}/results:
     get:
       parameters:
         - name: execution_id
