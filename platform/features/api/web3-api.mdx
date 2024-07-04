@@ -6,8 +6,8 @@ title: "Web3 API"
 📘 **Don’t have an API key?**
 
 Go to [console.chainbase.com](https://console.chainbase.com/) to create an account and a new API key.
-</Note>
 
+</Note>
 
 Simplifies your web3 development process with seamless access to on-chain and off-chain data.
 
@@ -20,13 +20,27 @@ The Chainbase Web3 API is an API suite that simplifies your web3 development pro
 Chainbase lets you easily and instantly look up multi-chain, multi-asset balances, transfer history, prices, etc. No indexing is required!
 
 <CardGroup cols={3}>
-    <Card title="Basic API" href="/api-reference/web3-api/basic/block/get-block-by-number" />
-    <Card title="NFT API" href="/api-reference/web3-api/nft/nft-metadata/get-nft-metadata" />
-    <Card title="Token API" href="/api-reference/web3-api/token/market-data/get-token-price-history" />
-    <Card title="Balance API" href="/api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address" />
-    <Card title="Domain API" href="/api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains" />
+  <Card
+    title="Basic API"
+    href="/api-reference/web3-api/basic/block/get-block-by-number"
+  />
+  <Card
+    title="NFT API"
+    href="/api-reference/web3-api/nft/nft-metadata/get-nft-metadata"
+  />
+  <Card
+    title="Token API"
+    href="/api-reference/web3-api/token/market-data/get-token-price-history"
+  />
+  <Card
+    title="Balance API"
+    href="/api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address"
+  />
+  <Card
+    title="Domain API"
+    href="/api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains"
+  />
 </CardGroup>
-
 
 ## Built for Web3 Use Cases
 
@@ -44,38 +58,111 @@ The advanced feature set of our Web3 APIs means it can support use case, includi
 
 We will continue to add support for new blockchains for Web3 API. If there is a chain that you wish to support but we do not, please let us know by [reaching us](http://chainbase.com/help).
 
-| Chain        | Network ID |
-| :----------- | :--------- |
-| Ethereum     | 1          |
-| Polygon      | 137        |
-| BSC          | 56         |
-| Avalanche    | 43114      |
-| Arbitrum One | 42161      |
-| Optimism     | 10         |
-| Base         | 8453       |
-| zkSync       | 324        |
-| Merlin       | 4200       |
+<table>
+  <thead>
+    <tr>
+      <th style={{ width: "150px" }}>Chain</th>
+      <th style={{ width: "60%" }}>Network ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ethereum</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Polygon</td>
+      <td>137</td>
+    </tr>
+    <tr>
+      <td>BSC</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <td>Avalanche</td>
+      <td>43114</td>
+    </tr>
+    <tr>
+      <td>Arbitrum One</td>
+      <td>42161</td>
+    </tr>
+    <tr>
+      <td>Optimism</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Base</td>
+      <td>8453</td>
+    </tr>
+    <tr>
+      <td>zkSync</td>
+      <td>324</td>
+    </tr>
+    <tr>
+      <td>Merlin</td>
+      <td>4200</td>
+    </tr>
+  </tbody>
+</table>
 
-<CardGroup cols={4}>
-    <Frame caption="Ethereum">
-        <img src="https://chainbase.com/assets/rpcService/multiChain/Ethereum.png" />
-    </Frame>
-    <Frame caption="Polygon">
-        <img src="https://chainbase.com/assets/rpcService/multiChain/Polygon.png" />
-    </Frame>
-    <Frame caption="BNB Chain">
-        <img src="https://chainbase.com/assets/rpcService/multiChain/BSC.png" />
-    </Frame>
-    <Frame caption="Fantom">
-        <img src="https://chainbase.com/assets/rpcService/multiChain/Fantom.png" />
-    </Frame>
-    <Frame caption="Avalanche">
-        <img src="https://chainbase.com/assets/rpcService/multiChain/Avalanche.png" />
-    </Frame>
-    <Frame caption="Arbitrum">
-        <img src="https://chainbase.com/assets/rpcService/multiChain/Arbitrum.png" />
-    </Frame>
-    <Frame caption="Optimism">
-        <img src="https://chainbase.com/assets/rpcService/multiChain/Optimism.png" />
-    </Frame>
-</CardGroup>
+<div
+  style={{
+    display: "flex",
+    columnGap: "2rem",
+    rowGap: "1rem",
+    flexWrap: "wrap",
+  }}
+>
+  {[
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/Ethereum.png",
+      name: "Ethereum",
+    },
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/Polygon.png",
+      name: "Polygon",
+    },
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/BSC.png",
+      name: "BNB Chain",
+    },
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/Fantom.png",
+      name: "Fantom",
+    },
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/Avalanche.png",
+      name: "Avalanche",
+    },
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/Arbitrum.png",
+      name: "Arbitrum",
+    },
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/Optimism.png",
+      name: "Optimism",
+    },
+    {
+      link: "https://chainbase.com/assets/rpcService/multiChain/zkSync.png",
+      name: "zkSync",
+    },
+  ].map((v) => (
+    <div
+      style={{
+        backgroundColor: "#fff",
+        width: "150px",
+        height: "140px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "0.5rem",
+        border: "2px solid #d9f0fa",
+        borderRadius: "12px",
+      }}
+    >
+      <img style={{ margin: "0px" }} width="60px" src={v.link} />
+      <span style={{ color: "#000" }}>{v.name}</span>
+    </div>
+  ))}
+</div>

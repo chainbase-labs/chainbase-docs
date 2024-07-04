@@ -6,3 +6,7 @@ th, td {
   border: 1px solid #ccc;          /* 每个单元格的边框颜色为浅灰色 */
   padding: 8px 12px !important;
 }
+
+th p, td p {
+  margin: 0px !important;
+}
