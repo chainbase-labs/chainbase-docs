@@ -9,7 +9,7 @@ title: "Kafka"
 With its inherent **Reliability and Replayability**, Cloud-Native Kafka ensures that no piece of data is ever lost in the shuffle. Whether you're dealing with **high-frequency** trading platforms in the **DeFi** or managing** large-scale dApp** user activities, Its capabilities offer a distinct advantage in the bustling world of Web3.
 
 <Frame>
-    <img src="https://files.readme.io/8dfd112-image.png" />
+  <img src="https://files.readme.io/8dfd112-image.png" />
 </Frame>
 
 ## Scenarios
@@ -34,11 +34,11 @@ Here are the core benefits the Chainbase Cloud-Native Kafka could offer:
 When you enter the `Sync - Kafka` integration, you will see the integration-enable panel as below. Just click the `enable` button to turn on the integration. the system would automatically initialize the `Consumer-Group` which bind to account.
 
 <Frame caption="Enable Kafka Integration">
-	<img src="https://files.readme.io/3287235-image.png" />
+  <img src="https://files.readme.io/3287235-image.png" />
 </Frame>
 
 <Frame caption="BootStrap Server & Consumer Group">
-	<img src="https://files.readme.io/ed49281-image.png" />
+  <img src="https://files.readme.io/ed49281-image.png" />
 </Frame>
 
 Once you have enable the integration. The `Bootstrap Servers` & `Consumer Group` connection information has show on the top-left.
@@ -48,20 +48,22 @@ Once you have enable the integration. The `Bootstrap Servers` & `Consumer Group`
 And next, you must to create a credentials before you need to connect the Cloud-Native kafka. Just click the `Credentials` to create.
 
 <Frame>
-	<img src="https://files.readme.io/c30eb9d-image.png" />
+  <img src="https://files.readme.io/c30eb9d-image.png" />
 </Frame>
 
 Once you click the `create` button, the credentials will be initialized and show on the popup
 
 <Warning>
-📣 WARN: Download or Copy to save the Credentials which just show once when created. You must create a credential when connecting a new topic, **A new Topic corresponds to a new certificate**
+  📣 WARN: Download or Copy to save the Credentials which just show once when
+  created. You must create a credential when connecting a new topic, **A new
+  Topic corresponds to a new certificate**
 </Warning>
 
 <Frame>
-    <img src="https://files.readme.io/c79ef80-image.png" />
+  <img src="https://files.readme.io/c79ef80-image.png" />
 </Frame>
 <Frame>
-    <img src="https://files.readme.io/f5a0065-image.png" />
+  <img src="https://files.readme.io/f5a0065-image.png" />
 </Frame>
 
 The credentials created would be show in table as above.
@@ -69,39 +71,125 @@ The credentials created would be show in table as above.
 ### 3. Choose the dataset to preview the format
 
 <Frame>
-    <img src="https://files.readme.io/3e2da3e-image.png" />
+  <img src="https://files.readme.io/3e2da3e-image.png" />
 </Frame>
 
 <Frame caption="Preview dataset format">
-	<img src="https://files.readme.io/24fab6a-image.png" />
+  <img src="https://files.readme.io/24fab6a-image.png" />
 </Frame>
 
 #### Supported Topics
 
 When using kafka to consume data, you can use the topics listed in the table below as the `Kafka Topic`.
 
-| Network | Kafka Topics |
-|---------|--------------|
-| ethereum | ethereum_blocks  <br />ethereum_contracts  <br />ethereum_erc20_transfer  <br />ethereum_transactions  <br />ethereum_logs  <br />ethereum_traces |
-| optimism | optimism_blocks  <br />optimism_contracts  <br />optimism_erc20_transfer  <br />optimism_transactions  <br />optimism_logs  <br />optimism_traces |
-| bsc | bsc_blocks  <br />bsc_contracts  <br />bsc_erc20_transfer  <br />bsc_transactions  <br />bsc_logs bsc_traces |
-| polygon | polygon_blocks  <br />polygon_contracts  <br />polygon_erc20_transfer  <br />polygon_transactions  <br />polygon_logs  <br />polygon_traces |
-| avalanche | avalanche_blocks  <br />avalanche_contracts  <br />avalanche_erc20_transfer  <br />avalanche_transactions  <br />avalanche_logs  <br />avalanche_traces |
-| arbitrum | arbitrum_blocks  <br />arbitrum_contracts  <br />arbitrum_erc20_transfer  <br />arbitrum_transactions  <br />arbitrum_logs  <br />arbitrum_traces |
-| base | base_blocks  <br />base_contracts  <br />base_erc20_transfer  <br />base_transactions  <br />base_logs  <br />base_traces |
-| zksync | zksync_blocks  <br />zksync_contracts  <br />zksync_erc20_transfer  <br />zksync_transactions  <br />zksync_logs  <br />zksync_traces |
-
+<table>
+  <thead>
+    <tr>
+      <th style={{ width: "200px" }}>Network</th>
+      <th style={{ width: "70%" }}>Kafka Topics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ethereum</td>
+      <td>
+        ethereum_blocks <br />
+        ethereum_contracts <br />
+        ethereum_erc20_transfer <br />
+        ethereum_transactions <br />
+        ethereum_logs <br />
+        ethereum_traces
+      </td>
+    </tr>
+    <tr>
+      <td>optimism</td>
+      <td>
+        optimism_blocks <br />
+        optimism_contracts <br />
+        optimism_erc20_transfer <br />
+        optimism_transactions <br />
+        optimism_logs <br />
+        optimism_traces
+      </td>
+    </tr>
+    <tr>
+      <td>bsc</td>
+      <td>
+        bsc_blocks <br />
+        bsc_contracts <br />
+        bsc_erc20_transfer <br />
+        bsc_transactions <br />
+        bsc_logs bsc_traces
+      </td>
+    </tr>
+    <tr>
+      <td>polygon</td>
+      <td>
+        polygon_blocks <br />
+        polygon_contracts <br />
+        polygon_erc20_transfer <br />
+        polygon_transactions <br />
+        polygon_logs <br />
+        polygon_traces
+      </td>
+    </tr>
+    <tr>
+      <td>avalanche</td>
+      <td>
+        avalanche_blocks <br />
+        avalanche_contracts <br />
+        avalanche_erc20_transfer <br />
+        avalanche_transactions <br />
+        avalanche_logs <br />
+        avalanche_traces
+      </td>
+    </tr>
+    <tr>
+      <td>arbitrum</td>
+      <td>
+        arbitrum_blocks <br />
+        arbitrum_contracts <br />
+        arbitrum_erc20_transfer <br />
+        arbitrum_transactions <br />
+        arbitrum_logs <br />
+        arbitrum_traces
+      </td>
+    </tr>
+    <tr>
+      <td>base</td>
+      <td>
+        base_blocks <br />
+        base_contracts <br />
+        base_erc20_transfer <br />
+        base_transactions <br />
+        base_logs <br />
+        base_traces
+      </td>
+    </tr>
+    <tr>
+      <td>zksync</td>
+      <td>
+        zksync_blocks <br />
+        zksync_contracts <br />
+        zksync_erc20_transfer <br />
+        zksync_transactions <br />
+        zksync_logs <br />
+        zksync_traces
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### 4. Connect with Credentials
 
 Just continue with the button, The examples of different language would be show to u as the `step-2 connect with client`
 
 <Frame>
-    <img src="https://files.readme.io/72bc398-image.png" />
+  <img src="https://files.readme.io/72bc398-image.png" />
 </Frame>
 
 ## References
 
-***
+---
 
 [The Cloud-Native Kafka: Boosting Data Synchronization Reliability and Consistency](https://chainbase.com/blog/article/the-cloud-native-kafka-boosting-data-synchronization-reliability-and-consistency)
