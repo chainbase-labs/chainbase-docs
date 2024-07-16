@@ -85,6 +85,13 @@
             ]
         },
         {
+            "group": "Developers",
+            "pages": [
+                "developers/testnet",
+                "developers/open_apis"
+            ]
+        },
+        {
             "group": "Contributing",
             "pages": [
                 "contributing/overview",
