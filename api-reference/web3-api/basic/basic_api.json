@@ -124,7 +124,7 @@
                     "Block"
                 ],
                 "summary": "Get block by number",
-                "description": "Get the detail of a block by the given block humber.",
+                "description": "Get the detail of a block by the given block number.",
                 "operationId": "GetBlockDetail",
                 "parameters": [
                     {

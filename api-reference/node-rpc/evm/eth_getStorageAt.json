@@ -37,7 +37,7 @@
         "/{api-key}": {
             "post": {
                 "summary": "eth_getStorageAt",
-                "description": "Returns the value from a storage position at a given address.\n\n**Parameters**\n\n- `DATA`, 20 Bytes - Address of the contract whose storage to retreive \n- `QUANTITY` - Integer of the position in the storage \n- `TAG` - Integer block number or one of \"earliest\", \"latest\" or \"pending\"\n\n**Returns**\n\n- `DATA` - The value at this storage position",
+                "description": "Returns the value from a storage position at a given address.\n\n**Parameters**\n\n- `DATA`, 20 Bytes - Address of the contract whose storage to retrieve \n- `QUANTITY` - Integer of the position in the storage \n- `TAG` - Integer block number or one of \"earliest\", \"latest\" or \"pending\"\n\n**Returns**\n\n- `DATA` - The value at this storage position",
                 "operationId": "evm-eth-getStorageAt",
                 "parameters": [
                     {
