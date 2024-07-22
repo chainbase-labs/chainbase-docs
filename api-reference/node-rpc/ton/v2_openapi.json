@@ -396,7 +396,7 @@
               "type": "string",
               "description": "Identifier of target TON account in user-friendly form"
             },
-            "example": "EQCD39VS5jcptHL8vMjEXrzGaRcCVTo7HUn4bpAOg8xqB2N",
+            "example": "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N",
             "name": "address",
             "in": "query"
           }

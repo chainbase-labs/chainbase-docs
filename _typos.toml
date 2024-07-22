@@ -3,6 +3,8 @@
 hsa = "hsa"
 cips = "cips"
 BA = "BA"
+Ded = "Ded"
+Yto = "Yto"
 
 
 [files]

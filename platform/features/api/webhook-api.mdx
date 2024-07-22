@@ -58,7 +58,7 @@ The body of the HTTP POST requests sent to webhooks will contain a JSON object w
 
 A filter is used to specify a subset of events which you want to receive notifications for.
 
-To create a filter, you can specify a set of entries. Each entry has two properties: field and values. The field property stands for the field name to filter on. The value property is a set of string values (e.g., 0x addresses) to be matched. Within each entry, the values are implicitly ORed. Across entries, the values are implicit ANDead.
+To create a filter, you can specify a set of entries. Each entry has two properties: field and values. The field property stands for the field name to filter on. The value property is a set of string values (e.g., 0x addresses) to be matched. Within each entry, the values are implicitly ORed. Across entries, the values are implicit ANDed.
 
 For example, the following filter will match both "A" or "B" for the `walletAddress` field and "x" for the `contractAddress` field.
 
