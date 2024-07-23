@@ -79,7 +79,8 @@
                         "core-concepts/architecture/overview",
                         "core-concepts/architecture/execution_layer",
                         "core-concepts/architecture/consensus_layer",
-                        "core-concepts/architecture/data_accessibility_layer"
+                        "core-concepts/architecture/data_accessibility_layer",
+                        "core-concepts/architecture/co_processor_layer"
                     ]
                 }
             ]
