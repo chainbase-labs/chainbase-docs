@@ -163,7 +163,10 @@
                                 "catalog/Ethereum/Abstracted/erc1155_transfer_batch",
                                 "catalog/Ethereum/Abstracted/erc1155_approval_for_all",
                                 "catalog/Ethereum/Abstracted/nft_holders",
-                                "catalog/Ethereum/Abstracted/nft_holder_historical"
+                                "catalog/Ethereum/Abstracted/nft_holder_historical",
+                                "catalog/Ethereum/Abstracted/pools",
+                                "catalog/Ethereum/Abstracted/liquidity",
+                                "catalog/Ethereum/Abstracted/swaps"
                             ]
                         }
                     ]
@@ -625,6 +628,23 @@
                                 "catalog/Ton/Raw/blocks",
                                 "catalog/Ton/Raw/transactions",
                                 "catalog/Ton/Raw/messages"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "group": "Ton_v2",
+                    "pages": [
+                        "catalog/Ton_v2/Overview",
+                        {
+                            "group": "Raw",
+                            "pages": [
+                                "catalog/Ton_v2/Raw/master_blocks",
+                                "catalog/Ton_v2/Raw/base_blocks",
+                                "catalog/Ton_v2/Raw/master_transactions",
+                                "catalog/Ton_v2/Raw/base_transactions",
+                                "catalog/Ton_v2/Raw/sub_shards",
+                                "catalog/Ton_v2/Raw/messages"
                             ]
                         }
                     ]
