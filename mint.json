@@ -625,26 +625,12 @@
                         {
                             "group": "Raw",
                             "pages": [
-                                "catalog/Ton/Raw/blocks",
-                                "catalog/Ton/Raw/transactions",
+                                "catalog/Ton/Raw/master_blocks",
+                                "catalog/Ton/Raw/base_blocks",
+                                "catalog/Ton/Raw/master_transactions",
+                                "catalog/Ton/Raw/base_transactions",
+                                "catalog/Ton/Raw/sub_shards",
                                 "catalog/Ton/Raw/messages"
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "group": "Ton_v2",
-                    "pages": [
-                        "catalog/Ton_v2/Overview",
-                        {
-                            "group": "Raw",
-                            "pages": [
-                                "catalog/Ton_v2/Raw/master_blocks",
-                                "catalog/Ton_v2/Raw/base_blocks",
-                                "catalog/Ton_v2/Raw/master_transactions",
-                                "catalog/Ton_v2/Raw/base_transactions",
-                                "catalog/Ton_v2/Raw/sub_shards",
-                                "catalog/Ton_v2/Raw/messages"
                             ]
                         }
                     ]
