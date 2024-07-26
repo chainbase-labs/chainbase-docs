@@ -321,12 +321,6 @@
                                 "catalog/Fantom/Raw/transactions",
                                 "catalog/Fantom/Raw/transaction_logs"
                             ]
-                        },
-                        {
-                            "group": "Decoded",
-                            "pages": [
-                                "catalog/Fantom/Decoded/overview"
-                            ]
                         }
                     ]
                 },
