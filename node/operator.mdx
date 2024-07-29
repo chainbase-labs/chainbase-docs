@@ -2,6 +2,16 @@
 title: 'Run a Operator(Not released to mainnet yet)'
 ---
 
+## Requirements
+
+➕[Docker](https://docs.docker.com/get-docker/): Docker is a requirement for AVS operators.
+
+➕[Docker Compose](https://docs.docker.com/compose/install/):  Docker Compose is used alongside Docker for executing Operator software. 
+
+➕Linux Environment: Eigenlayer’s CLI only runs in a Linux environment.
+
+➕[Go](https://go.dev/doc/install): Two out of three installation routes require the use of Go. It’s safer to go with Go than go without. 😉
+
 ## EigenLayer Registration
 
 Before registering as an AVS, ensure that the operator has already registered with EigenLayer. 
@@ -32,6 +42,12 @@ chainbase-avs-cli register --config  ~/path/to/avs.toml
 
 ## Run AVS
 
+**notice**: `operator.yaml`'s `private_key_store_path` shuold points to the corresponding file path in the container.
+
 ```bash
-chainbase-avs-cli run
+# build img
+docker build -t chainbase-avs .
+
+#  run task 
+docker run -itd -p 8080:8080 --mount type=bind,source=/path/to/operator.yaml,target=/opt/operator.yaml   --mount type=bind,source=/path/to/ecdsa.key.json,target=/opt/ecdsa.key.json   chainbase-avs:latest
 ```
