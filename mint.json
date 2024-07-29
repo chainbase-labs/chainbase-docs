@@ -685,7 +685,7 @@
                     "group": "Data Cloud",
                     "pages": [
                         "platform/features/datacloud/overview",
-                        "platform/features/datacloud/sql"
+                        "platform/features/datacloud/write-efficient-queries"
                     ]
                 },
                 {
