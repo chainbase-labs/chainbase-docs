@@ -79,9 +79,17 @@
                         "core-concepts/architecture/overview",
                         "core-concepts/architecture/execution_layer",
                         "core-concepts/architecture/consensus_layer",
-                        "core-concepts/architecture/data_accessibility_layer"
+                        "core-concepts/architecture/data_accessibility_layer",
+                        "core-concepts/architecture/co_processor_layer"
                     ]
                 }
+            ]
+        },
+        {
+            "group": "Developers",
+            "pages": [
+                "developers/testnet",
+                "developers/open_apis"
             ]
         },
         {
@@ -155,7 +163,10 @@
                                 "catalog/Ethereum/Abstracted/erc1155_transfer_batch",
                                 "catalog/Ethereum/Abstracted/erc1155_approval_for_all",
                                 "catalog/Ethereum/Abstracted/nft_holders",
-                                "catalog/Ethereum/Abstracted/nft_holder_historical"
+                                "catalog/Ethereum/Abstracted/nft_holder_historical",
+                                "catalog/Ethereum/Abstracted/pools",
+                                "catalog/Ethereum/Abstracted/liquidity",
+                                "catalog/Ethereum/Abstracted/swaps"
                             ]
                         }
                     ]
@@ -309,12 +320,6 @@
                                 "catalog/Fantom/Raw/contracts",
                                 "catalog/Fantom/Raw/transactions",
                                 "catalog/Fantom/Raw/transaction_logs"
-                            ]
-                        },
-                        {
-                            "group": "Decoded",
-                            "pages": [
-                                "catalog/Fantom/Decoded/overview"
                             ]
                         }
                     ]
@@ -614,8 +619,11 @@
                         {
                             "group": "Raw",
                             "pages": [
-                                "catalog/Ton/Raw/blocks",
-                                "catalog/Ton/Raw/transactions",
+                                "catalog/Ton/Raw/master_blocks",
+                                "catalog/Ton/Raw/base_blocks",
+                                "catalog/Ton/Raw/master_transactions",
+                                "catalog/Ton/Raw/base_transactions",
+                                "catalog/Ton/Raw/sub_shards",
                                 "catalog/Ton/Raw/messages"
                             ]
                         }
@@ -677,7 +685,7 @@
                     "group": "Data Cloud",
                     "pages": [
                         "platform/features/datacloud/overview",
-                        "platform/features/datacloud/sql"
+                        "platform/features/datacloud/write-efficient-queries"
                     ]
                 },
                 {
