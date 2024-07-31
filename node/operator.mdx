@@ -44,10 +44,11 @@ chainbase-avs-cli register --config  ~/path/to/avs.toml
 
 **notice**: `operator.yaml`'s `private_key_store_path` shuold points to the corresponding file path in the container.
 
-```bash
-# build img
-docker build -t chainbase-avs .
+- ${OPERATOR_CONFIG_PATH:-./operator.yaml}:/opt/operator.yaml
+- ${EIGEN_KEY_PATH:-./eigen-test.ecdsa.key.json}:/opt/eigen-test.ecdsa.key.json
 
-#  run task 
-docker run -itd -p 8080:8080 --mount type=bind,source=/path/to/operator.yaml,target=/opt/operator.yaml   --mount type=bind,source=/path/to/ecdsa.key.json,target=/opt/ecdsa.key.json   chainbase-avs:latest
+```shell
+export OPERATOR_CONFIG_PATH=/path/to/operator.yaml  EIGEN_KEY_PATH=/path/to/ecdsa.key.json
+
+docker-compose up --build -d
 ```
