@@ -19,7 +19,9 @@ For reference, see [here](https://docs.eigenlayer.xyz/eigenlayer/operator-guides
 
 ## Chainbase AVS Contract Registration
 
-You will need an `avs.toml` file to perform this registration. eg.
+1. `git clone https://github.com/chainbase-labs/chainbase-avs-contracts.git`
+
+2. rename `avs.toml.example` to `avs.toml` and replace filed: `operator_config_path`,`keystore_pwd`
 
 ```yaml
 operator_config_path = "/path/to/operator.yaml"
@@ -42,7 +44,7 @@ chainbase-avs-cli register --config  ~/path/to/avs.toml
 
 ## Run AVS
 
-Edit `operator.yaml`'s `private_key_store_path` point to `/opt/operator.yaml`.
+2. Edit `operator.yaml`'s `private_key_store_path` point to `/opt/operator.yaml`.
 
 
 ```shell
