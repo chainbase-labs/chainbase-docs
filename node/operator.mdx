@@ -42,10 +42,8 @@ chainbase-avs-cli register --config  ~/path/to/avs.toml
 
 ## Run AVS
 
-**notice**: `operator.yaml`'s `private_key_store_path` shuold points to the corresponding file path in the container.
+Edit `operator.yaml`'s `private_key_store_path` point to `/opt/operator.yaml`.
 
-- ${OPERATOR_CONFIG_PATH:-./operator.yaml}:/opt/operator.yaml
-- ${EIGEN_KEY_PATH:-./eigen-test.ecdsa.key.json}:/opt/eigen-test.ecdsa.key.json
 
 ```shell
 export OPERATOR_CONFIG_PATH=/path/to/operator.yaml  EIGEN_KEY_PATH=/path/to/ecdsa.key.json
