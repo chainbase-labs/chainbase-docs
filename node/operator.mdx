@@ -19,36 +19,66 @@ For reference, see [here](https://docs.eigenlayer.xyz/eigenlayer/operator-guides
 
 ## Chainbase AVS Contract Registration
 
-1. `git clone https://github.com/chainbase-labs/chainbase-avs-contracts.git`
-
-2. rename `avs.toml.example` to `avs.toml` and replace filed: `operator_config_path`,`keystore_pwd`
-
-```yaml
-operator_config_path = "/path/to/operator.yaml"
-keystore_pwd = "your_keystore_password"
-avs_contract_address="0x5E78eFF26480A75E06cCdABe88Eb522D4D8e1C9d"
-avs_dir_contract_address="0x055733000064333CaDDbC92763c58BF0192fFeBf"
-rpc_url="https://rpc.ankr.com/eth_holesky"
+1. download chainbase avs setup [repo](https://github.com/chainbase-labs/chainbase-avs-setup)
+```
+git clone https://github.com/chainbase-labs/chainbase-avs-setup && cd chainbase-avs-setup
 ```
 
-The `operator.yaml` file is created when you register as an operator using the EigenLayer CLI. You should use the same file created during that process and do not need to modify it.
+2. rename `.env.example` to `.env`
 
-1. download the latest chainbase-avs-cli release from [here](https://github.com/chainbase-labs/chainbase-avs-contracts/releases)
-
-
-2. Run the following command to register as an operator:
+The provided `.env` contains many default configuration settings for the node. All sections marked with TODO must be updated to match your environment. We recommend that operators follow the steps in the next section to configure their node to run without access to their ECDSA private key.
 
 ```
-chainbase-avs-cli register --config  ~/path/to/avs.toml
-``` 
+# TODO: Operators need to point this to a working chain rpc
+NODE_CHAIN_RPC=https://rpc.ankr.com/eth_holesky
+NODE_CHAIN_ID=17000
 
-## Run AVS
+# TODO: Operators need to update this to their own paths
+USER_HOME=/home/ubuntu
+EIGENLAYER_HOME=${USER_HOME}/.eigenlayer
+CHAINBASE_AVS_HOME=${EIGENLAYER_HOME}/chainbase/holesky
 
-2. Edit `operator.yaml`'s `private_key_store_path` point to `/opt/operator.yaml`.
+NODE_LOG_PATH_HOST=${CHAINBASE_AVS_HOME}/logs
 
+# TODO: Operators need to update this to their own keys
+NODE_ECDSA_KEY_FILE_HOST=${EIGENLAYER_HOME}/operator_keys/opr.ecdsa.key.json
+
+# TODO: Operators need to add password to decrypt the above keys
+# If you have some special characters in password, make sure to use single quotes
+NODE_ECDSA_KEY_PASSWORD=''
+```
+
+3. ensure that the specific folders exist that the docker user has the correct write permissions
+```
+mkdir -pv ${EIGENLAYER_HOME} ${CHAINBASE_AVS_HOME} ${NODE_LOG_PATH_HOST} 
+```
+
+4. confirm the latest chainbase avs image version and modify it in the `.env` file
+```shell
+MAIN_SERVICE_IMAGE=repository.chainbase.com/network/chainbase-node:<latest version>
+```
+
+## Register Chainbase AVS
+
+1. Run the following command to register as an operator:
 
 ```shell
-export OPERATOR_CONFIG_PATH=/path/to/operator.yaml  EIGEN_KEY_PATH=/path/to/ecdsa.key.json
+./chainbase-avs.sh register
+``` 
 
-docker-compose up --build -d
+## Run Chainbase AVS
+
+1. Run the following command to startup our avs:
+
+```shell
+./chainbase-avs.sh run
+```
+
+### View Chainbase AVS Logs 
+
+1. You may view the container logs using and of the following commands
+```shell
+docker compose logs -f
+docker compose logs -f <container_name>
+docker logs -f <container_id>
 ```
