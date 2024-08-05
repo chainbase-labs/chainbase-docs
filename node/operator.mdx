@@ -58,6 +58,11 @@ source .env && mkdir -pv ${EIGENLAYER_HOME} ${CHAINBASE_AVS_HOME} ${NODE_LOG_PAT
 MAIN_SERVICE_IMAGE=repository.chainbase.com/network/chainbase-node:<latest version>
 ```
 
+5. change `chainbase-avs.sh` file permissions
+```shell
+chmod +x ./chainbase-avs.sh
+```
+
 ## Register Chainbase AVS
 
 1. Run the following command to register as an operator:
