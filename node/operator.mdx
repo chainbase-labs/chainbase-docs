@@ -48,9 +48,14 @@ NODE_ECDSA_KEY_FILE_HOST=${EIGENLAYER_HOME}/operator_keys/opr.ecdsa.key.json
 NODE_ECDSA_KEY_PASSWORD=''
 ```
 
- Also ensure that the specific folders exist that the docker user has the correct write permissions
+3. ensure that the specific folders exist that the docker user has the correct write permissions
 ```
 mkdir -pv ${EIGENLAYER_HOME} ${CHAINBASE_AVS_HOME} ${NODE_LOG_PATH_HOST} 
+```
+
+4. confirm the latest chainbase avs image version and modify it in the `.env` file
+```shell
+MAIN_SERVICE_IMAGE=repository.chainbase.com/network/chainbase-node:<latest version>
 ```
 
 ## Register Chainbase AVS
