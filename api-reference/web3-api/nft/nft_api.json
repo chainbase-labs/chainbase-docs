@@ -2102,7 +2102,7 @@
                     "description": {
                         "title": "Description",
                         "type": "string",
-                        "description": "The description of the NFT colleciton"
+                        "description": "The description of the NFT collection"
                     },
                     "owner": {
                         "title": "Owner",
@@ -2154,7 +2154,7 @@
                     "value": {
                         "title": "Value",
                         "type": "string",
-                        "description": "The ammount of the ERC-20 token."
+                        "description": "The amount of the ERC-20 token."
                     },
                     "symbol": {
                         "title": "Symbol",

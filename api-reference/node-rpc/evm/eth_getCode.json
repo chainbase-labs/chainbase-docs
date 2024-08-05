@@ -37,7 +37,7 @@
         "/{api-key}": {
             "post": {
                 "summary": "eth_getCode",
-                "description": "Returns the byte code at a given address (if it's a smart contract).\n\n**Parameters**\n\n- `DATA`, 20 Bytes - Address from which to retreive byte code\n- `TAG` - Integer block number or one of \"earliest\", \"latest\" or \"pending\"\n\n**Returns**\n\n- `DATA` - The byte code (if any) found at the given address",
+                "description": "Returns the byte code at a given address (if it's a smart contract).\n\n**Parameters**\n\n- `DATA`, 20 Bytes - Address from which to retrieve byte code\n- `TAG` - Integer block number or one of \"earliest\", \"latest\" or \"pending\"\n\n**Returns**\n\n- `DATA` - The byte code (if any) found at the given address",
                 "operationId": "evm-eth-getCode",
                 "parameters": [
                     {

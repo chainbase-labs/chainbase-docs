@@ -1,0 +1,11 @@
+[default.extend-words]
+# Don't correct
+hsa = "hsa"
+cips = "cips"
+BA = "BA"
+Ded = "Ded"
+Yto = "Yto"
+
+
+[files]
+extend-exclude = ["images/**"]

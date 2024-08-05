@@ -700,7 +700,7 @@
                     "value": {
                         "title": "Value",
                         "type": "string",
-                        "description": "The ammount of the ERC-20 token."
+                        "description": "The amount of the ERC-20 token."
                     },
                     "symbol": {
                         "title": "Symbol",
