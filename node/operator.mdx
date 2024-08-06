@@ -21,7 +21,7 @@ For reference, see [here](https://docs.eigenlayer.xyz/eigenlayer/operator-guides
 
 1. download chainbase avs setup [repo](https://github.com/chainbase-labs/chainbase-avs-setup)
 ```
-git clone https://github.com/chainbase-labs/chainbase-avs-setup && cd chainbase-avs-setup
+git clone https://github.com/chainbase-labs/chainbase-avs-setup && cd chainbase-avs-setup/holesky
 ```
 
 2. rename `.env.example` to `.env`
@@ -50,12 +50,17 @@ NODE_ECDSA_KEY_PASSWORD=''
 
 3. ensure that the specific folders exist that the docker user has the correct write permissions
 ```
-mkdir -pv ${EIGENLAYER_HOME} ${CHAINBASE_AVS_HOME} ${NODE_LOG_PATH_HOST} 
+source .env && mkdir -pv ${EIGENLAYER_HOME} ${CHAINBASE_AVS_HOME} ${NODE_LOG_PATH_HOST}
 ```
 
 4. confirm the latest chainbase avs image version and modify it in the `.env` file
 ```shell
 MAIN_SERVICE_IMAGE=repository.chainbase.com/network/chainbase-node:<latest version>
+```
+
+5. change `chainbase-avs.sh` file permissions
+```shell
+chmod +x ./chainbase-avs.sh
 ```
 
 ## Register Chainbase AVS
