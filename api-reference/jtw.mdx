@@ -4,7 +4,7 @@ title: "Json Web Token(JWT)"
 
 ## What is a JWT?
 
-JSON Web Tokens (JWTs), also known as JOTs, were created to establish a standard and secure method for two parties to communicate. They offer the advantage of stateless session management, eliminating the need for communication between a backend server and an authorization server.
+JSON Web Tokens (JWTs), also known as JWTs, were created to establish a standard and secure method for two parties to communicate. They offer the advantage of stateless session management, eliminating the need for communication between a backend server and an authorization server.
 
 JWTs can be transmitted via an HTTP header, URL, or POST parameter, and their compact size contributes to their efficiency. A JWT comprises three parts: a **Header**, **Payload**, and **Signature**, each separated by a period and derived from a JSON object that is encoded into a text string using BASE64. Further information on this standard is available in [RFC-7519](https://tools.ietf.org/html/rfc7519).
 
@@ -125,7 +125,7 @@ In the event that the JWT feature has been activated but requests are sent witho
 >
 >A: Yes. If multiple JWTs are active, the request should only match one of the available keys to succeed. Chainbase now supports up to 3 keys.
 
->Q: Which cipher does Chanbase support?
+>Q: Which cipher does Chainbase support?
 >
 >A: RSA 256 (RS256) is supported at this time.
 
