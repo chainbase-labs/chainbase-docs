@@ -1,5 +1,5 @@
 ---
-title: 'Run a Operator(Not released to mainnet yet)'
+title: 'Run an Operator(Not released to mainnet yet)'
 ---
 
 ## Requirements
@@ -19,12 +19,12 @@ For reference, see [here](https://docs.eigenlayer.xyz/eigenlayer/operator-guides
 
 ## Chainbase AVS Contract Registration
 
-1. download chainbase avs setup [repo](https://github.com/chainbase-labs/chainbase-avs-setup)
+1. Download chainbase avs setup [repo](https://github.com/chainbase-labs/chainbase-avs-setup)
 ```
 git clone https://github.com/chainbase-labs/chainbase-avs-setup && cd chainbase-avs-setup/holesky
 ```
 
-2. rename `.env.example` to `.env`
+2. Rename `.env.example` to `.env`
 
 The provided `.env` contains many default configuration settings for the node. All sections marked with TODO must be updated to match your environment. We recommend that operators follow the steps in the next section to configure their node to run without access to their ECDSA private key.
 
@@ -48,22 +48,22 @@ NODE_ECDSA_KEY_FILE_HOST=${EIGENLAYER_HOME}/operator_keys/opr.ecdsa.key.json
 NODE_ECDSA_KEY_PASSWORD=''
 ```
 
-3. ensure that the specific folders exist that the docker user has the correct write permissions
+3. Ensure that the specific folders exist that the docker user has the correct write permissions
 ```
 source .env && mkdir -pv ${EIGENLAYER_HOME} ${CHAINBASE_AVS_HOME} ${NODE_LOG_PATH_HOST}
 ```
 
-4. confirm the latest chainbase avs image version and modify it in the `.env` file
+4. Confirm the latest chainbase avs image version and modify it in the `.env` file
 ```shell
 MAIN_SERVICE_IMAGE=repository.chainbase.com/network/chainbase-node:<latest version>
 ```
 
-5. change `chainbase-avs.sh` file permissions
+5. Change `chainbase-avs.sh` file permissions
 ```shell
 chmod +x ./chainbase-avs.sh
 ```
 
-6. update `holesky/prometheus.yml`'s `${YOUR_OPERATOR_NAME}`
+6. Update `holesky/prometheus.yml`'s `${YOUR_OPERATOR_NAME}`
 
 replace this with your Operator name you want to be identified by, it helps us route alerts and metrics to your notification channels easily
 
