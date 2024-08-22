@@ -29,12 +29,12 @@ Protect the same PoS network using two tokens, one of which can be a low-volatil
 
 for supported LST please check:https://app.eigenlayer.xyz/restake 
 
-$CBT is our native token, for more detail TBD
+$C is our native token, for more detail TBD
 
 2. how to manage stake token
 - for LST part, staker first stake to operator then operator register  to our AVS. offline relayer watch && sync avs’s operator stake & delegations(eg.`sync(CainbaseAVS.Operator[] calldata operators`)) info with cosmos part(maybe call xxx chain ?)
-- For the $CBT part, stakers interact with erc20-stake contract to emit a `Stake(bytes operator_pubkey, uint256 amount)` event. The relayer then watches for this event and syncs the information with the Cosmos part.
-- We choose the Native Dual Staking model where an oracle ensures fair price conversion of both `$LST` and `$CBT` into `$CBT-Stake` units.
+- For the $C part, stakers interact with erc20-stake contract to emit a `Stake(bytes operator_pubkey, uint256 amount)` event. The relayer then watches for this event and syncs the information with the Cosmos part.
+- We choose the Native Dual Staking model where an oracle ensures fair price conversion of both `$LST` and `$C` into `$C-Stake` units.
 # **Reference**
 
 - [Eigenlayer:Dual Staking: secure a PoS network with two tokens](https://www.blog.eigenlayer.xyz/dual-staking/)
