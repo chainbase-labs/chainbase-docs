@@ -337,6 +337,65 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "group": "Beam",
+                    "pages": [
+                        "catalog/OtherEvm/Beam"
+                    ]
+                },
+                {
+                    "group": "Berachain Artio",
+                    "pages": [
+                        "catalog/OtherEvm/Berachain_Artio"
+                    ]
+                },
+                {
+                    "group": "Bitlayer Mainnet",
+                    "pages": [
+                        "catalog/OtherEvm/Bitlayer_Mainnet"
+                    ]
+                },
+                {
+                    "group": "Immutable zkEVM",
+                    "pages": [
+                        "catalog/OtherEvm/Immutable_zkEVM"
+                    ]
+                },
+                {
+                    "group": "Mantle",
+                    "pages": [
+                        "catalog/OtherEvm/Mantle"
+                    ]
+                },                {
+                    "group": "Mint Mainnet",
+                    "pages": [
+                        "catalog/OtherEvm/Mint_Mainnet"
+                    ]
+                },
+                {
+                    "group": "Moonbeam",
+                    "pages": [
+                        "catalog/OtherEvm/Moonbeam"
+                    ]
+                },
+                {
+                    "group": "Scroll",
+                    "pages": [
+                        "catalog/OtherEvm/Scroll"
+                    ]
+                },
+                {
+                    "group": "Taiko Hekla L2",
+                    "pages": [
+                        "catalog/OtherEvm/Taiko_Hekla_L2"
+                    ]
+                },
+                {
+                    "group": "opBNB Mainnet",
+                    "pages": [
+                        "catalog/OtherEvm/opBNB_Mainnet"
+                    ]
                 }
             ]
         },
@@ -634,20 +693,28 @@
             ]
         },
         {
-            "group": "Other-EVM",
+            "group": "Other-Network",
             "pages": [
+                "catalog/OtherEvm/APEX_Testnet",
+                "catalog/OtherEvm/AgentLayer_Testnet",
+                "catalog/OtherEvm/B2_Testnet",
+                "catalog/OtherEvm/Bitlayer_Mainnet",
+                "catalog/OtherEvm/Crab_Network",
+                "catalog/OtherEvm/Chiliz_Chain_Mainnet",
+                "catalog/OtherEvm/Darwinia_Network",
+                "catalog/OtherEvm/Forma",
+                "catalog/OtherEvm/GEEK_Verse_Mainnet",
+                "catalog/OtherEvm/Hemi_Sepolia",
+                "catalog/OtherEvm/Immutable_zkEVM",
+                "catalog/OtherEvm/Kingdom_Chain",
+                "catalog/OtherEvm/Lambda_Chain_Mainnet",
                 {
                     "group": "Others",
                     "pages": [
-                        "catalog/OtherEvm/APEX_Testnet",
-                        "catalog/OtherEvm/AgentLayer_Testnet",
                         "catalog/OtherEvm/Ancient8",
-                        "catalog/OtherEvm/Arbitrum_Blueberry",
                         "catalog/OtherEvm/Atleta_Olympia",
                         "catalog/OtherEvm/Automata_Testnet",
                         "catalog/OtherEvm/B2_Hub_Mainnet",
-                        "catalog/OtherEvm/B2_Mainnet",
-                        "catalog/OtherEvm/B2_Testnet",
                         "catalog/OtherEvm/BEVM_Mainnet",
                         "catalog/OtherEvm/BEVM_Testnet",
                         "catalog/OtherEvm/BNB_Smart_Chain_Testnet",
@@ -657,42 +724,33 @@
                         "catalog/OtherEvm/Berachain_bArtio",
                         "catalog/OtherEvm/Bifrost_Mainnet",
                         "catalog/OtherEvm/Bifrost_Testnet",
-                        "catalog/OtherEvm/Bitlayer_Mainnet",
                         "catalog/OtherEvm/Bitlayer_Testnet",
                         "catalog/OtherEvm/BlackFort_Exchange_Network",
                         "catalog/OtherEvm/BlackFort_Exchange_Network_Testnet",
                         "catalog/OtherEvm/Blast_Sepolia_Testnet",
                         "catalog/OtherEvm/Celo_Alfajores_Testnet",
-                        "catalog/OtherEvm/Chiliz_Chain_Mainnet",
-                        "catalog/OtherEvm/Crab_Network",
                         "catalog/OtherEvm/Creditcoin_Testnet",
                         "catalog/OtherEvm/Crypto_Emergency",
                         "catalog/OtherEvm/Cyber_Mainnet",
                         "catalog/OtherEvm/Cyber_Testnet",
                         "catalog/OtherEvm/DOS_Chain",
                         "catalog/OtherEvm/Darwinia_Koi_Testnet",
-                        "catalog/OtherEvm/Darwinia_Network",
                         "catalog/OtherEvm/Dodao",
                         "catalog/OtherEvm/Ethereum_Classic",
                         "catalog/OtherEvm/Fhenix_Helium",
                         "catalog/OtherEvm/Form_Testnet",
-                        "catalog/OtherEvm/Forma",
                         "catalog/OtherEvm/Forma_Sketchpad",
                         "catalog/OtherEvm/Fuse_Mainnet",
                         "catalog/OtherEvm/Fuse_Sparknet",
-                        "catalog/OtherEvm/GEEK_Verse_Mainnet",
                         "catalog/OtherEvm/GEEK_Verse_Testnet",
                         "catalog/OtherEvm/GUNZ_Testnet",
                         "catalog/OtherEvm/Gnosis",
                         "catalog/OtherEvm/Gnosis_Chiado_Testnet",
                         "catalog/OtherEvm/Gobbl_Testnet",
-                        "catalog/OtherEvm/Hemi_Sepolia",
                         "catalog/OtherEvm/Hybrid_Testnet",
-                        "catalog/OtherEvm/Immutable_zkEVM",
                         "catalog/OtherEvm/Immutable_zkEVM_Testnet",
                         "catalog/OtherEvm/Kakarot_Sepolia",
                         "catalog/OtherEvm/Karak_Sepolia",
-                        "catalog/OtherEvm/Kingdom_Chain",
                         "catalog/OtherEvm/Klaytn_Testnet_Baobab",
                         "catalog/OtherEvm/Kroma",
                         "catalog/OtherEvm/Kroma_Sepolia",
@@ -700,7 +758,6 @@
                         "catalog/OtherEvm/Kyoto_Testnet",
                         "catalog/OtherEvm/LUKSO_Mainnet",
                         "catalog/OtherEvm/LUKSO_Testnet",
-                        "catalog/OtherEvm/Lambda_Chain_Mainnet",
                         "catalog/OtherEvm/Lambda_Chain_Testnet",
                         "catalog/OtherEvm/LayerEdge_testnet",
                         "catalog/OtherEvm/Linea_Sepolia",
@@ -715,8 +772,6 @@
                         "catalog/OtherEvm/Mode_Testnet",
                         "catalog/OtherEvm/Moonbeam",
                         "catalog/OtherEvm/Numbers_Mainnet",
-                        "catalog/OtherEvm/OP_Celestia_Raspberry",
-                        "catalog/OtherEvm/OP_Mainnet",
                         "catalog/OtherEvm/Opal_testnet_by_Unique",
                         "catalog/OtherEvm/Open_Campus_Codex",
                         "catalog/OtherEvm/Orderly_Sepolia_Testnet",
@@ -724,8 +779,6 @@
                         "catalog/OtherEvm/Ozone_Chain_Testnet",
                         "catalog/OtherEvm/PLAYA3ULL_GAMES",
                         "catalog/OtherEvm/Plume_Testnet",
-                        "catalog/OtherEvm/Polygon_zkEVM",
-                        "catalog/OtherEvm/Polygon_zkEVM_Cardona_Testnet",
                         "catalog/OtherEvm/Pools_Mainnet",
                         "catalog/OtherEvm/PulseChain",
                         "catalog/OtherEvm/PulseChain_Testnet_v4",
@@ -764,8 +817,7 @@
                         "catalog/OtherEvm/opBNB_Mainnet",
                         "catalog/OtherEvm/opBNB_Testnet",
                         "catalog/OtherEvm/re.al",
-                        "catalog/OtherEvm/zkCandy_Sepolia_Testnet",
-                        "catalog/OtherEvm/zkSync_Mainnet"
+                        "catalog/OtherEvm/zkCandy_Sepolia_Testnet"
                     ]
                 }
             ]
