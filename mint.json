@@ -121,9 +121,11 @@
         },
         {
             "group": "EVM",
+            "icon": "ethereum",
             "pages": [
                 {
                     "group": "Ethereum",
+                    "icon": "ethereum",
                     "pages": [
                         "catalog/Ethereum/Overview",
                         {
@@ -175,6 +177,8 @@
                 },
                 {
                     "group": "BSC",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/BSC/Overview",
                         {
@@ -221,6 +225,8 @@
                 },
                 {
                     "group": "Polygon",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Polygon/Overview",
                         {
@@ -267,6 +273,8 @@
                 },
                 {
                     "group": "Avalanche",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Avalanche/Overview",
                         {
@@ -313,6 +321,8 @@
                 },
                 {
                     "group": "Fantom",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Fantom/Overview",
                         {
@@ -328,6 +338,8 @@
                 },
                 {
                     "group": "Tron",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Tron/Overview",
                         {
@@ -337,65 +349,6 @@
                             ]
                         }
                     ]
-                },
-                {
-                    "group": "Beam",
-                    "pages": [
-                        "catalog/OtherEvm/Beam"
-                    ]
-                },
-                {
-                    "group": "Berachain Artio",
-                    "pages": [
-                        "catalog/OtherEvm/Berachain_Artio"
-                    ]
-                },
-                {
-                    "group": "Bitlayer Mainnet",
-                    "pages": [
-                        "catalog/OtherEvm/Bitlayer_Mainnet"
-                    ]
-                },
-                {
-                    "group": "Immutable zkEVM",
-                    "pages": [
-                        "catalog/OtherEvm/Immutable_zkEVM"
-                    ]
-                },
-                {
-                    "group": "Mantle",
-                    "pages": [
-                        "catalog/OtherEvm/Mantle"
-                    ]
-                },                {
-                    "group": "Mint Mainnet",
-                    "pages": [
-                        "catalog/OtherEvm/Mint_Mainnet"
-                    ]
-                },
-                {
-                    "group": "Moonbeam",
-                    "pages": [
-                        "catalog/OtherEvm/Moonbeam"
-                    ]
-                },
-                {
-                    "group": "Scroll",
-                    "pages": [
-                        "catalog/OtherEvm/Scroll"
-                    ]
-                },
-                {
-                    "group": "Taiko Hekla L2",
-                    "pages": [
-                        "catalog/OtherEvm/Taiko_Hekla_L2"
-                    ]
-                },
-                {
-                    "group": "opBNB Mainnet",
-                    "pages": [
-                        "catalog/OtherEvm/opBNB_Mainnet"
-                    ]
                 }
             ]
         },
@@ -404,6 +357,8 @@
             "pages": [
                 {
                     "group": "Arbitrum",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Arbitrum/Overview",
                         {
@@ -450,6 +405,8 @@
                 },
                 {
                     "group": "Optimism",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Optimism/Overview",
                         {
@@ -496,6 +453,8 @@
                 },
                 {
                     "group": "Base",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Base/Overview",
                         {
@@ -542,6 +501,8 @@
                 },
                 {
                     "group": "Blast",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Base/Overview",
                         {
@@ -569,6 +530,8 @@
                 },
                 {
                     "group": "zkSync",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/zkSync/Overview",
                         {
@@ -620,6 +583,8 @@
             "pages": [
                 {
                     "group": "Bitcoin",
+                    "icon": "bitcoin",
+                    "iconType": "solid",
                     "pages": [
                         {
                             "group": "Abstracted",
@@ -636,6 +601,8 @@
                 },
                 {
                     "group": "Merlin",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Merlin/Overview",
                         {
@@ -650,6 +617,8 @@
                 },
                 {
                     "group": "Sui",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Sui/Overview",
                         {
@@ -675,6 +644,8 @@
                 },
                 {
                     "group": "Ton",
+                    "icon": "database",
+                    "iconType": "solid",
                     "pages": [
                         "catalog/Ton/Overview",
                         {
@@ -695,25 +666,26 @@
         {
             "group": "Other-Network",
             "pages": [
-                "catalog/OtherEvm/APEX_Testnet",
-                "catalog/OtherEvm/AgentLayer_Testnet",
-                "catalog/OtherEvm/B2_Testnet",
+                "catalog/OtherEvm/Beam",
+                "catalog/OtherEvm/Berachain_Artio",
                 "catalog/OtherEvm/Bitlayer_Mainnet",
-                "catalog/OtherEvm/Crab_Network",
-                "catalog/OtherEvm/Chiliz_Chain_Mainnet",
-                "catalog/OtherEvm/Darwinia_Network",
-                "catalog/OtherEvm/Forma",
-                "catalog/OtherEvm/GEEK_Verse_Mainnet",
-                "catalog/OtherEvm/Hemi_Sepolia",
                 "catalog/OtherEvm/Immutable_zkEVM",
-                "catalog/OtherEvm/Kingdom_Chain",
-                "catalog/OtherEvm/Lambda_Chain_Mainnet",
+                "catalog/OtherEvm/Mantle",
+                "catalog/OtherEvm/Mint_Mainnet",
+                "catalog/OtherEvm/Moonbeam",
+                "catalog/OtherEvm/Scroll",
+                "catalog/OtherEvm/Taiko_Hekla_L2",
+                "catalog/OtherEvm/opBNB_Mainnet",
                 {
                     "group": "Others",
                     "pages": [
+                        "catalog/OtherEvm/APEX_Testnet",
+                        "catalog/OtherEvm/AgentLayer_Testnet",
                         "catalog/OtherEvm/Ancient8",
                         "catalog/OtherEvm/Atleta_Olympia",
                         "catalog/OtherEvm/Automata_Testnet",
+                        "catalog/OtherEvm/B2_Testnet",
+                        "catalog/OtherEvm/Bitlayer_Mainnet",
                         "catalog/OtherEvm/B2_Hub_Mainnet",
                         "catalog/OtherEvm/BEVM_Mainnet",
                         "catalog/OtherEvm/BEVM_Testnet",
@@ -728,29 +700,37 @@
                         "catalog/OtherEvm/BlackFort_Exchange_Network",
                         "catalog/OtherEvm/BlackFort_Exchange_Network_Testnet",
                         "catalog/OtherEvm/Blast_Sepolia_Testnet",
+                        "catalog/OtherEvm/Crab_Network",
+                        "catalog/OtherEvm/Chiliz_Chain_Mainnet",
                         "catalog/OtherEvm/Celo_Alfajores_Testnet",
                         "catalog/OtherEvm/Creditcoin_Testnet",
                         "catalog/OtherEvm/Crypto_Emergency",
                         "catalog/OtherEvm/Cyber_Mainnet",
                         "catalog/OtherEvm/Cyber_Testnet",
+                        "catalog/OtherEvm/Darwinia_Network",
                         "catalog/OtherEvm/DOS_Chain",
                         "catalog/OtherEvm/Darwinia_Koi_Testnet",
                         "catalog/OtherEvm/Dodao",
                         "catalog/OtherEvm/Ethereum_Classic",
+                        "catalog/OtherEvm/Forma",
                         "catalog/OtherEvm/Fhenix_Helium",
                         "catalog/OtherEvm/Form_Testnet",
                         "catalog/OtherEvm/Forma_Sketchpad",
                         "catalog/OtherEvm/Fuse_Mainnet",
                         "catalog/OtherEvm/Fuse_Sparknet",
+                        "catalog/OtherEvm/GEEK_Verse_Mainnet",
                         "catalog/OtherEvm/GEEK_Verse_Testnet",
                         "catalog/OtherEvm/GUNZ_Testnet",
                         "catalog/OtherEvm/Gnosis",
                         "catalog/OtherEvm/Gnosis_Chiado_Testnet",
                         "catalog/OtherEvm/Gobbl_Testnet",
                         "catalog/OtherEvm/Hybrid_Testnet",
+                        "catalog/OtherEvm/Hemi_Sepolia",
+                        "catalog/OtherEvm/Immutable_zkEVM",
                         "catalog/OtherEvm/Immutable_zkEVM_Testnet",
                         "catalog/OtherEvm/Kakarot_Sepolia",
                         "catalog/OtherEvm/Karak_Sepolia",
+                        "catalog/OtherEvm/Kingdom_Chain",
                         "catalog/OtherEvm/Klaytn_Testnet_Baobab",
                         "catalog/OtherEvm/Kroma",
                         "catalog/OtherEvm/Kroma_Sepolia",
@@ -761,6 +741,7 @@
                         "catalog/OtherEvm/Lambda_Chain_Testnet",
                         "catalog/OtherEvm/LayerEdge_testnet",
                         "catalog/OtherEvm/Linea_Sepolia",
+                        "catalog/OtherEvm/Lambda_Chain_Mainnet",
                         "catalog/OtherEvm/MAXI_Chain_Testnet",
                         "catalog/OtherEvm/Mantle",
                         "catalog/OtherEvm/Memo_Smart_Chain_Mainnet",
