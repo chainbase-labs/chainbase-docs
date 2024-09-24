@@ -1,5 +1,189 @@
 ---
 title: 'Raw'
 ---
+## 1.arbitrum.blocks
+### Table Description
+The arbitrum.blocks table stores crucial data about the Ethereum blockchain's block structure. Each block in the Ethereum blockchain contains a unique set of data that ensures the integrity and chronological order of transactions. Blocks are the building blocks of the Ethereum blockchain, and they contain several key components:
 
-## Coming soon
+1. Block Header: This includes metadata such as the block number, timestamp, parent block hash, and nonce. The header is essential for maintaining the blockchain's integrity and linking blocks together in a chain.
+
+2. Transactions: Each block includes a list of transactions that have been validated and added to the blockchain. These transactions consist of various operations, such as transfers of Ether, execution of smart contracts, and other state changes.
+
+3. Uncle Blocks (Ommer Blocks): These are blocks that were mined but not included in the main chain. They are referenced in the block to improve the chain's security and reward miners for their efforts.
+
+4. State Root: This is a cryptographic hash representing the state of the entire Ethereum network at the time the block was mined. It includes account balances, storage, and other state data.
+
+5. Receipts Root: This is a hash of the receipts of all transactions included in the block. Receipts contain information about the execution of transactions, such as gas used and logs generated.
+
+The arbitrum.blocks table provides a detailed and organized view of the blockchain's structure, allowing for efficient retrieval and analysis of blockchain data. This information is crucial for developers, researchers, and analysts working with the Ethereum blockchain, as it enables them to understand the state and evolution of the network.
+
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/arbitrum.blocks"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/arbitrum.blocks"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+## 1.arbitrum.contracts
+### Table Description
+The arbitrum.contracts table contains essential data about smart contracts deployed on the Ethereum blockchain. Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They are a fundamental aspect of Ethereum, enabling decentralized applications (DApps) and automating complex transactions without intermediaries. The arbitrum.contracts table includes several key components:
+1. Contract Address: This is a unique identifier for each smart contract deployed on the Ethereum network. It is derived from the creator's address and the transaction nonce.
+
+2. Creator Address: This is the Ethereum address of the account that deployed the smart contract. It provides traceability and accountability for the origin of the contract.
+
+3. Creation Transaction: This includes the transaction hash of the deployment transaction, linking the contract to the specific transaction that created it.
+
+4. Bytecode: This is the compiled code of the smart contract that gets executed on the Ethereum Virtual Machine (EVM). It includes the contract's logic and functions.
+
+5. ABI (Application Binary Interface): The ABI defines the contract's interface, including its functions, inputs, and outputs. It is crucial for interacting with the contract programmatically.
+
+6. Source Code (optional): Some contracts include the original source code, providing transparency and enabling verification of the compiled bytecode.
+
+7. Block Number: This indicates the block in which the smart contract was deployed, providing a chronological context for the contract's creation.
+
+8. Timestamp: The exact time when the smart contract was deployed, allowing for time-based analysis and tracking.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/arbitrum.contracts"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/arbitrum.contracts"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+## 1.arbitrum.token_transfers
+### Table Description
+Token transfers in the context of blockchain data refer to the movement of digital tokens from one address to another. These transfers can be tracked on the blockchain, providing a transparent record of token movements. Here are some key points to understand about token transfers:Token transfers can be initiated by users or smart contracts. For example, a user can send tokens to another user, or a smart contract can transfer tokens to a user as part of a transaction.Token transfers can be tracked on the blockchain, providing a transparent record of token movements. This is particularly useful for auditing and compliance purposes.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/arbitrum.token_transfers"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/arbitrum.token_transfers"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+## 1.arbitrum.trace_calls
+### Table Description
+The arbitrum.trace_calls table contains detailed data about the execution of transactions on the Ethereum blockchain. Trace calls provide a granular view of what happens during the execution of a transaction, including internal transactions and function calls within smart contracts. This information is essential for debugging, auditing, and understanding the complex interactions within the Ethereum network.
+The arbitrum.trace_calls table is a powerful tool for developers, auditors, and researchers working with arbitrum. It provides an in-depth view of transaction execution, enabling detailed analysis of smart contract interactions and internal transactions. This information is vital for ensuring the security, efficiency, and transparency of operations on the Ethereum network.
+
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/arbitrum.trace_calls"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/arbitrum.trace_calls"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+## 1.arbitrum.transaction_logs
+### Table Description
+This dataset holds detailed logs emitted during transactions by smart contract events. These logs are pivotal for tracking activities such as token transfers, contract updates, and custom event notifications set by contract developers. For instance, when a user transfers ERC-20 tokens, the transaction log would capture the 'Transfer' event with details like the sender's address, recipient's address, and the amount transferred. This information is crucial for applications that need to monitor and respond to specific contract activities.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/arbitrum.transaction_logs"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/arbitrum.transaction_logs"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+## 1.arbitrum.transactions
+### Table Description
+The dataset encompasses comprehensive details of all transactions on the network. It includes the initiating account, destination address, value transferred, gas used, and the data payload. For example, when a user sends Ether to another user, the transaction record would include the sender's and receiver's addresses, the amount of Ether sent, and the gas price paid for the transaction. Additionally, it also captures the nonce, which is the transaction count of the sender, helping in preventing double-spending and replay attacks.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/arbitrum.transactions"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/arbitrum.transactions"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
