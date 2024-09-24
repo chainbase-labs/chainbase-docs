@@ -73,7 +73,7 @@
                     "group": "Manuscript",
                     "pages": [
                         "core-concepts/manuscript/overview",
-                        "core-concepts/manuscript/manuscript"
+                        "core-concepts/manuscript/protocol"
                     ]
                 },
                 "core-concepts/dual-chain",
@@ -291,12 +291,7 @@
                         {
                             "group": "Raw",
                             "pages": [
-                                "catalog/Ton/Raw/master_blocks",
-                                "catalog/Ton/Raw/base_blocks",
-                                "catalog/Ton/Raw/master_transactions",
-                                "catalog/Ton/Raw/base_transactions",
-                                "catalog/Ton/Raw/sub_shards",
-                                "catalog/Ton/Raw/messages"
+                                "catalog/Ton/Raw"
                             ]
                         }
                     ]
