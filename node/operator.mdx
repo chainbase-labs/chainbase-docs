@@ -8,6 +8,14 @@ This guide will walk you through the process of setting up and running a Chainba
 
 ## Requirements
 
+Recommended Hardware Specifications
+
+| Class | vCPUs (10th gen+) | Memory | Networking Capacity |
+|-------|-------------------|--------|---------------------|
+| General Purpose - large | 2 | 8 GB | 5 Mbps |
+| General Purpose - xl | 4 | 16 GB | 25 Mbps |
+| General Purpose - 4xl | 16 | 64 GB | 5 Gbps |
+
 Before you begin, ensure you have the following prerequisites installed:
 
 ➕[Docker](https://docs.docker.com/get-docker/): Docker is a requirement for AVS operator.
@@ -24,8 +32,8 @@ Before you begin, ensure you have the following prerequisites installed:
 ### Migration From Previous Version
 
 If you've previously run a Chainbase AVS Operator:
-1. Back up your encrypted **ECDSA** and **BLS** keys.
-2. Skip the **EigenLayer Registration** step.
+1. You can delete old version `chainbase-avs-setup` directory on your server, but need to back up your encrypted **ECDSA** and **BLS** keys.
+2. Skip the **EigenLayer Registration** step and only start from **Chainbase AVS Setup** step.
 
 ### EigenLayer Registration
 
@@ -48,24 +56,24 @@ NODE_ECDSA_KEY_FILE_PATH=/your/ecdsa/key/path
 NODE_BLS_KEY_FILE_PATH=/your/bls/key/path
 OPERATOR_ECDSA_KEY_PASSWORD=yourECDSAKeyPassword
 OPERATOR_BLS_KEY_PASSWORD=yourBlsKeyPassword
+OPERATOR_ADDRESS=yourECDSAKeyAddress
+NODE_SOCKET=yourNodeSocket
    ```
-
-3. Edit the `node.yaml` file:
-- **operator_address**: Set to your operator address (must match your ECDSA key address).
-- **node_socket**: Set to your server's public IP address (format: `<your_public_ip>:8011`).
+- **OPERATOR_ADDRESS**: Set to your operator address (must match your ECDSA key address). You can run `eigenlayer operator keys list` to check your opertor address.
+- **NODE_SOCKET**: Set to your server's public IP address (format: `<your_server_public_ip>:8011`).
 
 Important:
 - Ensure your server's public IP is internet-accessible.
 - Verify that port 8011 is open and properly configured in your firewall settings.
 
+3. Configure `${YOUR_OPERATOR_NAME}` filed in `prometheus.yml` file.
+
+Replace this with your Operator name you want to be identified by, it helps us route alerts and metrics to your notification channels easily
+
 4. Set execution permissions for the script:
 ```shell
 chmod +x ./chainbase-avs.sh
 ```
-
-5. update `holesky/prometheus.yml`'s `${YOUR_OPERATOR_NAME}`
-
-replace this with your Operator name you want to be identified by, it helps us route alerts and metrics to your notification channels easily
 
 ## Operating the Chainbase AVS
 
@@ -76,11 +84,41 @@ Run the following command to register as an operator:
 ./chainbase-avs.sh register
 ```
 
-### Run Chainbase AVS Node
+### Run Node
 
-Run the following command to startup chainbase avs node:
+Run the following command to startup node:
 ```shell
 ./chainbase-avs.sh run
+```
+
+### Test Node
+
+Run the following command to test node:
+```shell
+./chainbase-avs.sh test
+```
+If you see the output `All systems are working for your manuscript node` in the command line output, it indicates that your node is running correctly.
+
+### Update Node socket
+
+If your server's public IP address is changed after you register as an operator, you need to update the node socket.
+Configure `NODE_SOCKET` in `.env` file, then run the following command:
+```shell
+./chainbase-avs.sh update
+```
+
+### Stop Node
+
+Run the following command to stop node:
+```shell
+./chainbase-avs.sh stop
+```
+
+### Deregister from Chainbase AVS
+
+Run the following command to deregister from chainbase avs:
+```shell
+./chainbase-avs.sh deregister
 ```
 
 ### Monitor Logs
@@ -91,6 +129,10 @@ docker compose logs -f
 docker compose logs -f <container_name>
 docker logs -f <container_id>
 ```
+
+### Dashboard
+
+You can visit `<your_server_public_ip>:3000` to view the dashboard to confirm the status of your node.
 
 ## Troubleshooting
 
