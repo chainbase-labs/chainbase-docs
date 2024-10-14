@@ -1,94 +1,100 @@
 ---
-title: 'Run a Operator(Not released to mainnet yet)'
+title: 'Run a Chainbase AVS Operator (Not released to mainnet yet)'
 ---
+
+## Overview
+
+This guide will walk you through the process of setting up and running a Chainbase AVS (Actively Validated Service) operator node. Please note that this service is not yet released to the mainnet.
 
 ## Requirements
 
-➕[Docker](https://docs.docker.com/get-docker/): Docker is a requirement for AVS operators.
+Before you begin, ensure you have the following prerequisites installed:
 
-➕[Docker Compose](https://docs.docker.com/compose/install/):  Docker Compose is used alongside Docker for executing Operator software. 
+➕[Docker](https://docs.docker.com/get-docker/): Docker is a requirement for AVS operator.
 
-➕Linux Environment: Eigenlayer’s CLI only runs in a Linux environment.
+➕[Docker Compose](https://docs.docker.com/compose/install/):  Docker Compose is used alongside Docker for executing Operator software.
+
+➕ **Linux Environment**: Eigenlayer’s CLI only runs in a Linux environment.
 
 ➕[Go](https://go.dev/doc/install): Two out of three installation routes require the use of Go. It’s safer to go with Go than go without. 😉
 
-## EigenLayer Registration
 
-Before registering as an AVS, ensure that the operator has already registered with EigenLayer. 
-For reference, see [here](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation)
+## Installation Process
 
-## Chainbase AVS Contract Registration
+### Migration From Previous Version
 
-1. download chainbase avs setup [repo](https://github.com/chainbase-labs/chainbase-avs-setup)
+If you've previously run a Chainbase AVS Operator:
+1. Back up your encrypted **ECDSA** and **BLS** keys.
+2. Skip the **EigenLayer Registration** step.
+
+### EigenLayer Registration
+
+Ensure you've registered with EigenLayer before proceeding. For guidance, refer to the [EigenLayer Operator Installation Guide](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-installation).
+
+### Chainbase AVS Setup
+
+1. Clone the Chainbase AVS setup repository:
 ```
 git clone https://github.com/chainbase-labs/chainbase-avs-setup && cd chainbase-avs-setup/holesky
+   ```
+
+2. Set up the environment file:
 ```
-
-2. rename `.env.example` to `.env`
-
-The provided `.env` contains many default configuration settings for the node. All sections marked with TODO must be updated to match your environment. We recommend that operators follow the steps in the next section to configure their node to run without access to their ECDSA private key.
-
+mv .env.example .env
+   ```
+Configure all fields in the `.env` file with your specific information:
 ```
-# TODO: Operators need to point this to a working chain rpc
-NODE_CHAIN_RPC=https://rpc.ankr.com/eth_holesky
-NODE_CHAIN_ID=17000
+NODE_ECDSA_KEY_FILE_PATH=/your/ecdsa/key/path
+NODE_BLS_KEY_FILE_PATH=/your/bls/key/path
+OPERATOR_ECDSA_KEY_PASSWORD=yourECDSAKeyPassword
+OPERATOR_BLS_KEY_PASSWORD=yourBlsKeyPassword
+   ```
 
-# TODO: Operators need to update this to their own paths
-USER_HOME=/home/ubuntu
-EIGENLAYER_HOME=${USER_HOME}/.eigenlayer
-CHAINBASE_AVS_HOME=${EIGENLAYER_HOME}/chainbase/holesky
+3. Edit the `node.yaml` file:
+- **operator_address**: Set to your operator address (must match your ECDSA key address).
+- **node_socket**: Set to your server's public IP address (format: `<your_public_ip>:8011`).
 
-NODE_LOG_PATH_HOST=${CHAINBASE_AVS_HOME}/logs
+Important:
+- Ensure your server's public IP is internet-accessible.
+- Verify that port 8011 is open and properly configured in your firewall settings.
 
-# TODO: Operators need to update this to their own keys
-NODE_ECDSA_KEY_FILE_HOST=${EIGENLAYER_HOME}/operator_keys/opr.ecdsa.key.json
-
-# TODO: Operators need to add password to decrypt the above keys
-# If you have some special characters in password, make sure to use single quotes
-NODE_ECDSA_KEY_PASSWORD=''
-```
-
-3. ensure that the specific folders exist that the docker user has the correct write permissions
-```
-source .env && mkdir -pv ${EIGENLAYER_HOME} ${CHAINBASE_AVS_HOME} ${NODE_LOG_PATH_HOST}
-```
-
-4. confirm the latest chainbase avs image version and modify it in the `.env` file
-```shell
-MAIN_SERVICE_IMAGE=repository.chainbase.com/network/chainbase-node:<latest version>
-```
-
-5. change `chainbase-avs.sh` file permissions
+4. Set execution permissions for the script:
 ```shell
 chmod +x ./chainbase-avs.sh
 ```
 
-6. update `holesky/prometheus.yml`'s `${YOUR_OPERATOR_NAME}`
+5. update `holesky/prometheus.yml`'s `${YOUR_OPERATOR_NAME}`
 
 replace this with your Operator name you want to be identified by, it helps us route alerts and metrics to your notification channels easily
 
+## Operating the Chainbase AVS
 
-## Register Chainbase AVS
+### Register as an Operator
 
-1. Run the following command to register as an operator:
-
+Run the following command to register as an operator:
 ```shell
 ./chainbase-avs.sh register
-``` 
+```
 
-## Run Chainbase AVS
+### Run Chainbase AVS Node
 
-1. Run the following command to startup our avs:
-
+Run the following command to startup chainbase avs node:
 ```shell
 ./chainbase-avs.sh run
 ```
 
-### View Chainbase AVS Logs 
+### Monitor Logs
 
-1. You may view the container logs using and of the following commands
+View container logs using any of these commands:
 ```shell
 docker compose logs -f
 docker compose logs -f <container_name>
 docker logs -f <container_id>
 ```
+
+## Troubleshooting
+
+If you encounter any issues during setup or operation, please contact our support team on [Discord](https://discord.com/channels/933995010158907422/1268125787546980403).
+
+## Additional Resources
+- [EigenLayer Documentation](https://docs.eigenlayer.xyz/)
