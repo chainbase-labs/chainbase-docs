@@ -58,6 +58,7 @@ OPERATOR_ECDSA_KEY_PASSWORD=yourECDSAKeyPassword
 OPERATOR_BLS_KEY_PASSWORD=yourBlsKeyPassword
 OPERATOR_ADDRESS=yourECDSAKeyAddress
 NODE_SOCKET=yourNodeSocket
+OPERATOR_NAME=yourOperatorName
    ```
 - **OPERATOR_ADDRESS**: Set to your operator address (must match your ECDSA key address). You can run `eigenlayer operator keys list` to check your opertor address.
 - **NODE_SOCKET**: Set to your server's public IP address (format: `<your_server_public_ip>:8011`).
@@ -66,11 +67,7 @@ Important:
 - Ensure your server's public IP is internet-accessible.
 - Verify that port 8011 is open and properly configured in your firewall settings.
 
-3. Configure `${YOUR_OPERATOR_NAME}` filed in `prometheus.yml` file.
-
-Replace this with your Operator name you want to be identified by, it helps us route alerts and metrics to your notification channels easily
-
-4. Set execution permissions for the script:
+3. Set execution permissions for the script:
 ```shell
 chmod +x ./chainbase-avs.sh
 ```
