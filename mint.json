@@ -1,828 +1,824 @@
 {
-    "$schema": "https://mintlify.com/schema.json",
-    "name": "Chainbase Docs",
-    "logo": {
-        "dark": "/logo/dark.svg",
-        "light": "/logo/light.svg"
-    },
-    "favicon": "/favicon.png",
-    "colors": {
-        "primary": "#000000",
-        "light": "#A5CFFF",
-        "dark": "#000000",
-        "background": {
-            "light": "#fdfdf7",
-            "dark": "#000000"
-        }
-    },
-    "topbarLinks": [
-        {
-            "name": "Support",
-            "url": "mailto:support@chainbase.com"
-        }
-    ],
-    "tabs": [
-        {
-            "name": "Run a node",
-            "url": "node"
-        },
-        {
-            "name": "Data Catalog",
-            "url": "catalog"
-        },
-        {
-            "name": "Data Platform",
-            "url": "platform"
-        },
-        {
-            "name": "Crypto World Model",
-            "url": "theia"
-        },
-        {
-            "name": "API Reference",
-            "url": "api-reference"
-        }
-    ],
-    "primaryTab": {
-        "name": "Learn and build"
-    },
-    "navigation": [
-        {
-            "group": "Introduction",
-            "pages": [
-                "introduction/about",
-                {
-                    "group": "Chainbase Network",
-                    "pages": [
-                        "introduction/networks/overview",
-                        "introduction/networks/developers",
-                        "introduction/networks/operators",
-                        "introduction/networks/validators",
-                        "introduction/networks/delegators"
-                    ]
-                },
-                "introduction/tokenomics",
-                "introduction/whitepaper",
-                "introduction/faqs"
-            ]
-        },
-        {
-            "group": "Core Concepts",
-            "pages": [
-                {
-                    "group": "Manuscript",
-                    "pages": [
-                        "core-concepts/manuscript/overview",
-                        "core-concepts/manuscript/protocol"
-                    ]
-                },
-                "core-concepts/dual-chain",
-                "core-concepts/dual-staking",
-                "core-concepts/data-processing-based-on-avs",
-                "core-concepts/avs-design",
-                "core-concepts/glossary",
-                {
-                    "group": "Architecture",
-                    "pages": [
-                        "core-concepts/architecture/overview",
-                        "core-concepts/architecture/execution_layer",
-                        "core-concepts/architecture/consensus_layer",
-                        "core-concepts/architecture/data_accessibility_layer",
-                        "core-concepts/architecture/co_processor_layer"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Developers",
-            "pages": [
-                "developers/testnet",
-                "developers/open_apis"
-            ]
-        },
-        {
-            "group": "Contributing",
-            "pages": [
-                "contributing/overview",
-                "contributing/roadmap",
-                "contributing/governance",
-                "contributing/cips"
-            ]
-        },
-        {
-            "group": "Getting Started",
-            "pages": [
-                "node/introduction",
-                "node/operator",
-                "node/validator",
-                "node/configuration",
-                "node/testnet"
-            ]
-        },
-        {
-            "group": "Data Catalog",
-            "pages": [
-                "catalog/overview"
-            ]
-        },
-        {
-            "group": "EVM",
-            "icon": "ethereum",
-            "pages": [
-                {
-                    "group": "Ethereum",
-                    "icon": "ethereum",
-                    "pages": [
-                        "catalog/Ethereum/Overview",
-                        "catalog/Ethereum/Raw",
-                        "catalog/Ethereum/Decoded",
-                        "catalog/Ethereum/Abstracted"
-                    ]
-                },
-                {
-                    "group": "BSC",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/BSC/Overview",
-                        "catalog/BSC/Raw",
-                        "catalog/BSC/Decoded",
-                        "catalog/BSC/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Polygon",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Polygon/Overview",
-                        "catalog/Polygon/Raw",
-                        "catalog/Polygon/Decoded",
-                        "catalog/Polygon/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Avalanche",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Avalanche/Overview",
-                        "catalog/Avalanche/Raw",
-                        "catalog/Avalanche/Decoded",
-                        "catalog/Avalanche/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Fantom",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Fantom/Overview",
-                        "catalog/Fantom/Raw"
-                    ]
-                },
-                {
-                    "group": "Tron",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Tron/Overview",
-                        "catalog/Tron/Raw"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "EVM L2",
-            "pages": [
-                {
-                    "group": "Arbitrum",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Arbitrum/Overview",
-                        "catalog/Arbitrum/Raw",
-                        "catalog/Arbitrum/Decoded",
-                        "catalog/Arbitrum/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Optimism",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Optimism/Overview",
-                        "catalog/Optimism/Raw",
-                        "catalog/Optimism/Decoded",
-                        "catalog/Optimism/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Base",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Base/Overview",
-                        "catalog/Base/Raw",
-                        "catalog/Base/Decoded",
-                        "catalog/Base/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Blast",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Blast/Overview",
-                        "catalog/Blast/Raw",
-                        "catalog/Blast/Decoded",
-                        "catalog/Blast/Abstracted"
-                    ]
-                },
-                {
-                    "group": "zkSync",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/zkSync/Overview",
-                        "catalog/zkSync/Raw",
-                        "catalog/zkSync/Decoded",
-                        "catalog/zkSync/Abstracted"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Non-EVM",
-            "pages": [
-                {
-                    "group": "Bitcoin",
-                    "icon": "bitcoin",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Bitcoin/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Merlin",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Merlin/Overview",
-                        "catalog/Merlin/Raw"
-                    ]
-                },
-                {
-                    "group": "Sui",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Sui/Overview",
-                        "catalog/Sui/Raw",
-                        "catalog/Sui/Abstracted"
-                    ]
-                },
-                {
-                    "group": "Ton",
-                    "icon": "database",
-                    "iconType": "solid",
-                    "pages": [
-                        "catalog/Ton/Overview",
-                        {
-                            "group": "Raw",
-                            "pages": [
-                                "catalog/Ton/Raw"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Other-Network",
-            "pages": [
-                "catalog/OtherEvm/Beam",
-                "catalog/OtherEvm/Berachain_Artio",
-                "catalog/OtherEvm/Bitlayer_Mainnet",
-                "catalog/OtherEvm/Immutable_zkEVM",
-                "catalog/OtherEvm/Mantle",
-                "catalog/OtherEvm/Mint_Mainnet",
-                "catalog/OtherEvm/Moonbeam",
-                "catalog/OtherEvm/Scroll",
-                "catalog/OtherEvm/Taiko_Hekla_L2",
-                "catalog/OtherEvm/opBNB_Mainnet",
-                {
-                    "group": "Others",
-                    "pages": [
-                        "catalog/OtherEvm/APEX_Testnet",
-                        "catalog/OtherEvm/AgentLayer_Testnet",
-                        "catalog/OtherEvm/Ancient8",
-                        "catalog/OtherEvm/Atleta_Olympia",
-                        "catalog/OtherEvm/Automata_Testnet",
-                        "catalog/OtherEvm/B2_Testnet",
-                        "catalog/OtherEvm/Bitlayer_Mainnet",
-                        "catalog/OtherEvm/B2_Hub_Mainnet",
-                        "catalog/OtherEvm/BEVM_Mainnet",
-                        "catalog/OtherEvm/BEVM_Testnet",
-                        "catalog/OtherEvm/BNB_Smart_Chain_Testnet",
-                        "catalog/OtherEvm/Bahamut",
-                        "catalog/OtherEvm/Beam",
-                        "catalog/OtherEvm/Berachain_Artio",
-                        "catalog/OtherEvm/Berachain_bArtio",
-                        "catalog/OtherEvm/Bifrost_Mainnet",
-                        "catalog/OtherEvm/Bifrost_Testnet",
-                        "catalog/OtherEvm/Bitlayer_Testnet",
-                        "catalog/OtherEvm/BlackFort_Exchange_Network",
-                        "catalog/OtherEvm/BlackFort_Exchange_Network_Testnet",
-                        "catalog/OtherEvm/Blast_Sepolia_Testnet",
-                        "catalog/OtherEvm/Crab_Network",
-                        "catalog/OtherEvm/Chiliz_Chain_Mainnet",
-                        "catalog/OtherEvm/Celo_Alfajores_Testnet",
-                        "catalog/OtherEvm/Creditcoin_Testnet",
-                        "catalog/OtherEvm/Crypto_Emergency",
-                        "catalog/OtherEvm/Cyber_Mainnet",
-                        "catalog/OtherEvm/Cyber_Testnet",
-                        "catalog/OtherEvm/Darwinia_Network",
-                        "catalog/OtherEvm/DOS_Chain",
-                        "catalog/OtherEvm/Darwinia_Koi_Testnet",
-                        "catalog/OtherEvm/Dodao",
-                        "catalog/OtherEvm/Ethereum_Classic",
-                        "catalog/OtherEvm/Forma",
-                        "catalog/OtherEvm/Fhenix_Helium",
-                        "catalog/OtherEvm/Form_Testnet",
-                        "catalog/OtherEvm/Forma_Sketchpad",
-                        "catalog/OtherEvm/Fuse_Mainnet",
-                        "catalog/OtherEvm/Fuse_Sparknet",
-                        "catalog/OtherEvm/GEEK_Verse_Mainnet",
-                        "catalog/OtherEvm/GEEK_Verse_Testnet",
-                        "catalog/OtherEvm/GUNZ_Testnet",
-                        "catalog/OtherEvm/Gnosis",
-                        "catalog/OtherEvm/Gnosis_Chiado_Testnet",
-                        "catalog/OtherEvm/Gobbl_Testnet",
-                        "catalog/OtherEvm/Hybrid_Testnet",
-                        "catalog/OtherEvm/Hemi_Sepolia",
-                        "catalog/OtherEvm/Immutable_zkEVM",
-                        "catalog/OtherEvm/Immutable_zkEVM_Testnet",
-                        "catalog/OtherEvm/Kakarot_Sepolia",
-                        "catalog/OtherEvm/Karak_Sepolia",
-                        "catalog/OtherEvm/Kingdom_Chain",
-                        "catalog/OtherEvm/Klaytn_Testnet_Baobab",
-                        "catalog/OtherEvm/Kroma",
-                        "catalog/OtherEvm/Kroma_Sepolia",
-                        "catalog/OtherEvm/Kyoto",
-                        "catalog/OtherEvm/Kyoto_Testnet",
-                        "catalog/OtherEvm/LUKSO_Mainnet",
-                        "catalog/OtherEvm/LUKSO_Testnet",
-                        "catalog/OtherEvm/Lambda_Chain_Testnet",
-                        "catalog/OtherEvm/LayerEdge_testnet",
-                        "catalog/OtherEvm/Linea_Sepolia",
-                        "catalog/OtherEvm/Lambda_Chain_Mainnet",
-                        "catalog/OtherEvm/MAXI_Chain_Testnet",
-                        "catalog/OtherEvm/Mantle",
-                        "catalog/OtherEvm/Memo_Smart_Chain_Mainnet",
-                        "catalog/OtherEvm/Meter_Mainnet",
-                        "catalog/OtherEvm/Meter_Testnet",
-                        "catalog/OtherEvm/Mint_Mainnet",
-                        "catalog/OtherEvm/Mint_Sepolia_Testnet",
-                        "catalog/OtherEvm/Mint_Testnet",
-                        "catalog/OtherEvm/Mode_Testnet",
-                        "catalog/OtherEvm/Moonbeam",
-                        "catalog/OtherEvm/Numbers_Mainnet",
-                        "catalog/OtherEvm/Opal_testnet_by_Unique",
-                        "catalog/OtherEvm/Open_Campus_Codex",
-                        "catalog/OtherEvm/Orderly_Sepolia_Testnet",
-                        "catalog/OtherEvm/Ozone_Chain_Mainnet",
-                        "catalog/OtherEvm/Ozone_Chain_Testnet",
-                        "catalog/OtherEvm/PLAYA3ULL_GAMES",
-                        "catalog/OtherEvm/Plume_Testnet",
-                        "catalog/OtherEvm/Pools_Mainnet",
-                        "catalog/OtherEvm/PulseChain",
-                        "catalog/OtherEvm/PulseChain_Testnet_v4",
-                        "catalog/OtherEvm/RSS3_VSL_Sepolia_Testnet",
-                        "catalog/OtherEvm/Reya_Network",
-                        "catalog/OtherEvm/Rollux_Testnet",
-                        "catalog/OtherEvm/Saakuru_Mainnet",
-                        "catalog/OtherEvm/Scroll",
-                        "catalog/OtherEvm/Scroll_Sepolia_Testnet",
-                        "catalog/OtherEvm/Shyft_Mainnet",
-                        "catalog/OtherEvm/Step_Network",
-                        "catalog/OtherEvm/Swan_Proxima_Testnet",
-                        "catalog/OtherEvm/Swan_Saturn_Testnet",
-                        "catalog/OtherEvm/Syndicate_Frame_Chain",
-                        "catalog/OtherEvm/TAPROOT_Mainnet",
-                        "catalog/OtherEvm/Taiko_Hekla_L2",
-                        "catalog/OtherEvm/Tanssi_Demo",
-                        "catalog/OtherEvm/UPB_CRESCDI_Testnet",
-                        "catalog/OtherEvm/Unique",
-                        "catalog/OtherEvm/Vana_Satori_Testnet",
-                        "catalog/OtherEvm/Vanar_Mainnet",
-                        "catalog/OtherEvm/VeChain",
-                        "catalog/OtherEvm/VeChain_Testnet",
-                        "catalog/OtherEvm/Vitruveo_Mainnet",
-                        "catalog/OtherEvm/Vitruveo_Testnet",
-                        "catalog/OtherEvm/WeaveVM_Testnet",
-                        "catalog/OtherEvm/XDC_Apothem_Network",
-                        "catalog/OtherEvm/XR_Sepolia",
-                        "catalog/OtherEvm/Xai_Mainnet",
-                        "catalog/OtherEvm/Xterio_Testnet",
-                        "catalog/OtherEvm/Zilliqa_EVM",
-                        "catalog/OtherEvm/Zilliqa_EVM_Devnet",
-                        "catalog/OtherEvm/Zilliqa_EVM_Testnet",
-                        "catalog/OtherEvm/Zircuit_Testnet",
-                        "catalog/OtherEvm/Zora",
-                        "catalog/OtherEvm/opBNB_Mainnet",
-                        "catalog/OtherEvm/opBNB_Testnet",
-                        "catalog/OtherEvm/re.al",
-                        "catalog/OtherEvm/zkCandy_Sepolia_Testnet"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Crypto World Model",
-            "pages": [
-                "theia/World_model/welcome",
-                "theia/World_model/theia",
-                "theia/World_model/features"
-            ]
-        },
-        {
-            "group": "TheiaChat",
-            "pages": [
-                "theia/TheiaChat/overview",
-                "theia/TheiaChat/task-models",
-                "theia/TheiaChat/create-task-models"
-            ]
-        },
-        {
-            "group": "Developers",
-            "pages": [
-                "theia/Developers/Open-APIs",
-                {
-                    "group": "Glossary",
-                    "pages": [
-                        "theia/Developers/Glossary/D2ORA",
-                        "theia/Developers/Glossary/G2D"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Resources",
-            "pages": [
-                "theia/Resources/Roadmap",
-                "theia/Resources/Whitepaper",
-                "theia/Resources/FAQs"
-            ]
-        },
-        {
-            "group": "Data Platform",
-            "pages": [
-                "platform/overview",
-                "platform/supported-networks/supported-networks",
-                {
-                    "group": "Datasets",
-                    "pages": [
-                        "platform/datasets/overview",
-                        "platform/datasets/inscription-and-rune",
-                        "platform/datasets/data-catalog"
-                    ]
-                },
-                {
-                    "group": "Data Cloud",
-                    "pages": [
-                        "platform/features/datacloud/overview",
-                        "platform/features/datacloud/write-efficient-queries"
-                    ]
-                },
-                {
-                    "group": "Data Sync",
-                    "pages": [
-                        "platform/features/sync/overview",
-                        "platform/features/sync/kafka",
-                        "platform/features/sync/webhook"
-                    ]
-                },
-                {
-                    "group": "APIs",
-                    "pages": [
-                        "platform/features/api/web3-api",
-                        {
-                            "group": "SQL API",
-                            "pages": [
-                                "platform/features/api/sql-api/overview",
-                                "platform/features/api/sql-api/datacloud-task-api",
-                                "platform/features/api/sql-api/datacloud-custom-api",
-                                "platform/features/api/sql-api/datacloud-api-classic"
-                            ]
-                        },
-                        "platform/features/api/chain-rpc",
-                        "platform/features/api/webhook-api"
-                    ]
-                },
-                {
-                    "group": "Use Cases & Tutorials",
-                    "pages": [
-                        {
-                            "group": "Balance API Tutorials",
-                            "pages": [
-                                "platform/usecases/balance-api/get-native-token-balances",
-                                "platform/usecases/balance-api/get-nfts-owned-by-address"
-                            ]
-                        },
-                        {
-                            "group": "NFT API Tutorials",
-                            "pages": [
-                                "platform/usecases/nft-api/get-all-transfers-of-a-collection",
-                                "platform/usecases/nft-api/get-nft-metadata",
-                                "platform/usecases/nft-api/get-nft-owners-by-collection",
-                                "platform/usecases/nft-api/get-nft-owner-by-token"
-                            ]
-                        },
-                        {
-                            "group": "Token API Tutorials",
-                            "pages": [
-                                "platform/usecases/token-api/get-erc20-tokens-by-address",
-                                "platform/usecases/token-api/get-erc20-transfers-by-contract",
-                                "platform/usecases/token-api/get-token-metadata",
-                                "platform/usecases/token-api/get-holders-of-a-token",
-                                "platform/usecases/token-api/get-top-token-holders",
-                                "platform/usecases/token-api/get-token-price",
-                                "platform/usecases/token-api/get-token-price-history"
-                            ]
-                        },
-                        {
-                            "group": "Domain API Tutorials",
-                            "pages": [
-                                "platform/usecases/domain-api/resolve-domain",
-                                "platform/usecases/domain-api/reverse-resolve-domain",
-                                "platform/usecases/domain-api/get-domain-names-by-address"
-                            ]
-                        }
-                    ]
-                },
-                "platform/faqs/faq",
-                "platform/pricing/pricing",
-                "platform/support"
-            ]
-        },
-        {
-            "group": "API Reference",
-            "pages": [
-                "api-reference/overview",
-                "api-reference/status-code",
-                "api-reference/jtw"
-            ]
-        },
-        {
-            "group": "Web3 API",
-            "pages": [
-                {
-                    "group": "Basic API",
-                    "pages": [
-                        "api-reference/web3-api/basic/block/get-latest-block-number",
-                        "api-reference/web3-api/basic/block/get-block-by-number",
-                        "api-reference/web3-api/basic/transaction/get-transaction",
-                        "api-reference/web3-api/basic/transaction/get-transactions-by-account",
-                        "api-reference/web3-api/basic/events/get-events-by-contract",
-                        "api-reference/web3-api/basic/contract/contract-call"
-                    ]
-                },
-                {
-                    "group": "Balance API",
-                    "pages": [
-                        "api-reference/web3-api/balance/token-balances/get-erc20-token-balances",
-                        "api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address",
-                        "api-reference/web3-api/balance/token-balances/get-native-token-balances"
-                    ]
-                },
-                {
-                    "group": "Token API",
-                    "pages": [
-                        "api-reference/web3-api/token/token-metadata/get-token-metadata",
-                        "api-reference/web3-api/token/token-holders/get-top-token-holders",
-                        "api-reference/web3-api/token/token-holders/get-token-holders",
-                        "api-reference/web3-api/token/market-data/get-token-price",
-                        "api-reference/web3-api/token/market-data/get-token-price-history",
-                        "api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract"
-                    ]
-                },
-                {
-                    "group": "NFT API",
-                    "pages": [
-                        "api-reference/web3-api/nft/nft-metadata/get-nft-metadata",
-                        "api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection",
-                        "api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token",
-                        "api-reference/web3-api/nft/nft-metadata/get-nft-rarity",
-                        "api-reference/web3-api/nft/nft-ownership/get-nft-owner-history-by-token",
-                        "api-reference/web3-api/nft/nft-transfers/get-nft-transfers-by-collection",
-                        "api-reference/web3-api/nft/nft-collections/get-nft-collection-items",
-                        "api-reference/web3-api/nft/nft-collections/get-nft-collection-metadata",
-                        "api-reference/web3-api/nft/nft-collections/search-for-nft-collections-using-names-and-contract-addresses",
-                        "api-reference/web3-api/nft/nft-marketplace-data/get-trending-collections-by-marketplace",
-                        "api-reference/web3-api/nft/nft-marketplace-data/get-floor-price-history-by-collection",
-                        "api-reference/web3-api/nft/nft-marketplace-data/get-floor-price-by-collection"
-                    ]
-                },
-                {
-                    "group": "Domain API",
-                    "pages": [
-                        "api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains",
-                        "api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain",
-                        "api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain",
-                        "api-reference/web3-api/domain/space-id-domain-endpoints/resolve-space-id-domain",
-                        "api-reference/web3-api/domain/space-id-domain-endpoints/reverse-resolve-space-id-domain"
-                    ]
-                },
-                {
-                    "group": "Inscription API",
-                    "pages": [
-                        {
-                            "group": "eths",
-                            "pages": [
-                                "api-reference/web3-api/inscription/inscription-brc20/get-account-balance-from-brc20",
-                                "api-reference/web3-api/inscription/inscription-brc20/get-account-activities-from-brc20",
-                                "api-reference/web3-api/inscription/inscription-brc20/get-tick-activities-from-brc20",
-                                "api-reference/web3-api/inscription/inscription-brc20/get-topholders-from-brc20",
-                                "api-reference/web3-api/inscription/inscription-brc20/get-tick-detail-from-brc20",
-                                "api-reference/web3-api/inscription/inscription-brc20/get-ticks-detail-from-brc20"
-                            ]
-                        },
-                        {
-                            "group": "pipe",
-                            "pages": [
-                                "api-reference/web3-api/inscription/inscription-pipe/get-ticks-detail-from-pipe",
-                                "api-reference/web3-api/inscription/inscription-pipe/get-tick-detail-from-pipe",
-                                "api-reference/web3-api/inscription/inscription-pipe/get-account-activities-from-pipe",
-                                "api-reference/web3-api/inscription/inscription-pipe/get-tick-activities-from-pipe",
-                                "api-reference/web3-api/inscription/inscription-pipe/get-topholders-from-pipe",
-                                "api-reference/web3-api/inscription/inscription-pipe/get-account-balance-from-pipe"
-                            ]
-                        },
-                        {
-                            "group": "asc20",
-                            "pages": [
-                                "api-reference/web3-api/inscription/inscription-asc20/get-tick-detail-from-asc20",
-                                "api-reference/web3-api/inscription/inscription-asc20/get-ticks-detail-from-asc20",
-                                "api-reference/web3-api/inscription/inscription-asc20/get-topholders-from-asc20",
-                                "api-reference/web3-api/inscription/inscription-asc20/get-tick-activities-from-asc20",
-                                "api-reference/web3-api/inscription/inscription-asc20/get-account-balance-from-asc20",
-                                "api-reference/web3-api/inscription/inscription-asc20/get-account-activities-from-asc20"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "SQL API",
-            "pages": [
-                {
-                    "group": "Alpha",
-                    "pages": [
-                        "api-reference/sql-api/execute-queries",
-                        "api-reference/sql-api/get-query-status",
-                        "api-reference/sql-api/get-query-results"
-                    ]
-                },
-                {
-                    "group": "Classic(Deprecated)",
-                    "pages": [
-                        "api-reference/sql-api/data-cloud-sql-query"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Webhook API",
-            "pages": [
-                {
-                    "group": "Webhook API",
-                    "pages": [
-                        "api-reference/webhook-api/get-all-webhooks",
-                        "api-reference/webhook-api/get-webhook",
-                        "api-reference/webhook-api/create-webhook",
-                        "api-reference/webhook-api/update-webhook",
-                        "api-reference/webhook-api/activate-webhook",
-                        "api-reference/webhook-api/deactivate-webhook",
-                        "api-reference/webhook-api/delete-webhook"
-                    ]
-                }
-            ]
-        },
-        {
-            "group": "Node RPC API",
-            "pages": [
-                {
-                    "group": "EVM RPC API",
-                    "pages": [
-                        "api-reference/node-rpc/evm/web3_clientVersion",
-                        "api-reference/node-rpc/evm/web3_sha3",
-                        "api-reference/node-rpc/evm/eth_blockNumber",
-                        "api-reference/node-rpc/evm/eth_call",
-                        "api-reference/node-rpc/evm/eth_chainId",
-                        "api-reference/node-rpc/evm/eth_estimateGas",
-                        "api-reference/node-rpc/evm/eth_gasPrice",
-                        "api-reference/node-rpc/evm/eth_getBalance",
-                        "api-reference/node-rpc/evm/eth_getBlockByHash",
-                        "api-reference/node-rpc/evm/eth_getBlockByNumber",
-                        "api-reference/node-rpc/evm/eth_getBlockTransactionCountByHash",
-                        "api-reference/node-rpc/evm/eth_getBlockTransactionCountByNumber",
-                        "api-reference/node-rpc/evm/eth_getCode",
-                        "api-reference/node-rpc/evm/eth_getFilterChanges",
-                        "api-reference/node-rpc/evm/eth_getLogs",
-                        "api-reference/node-rpc/evm/eth_getStorageAt",
-                        "api-reference/node-rpc/evm/eth_getTransactionByBlockHashAndIndex",
-                        "api-reference/node-rpc/evm/eth_getTransactionByBlockNumberAndIndex",
-                        "api-reference/node-rpc/evm/eth_getTransactionByHash",
-                        "api-reference/node-rpc/evm/eth_getTransactionCount",
-                        "api-reference/node-rpc/evm/eth_getTransactionReceipt",
-                        "api-reference/node-rpc/evm/eth_getUncleByBlockHashAndIndex",
-                        "api-reference/node-rpc/evm/eth_getUncleByBlockNumberAndIndex",
-                        "api-reference/node-rpc/evm/eth_getUncleCountByBlockHash",
-                        "api-reference/node-rpc/evm/eth_getUncleCountByBlockNumber",
-                        "api-reference/node-rpc/evm/eth_newBlockFilter",
-                        "api-reference/node-rpc/evm/eth_newFilter",
-                        "api-reference/node-rpc/evm/eth_newPendingTransactionFilter",
-                        "api-reference/node-rpc/evm/eth_protocolVersion",
-                        "api-reference/node-rpc/evm/eth_sendRawTransaction",
-                        "api-reference/node-rpc/evm/eth_syncing",
-                        "api-reference/node-rpc/evm/eth_uninstallFilter",
-                        "api-reference/node-rpc/evm/net_listening",
-                        "api-reference/node-rpc/evm/net_version",
-                        "api-reference/node-rpc/evm/debug_traceblockbyhash",
-                        "api-reference/node-rpc/evm/debug_traceBlockByNumber",
-                        "api-reference/node-rpc/evm/debug_traceTransaction",
-                        "api-reference/node-rpc/evm/trace_block",
-                        "api-reference/node-rpc/evm/trace_call",
-                        "api-reference/node-rpc/evm/trace_filter",
-                        "api-reference/node-rpc/evm/trace_replayBlockTransactions",
-                        "api-reference/node-rpc/evm/trace_replayTransaction",
-                        "api-reference/node-rpc/evm/trace_transaction"
-                    ]
-                },
-                {
-                    "group": "Aptos RPC API",
-                    "pages": [
-                        "api-reference/node-rpc/aptos/blocks/get-blocks-by-height",
-                        "api-reference/node-rpc/aptos/blocks/get-blocks-by-version",
-                        "api-reference/node-rpc/aptos/tables/get-raw-table-item",
-                        "api-reference/node-rpc/aptos/tables/get-table-item",
-                        "api-reference/node-rpc/aptos/general/check-basic-node-health",
-                        "api-reference/node-rpc/aptos/general/show-openapi-explorer",
-                        "api-reference/node-rpc/aptos/general/get-ledger-info",
-                        "api-reference/node-rpc/aptos/transactions/estimate-gas-price",
-                        "api-reference/node-rpc/aptos/transactions/get-transaction-by-version",
-                        "api-reference/node-rpc/aptos/transactions/simulate-transaction",
-                        "api-reference/node-rpc/aptos/transactions/get-account-transactions",
-                        "api-reference/node-rpc/aptos/transactions/submit-transaction",
-                        "api-reference/node-rpc/aptos/transactions/encode-submission",
-                        "api-reference/node-rpc/aptos/transactions/get-transactions",
-                        "api-reference/node-rpc/aptos/transactions/submit-batch-transactions",
-                        "api-reference/node-rpc/aptos/transactions/get-transaction-by-hash",
-                        "api-reference/node-rpc/aptos/accounts/get-account-modules",
-                        "api-reference/node-rpc/aptos/accounts/get-account-module",
-                        "api-reference/node-rpc/aptos/accounts/get-account-resource",
-                        "api-reference/node-rpc/aptos/accounts/get-account",
-                        "api-reference/node-rpc/aptos/accounts/get-account-resources",
-                        "api-reference/node-rpc/aptos/view/execute-view-function-of-a-module",
-                        "api-reference/node-rpc/aptos/events/get-events-by-creation-number",
-                        "api-reference/node-rpc/aptos/events/get-events-by-event-handle"
-                    ]
-                },
-                "api-reference/node-rpc/sui/overview",
-                {
-                    "group": "Ton RPC API",
-                    "pages": [
-                        "api-reference/node-rpc/ton/blocks/get-masterchain-info",
-                        "api-reference/node-rpc/ton/blocks/lookup-block",
-                        "api-reference/node-rpc/ton/blocks/get-consensus-block",
-                        "api-reference/node-rpc/ton/blocks/get-block-transactions",
-                        "api-reference/node-rpc/ton/blocks/get-block-header",
-                        "api-reference/node-rpc/ton/blocks/get-masterchain-block-signatures",
-                        "api-reference/node-rpc/ton/blocks/get-shards",
-                        "api-reference/node-rpc/ton/blocks/get-shard-block-proof",
-                        "api-reference/node-rpc/ton/transactions/get-try-locate-source-tx",
-                        "api-reference/node-rpc/ton/transactions/get-try-locate-tx",
-                        "api-reference/node-rpc/ton/transactions/get-try-locate-result-tx",
-                        "api-reference/node-rpc/ton/accounts/get-extended-address-information",
-                        "api-reference/node-rpc/ton/accounts/pack-address",
-                        "api-reference/node-rpc/ton/accounts/get-address",
-                        "api-reference/node-rpc/ton/accounts/detect-address",
-                        "api-reference/node-rpc/ton/accounts/get-address-information",
-                        "api-reference/node-rpc/ton/accounts/get-wallet-information",
-                        "api-reference/node-rpc/ton/accounts/get-token-data",
-                        "api-reference/node-rpc/ton/accounts/get-transactions",
-                        "api-reference/node-rpc/ton/accounts/get-address-balance",
-                        "api-reference/node-rpc/ton/accounts/unpack-address"
-                    ]
-                }
-            ]
-        }
-    ],
-    "footerSocials": {
-        "x": "https://twitter.com/chainbaseHQ",
-        "discord": "https://chainbase.com/discord",
-        "github": "https://github.com/chainbase-labs"
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Chainbase Docs",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#000000",
+    "light": "#A5CFFF",
+    "dark": "#000000",
+    "background": {
+      "light": "#fdfdf7",
+      "dark": "#000000"
     }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:support@chainbase.com"
+    }
+  ],
+  "tabs": [
+    {
+      "name": "Run a node",
+      "url": "node"
+    },
+    {
+      "name": "Data Catalog",
+      "url": "catalog"
+    },
+    {
+      "name": "Data Platform",
+      "url": "platform"
+    },
+    {
+      "name": "Crypto World Model",
+      "url": "theia"
+    },
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
+  "primaryTab": {
+    "name": "Learn and build"
+  },
+  "navigation": [
+    {
+      "group": "Introduction",
+      "pages": [
+        "introduction/about",
+        {
+          "group": "Chainbase Network",
+          "pages": [
+            "introduction/networks/overview",
+            "introduction/networks/developers",
+            "introduction/networks/operators",
+            "introduction/networks/validators",
+            "introduction/networks/delegators"
+          ]
+        },
+        "introduction/tokenomics",
+        "introduction/whitepaper",
+        "introduction/faqs"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        {
+          "group": "Manuscript",
+          "pages": [
+            "core-concepts/manuscript/overview",
+            "core-concepts/manuscript/protocol"
+          ]
+        },
+        "core-concepts/dual-chain",
+        "core-concepts/dual-staking",
+        "core-concepts/data-processing-based-on-avs",
+        "core-concepts/avs-design",
+        "core-concepts/glossary",
+        {
+          "group": "Architecture",
+          "pages": [
+            "core-concepts/architecture/overview",
+            "core-concepts/architecture/execution_layer",
+            "core-concepts/architecture/consensus_layer",
+            "core-concepts/architecture/data_accessibility_layer",
+            "core-concepts/architecture/co_processor_layer"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Developers",
+      "pages": [
+        "developers/testnet",
+        "developers/open_apis"
+      ]
+    },
+    {
+      "group": "Contributing",
+      "pages": [
+        "contributing/overview",
+        "contributing/roadmap",
+        "contributing/governance",
+        "contributing/cips"
+      ]
+    },
+    {
+      "group": "Getting Started",
+      "pages": [
+        "node/introduction",
+        "node/operator",
+        "node/validator",
+        "node/configuration",
+        "node/testnet"
+      ]
+    },
+    {
+      "group": "Data Catalog",
+      "pages": [
+        "catalog/overview"
+      ]
+    },
+    {
+      "group": "EVM",
+      "icon": "ethereum",
+      "pages": [
+        {
+          "group": "Ethereum",
+          "icon": "ethereum",
+          "pages": [
+            "catalog/Ethereum/Overview",
+            "catalog/Ethereum/Raw",
+            "catalog/Ethereum/Decoded",
+            "catalog/Ethereum/Abstracted"
+          ]
+        },
+        {
+          "group": "BSC",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/BSC/Overview",
+            "catalog/BSC/Raw",
+            "catalog/BSC/Decoded",
+            "catalog/BSC/Abstracted"
+          ]
+        },
+        {
+          "group": "Polygon",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Polygon/Overview",
+            "catalog/Polygon/Raw",
+            "catalog/Polygon/Decoded",
+            "catalog/Polygon/Abstracted"
+          ]
+        },
+        {
+          "group": "Avalanche",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Avalanche/Overview",
+            "catalog/Avalanche/Raw",
+            "catalog/Avalanche/Decoded",
+            "catalog/Avalanche/Abstracted"
+          ]
+        },
+        {
+          "group": "Fantom",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Fantom/Overview",
+            "catalog/Fantom/Raw"
+          ]
+        },
+        {
+          "group": "Tron",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Tron/Overview",
+            "catalog/Tron/Raw"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "EVM L2",
+      "pages": [
+        {
+          "group": "Arbitrum",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Arbitrum/Overview",
+            "catalog/Arbitrum/Raw",
+            "catalog/Arbitrum/Decoded",
+            "catalog/Arbitrum/Abstracted"
+          ]
+        },
+        {
+          "group": "Optimism",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Optimism/Overview",
+            "catalog/Optimism/Raw",
+            "catalog/Optimism/Decoded",
+            "catalog/Optimism/Abstracted"
+          ]
+        },
+        {
+          "group": "Base",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Base/Overview",
+            "catalog/Base/Raw",
+            "catalog/Base/Decoded",
+            "catalog/Base/Abstracted"
+          ]
+        },
+        {
+          "group": "Blast",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Blast/Overview",
+            "catalog/Blast/Raw",
+            "catalog/Blast/Decoded",
+            "catalog/Blast/Abstracted"
+          ]
+        },
+        {
+          "group": "zkSync",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/zkSync/Overview",
+            "catalog/zkSync/Raw",
+            "catalog/zkSync/Decoded",
+            "catalog/zkSync/Abstracted"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Non-EVM",
+      "pages": [
+        {
+          "group": "Bitcoin",
+          "icon": "bitcoin",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Bitcoin/Abstracted"
+          ]
+        },
+        {
+          "group": "Merlin",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Merlin/Overview",
+            "catalog/Merlin/Raw"
+          ]
+        },
+        {
+          "group": "Sui",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Sui/Overview",
+            "catalog/Sui/Raw",
+            "catalog/Sui/Abstracted"
+          ]
+        },
+        {
+          "group": "Ton",
+          "icon": "database",
+          "iconType": "solid",
+          "pages": [
+            "catalog/Ton/Overview",
+            "catalog/Ton/Raw",
+            "catalog/Ton/Abstracted"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Other-Network",
+      "pages": [
+        "catalog/OtherEvm/Beam",
+        "catalog/OtherEvm/Berachain_Artio",
+        "catalog/OtherEvm/Bitlayer_Mainnet",
+        "catalog/OtherEvm/Immutable_zkEVM",
+        "catalog/OtherEvm/Mantle",
+        "catalog/OtherEvm/Mint_Mainnet",
+        "catalog/OtherEvm/Moonbeam",
+        "catalog/OtherEvm/Scroll",
+        "catalog/OtherEvm/Taiko_Hekla_L2",
+        "catalog/OtherEvm/opBNB_Mainnet",
+        {
+          "group": "Others",
+          "pages": [
+            "catalog/OtherEvm/APEX_Testnet",
+            "catalog/OtherEvm/AgentLayer_Testnet",
+            "catalog/OtherEvm/Ancient8",
+            "catalog/OtherEvm/Atleta_Olympia",
+            "catalog/OtherEvm/Automata_Testnet",
+            "catalog/OtherEvm/B2_Testnet",
+            "catalog/OtherEvm/Bitlayer_Mainnet",
+            "catalog/OtherEvm/B2_Hub_Mainnet",
+            "catalog/OtherEvm/BEVM_Mainnet",
+            "catalog/OtherEvm/BEVM_Testnet",
+            "catalog/OtherEvm/BNB_Smart_Chain_Testnet",
+            "catalog/OtherEvm/Bahamut",
+            "catalog/OtherEvm/Beam",
+            "catalog/OtherEvm/Berachain_Artio",
+            "catalog/OtherEvm/Berachain_bArtio",
+            "catalog/OtherEvm/Bifrost_Mainnet",
+            "catalog/OtherEvm/Bifrost_Testnet",
+            "catalog/OtherEvm/Bitlayer_Testnet",
+            "catalog/OtherEvm/BlackFort_Exchange_Network",
+            "catalog/OtherEvm/BlackFort_Exchange_Network_Testnet",
+            "catalog/OtherEvm/Blast_Sepolia_Testnet",
+            "catalog/OtherEvm/Crab_Network",
+            "catalog/OtherEvm/Chiliz_Chain_Mainnet",
+            "catalog/OtherEvm/Celo_Alfajores_Testnet",
+            "catalog/OtherEvm/Creditcoin_Testnet",
+            "catalog/OtherEvm/Crypto_Emergency",
+            "catalog/OtherEvm/Cyber_Mainnet",
+            "catalog/OtherEvm/Cyber_Testnet",
+            "catalog/OtherEvm/Darwinia_Network",
+            "catalog/OtherEvm/DOS_Chain",
+            "catalog/OtherEvm/Darwinia_Koi_Testnet",
+            "catalog/OtherEvm/Dodao",
+            "catalog/OtherEvm/Ethereum_Classic",
+            "catalog/OtherEvm/Forma",
+            "catalog/OtherEvm/Fhenix_Helium",
+            "catalog/OtherEvm/Form_Testnet",
+            "catalog/OtherEvm/Forma_Sketchpad",
+            "catalog/OtherEvm/Fuse_Mainnet",
+            "catalog/OtherEvm/Fuse_Sparknet",
+            "catalog/OtherEvm/GEEK_Verse_Mainnet",
+            "catalog/OtherEvm/GEEK_Verse_Testnet",
+            "catalog/OtherEvm/GUNZ_Testnet",
+            "catalog/OtherEvm/Gnosis",
+            "catalog/OtherEvm/Gnosis_Chiado_Testnet",
+            "catalog/OtherEvm/Gobbl_Testnet",
+            "catalog/OtherEvm/Hybrid_Testnet",
+            "catalog/OtherEvm/Hemi_Sepolia",
+            "catalog/OtherEvm/Immutable_zkEVM",
+            "catalog/OtherEvm/Immutable_zkEVM_Testnet",
+            "catalog/OtherEvm/Kakarot_Sepolia",
+            "catalog/OtherEvm/Karak_Sepolia",
+            "catalog/OtherEvm/Kingdom_Chain",
+            "catalog/OtherEvm/Klaytn_Testnet_Baobab",
+            "catalog/OtherEvm/Kroma",
+            "catalog/OtherEvm/Kroma_Sepolia",
+            "catalog/OtherEvm/Kyoto",
+            "catalog/OtherEvm/Kyoto_Testnet",
+            "catalog/OtherEvm/LUKSO_Mainnet",
+            "catalog/OtherEvm/LUKSO_Testnet",
+            "catalog/OtherEvm/Lambda_Chain_Testnet",
+            "catalog/OtherEvm/LayerEdge_testnet",
+            "catalog/OtherEvm/Linea_Sepolia",
+            "catalog/OtherEvm/Lambda_Chain_Mainnet",
+            "catalog/OtherEvm/MAXI_Chain_Testnet",
+            "catalog/OtherEvm/Mantle",
+            "catalog/OtherEvm/Memo_Smart_Chain_Mainnet",
+            "catalog/OtherEvm/Meter_Mainnet",
+            "catalog/OtherEvm/Meter_Testnet",
+            "catalog/OtherEvm/Mint_Mainnet",
+            "catalog/OtherEvm/Mint_Sepolia_Testnet",
+            "catalog/OtherEvm/Mint_Testnet",
+            "catalog/OtherEvm/Mode_Testnet",
+            "catalog/OtherEvm/Moonbeam",
+            "catalog/OtherEvm/Numbers_Mainnet",
+            "catalog/OtherEvm/Opal_testnet_by_Unique",
+            "catalog/OtherEvm/Open_Campus_Codex",
+            "catalog/OtherEvm/Orderly_Sepolia_Testnet",
+            "catalog/OtherEvm/Ozone_Chain_Mainnet",
+            "catalog/OtherEvm/Ozone_Chain_Testnet",
+            "catalog/OtherEvm/PLAYA3ULL_GAMES",
+            "catalog/OtherEvm/Plume_Testnet",
+            "catalog/OtherEvm/Pools_Mainnet",
+            "catalog/OtherEvm/PulseChain",
+            "catalog/OtherEvm/PulseChain_Testnet_v4",
+            "catalog/OtherEvm/RSS3_VSL_Sepolia_Testnet",
+            "catalog/OtherEvm/Reya_Network",
+            "catalog/OtherEvm/Rollux_Testnet",
+            "catalog/OtherEvm/Saakuru_Mainnet",
+            "catalog/OtherEvm/Scroll",
+            "catalog/OtherEvm/Scroll_Sepolia_Testnet",
+            "catalog/OtherEvm/Shyft_Mainnet",
+            "catalog/OtherEvm/Step_Network",
+            "catalog/OtherEvm/Swan_Proxima_Testnet",
+            "catalog/OtherEvm/Swan_Saturn_Testnet",
+            "catalog/OtherEvm/Syndicate_Frame_Chain",
+            "catalog/OtherEvm/TAPROOT_Mainnet",
+            "catalog/OtherEvm/Taiko_Hekla_L2",
+            "catalog/OtherEvm/Tanssi_Demo",
+            "catalog/OtherEvm/UPB_CRESCDI_Testnet",
+            "catalog/OtherEvm/Unique",
+            "catalog/OtherEvm/Vana_Satori_Testnet",
+            "catalog/OtherEvm/Vanar_Mainnet",
+            "catalog/OtherEvm/VeChain",
+            "catalog/OtherEvm/VeChain_Testnet",
+            "catalog/OtherEvm/Vitruveo_Mainnet",
+            "catalog/OtherEvm/Vitruveo_Testnet",
+            "catalog/OtherEvm/WeaveVM_Testnet",
+            "catalog/OtherEvm/XDC_Apothem_Network",
+            "catalog/OtherEvm/XR_Sepolia",
+            "catalog/OtherEvm/Xai_Mainnet",
+            "catalog/OtherEvm/Xterio_Testnet",
+            "catalog/OtherEvm/Zilliqa_EVM",
+            "catalog/OtherEvm/Zilliqa_EVM_Devnet",
+            "catalog/OtherEvm/Zilliqa_EVM_Testnet",
+            "catalog/OtherEvm/Zircuit_Testnet",
+            "catalog/OtherEvm/Zora",
+            "catalog/OtherEvm/opBNB_Mainnet",
+            "catalog/OtherEvm/opBNB_Testnet",
+            "catalog/OtherEvm/re.al",
+            "catalog/OtherEvm/zkCandy_Sepolia_Testnet"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Crypto World Model",
+      "pages": [
+        "theia/World_model/welcome",
+        "theia/World_model/theia",
+        "theia/World_model/features"
+      ]
+    },
+    {
+      "group": "TheiaChat",
+      "pages": [
+        "theia/TheiaChat/overview",
+        "theia/TheiaChat/task-models",
+        "theia/TheiaChat/create-task-models"
+      ]
+    },
+    {
+      "group": "Developers",
+      "pages": [
+        "theia/Developers/Open-APIs",
+        {
+          "group": "Glossary",
+          "pages": [
+            "theia/Developers/Glossary/D2ORA",
+            "theia/Developers/Glossary/G2D"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": [
+        "theia/Resources/Roadmap",
+        "theia/Resources/Whitepaper",
+        "theia/Resources/FAQs"
+      ]
+    },
+    {
+      "group": "Data Platform",
+      "pages": [
+        "platform/overview",
+        "platform/supported-networks/supported-networks",
+        {
+          "group": "Datasets",
+          "pages": [
+            "platform/datasets/overview",
+            "platform/datasets/inscription-and-rune",
+            "platform/datasets/data-catalog"
+          ]
+        },
+        {
+          "group": "Data Cloud",
+          "pages": [
+            "platform/features/datacloud/overview",
+            "platform/features/datacloud/write-efficient-queries"
+          ]
+        },
+        {
+          "group": "Data Sync",
+          "pages": [
+            "platform/features/sync/overview",
+            "platform/features/sync/kafka",
+            "platform/features/sync/webhook"
+          ]
+        },
+        {
+          "group": "APIs",
+          "pages": [
+            "platform/features/api/web3-api",
+            {
+              "group": "SQL API",
+              "pages": [
+                "platform/features/api/sql-api/overview",
+                "platform/features/api/sql-api/datacloud-task-api",
+                "platform/features/api/sql-api/datacloud-custom-api",
+                "platform/features/api/sql-api/datacloud-api-classic"
+              ]
+            },
+            "platform/features/api/chain-rpc",
+            "platform/features/api/webhook-api"
+          ]
+        },
+        {
+          "group": "Use Cases & Tutorials",
+          "pages": [
+            {
+              "group": "Balance API Tutorials",
+              "pages": [
+                "platform/usecases/balance-api/get-native-token-balances",
+                "platform/usecases/balance-api/get-nfts-owned-by-address"
+              ]
+            },
+            {
+              "group": "NFT API Tutorials",
+              "pages": [
+                "platform/usecases/nft-api/get-all-transfers-of-a-collection",
+                "platform/usecases/nft-api/get-nft-metadata",
+                "platform/usecases/nft-api/get-nft-owners-by-collection",
+                "platform/usecases/nft-api/get-nft-owner-by-token"
+              ]
+            },
+            {
+              "group": "Token API Tutorials",
+              "pages": [
+                "platform/usecases/token-api/get-erc20-tokens-by-address",
+                "platform/usecases/token-api/get-erc20-transfers-by-contract",
+                "platform/usecases/token-api/get-token-metadata",
+                "platform/usecases/token-api/get-holders-of-a-token",
+                "platform/usecases/token-api/get-top-token-holders",
+                "platform/usecases/token-api/get-token-price",
+                "platform/usecases/token-api/get-token-price-history"
+              ]
+            },
+            {
+              "group": "Domain API Tutorials",
+              "pages": [
+                "platform/usecases/domain-api/resolve-domain",
+                "platform/usecases/domain-api/reverse-resolve-domain",
+                "platform/usecases/domain-api/get-domain-names-by-address"
+              ]
+            }
+          ]
+        },
+        "platform/faqs/faq",
+        "platform/pricing/pricing",
+        "platform/support"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/overview",
+        "api-reference/status-code",
+        "api-reference/jtw"
+      ]
+    },
+    {
+      "group": "Web3 API",
+      "pages": [
+        {
+          "group": "Basic API",
+          "pages": [
+            "api-reference/web3-api/basic/block/get-latest-block-number",
+            "api-reference/web3-api/basic/block/get-block-by-number",
+            "api-reference/web3-api/basic/transaction/get-transaction",
+            "api-reference/web3-api/basic/transaction/get-transactions-by-account",
+            "api-reference/web3-api/basic/events/get-events-by-contract",
+            "api-reference/web3-api/basic/contract/contract-call"
+          ]
+        },
+        {
+          "group": "Balance API",
+          "pages": [
+            "api-reference/web3-api/balance/token-balances/get-erc20-token-balances",
+            "api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address",
+            "api-reference/web3-api/balance/token-balances/get-native-token-balances"
+          ]
+        },
+        {
+          "group": "Token API",
+          "pages": [
+            "api-reference/web3-api/token/token-metadata/get-token-metadata",
+            "api-reference/web3-api/token/token-holders/get-top-token-holders",
+            "api-reference/web3-api/token/token-holders/get-token-holders",
+            "api-reference/web3-api/token/market-data/get-token-price",
+            "api-reference/web3-api/token/market-data/get-token-price-history",
+            "api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract"
+          ]
+        },
+        {
+          "group": "NFT API",
+          "pages": [
+            "api-reference/web3-api/nft/nft-metadata/get-nft-metadata",
+            "api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection",
+            "api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token",
+            "api-reference/web3-api/nft/nft-metadata/get-nft-rarity",
+            "api-reference/web3-api/nft/nft-ownership/get-nft-owner-history-by-token",
+            "api-reference/web3-api/nft/nft-transfers/get-nft-transfers-by-collection",
+            "api-reference/web3-api/nft/nft-collections/get-nft-collection-items",
+            "api-reference/web3-api/nft/nft-collections/get-nft-collection-metadata",
+            "api-reference/web3-api/nft/nft-collections/search-for-nft-collections-using-names-and-contract-addresses",
+            "api-reference/web3-api/nft/nft-marketplace-data/get-trending-collections-by-marketplace",
+            "api-reference/web3-api/nft/nft-marketplace-data/get-floor-price-history-by-collection",
+            "api-reference/web3-api/nft/nft-marketplace-data/get-floor-price-by-collection"
+          ]
+        },
+        {
+          "group": "Domain API",
+          "pages": [
+            "api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains",
+            "api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain",
+            "api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain",
+            "api-reference/web3-api/domain/space-id-domain-endpoints/resolve-space-id-domain",
+            "api-reference/web3-api/domain/space-id-domain-endpoints/reverse-resolve-space-id-domain"
+          ]
+        },
+        {
+          "group": "Inscription API",
+          "pages": [
+            {
+              "group": "eths",
+              "pages": [
+                "api-reference/web3-api/inscription/inscription-brc20/get-account-balance-from-brc20",
+                "api-reference/web3-api/inscription/inscription-brc20/get-account-activities-from-brc20",
+                "api-reference/web3-api/inscription/inscription-brc20/get-tick-activities-from-brc20",
+                "api-reference/web3-api/inscription/inscription-brc20/get-topholders-from-brc20",
+                "api-reference/web3-api/inscription/inscription-brc20/get-tick-detail-from-brc20",
+                "api-reference/web3-api/inscription/inscription-brc20/get-ticks-detail-from-brc20"
+              ]
+            },
+            {
+              "group": "pipe",
+              "pages": [
+                "api-reference/web3-api/inscription/inscription-pipe/get-ticks-detail-from-pipe",
+                "api-reference/web3-api/inscription/inscription-pipe/get-tick-detail-from-pipe",
+                "api-reference/web3-api/inscription/inscription-pipe/get-account-activities-from-pipe",
+                "api-reference/web3-api/inscription/inscription-pipe/get-tick-activities-from-pipe",
+                "api-reference/web3-api/inscription/inscription-pipe/get-topholders-from-pipe",
+                "api-reference/web3-api/inscription/inscription-pipe/get-account-balance-from-pipe"
+              ]
+            },
+            {
+              "group": "asc20",
+              "pages": [
+                "api-reference/web3-api/inscription/inscription-asc20/get-tick-detail-from-asc20",
+                "api-reference/web3-api/inscription/inscription-asc20/get-ticks-detail-from-asc20",
+                "api-reference/web3-api/inscription/inscription-asc20/get-topholders-from-asc20",
+                "api-reference/web3-api/inscription/inscription-asc20/get-tick-activities-from-asc20",
+                "api-reference/web3-api/inscription/inscription-asc20/get-account-balance-from-asc20",
+                "api-reference/web3-api/inscription/inscription-asc20/get-account-activities-from-asc20"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "SQL API",
+      "pages": [
+        {
+          "group": "Alpha",
+          "pages": [
+            "api-reference/sql-api/execute-queries",
+            "api-reference/sql-api/get-query-status",
+            "api-reference/sql-api/get-query-results"
+          ]
+        },
+        {
+          "group": "Classic(Deprecated)",
+          "pages": [
+            "api-reference/sql-api/data-cloud-sql-query"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Webhook API",
+      "pages": [
+        {
+          "group": "Webhook API",
+          "pages": [
+            "api-reference/webhook-api/get-all-webhooks",
+            "api-reference/webhook-api/get-webhook",
+            "api-reference/webhook-api/create-webhook",
+            "api-reference/webhook-api/update-webhook",
+            "api-reference/webhook-api/activate-webhook",
+            "api-reference/webhook-api/deactivate-webhook",
+            "api-reference/webhook-api/delete-webhook"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Node RPC API",
+      "pages": [
+        {
+          "group": "EVM RPC API",
+          "pages": [
+            "api-reference/node-rpc/evm/web3_clientVersion",
+            "api-reference/node-rpc/evm/web3_sha3",
+            "api-reference/node-rpc/evm/eth_blockNumber",
+            "api-reference/node-rpc/evm/eth_call",
+            "api-reference/node-rpc/evm/eth_chainId",
+            "api-reference/node-rpc/evm/eth_estimateGas",
+            "api-reference/node-rpc/evm/eth_gasPrice",
+            "api-reference/node-rpc/evm/eth_getBalance",
+            "api-reference/node-rpc/evm/eth_getBlockByHash",
+            "api-reference/node-rpc/evm/eth_getBlockByNumber",
+            "api-reference/node-rpc/evm/eth_getBlockTransactionCountByHash",
+            "api-reference/node-rpc/evm/eth_getBlockTransactionCountByNumber",
+            "api-reference/node-rpc/evm/eth_getCode",
+            "api-reference/node-rpc/evm/eth_getFilterChanges",
+            "api-reference/node-rpc/evm/eth_getLogs",
+            "api-reference/node-rpc/evm/eth_getStorageAt",
+            "api-reference/node-rpc/evm/eth_getTransactionByBlockHashAndIndex",
+            "api-reference/node-rpc/evm/eth_getTransactionByBlockNumberAndIndex",
+            "api-reference/node-rpc/evm/eth_getTransactionByHash",
+            "api-reference/node-rpc/evm/eth_getTransactionCount",
+            "api-reference/node-rpc/evm/eth_getTransactionReceipt",
+            "api-reference/node-rpc/evm/eth_getUncleByBlockHashAndIndex",
+            "api-reference/node-rpc/evm/eth_getUncleByBlockNumberAndIndex",
+            "api-reference/node-rpc/evm/eth_getUncleCountByBlockHash",
+            "api-reference/node-rpc/evm/eth_getUncleCountByBlockNumber",
+            "api-reference/node-rpc/evm/eth_newBlockFilter",
+            "api-reference/node-rpc/evm/eth_newFilter",
+            "api-reference/node-rpc/evm/eth_newPendingTransactionFilter",
+            "api-reference/node-rpc/evm/eth_protocolVersion",
+            "api-reference/node-rpc/evm/eth_sendRawTransaction",
+            "api-reference/node-rpc/evm/eth_syncing",
+            "api-reference/node-rpc/evm/eth_uninstallFilter",
+            "api-reference/node-rpc/evm/net_listening",
+            "api-reference/node-rpc/evm/net_version",
+            "api-reference/node-rpc/evm/debug_traceblockbyhash",
+            "api-reference/node-rpc/evm/debug_traceBlockByNumber",
+            "api-reference/node-rpc/evm/debug_traceTransaction",
+            "api-reference/node-rpc/evm/trace_block",
+            "api-reference/node-rpc/evm/trace_call",
+            "api-reference/node-rpc/evm/trace_filter",
+            "api-reference/node-rpc/evm/trace_replayBlockTransactions",
+            "api-reference/node-rpc/evm/trace_replayTransaction",
+            "api-reference/node-rpc/evm/trace_transaction"
+          ]
+        },
+        {
+          "group": "Aptos RPC API",
+          "pages": [
+            "api-reference/node-rpc/aptos/blocks/get-blocks-by-height",
+            "api-reference/node-rpc/aptos/blocks/get-blocks-by-version",
+            "api-reference/node-rpc/aptos/tables/get-raw-table-item",
+            "api-reference/node-rpc/aptos/tables/get-table-item",
+            "api-reference/node-rpc/aptos/general/check-basic-node-health",
+            "api-reference/node-rpc/aptos/general/show-openapi-explorer",
+            "api-reference/node-rpc/aptos/general/get-ledger-info",
+            "api-reference/node-rpc/aptos/transactions/estimate-gas-price",
+            "api-reference/node-rpc/aptos/transactions/get-transaction-by-version",
+            "api-reference/node-rpc/aptos/transactions/simulate-transaction",
+            "api-reference/node-rpc/aptos/transactions/get-account-transactions",
+            "api-reference/node-rpc/aptos/transactions/submit-transaction",
+            "api-reference/node-rpc/aptos/transactions/encode-submission",
+            "api-reference/node-rpc/aptos/transactions/get-transactions",
+            "api-reference/node-rpc/aptos/transactions/submit-batch-transactions",
+            "api-reference/node-rpc/aptos/transactions/get-transaction-by-hash",
+            "api-reference/node-rpc/aptos/accounts/get-account-modules",
+            "api-reference/node-rpc/aptos/accounts/get-account-module",
+            "api-reference/node-rpc/aptos/accounts/get-account-resource",
+            "api-reference/node-rpc/aptos/accounts/get-account",
+            "api-reference/node-rpc/aptos/accounts/get-account-resources",
+            "api-reference/node-rpc/aptos/view/execute-view-function-of-a-module",
+            "api-reference/node-rpc/aptos/events/get-events-by-creation-number",
+            "api-reference/node-rpc/aptos/events/get-events-by-event-handle"
+          ]
+        },
+        "api-reference/node-rpc/sui/overview",
+        {
+          "group": "Ton RPC API",
+          "pages": [
+            "api-reference/node-rpc/ton/blocks/get-masterchain-info",
+            "api-reference/node-rpc/ton/blocks/lookup-block",
+            "api-reference/node-rpc/ton/blocks/get-consensus-block",
+            "api-reference/node-rpc/ton/blocks/get-block-transactions",
+            "api-reference/node-rpc/ton/blocks/get-block-header",
+            "api-reference/node-rpc/ton/blocks/get-masterchain-block-signatures",
+            "api-reference/node-rpc/ton/blocks/get-shards",
+            "api-reference/node-rpc/ton/blocks/get-shard-block-proof",
+            "api-reference/node-rpc/ton/transactions/get-try-locate-source-tx",
+            "api-reference/node-rpc/ton/transactions/get-try-locate-tx",
+            "api-reference/node-rpc/ton/transactions/get-try-locate-result-tx",
+            "api-reference/node-rpc/ton/accounts/get-extended-address-information",
+            "api-reference/node-rpc/ton/accounts/pack-address",
+            "api-reference/node-rpc/ton/accounts/get-address",
+            "api-reference/node-rpc/ton/accounts/detect-address",
+            "api-reference/node-rpc/ton/accounts/get-address-information",
+            "api-reference/node-rpc/ton/accounts/get-wallet-information",
+            "api-reference/node-rpc/ton/accounts/get-token-data",
+            "api-reference/node-rpc/ton/accounts/get-transactions",
+            "api-reference/node-rpc/ton/accounts/get-address-balance",
+            "api-reference/node-rpc/ton/accounts/unpack-address"
+          ]
+        }
+      ]
+    }
+  ],
+  "footerSocials": {
+    "x": "https://twitter.com/chainbaseHQ",
+    "discord": "https://chainbase.com/discord",
+    "github": "https://github.com/chainbase-labs"
+  }
 }
