@@ -44,12 +44,12 @@ Ensure you've registered with EigenLayer before proceeding. For guidance, refer 
 1. Clone the Chainbase AVS setup repository:
 ```
 git clone https://github.com/chainbase-labs/chainbase-avs-setup && cd chainbase-avs-setup/holesky
-   ```
+```
 
 2. Set up the environment file:
 ```
-mv .env.example .env
-   ```
+cp .env.example .env
+```
 Configure all fields in the `.env` file with your specific information:
 ```
 NODE_ECDSA_KEY_FILE_PATH=/your/ecdsa/key/path
@@ -59,8 +59,9 @@ OPERATOR_BLS_KEY_PASSWORD=yourBlsKeyPassword
 OPERATOR_ADDRESS=yourECDSAKeyAddress
 NODE_SOCKET=yourNodeSocket
 OPERATOR_NAME=yourOperatorName
-   ```
-- **OPERATOR_ADDRESS**: Set to your operator address (must match your ECDSA key address). You can run `eigenlayer operator keys list` to check your opertor address.
+```
+Use the command `eigenlayer operator keys list` to retrieve information about your  **ECDSA** and **BLS** key paths and operator address.
+- **OPERATOR_ADDRESS**: Set to your operator address (must match your ECDSA key address).
 - **NODE_SOCKET**: Set to your server's public IP address (format: `<your_server_public_ip>:8011`).
 
 Important:
@@ -98,13 +99,15 @@ If you see the output `All systems are working for your manuscript node` in the 
 If your server's public IP address is changed after you register as an operator, you need to update the node socket.
 Configure `NODE_SOCKET` in `.env` file, then run the following command:
 ```shell
-./chainbase-avs.sh update
+./chainbase-avs.sh socket
 ```
-### Stop Node
+### Update Node version
 
-Run the following command to stop node:
+Run the following command to update node version:
 ```shell
 ./chainbase-avs.sh stop
+./chainbase-avs.sh update
+./chainbase-avs.sh run
 ```
 
 ### Monitor Logs
@@ -118,7 +121,7 @@ docker logs -f <container_id>
 
 ### Dashboard
 
-You can visit `<your_server_public_ip>:3000` to view the dashboard to confirm the status of your node.
+You can visit `<your_server_public_ip>:3010` on browser to view the dashboard to confirm the status of your node.If you are unable to access the page in your browser, please verify that port 3010 on your server is open and properly configured in firewall settings.
 
 ## Troubleshooting
 
