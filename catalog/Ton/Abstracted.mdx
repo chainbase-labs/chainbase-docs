@@ -28,3 +28,164 @@ The trace table is used to track transactions. It allows retrieving all transact
         scrolling="no"
     ></iframe>
 </div>
+
+## 2.ton.accounts
+### Table Description
+The Accounts table stores the status changes of all addresses on the TON blockchain. This table classifies addresses into distinct categories, allowing users to easily query whether a specific address belongs to one of the following types: Jetton Wallet, Jetton Master, NFT, or NFT Collection. By utilizing this table, users can effectively track the status and classification of addresses, providing insights into their roles and functionalities within the TON ecosystem.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/ton.accounts"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/ton.accounts"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+## 3.ton.jettons
+### Table Description
+The Jettons table stores all Jetton Master contract addresses on the TON blockchain, along with their essential information. This includes details such as total supply, whether the contract is mintable, and the contract name and content. By accessing this table, users can gain valuable insights into Jetton contracts, facilitating better understanding and management of tokenized assets within the TON ecosystem.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/ton.jettons"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/ton.jettons"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+## 4.ton.jetton_balances_history
+### Table Description
+The jetton_balances_history table maintains a record of all Jetton Wallet addresses along with their corresponding Jetton Master addresses and Jetton Balances. This table provides a historical overview of the balance changes for each Jetton Wallet, enabling users to track the flow of Jetton tokens across the TON ecosystem. By querying this table, users can easily access and analyze the balance history of specific Jetton Wallets, enhancing their understanding of token transactions and holdings.### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/ton.jetton_balances_history"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/ton.jetton_balances_history"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+## 5.ton.native_balance_history
+### Table Description
+The native_balance_history table stores the historical records of TonCoin balances for all accounts on the TON. This table provides a comprehensive overview of balance changes over time, allowing users to track the fluctuations in TonCoin holdings for each account. By querying this table, users can gain insights into the transaction history and balance trends of specific accounts, facilitating a deeper understanding of asset management within the TON ecosystem.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/ton.native_balance_history"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/ton.native_balance_history"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+## 6.ton.nft_collection
+### Table Description
+The nft_collection table stores information about all NFT collections on the TON, including essential details such as their content URIs and associated metadata. This table serves as a comprehensive registry for NFT collections, allowing users to access information about each collection and its unique attributes. By querying this table, users can explore the various NFT collections available on the network, facilitating easier discovery and interaction with digital assets within the TON ecosystem.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/ton.nft_collection"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/ton.nft_collection"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+## 7.ton.nft_holders_history
+### Table Description
+The nft_holders_history table captures the historical ownership of each NFT on the TON. It maintains a record of each NFT’s association with its corresponding collection, including the index of the NFT within that collection. This table not only stores essential metadata about the NFT items, such as images and other relevant information, but also documents all past owners of each NFT. By querying this table, users can trace the ownership history of specific NFTs and analyze the total number of NFTs held by different holders over time. This comprehensive record enhances the transparency and accessibility of NFT ownership for enthusiasts and collectors alike.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/ton.nft_holders_history"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/ton.nft_holders_history"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>

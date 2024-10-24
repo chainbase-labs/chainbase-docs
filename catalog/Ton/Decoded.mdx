@@ -1,0 +1,60 @@
+---
+title: 'Decoded'
+---
+## What is Decoded Blockchain Contract Data?
+
+Decoded blockchain contract data refers to the information extracted from smart contracts on a blockchain that has been translated into a human-readable format. Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They automatically enforce and execute agreements when predetermined conditions are met. However, the raw data from these contracts is often complex and encoded, making it difficult for developers and businesses to interpret and utilize effectively.
+
+As Ton uses the TVM (TON Virtual Machine) as a core component of the network, smart contract code consists of cells must be serializing cells into byte arrays to execute. Bag of Cells (BoC) is the executable code on the TVM, while TL-B (Type Language - Binary) serves to describe the type system, constructors and existing functions. If you want to convert the body of a message to a  human-readable format, you need parse BoC.
+
+### How Chainbase Provides Technical Solutions for Parsing and Serving Decoded Data
+
+1. Data Extraction and Parsing: Chainbase uses sophisticated algorithms and tools to extract raw data from blockchain nodes. This involves accessing transactions, mapping messages and get_methods calls. The data is then parsed to identify relevant information, such as operations, parameters, and return values.
+
+2. Decoding and Formatting: Once the data is extracted, Chainbase employs specialized decoding libraries and frameworks to translate the encoded data into human-readable formats. This process includes interpreting TL-B (Type Language - Binary) specifications.
+
+3. Real-time Data Processing: Chainbase leverages real-time data processing frameworks to ensure that the decoded data is processed and available with minimal latency.
+
+### Examples
+
+Log in to the chainbase console and select the decoded dataset to search for the smart contract name you want.
+![death spiral](../../images/catalog/decoded.jpg)
+
+### Executing query
+
+    <pre><code>{`select * FROM jetton_wallet_ton.jetton_transfer limit 10'`}</code></pre>
+
+![death spiral](../../../images/catalog/decoded02.jpg)
+
+## 1. decoded_messages
+### Table Description
+The ton.decoded_messages table is designed to parse the message body according to the operation schemas defined by smart contracts, making it easier for developers to explore the contents of messages. It supports the following projects:
+
+	•	TEP-62 NFT: Non-fungible token standard for the TON blockchain.
+	•	TEP-74 Jetton: Jetton token standard, providing a flexible framework for token issuance.
+	•	TEP-81 DNS: Decentralized naming service on the TON blockchain.
+	•	TEP-85 NFT SBT: Soulbound token standard, a type of NFT that is non-transferable.
+	•	Wallets: Various wallet implementations on the TON network.
+### Column Descriptions
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/columns/ton.decoded_messages"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>
+
+### Table Sample
+
+<div>
+    <iframe
+        src="https://doc-embed-app.chainbasehq.com/data/ton.decoded_messages"
+        width="100%"
+        height="300px"
+        frameBorder="0"
+        scrolling="no"
+    ></iframe>
+</div>

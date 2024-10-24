@@ -289,6 +289,7 @@
           "pages": [
             "catalog/Ton/Overview",
             "catalog/Ton/Raw",
+            "catalog/Ton/Decoded",
             "catalog/Ton/Abstracted"
           ]
         }
