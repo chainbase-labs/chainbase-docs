@@ -1,10 +1,10 @@
 ---
-title: 'Run a Chainbase AVS Operator (Not released to mainnet yet)'
+title: 'Run a Chainbase AVS Operator'
 ---
 
 ## Overview
 
-This guide will walk you through the process of setting up and running a Chainbase AVS (Actively Validated Service) operator node. Please note that this service is not yet released to the mainnet.
+This guide will walk you through the process of setting up and running a Chainbase AVS (Actively Validated Service) operator node.
 
 ## Requirements
 
@@ -18,9 +18,9 @@ Recommended Hardware Specifications
 
 Before you begin, ensure you have the following prerequisites installed:
 
-➕[Docker](https://docs.docker.com/get-docker/): Docker is a requirement for AVS operator.
+➕[Docker](https://docs.docker.com/get-docker/): Docker is a requirement for AVS operator node.
 
-➕[Docker Compose](https://docs.docker.com/compose/install/):  Docker Compose is used alongside Docker for executing Operator software.
+➕[Docker Compose](https://docs.docker.com/compose/install/):  Docker Compose is used alongside Docker for executing operator node.
 
 ➕ **Linux Environment**: Eigenlayer’s CLI only runs in a Linux environment.
 
@@ -31,7 +31,7 @@ Before you begin, ensure you have the following prerequisites installed:
 
 ### Migration From Previous Version
 
-If you've previously run a Chainbase AVS Operator:
+If you've previously run a Chainbase AVS operator node:
 1. You can delete old version `chainbase-avs-setup` directory on your server, but need to back up your encrypted **ECDSA** and **BLS** keys.
 2. Skip the **EigenLayer Registration** step and only start from **Chainbase AVS Setup** step.
 
@@ -43,7 +43,15 @@ Ensure you've registered with EigenLayer before proceeding. For guidance, refer 
 
 1. Clone the Chainbase AVS setup repository:
 ```
-git clone https://github.com/chainbase-labs/chainbase-avs-setup && cd chainbase-avs-setup/holesky
+git clone https://github.com/chainbase-labs/chainbase-avs-setup
+```
+run a Chainbase AVS operator node on mainnet (**invited and whitelisted**):
+```
+cd chainbase-avs-setup/mainnet
+```
+**OR** run a Chainbase AVS operator node on testnet (**no restrictions**):
+```
+cd chainbase-avs-setup/holesky
 ```
 
 2. Set up the environment file:
