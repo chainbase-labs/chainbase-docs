@@ -73,7 +73,11 @@
           "group": "Manuscript",
           "pages": [
             "core-concepts/manuscript/overview",
-            "core-concepts/manuscript/protocol"
+            "core-concepts/manuscript/protocol",
+            {
+              "group": "QuickStart",
+              "pages": ["core-concepts/manuscript/QuickStart/prerequisites"]
+            }
           ]
         },
         "core-concepts/dual-chain",
