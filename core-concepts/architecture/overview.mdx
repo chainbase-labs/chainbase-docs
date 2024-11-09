@@ -10,7 +10,7 @@ title: "Overview"
 
 ### **Data Accessibility Layer**
 
-The Data Accessibility Layer manages data access and storage in the network, is compatible with data access interfaces for both streaming and batch scenarios, and provides data validity verification. It includes:
+[Data Accessibility Layer](/core-concepts/architecture/data_accessibility_layer) manages data access and storage in the network, is compatible with data access interfaces for both streaming and batch scenarios, and provides data validity verification. It includes:
 
 - **Data Access Interface:** Provides access to both batch and streaming data.
 - **Data Storage:** Supports various storage solutions, including Lakehouse, Arweave, S3, and IPFS.
@@ -18,7 +18,7 @@ The Data Accessibility Layer manages data access and storage in the network, is 
 
 ### **Consensus Layer**
 
-The consensus layer ensures that all nodes in the network reach a consensus on data and status consistency, based on CometBFT's instant finality, achieving second-level data freshness. Including:
+[Consensus Layer](/core-concepts/architecture/consensus_layer) ensures that all nodes in the network reach a consensus on data and status consistency, based on CometBFT's instant finality, achieving second-level data freshness. Including:
 
 - **Consensus Algorithm:** Based on CometBFT and DPoS (Delegated Proof of Stake) to achieve efficient and secure consensus.
 - **ABCI++:** An extension of Cosmos network's ABI, responsible for converting the state of the Chainbase Virtual Machine (CVM) to a format compatible with the CometBFT consensus engine.
@@ -26,25 +26,28 @@ The consensus layer ensures that all nodes in the network reach a consensus on d
 
 ### **Execution Layer**
 
-The execution layer is responsible for large-scale data processing and execution of Manuscripts' data transformation logic. Including:
+[Execution Layer](/core-concepts/architecture/execution_layer) is responsible for large-scale data processing and execution of Manuscripts' data transformation logic. Including:
 
 - **Chainbase Virtual Machine (CVM):** A virtual machine that provides parallel computing capabilities to execute Manuscripts
   - **Parallel Execution Engine:** Utilizes multithreading for parallel data processing, enhancing performance and throughput.
   - **ChainbaseDB (CDB):** A database system that supports multiple data storage engines, including VectorDB, GraphDB, and KV storage.
 - **Eigenlayer AVS (Proof Verification System):** Introducing the Ethereum economic security brought by Restake, making the CVM running environment fully decentralized
 
+### **Co-processor Layer**
+Chainbase has introduced the [Co-processor Layer](/core-concepts/architecture/co_processor_layer) to facilitate user collaboration in data processing and AI expertise. This layer allows users to transform their specialized knowledge into tradeable assets, managed and incentivized through the $C token system, creating a dynamic ecosystem. This design enhances data accessibility and encourages developer collaboration, accumulating knowledge and generating collective intelligence, thereby unlocking greater potential for blockchain technology.
+
 ### **Dual Staked Security**
 
 This module enhances the network security of the consensus layer and execution layer in the dual-chain architecture through a double staked mechanism. Including:
 
 - Shared Staked Pool:
-  - Native Token Stake: $CNB native token captures network value
+  - Native Token Stake: $C native token captures network value
   - Eigenlayer Restake: Introduces Ethereum tokens with low volatility and deep liquidity
 - Double Staked Model: By aggregating all validators' stake and their power mapping for various assets, the total cryptographic economic security is calculated.
 
-### Manuscripts
+### Manuscript
 
-Manuscripts defines the standard schema that different data sources need to follow when converting into datasets.
+[Manuscript](/core-concepts/manuscript/overview) defines the standard schema that different data sources need to follow when converting into datasets.
 
 ### CVM Interface
 
