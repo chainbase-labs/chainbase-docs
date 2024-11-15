@@ -73,10 +73,14 @@
           "group": "Manuscript",
           "pages": [
             "core-concepts/manuscript/overview",
-            "core-concepts/manuscript/protocol",
             {
               "group": "QuickStart",
-              "pages": ["core-concepts/manuscript/QuickStart/prerequisites"]
+              "pages": [
+                "core-concepts/manuscript/QuickStart/prerequisites",
+                "core-concepts/manuscript/QuickStart/create_manuscript",
+                "core-concepts/manuscript/QuickStart/run_manuscript",
+                "core-concepts/manuscript/QuickStart/advanced_options"
+              ]
             }
           ]
         },
