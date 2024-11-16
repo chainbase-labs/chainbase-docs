@@ -1,8 +1,16 @@
 ---
-title: "Prerequisites"
+title: "1. Install GUI"
 ---
 
-# 1. Software Requirements
+# 1. Mansucript GUI Installation
+
+Download GUI binary for latest release, run:
+```
+curl -fsSL  https://github.com/chainbase-labs/manuscript-core/raw/main/install-gui.sh | bash
+```
+
+
+# 2. Mansucript Requirements
 ### Docker
 Ensure that Docker is properly installed and functional on your system, as it is essential for the Manuscript environment setup. Docker enables deployment and management of isolated containers required by Manuscript's ecosystem. For detailed installation instructions, please refer to the [Docker documentation](https://docs.docker.com/get-started/get-docker/).
 
@@ -12,7 +20,7 @@ Alongside Docker, Docker Compose is required and should be correctly installed a
 ### Linux Environment
 Manuscript is designed for compatibility with Linux environments only. Ensure that you have access to a Linux-compatible system, such as macOS, CentOS, or Fedora. either directly or through a Linux-based container setup in Docker, to proceed with the installation and operation of Manuscript.
 
-# 2. Checking for Requirements
+# 3. Checking for Requirements
 On a native Linux system, you can use the `uname -a` command to obtain information about your Linux distribution.
 
 If you are not using a native Linux system and need a Linux environment through Docker, you can check if Docker is installed by following these steps:
@@ -23,12 +31,4 @@ If you are not using a native Linux system and need a Linux environment through 
 ```
 docker --version
 docker compose version
-```
-If Docker is installed and running, you can proceed with setting up a Linux-based environment within a Docker container, which provides the necessary compatibility for Manuscript installation.
-
-# 3. CLI Installation
-
-To download a binary for latest release, run:
-```
-curl -fsSL  https://github.com/chainbase-labs/manuscript-core/raw/main/install.sh | bash
 ```

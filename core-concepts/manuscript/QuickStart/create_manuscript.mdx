@@ -1,0 +1,48 @@
+---
+title: "2. Create a manuscript"
+---
+
+## 1. 🏄🏼 Getting Started
+Great news! You’ve decided to create your first Manuscript. 🎉<br />
+
+To make it easier for developers to get started with Manuscript, we've introduced a [GUI](https://github.com/chainbase-labs/manuscript-core) tool.<br />
+Built on top of the existing CLI, this tool provides intuitive graphical interfaces to explore the extensive blockchain data available on the Chainbase network.<br />
+
+After installing the GUI tool, you can run the binary file locally straight away.<br />
+```
+➜  ~ ./manuscript
+```
+
+## 2. 🚴🏼‍♂️ Selecting Data
+Once the tool has loaded, you’ll be greeted with the GUI interface shown below.<br />
+The left-hand panel allows you to select your desired blockchain.
+![manuscript_gui.png](../../images/manuscripts/manuscript_gui.png)
+
+The Chainbase network’s DA layer data is displayed here, and over time, even more valuable datasets will be added. It’s worth noting that much of this data has been developed using Manuscript.
+You’re encouraged to create your own datasets or share your data requirements and suggestions with the community.
+
+## 3. 🤽🏼 Choosing Table
+A dataset refers to either a raw data table or an abstract table.<br />
+![manuscript_datasets.png](../../images/manuscripts/manuscript_datasets.png)
+
+## 4. 🏊🏼‍♂️ Creating a Manuscript
+You can use the `c` shortcut key to create your Manuscript YAML file.
+![manuscript_yaml.png](../../images/manuscripts/manuscript_yaml.png)
+
+- **Data Sources**<br />
+Here, you’ll define your data source, which can include various options. In this demonstration, we’ve used the DA layer from Chainbase, though custom RPC endpoints and other sources are equally supported.
+
+- **Data Transformation**<br />
+For data transformations, this demonstration uses SQL queries, a familiar and widely-used method. The tool is compatible with standard SQL syntax as well as popular Flink SQL functions.
+
+- **Data Slink**<br />
+In this example, the data is exported to a local PostgreSQL database, complete with support for GraphQL queries.
+
+## 5. 🚣🏼‍♂️ Debugging and Deployment
+![manuscript_debug_01.png](../../images/manuscripts/manuscript_debug_01.png)
+![manuscript_debug_02.png](../../images/manuscripts/manuscript_debug_02.png)
+Once you’ve finished editing, you can run the debug environment to verify that the Manuscript works as expected and outputs the required format.<br />
+After confirming the results, you’ll be able to deploy the Manuscript locally or to the Chainbase network.
+
+Congratulations! You’ve successfully created your first Manuscript. 🚀🚀
+
