@@ -638,44 +638,6 @@
             "api-reference/web3-api/domain/space-id-domain-endpoints/resolve-space-id-domain",
             "api-reference/web3-api/domain/space-id-domain-endpoints/reverse-resolve-space-id-domain"
           ]
-        },
-        {
-          "group": "Inscription API",
-          "pages": [
-            {
-              "group": "eths",
-              "pages": [
-                "api-reference/web3-api/inscription/inscription-brc20/get-account-balance-from-brc20",
-                "api-reference/web3-api/inscription/inscription-brc20/get-account-activities-from-brc20",
-                "api-reference/web3-api/inscription/inscription-brc20/get-tick-activities-from-brc20",
-                "api-reference/web3-api/inscription/inscription-brc20/get-topholders-from-brc20",
-                "api-reference/web3-api/inscription/inscription-brc20/get-tick-detail-from-brc20",
-                "api-reference/web3-api/inscription/inscription-brc20/get-ticks-detail-from-brc20"
-              ]
-            },
-            {
-              "group": "pipe",
-              "pages": [
-                "api-reference/web3-api/inscription/inscription-pipe/get-ticks-detail-from-pipe",
-                "api-reference/web3-api/inscription/inscription-pipe/get-tick-detail-from-pipe",
-                "api-reference/web3-api/inscription/inscription-pipe/get-account-activities-from-pipe",
-                "api-reference/web3-api/inscription/inscription-pipe/get-tick-activities-from-pipe",
-                "api-reference/web3-api/inscription/inscription-pipe/get-topholders-from-pipe",
-                "api-reference/web3-api/inscription/inscription-pipe/get-account-balance-from-pipe"
-              ]
-            },
-            {
-              "group": "asc20",
-              "pages": [
-                "api-reference/web3-api/inscription/inscription-asc20/get-tick-detail-from-asc20",
-                "api-reference/web3-api/inscription/inscription-asc20/get-ticks-detail-from-asc20",
-                "api-reference/web3-api/inscription/inscription-asc20/get-topholders-from-asc20",
-                "api-reference/web3-api/inscription/inscription-asc20/get-tick-activities-from-asc20",
-                "api-reference/web3-api/inscription/inscription-asc20/get-account-balance-from-asc20",
-                "api-reference/web3-api/inscription/inscription-asc20/get-account-activities-from-asc20"
-              ]
-            }
-          ]
         }
       ]
     },
