@@ -4,7 +4,7 @@ title: 'Data Processing (AVS)'
 
 ## Overview
 
-Chainbase Network is an omnichain data network that leverages [dual-chain](/core-concepts/dual-chain) architecture combining [Cosmos](https://cosmos.network/cometbft/) and [EigenLayer](https://www.eigenlayer.xyz/) to enable trustworthy and transparent on-chain data processing. The network is integrated with EigenLayer's [Active Validator Set (AVS)](https://docs.eigenlayer.xyz/developers/avs-developer-guide) system, which provides a high-performance execution layer for large-scale data processing operations.
+Chainbase Network is an omnichain data network that leverages [dual-chain](/core-concepts/dual-chain) architecture combining [Cosmos](https://cosmos.network/cometbft/) and [EigenLayer](https://www.eigenlayer.xyz/) to enable trustworthy and transparent on-chain data processing. The network is integrated with EigenLayer's [Actively Validated Services (AVS)](https://docs.eigenlayer.xyz/developers/avs-developer-guide) system, which provides a high-performance execution layer for large-scale data processing operations.
 
 
 ## Features
@@ -56,9 +56,8 @@ Whenever a developer queries the network for a dataset defined by a manuscript, 
 ![avs-manuscript-design](../images/data-processing-based-on-avs.png)
 
 
-### Verification Challenges 
+### Verification Challenges
 
 The off-chain `coordinator` component periodically generates a challenge task. The `coordinator` calculates the block hash of a specific block from the data sets available on the network. The block hash is deterministic with a clear answer and expected outcome. The challenge is sent to operators' `manuscript-node` nodes, where they execute the task and return the signed result along with the recorded task execution time. This information is used to evaluate the operators' efficiency, and the results are verified on the AVS chain. The steps to completion are outlined in the diagram below:
 
 ![avs-data-challenge](../images/avs-design-02.png)
-
