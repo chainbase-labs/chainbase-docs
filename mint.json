@@ -86,8 +86,7 @@
         },
         "core-concepts/dual-chain",
         "core-concepts/dual-staking",
-        "core-concepts/data-processing-based-on-avs",
-        "core-concepts/avs-design",
+        "core-concepts/data-processing",
         "core-concepts/glossary",
         {
           "group": "Architecture",
