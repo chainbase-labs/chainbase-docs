@@ -81,7 +81,8 @@
                 "core-concepts/manuscript/QuickStart/run_manuscript",
                 "core-concepts/manuscript/QuickStart/advanced_options"
               ]
-            }
+            },
+            "core-concepts/manuscript/zone"
           ]
         },
         "core-concepts/dual-chain",
