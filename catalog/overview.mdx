@@ -6,189 +6,98 @@ iconType: "solid"
 
 Data Catalog is a system for organising and managing data assets. Its main function is to help you discover, understand and manage data resources. Here is a detailed description of the data discovery catalogue from chainbase.
 
-## 1. Blockchains Supported
+## Supported Blockchains - Raw Data Access
 <table>
   <tr>
     <th>**Ecosystem**</th>
     <th>**Blockchains Supported**</th>
-    <th>**Raw**</th>
-    <th>**Decoded**</th>
-    <th>**Abstracted**</th>
-    <th>**Token**</th>
-    <th>**NFT**</th>
+    <th>**Raw Data**</th>
     <th>**Freshness**</th>
   </tr>
   <tr>
     <td rowspan="6">**EVM**</td>
     <td>Ethereum</td>
     <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
     <td>\<3s</td>
   </tr>
   <tr>
     <td>Binance Smart Chain (BSC)</td>
     <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
+    <td>\<5s</td>
+  </tr>
+  <tr>
+    <td>Polygon</td>
     <td>✔</td>
     <td>\<5s</td>
   </tr>
-    <tr>
-        <td>Polygon</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>\<5s</td>
-    </tr>
-    <tr>
-        <td>Avalanche (C-Chain)</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>\<5s</td>
-    </tr>
-    <tr>
-        <td>Fantom</td>
-        <td>✔</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>\<8s</td>
-    </tr>
-    <tr>
-        <td>Tron</td>
-        <td>✔</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>\<10s</td>
-    </tr>
-    <tr>
+  <tr>
+    <td>Avalanche (C-Chain)</td>
+    <td>✔</td>
+    <td>\<5s</td>
+  </tr>
+  <tr>
+    <td>Fantom</td>
+    <td>✔</td>
+    <td>\<8s</td>
+  </tr>
+  <tr>
+    <td>Tron</td>
+    <td>✔</td>
+    <td>\<10s</td>
+  </tr>
+  <tr>
     <td rowspan="5">**EVM Layer 2**</td>
     <td>Arbitrum</td>
     <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
+    <td>\<5s</td>
+  </tr>
+  <tr>
+    <td>Optimism</td>
     <td>✔</td>
     <td>\<5s</td>
   </tr>
-    <tr>
-        <td>Optimism</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>\<5s</td>
-    </tr>
-    <tr>
-        <td>Base</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>\<5s</td>
-    </tr>
-    <tr>
-        <td>Blast</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>\<5s</td>
-    </tr>
-    <tr>
-        <td>ZkSync</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td></td>
-        <td>\<5s</td>
-    </tr>
-    <tr>
+  <tr>
+    <td>Base</td>
+    <td>✔</td>
+    <td>\<5s</td>
+  </tr>
+  <tr>
+    <td>Blast</td>
+    <td>✔</td>
+    <td>\<5s</td>
+  </tr>
+  <tr>
+    <td>ZkSync</td>
+    <td>✔</td>
+    <td>\<5s</td>
+  </tr>
+  <tr>
     <td rowspan="5">**Non EVM**</td>
     <td>Bitcoin</td>
-    <td></td>
-    <td></td>
     <td>✔</td>
-    <td></td>
-    <td></td>
     <td>\<60s</td>
-    </tr>
-    <tr>
-        <td>Sui</td>
-        <td></td>
-        <td></td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>✔</td>
-        <td>\<10s</td>
-    </tr>
-    <tr>
-        <td>Ton</td>
-        <td>✔</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>\<10s</td>
-    </tr>
-    <tr>
-        <td>Merlin</td>
-        <td>✔</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>\<30s</td>
-    </tr>
-    <tr>
-        <td>*Solana\**</td>
-        <td>\*</td>
-        <td>\*</td>
-        <td>\*</td>
-        <td>\*</td>
-        <td>\*</td>
-        <td>\*</td>
-    </tr>
+  </tr>
+  <tr>
+    <td>Sui</td>
+    <td>✔</td>
+    <td>\<10s</td>
+  </tr>
+  <tr>
+    <td>Ton</td>
+    <td>✔</td>
+    <td>\<10s</td>
+  </tr>
+  <tr>
+    <td>Merlin</td>
+    <td>✔</td>
+    <td>\<30s</td>
+  </tr>
+  <tr>
+    <td>*Solana\**</td>
+    <td>\*</td>
+    <td>\*</td>
+  </tr>
 </table>
 \* *support is in progress..*
 
-## 2. Data Categories
-
-<table>
-    <tr>
-        <th>**Category**</th>
-        <th>**Category Description**</th>
-        <th>**e.g.**</th>
-    </tr>
-    <tr>
-        <td >**Raw**</td>
-        <td>The data initially recorded on the blockchain, usually stored in binary or hexadecimal format, without any processing or parsing. It is the lowest level of data, directly coming from blockchain transactions and blocks.</td>
-        <td>blocks、contracts、contracts、transactions..</td>
-    </tr>
-    <tr>
-        <td>**Decoded**</td>
-        <td>The data extracted from the raw data and converted into a human-readable format. Decoded data is parsed from the raw data fields, making it easier to understand and use.</td>
-        <td>ape、dydx、element、lido、curve、uniswap..</td>
-    </tr>
-    <tr>
-        <td><b>**Abstracted**</b></td>
-        <td>This is higher-level data extracted from the decoded data, usually used for analysis and reporting. Abstracted data further simplifies the decoded data, extracting key information and metrics, making it more suitable for business analysis and decision-making.</td>
-        <td>nft、token、price、inscription&rune..</td>
-    </tr>
-</table>
+> For decoded data, abstracted data, token data, and NFT data, please refer to our [Web3 API documentation](https://docs.chainbase.com/platform/features/api/web3-api).

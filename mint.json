@@ -143,9 +143,7 @@
           "icon": "ethereum",
           "pages": [
             "catalog/Ethereum/Overview",
-            "catalog/Ethereum/Raw",
-            "catalog/Ethereum/Decoded",
-            "catalog/Ethereum/Abstracted"
+            "catalog/Ethereum/Raw"
           ]
         },
         {
@@ -154,9 +152,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/BSC/Overview",
-            "catalog/BSC/Raw",
-            "catalog/BSC/Decoded",
-            "catalog/BSC/Abstracted"
+            "catalog/BSC/Raw"
           ]
         },
         {
@@ -165,9 +161,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Polygon/Overview",
-            "catalog/Polygon/Raw",
-            "catalog/Polygon/Decoded",
-            "catalog/Polygon/Abstracted"
+            "catalog/Polygon/Raw"
           ]
         },
         {
@@ -176,9 +170,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Avalanche/Overview",
-            "catalog/Avalanche/Raw",
-            "catalog/Avalanche/Decoded",
-            "catalog/Avalanche/Abstracted"
+            "catalog/Avalanche/Raw"
           ]
         },
         {
@@ -210,9 +202,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Arbitrum/Overview",
-            "catalog/Arbitrum/Raw",
-            "catalog/Arbitrum/Decoded",
-            "catalog/Arbitrum/Abstracted"
+            "catalog/Arbitrum/Raw"
           ]
         },
         {
@@ -221,9 +211,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Optimism/Overview",
-            "catalog/Optimism/Raw",
-            "catalog/Optimism/Decoded",
-            "catalog/Optimism/Abstracted"
+            "catalog/Optimism/Raw"
           ]
         },
         {
@@ -232,9 +220,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Base/Overview",
-            "catalog/Base/Raw",
-            "catalog/Base/Decoded",
-            "catalog/Base/Abstracted"
+            "catalog/Base/Raw"
           ]
         },
         {
@@ -243,9 +229,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Blast/Overview",
-            "catalog/Blast/Raw",
-            "catalog/Blast/Decoded",
-            "catalog/Blast/Abstracted"
+            "catalog/Blast/Raw"
           ]
         },
         {
@@ -254,9 +238,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/zkSync/Overview",
-            "catalog/zkSync/Raw",
-            "catalog/zkSync/Decoded",
-            "catalog/zkSync/Abstracted"
+            "catalog/zkSync/Raw"
           ]
         }
       ]
@@ -297,9 +279,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Ton/Overview",
-            "catalog/Ton/Raw",
-            "catalog/Ton/Decoded",
-            "catalog/Ton/Abstracted"
+            "catalog/Ton/Raw"
           ]
         }
       ]
