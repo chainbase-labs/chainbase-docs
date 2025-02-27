@@ -484,9 +484,7 @@
         {
           "group": "Data Sync",
           "pages": [
-            "platform/features/sync/overview",
-            "platform/features/sync/kafka",
-            "platform/features/sync/webhook"
+            "platform/features/sync/overview"
           ]
         },
         {
@@ -502,8 +500,7 @@
                 "platform/features/api/sql-api/datacloud-api-classic"
               ]
             },
-            "platform/features/api/chain-rpc",
-            "platform/features/api/webhook-api"
+            "platform/features/api/chain-rpc"
           ]
         },
         {
@@ -637,23 +634,6 @@
           "group": "Classic(Deprecated)",
           "pages": [
             "api-reference/sql-api/data-cloud-sql-query"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Webhook API",
-      "pages": [
-        {
-          "group": "Webhook API",
-          "pages": [
-            "api-reference/webhook-api/get-all-webhooks",
-            "api-reference/webhook-api/get-webhook",
-            "api-reference/webhook-api/create-webhook",
-            "api-reference/webhook-api/update-webhook",
-            "api-reference/webhook-api/activate-webhook",
-            "api-reference/webhook-api/deactivate-webhook",
-            "api-reference/webhook-api/delete-webhook"
           ]
         }
       ]
