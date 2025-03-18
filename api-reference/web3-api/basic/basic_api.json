@@ -695,6 +695,18 @@
                         "in": "header"
                     },
                     {
+                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
+                        "required": true,
+                        "schema": {
+                            "title": "Chain Id",
+                            "type": "integer",
+                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
+                        },
+                        "example": "1",
+                        "name": "chain_id",
+                        "in": "query"
+                    },
+                    {
                         "description": "A hex string referencing a wallet address",
                         "required": true,
                         "schema": {
