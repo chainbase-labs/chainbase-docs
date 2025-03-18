@@ -567,8 +567,7 @@
             "api-reference/web3-api/basic/block/get-block-by-number",
             "api-reference/web3-api/basic/transaction/get-transaction",
             "api-reference/web3-api/basic/transaction/get-transactions-by-account",
-            "api-reference/web3-api/basic/contract/contract-call",
-            "api-reference/web3-api/basic/labels/get-address-labels"
+            "api-reference/web3-api/basic/contract/contract-call"
           ]
         },
         {
@@ -615,6 +614,12 @@
             "api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain",
             "api-reference/web3-api/domain/space-id-domain-endpoints/resolve-space-id-domain",
             "api-reference/web3-api/domain/space-id-domain-endpoints/reverse-resolve-space-id-domain"
+          ]
+        },
+        {
+          "group": "Label API",
+          "pages": [
+            "api-reference/web3-api/basic/labels/get-address-labels"
           ]
         }
       ]
