@@ -567,8 +567,8 @@
             "api-reference/web3-api/basic/block/get-block-by-number",
             "api-reference/web3-api/basic/transaction/get-transaction",
             "api-reference/web3-api/basic/transaction/get-transactions-by-account",
-            "api-reference/web3-api/basic/events/get-events-by-contract",
-            "api-reference/web3-api/basic/contract/contract-call"
+            "api-reference/web3-api/basic/contract/contract-call",
+            "api-reference/web3-api/basic/labels/get-address-labels"
           ]
         },
         {

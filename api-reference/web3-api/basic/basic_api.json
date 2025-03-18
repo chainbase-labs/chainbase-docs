@@ -461,7 +461,7 @@
                         "required": false,
                         "schema": {
                             "title": "Page",
-                            "minimum": 1.0,
+                            "minimum": 1,
                             "type": "integer",
                             "description": "The page offset",
                             "default": 1
@@ -474,8 +474,8 @@
                         "required": false,
                         "schema": {
                             "title": "Limit",
-                            "maximum": 100.0,
-                            "minimum": 1.0,
+                            "maximum": 100,
+                            "minimum": 1,
                             "type": "integer",
                             "description": "The desired page size limit. Less or equal than 100",
                             "default": 20
@@ -502,175 +502,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ResponseGetAccountTxs"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ErrorMessage"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/contract/events": {
-            "get": {
-                "tags": [
-                    "Events"
-                ],
-                "summary": "Get events by contract",
-                "description": "Gets the list of events for the specified contract.",
-                "operationId": "GetContractEvents",
-                "parameters": [
-                    {
-                        "description": "chain network id, see [list of details](/platform/features/api/web3-api)",
-                        "required": true,
-                        "schema": {
-                            "title": "Chain Id",
-                            "type": "integer",
-                            "description": "chain network id, see [list of details](/platform/features/api/web3-api)"
-                        },
-                        "example": "1",
-                        "name": "chain_id",
-                        "in": "query"
-                    },
-                    {
-                        "description": "A hex string referencing a contract address",
-                        "required": true,
-                        "schema": {
-                            "title": "Contract Address",
-                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
-                            "type": "string",
-                            "description": "A hex string referencing a contract address"
-                        },
-                        "name": "contract_address",
-                        "in": "query"
-                    },
-                    {
-                        "description": "Inclusive from block number (hex string or int)",
-                        "required": false,
-                        "schema": {
-                            "title": "From Block",
-                            "type": "string",
-                            "description": "Inclusive from block number (hex string or int)"
-                        },
-                        "name": "from_block",
-                        "in": "query"
-                    },
-                    {
-                        "description": "Inclusive to block number (hex string, int, or 'latest')",
-                        "required": false,
-                        "schema": {
-                            "title": "To Block",
-                            "type": "string",
-                            "description": "Inclusive to block number (hex string, int, or 'latest')"
-                        },
-                        "example": "latest",
-                        "name": "to_block",
-                        "in": "query"
-                    },
-                    {
-                        "description": "The page offset",
-                        "required": false,
-                        "schema": {
-                            "title": "Page",
-                            "minimum": 1.0,
-                            "type": "integer",
-                            "description": "The page offset",
-                            "default": 1
-                        },
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "description": "The desired page size limit. Less or equal than 100",
-                        "required": false,
-                        "schema": {
-                            "title": "Limit",
-                            "maximum": 100.0,
-                            "minimum": 1.0,
-                            "type": "integer",
-                            "description": "The desired page size limit. Less or equal than 100",
-                            "default": 20
-                        },
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "required": true,
-                        "schema": {
-                            "title": "X-Api-Key",
-                            "type": "string",
-                            "example": "demo"
-                        },
-                        "example": "demo",
-                        "name": "x-api-key",
-                        "in": "header"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ResponseContractEvents"
                                 }
                             }
                         }
@@ -822,6 +653,73 @@
                     },
                     "422": {
                         "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorMessage"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/address/labels": {
+            "get": {
+                "tags": [
+                    "Labels"
+                ],
+                "summary": "Address labels",
+                "description": "get labels by address",
+                "operationId": "addressLabels",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "title": "X-Api-Key",
+                            "type": "string",
+                            "example": "demo"
+                        },
+                        "example": "demo",
+                        "name": "x-api-key",
+                        "in": "header"
+                    },
+                    {
+                        "description": "A hex string referencing a wallet address",
+                        "required": true,
+                        "schema": {
+                            "title": "Address",
+                            "pattern": "^0[xX]{1}[a-fA-F0-9]{40}$",
+                            "type": "string",
+                            "description": "A hex string referencing a wallet address"
+                        },
+                        "name": "address",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseAddressLabels"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1000,36 +898,58 @@
                     "to_block": "latest"
                 }
             },
-            "ContractEventsData": {
-                "title": "ContractEventsData",
+            "TagEntry": {
+                "title": "AddressLabels",
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ResponseAddressLabels": {
+                "title": "ResponseAddressLabels",
                 "required": [
-                    "block_number",
-                    "function",
-                    "method_id",
-                    "transaction_hash",
-                    "transaction_index"
+                    "data"
                 ],
                 "type": "object",
                 "properties": {
-                    "block_number": {
-                        "title": "Block Number",
-                        "type": "integer"
+                    "code": {
+                        "title": "Code",
+                        "type": "integer",
+                        "default": 0
                     },
-                    "function": {
-                        "title": "Function",
-                        "type": "string"
+                    "message": {
+                        "title": "Message",
+                        "type": "string",
+                        "default": "ok"
                     },
-                    "method_id": {
-                        "title": "Method Id",
-                        "type": "string"
-                    },
-                    "transaction_hash": {
-                        "title": "Transaction Hash",
-                        "type": "string"
-                    },
-                    "transaction_index": {
-                        "title": "Transaction Index",
-                        "type": "integer"
+                    "data": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/TagEntry"
+                            }
+                        },
+                        "example": {
+                            "address": [
+                                {
+                                    "category": "social"
+                                },
+                                {
+                                    "tags": [
+                                        "a"
+                                    ]
+                                }
+                            ]
+                        }
                     }
                 }
             },
@@ -1090,40 +1010,6 @@
                         "title": "Data",
                         "type": "array",
                         "items": {}
-                    }
-                }
-            },
-            "ResponseContractEvents": {
-                "title": "ResponseContractEvents",
-                "required": [
-                    "data"
-                ],
-                "type": "object",
-                "properties": {
-                    "code": {
-                        "title": "Code",
-                        "type": "integer",
-                        "default": 0
-                    },
-                    "message": {
-                        "title": "Message",
-                        "type": "string",
-                        "default": "ok"
-                    },
-                    "data": {
-                        "title": "Data",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ContractEventsData"
-                        }
-                    },
-                    "next_page": {
-                        "title": "Next Page",
-                        "type": "integer"
-                    },
-                    "count": {
-                        "title": "Count",
-                        "type": "integer"
                     }
                 }
             },
