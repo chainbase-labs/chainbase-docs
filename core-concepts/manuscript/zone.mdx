@@ -40,15 +40,15 @@ The Chainbase Zone ecosystem consists of multiple key roles that work together t
 
 ```mermaid
 graph TD
-    A[Zone Owner] -->|1. Create Data Scenario| B[Zone Creation]
-    B -->|2. Define Specs| C[Zone Specifications]
-    C -->|3. Dev Invitation| D[Alchemist]
-    D -->|4. Dev & Deploy| E[Manuscript]
-    E -->|5. Submit Review| F[Zone Owner Review]
-    F -->|6. Approval| G[Zone Update]
-    G -->|7. Open Access| H[Operator]
-    H -->|8. Select & Run| I[Zone Operation]
-    I -->|9. Compute Contribution| J[Reward Distribution]
+    ZoneOwner[Zone Owner] -->|1. Create Data Scenario| ZoneCreation[Zone Creation]
+    ZoneCreation -->|2. Define Specs| Specs[Zone Specifications]
+    Specs -->|3. Dev Invitation| Alchemist[Alchemist]
+    Alchemist -->|4. Dev & Deploy| Manuscript[Manuscript]
+    Manuscript -->|5. Submit Review| Review[Zone Owner Review]
+    Review -->|6. Approval| Update[Zone Update]
+    Update -->|7. Open Access| Operator[Operator]
+    Operator -->|8. Select & Run| Operation[Zone Operation]
+    Operation -->|9. Compute Contribution| Reward[Reward Distribution]
 ```
 
 # Create a Chainbase Zone
