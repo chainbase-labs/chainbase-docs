@@ -39,16 +39,23 @@ The Chainbase Zone ecosystem consists of multiple key roles that work together t
 ## Workflow Process
 
 ```mermaid
-graph TD
-    ZoneOwner[Zone Owner] -->|1. Create Data Scenario| ZoneCreation[Zone Creation]
-    ZoneCreation -->|2. Define Specs| Specs[Zone Specifications]
-    Specs -->|3. Dev Invitation| Alchemist[Alchemist]
-    Alchemist -->|4. Dev & Deploy| Manuscript[Manuscript]
-    Manuscript -->|5. Submit Review| Review[Zone Owner Review]
-    Review -->|6. Approval| Update[Zone Update]
-    Update -->|7. Open Access| Operator[Operator]
-    Operator -->|8. Select & Run| Operation[Zone Operation]
-    Operation -->|9. Compute Contribution| Reward[Reward Distribution]
+flowchart LR
+    subgraph Zone Creation Flow
+        direction LR
+        ZoneOwner((Zone Owner)) --> ZoneCreation[Create Scenario]
+        ZoneCreation --> Specs[Define Specs]
+        Specs --> Alchemist((Alchemist))
+        Alchemist --> Manuscript[Deploy]
+        Manuscript --> Review[Review]
+        Review --> Update[Update]
+        Update --> Operator((Operator))
+        Operator --> Operation[Run]
+        Operation --> Reward[Distribute]
+    end
+
+    style ZoneOwner fill:#f96,stroke:#333
+    style Alchemist fill:#9cf,stroke:#333
+    style Operator fill:#9f9,stroke:#333
 ```
 
 # Create a Chainbase Zone
