@@ -269,8 +269,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Sui/Overview",
-            "catalog/Sui/Raw",
-            "catalog/Sui/Abstracted"
+            "catalog/Sui/Raw"
           ]
         },
         {
