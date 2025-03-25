@@ -143,6 +143,7 @@
           "icon": "ethereum",
           "pages": [
             "catalog/Ethereum/Overview",
+            "catalog/Ethereum/Abstracted",
             "catalog/Ethereum/Raw"
           ]
         },
@@ -152,6 +153,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/BSC/Overview",
+            "catalog/BSC/Abstracted",
             "catalog/BSC/Raw"
           ]
         },
@@ -161,6 +163,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Polygon/Overview",
+            "catalog/Polygon/Abstracted",
             "catalog/Polygon/Raw"
           ]
         },
@@ -170,6 +173,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Avalanche/Overview",
+            "catalog/Avalanche/Abstracted",
             "catalog/Avalanche/Raw"
           ]
         },
@@ -202,6 +206,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Arbitrum/Overview",
+            "catalog/Arbitrum/Abstracted",
             "catalog/Arbitrum/Raw"
           ]
         },
@@ -211,6 +216,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Optimism/Overview",
+            "catalog/Optimism/Abstracted",
             "catalog/Optimism/Raw"
           ]
         },
@@ -220,6 +226,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/Base/Overview",
+            "catalog/Base/Abstracted",
             "catalog/Base/Raw"
           ]
         },
@@ -238,6 +245,7 @@
           "iconType": "solid",
           "pages": [
             "catalog/zkSync/Overview",
+            "catalog/zkSync/Abstracted",
             "catalog/zkSync/Raw"
           ]
         }
@@ -419,6 +427,34 @@
             "catalog/OtherEvm/opBNB_Testnet",
             "catalog/OtherEvm/re.al",
             "catalog/OtherEvm/zkCandy_Sepolia_Testnet"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Token",
+      "icon": "database",
+      "pages": [
+        {
+          "group": "token_price",
+          "icon": "database",
+          "pages": [
+            "catalog/Price/Overview",
+            "catalog/Price/Abstracted"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Labels",
+      "icon": "database",
+      "pages": [
+        {
+          "group": "addresses",
+          "icon": "database",
+          "pages": [
+            "catalog/Labels/Overview",
+            "catalog/Labels/Abstracted"
           ]
         }
       ]
