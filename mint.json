@@ -634,11 +634,7 @@
             "api-reference/web3-api/nft/nft-ownership/get-nft-owner-history-by-token",
             "api-reference/web3-api/nft/nft-transfers/get-nft-transfers-by-collection",
             "api-reference/web3-api/nft/nft-collections/get-nft-collection-items",
-            "api-reference/web3-api/nft/nft-collections/get-nft-collection-metadata",
-            "api-reference/web3-api/nft/nft-collections/search-for-nft-collections-using-names-and-contract-addresses",
-            "api-reference/web3-api/nft/nft-marketplace-data/get-trending-collections-by-marketplace",
-            "api-reference/web3-api/nft/nft-marketplace-data/get-floor-price-history-by-collection",
-            "api-reference/web3-api/nft/nft-marketplace-data/get-floor-price-by-collection"
+            "api-reference/web3-api/nft/nft-collections/get-nft-collection-metadata"
           ]
         },
         {
@@ -646,9 +642,7 @@
           "pages": [
             "api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains",
             "api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain",
-            "api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain",
-            "api-reference/web3-api/domain/space-id-domain-endpoints/resolve-space-id-domain",
-            "api-reference/web3-api/domain/space-id-domain-endpoints/reverse-resolve-space-id-domain"
+            "api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain"
           ]
         },
         {
