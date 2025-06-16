@@ -4,7 +4,7 @@
 
 Welcome to Chainbase Documentation. This documentation provides information about Chainbase Data Network, Chainbase Data Platform, and Crypto World Model.
 
-* Chainbase Data Network: The world's largest omnichain data network designed to integrate all blockchain data into a unified ecosystem, providing an open and transparent data interoperability layer for the AI era.
+* Chainbase Data Network: The world's largest hyperdata network designed to integrate all blockchain data into a unified ecosystem, providing an open and transparent data interoperability layer for the AI era.
 * Chainbase Data Platform: An all-in-one data infrastructure for Web3 that allows you to index, transform, and utilize large-scale on-chain data.
 * Crypto World Model: A comprehensive data model that provides a unified view of the entire crypto world, enabling developers to build powerful applications on top of it.
 
