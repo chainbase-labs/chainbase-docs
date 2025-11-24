@@ -527,6 +527,7 @@
         {
           "group": "APIs",
           "pages": [
+            "platform/features/api/x402",
             "platform/features/api/web3-api",
             {
               "group": "SQL API",
