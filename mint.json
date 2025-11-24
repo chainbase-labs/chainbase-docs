@@ -537,8 +537,7 @@
                 "platform/features/api/sql-api/datacloud-custom-api",
                 "platform/features/api/sql-api/datacloud-api-classic"
               ]
-            },
-            "platform/features/api/chain-rpc"
+            }
           ]
         },
         {
