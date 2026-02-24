@@ -39,6 +39,10 @@
       "url": "theia"
     },
     {
+      "name": "Chainbase AI",
+      "url": "chainbase-ai"
+    },
+    {
       "name": "API Reference",
       "url": "api-reference"
     }
@@ -527,7 +531,6 @@
         {
           "group": "APIs",
           "pages": [
-            "platform/features/api/x402",
             "platform/features/api/web3-api",
             {
               "group": "SQL API",
@@ -584,6 +587,30 @@
         "platform/faqs/faq",
         "platform/pricing/pricing",
         "platform/support"
+      ]
+    },
+    {
+      "group": "Chainbase AI",
+      "pages": [
+        "chainbase-ai/overview"
+      ]
+    },
+    {
+      "group": "Payments",
+      "pages": [
+        "chainbase-ai/x402"
+      ]
+    },
+    {
+      "group": "Agent Skills",
+      "pages": [
+        "chainbase-ai/web3-data-skill"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "chainbase-ai/mcp"
       ]
     },
     {

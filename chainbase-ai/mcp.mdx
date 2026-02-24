@@ -1,0 +1,48 @@
+---
+title: "MCP Integration"
+description: "Connect Chainbase Web3 data to any MCP-compatible AI client"
+---
+
+## What is MCP?
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open standard that enables AI applications to connect with external data sources and tools through a unified interface. It provides a standardized way for LLMs to access real-time data, execute actions, and interact with APIs — without custom integrations for each client.
+
+## Chainbase MCP Server
+
+<Note>
+The Chainbase MCP integration is coming soon. Stay tuned for updates.
+</Note>
+
+The Chainbase MCP Server will allow any MCP-compatible AI client (such as Claude Desktop, Cursor, Windsurf, and others) to directly access Chainbase's Web3 data — enabling queries like token balances, NFT ownership, transaction history, and on-chain analytics through natural language.
+
+### Planned Capabilities
+
+- **Token Data** — Query token prices, holders, metadata, and transfers
+- **Wallet Analytics** — Check balances, transaction history, and portfolio analysis
+- **NFT Exploration** — Browse collections, ownership, rarity, and transfer history
+- **Address Intelligence** — Resolve ENS domains and retrieve address labels
+- **SQL Queries** — Run custom SQL queries against Chainbase's on-chain data warehouse
+
+### How It Will Work
+
+Once available, you will be able to add the Chainbase MCP server to your AI client's configuration:
+
+```json
+{
+  "mcpServers": {
+    "chainbase": {
+      "command": "npx",
+      "args": ["-y", "@chainbase/mcp-server"],
+      "env": {
+        "CHAINBASE_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+## Stay Updated
+
+- Follow [Chainbase on X](https://twitter.com/chainbaseHQ) for release announcements
+- Join the [Chainbase Discord](https://chainbase.com/discord) community
+- Star the [GitHub repo](https://github.com/chainbase-labs) to get notified
