@@ -1,0 +1,142 @@
+---
+title: "x402 Integration"
+description: "Pay-per-call API access for AI Agents via the HTTP 402 protocol"
+---
+
+## What is x402?
+
+x402 is an open standard introduced by Coinbase. It uses the HTTP `402 Payment Required` status code to allow machines (such as AI Agents) to automatically complete on-chain micropayments when initiating API requests. Payments are made using stablecoins (like USDC), with instant, transparent settlement and no need for trusted intermediaries.
+
+## Pricing
+
+All Chainbase Web3 API endpoints accessed via x402 are charged at a flat rate:
+
+| | Price |
+|---|---|
+| **Per API Call** | **$0.01 USDC** |
+
+No subscriptions, no monthly fees — just pay per request with your wallet.
+
+## Supported Endpoints
+
+All [Chainbase Web3 API](/api-reference/overview) endpoints support x402 access. Below is the complete list:
+
+### Token API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v1/token/price` | Get token price |
+| GET | `/v1/token/price/history` | Get token price history |
+| GET | `/v1/token/holders` | Get token holders |
+| GET | `/v1/token/top-holders` | Get top token holders |
+| GET | `/v1/token/metadata` | Get token metadata |
+| GET | `/v1/token/transfers` | Get token transfers by contract |
+
+### Balance API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v1/account/tokens` | Get ERC-20 token balances |
+| GET | `/v1/account/balance` | Get native token balances |
+| GET | `/v1/account/nfts` | Get NFTs owned by address |
+
+### NFT API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v1/nft/metadata` | Get NFT metadata |
+| GET | `/v1/nft/rarity` | Get NFT rarity |
+| GET | `/v1/nft/owner` | Get NFT owner by token |
+| GET | `/v1/nft/owner/history` | Get NFT owner history by token |
+| GET | `/v1/nft/owners` | Get NFT owners by collection |
+| GET | `/v1/nft/transfers` | Get NFT transfers by collection |
+| GET | `/v1/nft/collection/items` | Get NFT collection items |
+| GET | `/v1/nft/collection` | Get NFT collection metadata |
+| GET | `/v1/nft/search` | Search NFT collections |
+
+### Domain API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v1/ens/records` | Resolve ENS domain |
+| GET | `/v1/ens/reverse` | Reverse resolve ENS domain |
+| GET | `/v1/account/ens` | Get ENS domains by address |
+
+### Basic API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v1/block/number/latest` | Get latest block number |
+| GET | `/v1/block/detail` | Get block by number |
+| GET | `/v1/tx/detail` | Get transaction details |
+| GET | `/v1/account/txs` | Get transactions by account |
+| POST | `/v1/contract/call` | Contract call |
+
+### Label API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/v1/address/labels` | Get address labels |
+
+## Integration Steps (Python Example)
+
+### Install Dependencies
+
+```bash
+pip install eth_account x402
+```
+
+### Prepare Your Private Key
+
+Please ensure you have an Ethereum wallet with sufficient USDC (it is recommended to use a testnet or mainnet cold wallet). **Never expose your real private key in public code!**
+
+```python
+from eth_account import Account
+
+# For production, please read from environment variables or a key management service
+PRIVATE_KEY = "your_0x_private_key_here"  # Example: 0x123...abc
+account = Account.from_key(PRIVATE_KEY)
+```
+
+### Initialize x402 Session
+
+```python
+from x402.clients.requests import x402_requests
+
+# Create an HTTP session that supports x402
+session = x402_requests(account)
+```
+
+### Call Chainbase API
+
+For all Chainbase Web3 API endpoints, simply add `x-api-key: x402` to the request header. The rest of the usage is consistent with the standard API.
+
+```python
+from pprint import pprint
+
+# Example: Query Ethereum Mainnet USDT holder addresses ($0.01 per call)
+api_url = "https://api.chainbase.com/v1/token/holders?chain_id=1&contract_address=0xdac17f958d2ee523a2206206994597c13d831ec7"
+
+headers = {
+    "x-api-key": "x402",  # Enable x402 payment
+    "Accept": "application/json"
+}
+
+response = session.get(api_url, headers=headers)
+
+if response.status_code == 200:
+    pprint(response.json())
+else:
+    print(f"Payment failed or request error: {response.status_code} - {response.text}")
+```
+
+## Use Cases
+
+- **AI Agent automatically monitors token address changes**: Query once per hour, pay per request, no monthly fee required.
+- **One-time data fetching**: Analyze a specific Token project, call only once, and pay just $0.01.
+- **Experimental development**: No need to register an enterprise account, pay directly with a wallet to test interfaces.
+
+## Next Steps
+
+- [API Reference](/api-reference/overview) — Full interactive API documentation
+- [Supported Networks](/platform/supported-networks/supported-networks) — Complete list of supported chains
