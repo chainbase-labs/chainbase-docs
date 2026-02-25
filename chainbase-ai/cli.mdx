@@ -7,7 +7,7 @@ description: "Command-line interface for querying Web3 data, designed for both d
 
 The **Chainbase CLI** is a command-line tool for accessing [Chainbase Web3 API](/api-reference/overview) data directly from your terminal. It outputs JSON by default, making it ideal for scripting, automation, and AI agent integration.
 
-- Query tokens, NFTs, balances, transactions, and more across 8+ EVM chains
+- Query tokens, balances, transactions, and more across 8+ EVM chains
 - JSON output by default for machine-parseable results
 - Async SQL queries against Chainbase's on-chain data warehouse
 - Smart contract read calls without writing code
@@ -107,28 +107,6 @@ chainbase token top-holders 0xdAC17F958D2ee523a2206206994597C13D831ec7
 chainbase token transfers --contract 0x... --from-block 17000000
 ```
 
-### `nft` — NFT Queries
-
-```bash
-# Get NFT metadata
-chainbase nft metadata 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D 1
-
-# Get collection info
-chainbase nft collection 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
-
-# Search NFTs by name
-chainbase nft search "Bored Ape"
-
-# Get floor price
-chainbase nft floor-price 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
-
-# Get trending collections
-chainbase nft trending --range 7d
-
-# Get rarity scores
-chainbase nft rarity 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
-```
-
 ### `balance` — Balance & Portfolio
 
 ```bash
@@ -137,12 +115,6 @@ chainbase balance native 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
 
 # ERC-20 token balances
 chainbase balance tokens 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
-
-# DeFi portfolio positions (multi-chain)
-chainbase balance portfolios 0x... --chains 1,137,42161
-
-# NFTs owned
-chainbase balance nfts 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
 ```
 
 ### `domain` — ENS & Space ID
@@ -186,7 +158,7 @@ Execute SQL queries against Chainbase's on-chain data warehouse. Queries run asy
 
 ```bash
 # Execute a query
-chainbase sql execute "SELECT number, timestamp FROM ethereum.blocks ORDER BY number DESC LIMIT 5"
+chainbase sql execute "SELECT * FROM ethereum.blocks LIMIT 5"
 
 # Check execution status
 chainbase sql status <execution_id>
