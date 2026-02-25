@@ -608,6 +608,12 @@
       ]
     },
     {
+      "group": "CLI Tools",
+      "pages": [
+        "chainbase-ai/cli"
+      ]
+    },
+    {
       "group": "Integrations",
       "pages": [
         "chainbase-ai/mcp"

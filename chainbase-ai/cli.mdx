@@ -1,0 +1,231 @@
+---
+title: "CLI"
+description: "Command-line interface for querying Web3 data, designed for both developers and AI agents"
+---
+
+## Overview
+
+The **Chainbase CLI** is a command-line tool for accessing [Chainbase Web3 API](/api-reference/overview) data directly from your terminal. It outputs JSON by default, making it ideal for scripting, automation, and AI agent integration.
+
+- Query tokens, NFTs, balances, transactions, and more across 8+ EVM chains
+- JSON output by default for machine-parseable results
+- Async SQL queries against Chainbase's on-chain data warehouse
+- Smart contract read calls without writing code
+
+## Installation
+
+```bash
+# Global install
+npm install -g chainbase-cli
+
+# Or run directly with npx (no install needed)
+npx chainbase-cli --help
+```
+
+<Note>
+Requires Node.js >= 18.
+</Note>
+
+## Configuration
+
+### Set API Key
+
+Get your API key from the [Chainbase Console](https://console.chainbase.com/), then configure:
+
+```bash
+# Option 1: Save to config file (~/.chainbase/config.json)
+chainbase config set api-key YOUR_API_KEY
+
+# Option 2: Use environment variable
+export CHAINBASE_API_KEY=YOUR_API_KEY
+```
+
+### Set Default Chain
+
+```bash
+# Set default chain to Ethereum (default)
+chainbase config set default-chain 1
+
+# View current config
+chainbase config list
+```
+
+### Supported Chains
+
+| Chain | ID |
+|-------|----|
+| Ethereum | `1` |
+| BSC | `56` |
+| Polygon | `137` |
+| Avalanche | `43114` |
+| Arbitrum | `42161` |
+| Optimism | `10` |
+| Base | `8453` |
+| zkSync | `324` |
+
+## Global Options
+
+Every command supports these options:
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--chain <id>` | Chain ID to query | `1` (or your `default-chain`) |
+| `--pretty` | Human-readable formatted output | `false` |
+| `--page <n>` | Page number for paginated results | `1` |
+| `--limit <n>` | Results per page | `20` |
+
+## Commands
+
+### `block` — Block Queries
+
+```bash
+# Get latest block number
+chainbase block latest
+
+# Get block details
+chainbase block detail 17000000
+```
+
+### `tx` — Transaction Queries
+
+```bash
+# Get transaction by hash
+chainbase tx detail 0x...
+
+# List transactions for an address
+chainbase tx list 0x... --from-block 17000000 --to-block 17001000
+```
+
+### `token` — Token Queries
+
+```bash
+# Get token metadata
+chainbase token metadata 0xdAC17F958D2ee523a2206206994597C13D831ec7
+
+# Get current price
+chainbase token price 0xdAC17F958D2ee523a2206206994597C13D831ec7
+
+# Get price history
+chainbase token price-history 0xdAC17F958D2ee523a2206206994597C13D831ec7 \
+  --from 1700000000 --to 1700086400
+
+# Get top holders
+chainbase token top-holders 0xdAC17F958D2ee523a2206206994597C13D831ec7
+
+# Get token transfers
+chainbase token transfers --contract 0x... --from-block 17000000
+```
+
+### `nft` — NFT Queries
+
+```bash
+# Get NFT metadata
+chainbase nft metadata 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D 1
+
+# Get collection info
+chainbase nft collection 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
+
+# Search NFTs by name
+chainbase nft search "Bored Ape"
+
+# Get floor price
+chainbase nft floor-price 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
+
+# Get trending collections
+chainbase nft trending --range 7d
+
+# Get rarity scores
+chainbase nft rarity 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D
+```
+
+### `balance` — Balance & Portfolio
+
+```bash
+# Native token balance (ETH, BNB, etc.)
+chainbase balance native 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+
+# ERC-20 token balances
+chainbase balance tokens 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+
+# DeFi portfolio positions (multi-chain)
+chainbase balance portfolios 0x... --chains 1,137,42161
+
+# NFTs owned
+chainbase balance nfts 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+```
+
+### `domain` — ENS & Space ID
+
+```bash
+# Get ENS domains held by address
+chainbase domain ens 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+
+# Resolve ENS domain to address
+chainbase domain ens-resolve vitalik.eth
+
+# Reverse resolve address to ENS
+chainbase domain ens-reverse 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+
+# Space ID (BSC) resolution
+chainbase domain spaceid-resolve example.bnb
+chainbase domain spaceid-reverse 0x...
+```
+
+### `address` — Address Labels
+
+```bash
+# Get labels for an address (exchange, whale, contract, etc.)
+chainbase address labels 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+```
+
+### `contract` — Smart Contract Calls
+
+```bash
+# Call a contract read function
+chainbase contract call \
+  --address 0xdAC17F958D2ee523a2206206994597C13D831ec7 \
+  --function "balanceOf" \
+  --abi '[{"inputs":[{"name":"account","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"type":"function"}]' \
+  --params '["0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"]'
+```
+
+### `sql` — SQL Queries
+
+Execute SQL queries against Chainbase's on-chain data warehouse. Queries run asynchronously — submit, check status, then retrieve results.
+
+```bash
+# Execute a query
+chainbase sql execute "SELECT number, timestamp FROM ethereum.blocks ORDER BY number DESC LIMIT 5"
+
+# Check execution status
+chainbase sql status <execution_id>
+
+# Get results
+chainbase sql results <execution_id>
+```
+
+## AI Agent Integration
+
+The CLI is designed for AI agent automation with predictable, machine-parseable output:
+
+- **JSON by default** — no colors or formatting unless `--pretty` is used
+- **Consistent error format** — errors output as `{"error":"message"}` to stderr
+- **Discoverable** — run `--help` on any command for usage info
+- **Predictable pattern** — `chainbase <group> <action> [args] [options]`
+
+```bash
+# Parse output with jq
+PRICE=$(chainbase token price 0xdAC17F958D2ee523a2206206994597C13D831ec7 | jq '.data.price')
+
+# Use in scripts
+if chainbase balance native 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 2>/dev/null; then
+  echo "Query succeeded"
+fi
+```
+
+## Learn More
+
+- [Chainbase API Reference](/api-reference/overview) — Full API documentation
+- [Supported Networks](/platform/supported-networks/supported-networks) — Complete list of supported chains
+- [GitHub Repository](https://github.com/chainbase-labs/cli) — Source code and contributions
+- [npm Package](https://www.npmjs.com/package/chainbase-cli) — Package details and versions
