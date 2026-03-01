@@ -13,7 +13,7 @@ All Chainbase Web3 API endpoints accessed via x402 are charged at a flat rate:
 
 | | Price |
 |---|---|
-| **Per API Call** | **$0.01 USDC** |
+| **Per API Call** | **$0.002 USDC** |
 
 No subscriptions, no monthly fees — just pay per request with your wallet.
 
@@ -57,7 +57,7 @@ For all Chainbase Web3 API endpoints, simply add `x-api-key: x402` to the reques
 ```python
 from pprint import pprint
 
-# Example: Query Ethereum Mainnet USDT holder addresses ($0.01 per call)
+# Example: Query Ethereum Mainnet USDT holder addresses ($0.002 per call)
 api_url = "https://api.chainbase.com/v1/token/holders?chain_id=1&contract_address=0xdac17f958d2ee523a2206206994597c13d831ec7"
 
 headers = {
@@ -76,7 +76,7 @@ else:
 ## Use Cases
 
 - **AI Agent automatically monitors token address changes**: Query once per hour, pay per request, no monthly fee required.
-- **One-time data fetching**: Analyze a specific Token project, call only once, and pay just $0.01.
+- **One-time data fetching**: Analyze a specific Token project, call only once, and pay just $0.002.
 - **Experimental development**: No need to register an enterprise account, pay directly with a wallet to test interfaces.
 
 ## Next Steps
