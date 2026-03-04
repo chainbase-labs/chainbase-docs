@@ -9,37 +9,145 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) is an open 
 
 ## Chainbase MCP Server
 
-<Note>
-The Chainbase MCP integration is coming soon. Stay tuned for updates.
-</Note>
+The Chainbase MCP Server allows any MCP-compatible AI client (such as Claude Desktop, Cursor, Windsurf, and others) to directly access Chainbase's Web3 data — enabling queries like token balances, NFT ownership, transaction history, and on-chain analytics through natural language.
 
-The Chainbase MCP Server will allow any MCP-compatible AI client (such as Claude Desktop, Cursor, Windsurf, and others) to directly access Chainbase's Web3 data — enabling queries like token balances, NFT ownership, transaction history, and on-chain analytics through natural language.
-
-### Planned Capabilities
+## Capabilities
 
 - **Token Data** — Query token prices, holders, metadata, and transfers
 - **Wallet Analytics** — Check balances, transaction history, and portfolio analysis
 - **NFT Exploration** — Browse collections, ownership, rarity, and transfer history
-- **Address Intelligence** — Resolve ENS domains and retrieve address labels
-- **SQL Queries** — Run custom SQL queries against Chainbase's on-chain data warehouse
+- **Block/Tx Detail** — Get block details, and transaction information
 
-### How It Will Work
+Base Endpoint:
 
-Once available, you will be able to add the Chainbase MCP server to your AI client's configuration:
-
-```json
-{
-  "mcpServers": {
-    "chainbase": {
-      "command": "npx",
-      "args": ["-y", "@chainbase/mcp-server"],
-      "env": {
-        "CHAINBASE_API_KEY": "your_api_key_here"
-      }
-    }
-  }
-}
 ```
+https://api.chainbase.com/v1/mcp
+```
+
+Authentication:
+
+```
+X-API-KEY: <your_api_key>
+```
+
+## Transport
+
+Chainbase MCP uses standard HTTP transport.
+
+- Method: `POST`
+- Content-Type: `application/json`
+- Auth Header: `X-API-KEY`
+
+Example raw request:
+
+```bash
+curl https://api.chainbase.com/v1/mcp \
+  -H "Content-Type: application/json" \
+  -H "X-API-KEY: YOUR_API_KEY" \
+  -d '{ "jsonrpc":"2.0", "id":1, "method":"tools/list" }'
+```
+
+## Manual Setup
+
+<Tabs>
+    <Tab title="ClaudeCode">
+    ```bash
+    claude mcp add --transport http chainbase https://api.chainbase.com/v1/mcp --header "X-API-KEY: your-actual-api-key"
+    ```
+    </Tab>
+    <Tab title="ClaudeDesktop">
+    edit Claude Desktop config file:
+    ```bash
+    # On MacOS:
+    vim ~/Library/Application Support/Claude/claude_desktop_config.json
+    # On Windows:
+    notepad "%APPDATA%\Claude\claude_desktop_config.json"
+    # On Linux:
+    vim ~/.config/Claude/claude_desktop_config.json
+    ```
+    add the MCP server configuration:
+    ```json
+    {
+        "mcpServers": {
+            "chainbase": {
+                "command": "npx",
+                "args": [
+                    "mcp-remote",
+                    "https://api.chainbase.com/v1/mcp",
+                    "--header",
+                    "X-API-KEY:${API_KEY}",
+                    "--transport",
+                    "http-only"
+                ],
+                "env": {
+                    "API_KEY": "your-actual-api-key"
+                }
+            }
+        }
+    }
+    ```
+    </Tab>
+    <Tab title={"Codex"}>
+    add MCP server information to ~/.codex/config.toml:
+    ```toml
+    [mcp_servers.chainbase]
+    url = "https://api.chainbase.com/v1/mcp"
+    http_headers = { "X-API-KEY" = "<your-api-key>" }
+    ```
+    </Tab>
+    <Tab title="Cursor">
+    Add to `~/.cursor/mcp.json` (global) or `.cursor/mcp.json` (project):
+    ```bash
+    {
+        "mcpServers": {
+            "chainbase": {
+                "url": "https://api.chainbase.com/v1/mcp",
+                "headers": {
+                    "X-API-KEY": "your-actual-api-key"
+                }
+            }
+        }
+    }
+    ```
+    </Tab>
+    <Tab title="Other Clients">
+    Configure your MCP client to connect to `https://api.chainbase.com/v1/mcp` and include your API key in the X-API-KEY request header.
+
+    Most MCP clients support HTTP transport with custom headers. Ensure the base URL is set to the endpoint above and add: `X-API-KEY: <your_api_key>`
+
+    Refer to your specific MCP client documentation for instructions on configuring HTTP transport and custom headers.
+    </Tab>
+</Tabs>
+
+<Tip>
+    Don’t have an API key?
+    Go to <a href="https://console.chainbase.com">console.chainbase.com</a> to create an account and a new API key.
+    For demo purposes, you can use the key “demo” to test out the API.
+</Tip>
+
+## Explorer Tools
+
+| Tool               | Description                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
+| GetLastBlockNumber | get the latest block number                                             |
+| GetBlock           | get block details by number                                             |
+| GetTx              | get transaction details by hash or block number and index               |
+| GetAccountBalance  | get account native balance or contract token balance                    |
+| GetAccountNFTs     | get account nfts                                                        |
+| GetAccountTokens   | get account token balances                                              |
+| GetAccountTxs      | get account transactions                                                |
+| GetTokenHolders    | get token holders addresses                                             |
+| GetTokenMeta       | get token metadata                                                      |
+| GetTokenPrice      | get token price                                                         |
+| GetTokenTopHolders | get token top holders addresses, returns original balance and usd value |
+| GetTokenTransfers  | get token transfers                                                     |
+| GetNFTMeta         | get nft metadata                                                        |
+| GetNFTOwner        | get nft owner by contract and token id                                  |
+| GetNFTOwnerHistory | get nft owner histories by contract and token id                        |
+| GetNFTOwners       | list nft owners by contract address                                     |
+| GetNFTTransfers    | get nft transfers                                                       |
+
+
 
 ## Stay Updated
 
