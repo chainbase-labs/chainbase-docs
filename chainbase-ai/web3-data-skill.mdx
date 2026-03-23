@@ -1,11 +1,14 @@
 ---
 title: "Web3 Data Skill"
-description: "Query on-chain data using natural language in Claude Code"
+description: "Query on-chain data and crypto social intelligence using natural language in Claude Code"
 ---
 
 ## Overview
 
-The **Web3 Data Skill** is a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that enables you to explore and analyze blockchain data using natural language — directly from your terminal. Powered by the Chainbase API, it supports querying token holders, wallet balances, NFT ownership, ENS domains, address labels, and more across multiple EVM chains.
+The **Web3 Data Skill** is a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that covers two Chainbase services:
+
+- **On-chain data** — query token holders, wallet balances, NFT ownership, ENS domains, address labels, transactions, and more across multiple EVM chains via the Chainbase API.
+- **Crypto social intelligence** — discover trending crypto narratives, search topics, retrieve Twitter/X mentions, and monitor social signals via [Tops](https://tops.chainbase.com). No API key required.
 
 ## Installation
 
@@ -32,7 +35,7 @@ claude skill install ./skills.sh
 
 ## Configuration
 
-Set your Chainbase API key as an environment variable:
+Set your Chainbase API key as an environment variable (required for on-chain data):
 
 ```bash
 export CHAINBASE_API_KEY="your_api_key_here"
@@ -40,7 +43,11 @@ export CHAINBASE_API_KEY="your_api_key_here"
 
 You can obtain an API key from the [Chainbase Console](https://console.chainbase.com/).
 
-## Supported Data Queries
+<Note>
+The Tops social intelligence commands do not require an API key and are free to use.
+</Note>
+
+## On-Chain Data Queries
 
 | Category | Examples |
 |----------|---------|
@@ -51,26 +58,39 @@ You can obtain an API key from the [Chainbase Console](https://console.chainbase
 | **ENS Domains** | Resolve domains, reverse resolve, list domains by address |
 | **Transactions** | Transaction details, account transaction history |
 
-## Supported Chains
+Supports all EVM-compatible chains available on Chainbase. See [Supported Networks](/platform/supported-networks/supported-networks).
 
-Supports all EVM-compatible chains available on Chainbase. See the full list at [Supported Networks](/platform/supported-networks/supported-networks).
+## Crypto Social Intelligence (Tops)
+
+| Category | Examples |
+|----------|---------|
+| **Trending Topics** | What's trending in crypto right now, ranked by heat score |
+| **Topic Details** | Summary, authors, representative tweets for a specific narrative |
+| **Topic Posts** | Raw Twitter/X posts under a topic for sentiment analysis |
+| **Narrative Search** | Find candidate topics by keyword (e.g. "RWA", "AI Agent") |
+| **Mention Search** | Recent Twitter/X mentions for any project or keyword |
 
 ## Usage Examples
 
-Once installed, simply use natural language in Claude Code:
+Once installed, use natural language in Claude Code:
 
 ```
+# On-chain data
 > /web3-data top 10 holders of USDT on Ethereum
-
 > /web3-data what is the price of ETH?
-
 > /web3-data show NFTs owned by vitalik.eth
-
 > /web3-data label the address 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+
+# Crypto social intelligence
+> /web3-data what are the top trending crypto narratives right now?
+> /web3-data find topics related to "AI Agent" and summarize the key themes
+> /web3-data show me what people on Twitter are saying about Chainbase
+> /web3-data search narrative candidates for "Restaking"
 ```
 
 ## Learn More
 
 - [Chainbase API Reference](/api-reference/overview) — Full API documentation
 - [Supported Networks](/platform/supported-networks/supported-networks) — Complete list of supported chains
+- [CLI Reference](/chainbase-ai/cli) — Full command reference for on-chain and Tops commands
 - [GitHub Repository](https://github.com/lxcong/web3-data-skill) — Source code and contributions
