@@ -167,6 +167,42 @@ chainbase sql status <execution_id>
 chainbase sql results <execution_id>
 ```
 
+### `tops` — Crypto Social Intelligence
+
+Query crypto social signals from [Tops](https://tops.chainbase.com). **No API key required.** Free to use.
+
+**Rate limits:** 10 req/s · 60 req/min · 600 req/hour (per client IP)
+
+```bash
+# List trending crypto topics (default: English)
+chainbase tops trending
+chainbase tops trending --language zh   # Chinese
+chainbase tops trending --language ko   # Korean
+
+# Get structured details for a topic
+chainbase tops topic <topic_id>
+
+# Get Twitter/X posts under a topic
+chainbase tops posts <topic_id>
+
+# Search narrative candidate topics by keyword
+chainbase tops search "RWA"
+chainbase tops search "AI Agent"
+
+# Search recent Twitter/X mentions
+chainbase tops mentions "Ethereum ETF"
+```
+
+| Subcommand | Description |
+|---|---|
+| `trending [--language <lang>]` | List trending crypto narratives ranked by heat score (`zh`/`en`/`ko`) |
+| `topic <topic_id>` | Structured details (summary, score, representative posts) for a topic |
+| `posts <topic_id>` | Raw Twitter/X posts under a topic |
+| `search <keyword>` | Find narrative candidate topics by keyword |
+| `mentions <keyword>` | Search recent Twitter/X mentions for a keyword |
+
+The `topic_id` values come from `trending` or `search` results. Use `--json` to get machine-parseable output when piping into other tools.
+
 ## AI Agent Integration
 
 The CLI is designed for AI agent automation with predictable, machine-parseable output:
