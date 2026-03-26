@@ -1,0 +1,295 @@
+components:
+  schemas:
+    domain.Story:
+      properties:
+        analysis_time:
+          type: string
+        authors:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        current_rank:
+          type: integer
+        first_tweet_time:
+          description: the time of the first tweet in this story
+          type: string
+        id:
+          type: string
+        is_manual:
+          type: boolean
+        is_new:
+          description: first time in top stories
+          type: boolean
+        keyword:
+          type: string
+        rank_status:
+          description: '''new'',''up'',''down'',''same'''
+          type: string
+        score:
+          type: number
+        snapshot_time:
+          type: string
+        source_type:
+          type: string
+        summary:
+          type: string
+        tweet_urls:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      type: object
+    domain.Tweet:
+      properties:
+        id:
+          type: string
+        media_json:
+          type: string
+        text:
+          type: string
+        user:
+          $ref: '#/components/schemas/domain.XUser'
+      type: object
+    domain.XUser:
+      properties:
+        blue_verified:
+          type: boolean
+        name:
+          type: string
+        profile_image:
+          type: string
+        screen_name:
+          type: string
+        user_id:
+          type: string
+      type: object
+    pubtool.DataResponse-domain_Story:
+      properties:
+        data:
+          $ref: '#/components/schemas/domain.Story'
+      type: object
+    pubtool.ErrorResponse:
+      properties:
+        error:
+          type: string
+      type: object
+    pubtool.ItemsResponse-domain_Story:
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/domain.Story'
+          type: array
+          uniqueItems: false
+      type: object
+    pubtool.ItemsResponse-domain_Tweet:
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/domain.Tweet'
+          type: array
+          uniqueItems: false
+      type: object
+externalDocs:
+  description: ""
+  url: ""
+info:
+  description: |-
+    Tops Public Tool API exposes [Tops](https://tops.chainbase.com) social signal data as REST endpoints,
+    making crypto social intelligence accessible to any HTTP client.
+
+    Unlike the Chainbase Web3 API (which covers on-chain data), Tops focuses exclusively on
+    **crypto social intelligence**: trending narratives, topic discovery, and Twitter/X social mentions.
+
+    No API key required — it's free to use.
+    Rate limited per client IP: 10 req/s, 60 req/min, 600 req/hour.
+  title: Tops Public Tool API
+  version: "1.0"
+openapi: 3.1.0
+paths:
+  /v1/tool/get-topic:
+    get:
+      description: |-
+        Fetches structured details for one topic so an LLM can quickly understand what it is about.
+        Input is topic_id (from trending or search).
+        Output should include a topic description/definition, core keywords,
+        representative post summaries (post ids/links/authors/timestamps), and metadata.
+      parameters:
+      - description: topic id
+        in: query
+        name: topic_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.DataResponse-domain_Story'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Bad Request
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Too Many Requests
+      summary: get topic detail
+      tags:
+      - Tool
+  /v1/tool/get-topic-posts:
+    get:
+      description: |-
+        Retrieves posts associated with a topic.
+        Output should be a list of posts sorted by time or relevance with
+        text, author, timestamp, permalink, and engagement metrics (if available).
+      parameters:
+      - description: topic id
+        in: query
+        name: topic_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ItemsResponse-domain_Tweet'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Bad Request
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Too Many Requests
+      summary: get posts for a topic
+      tags:
+      - Tool
+  /v1/tool/list-trending-topics:
+    get:
+      description: |-
+        Returns a ranked list of currently trending crypto narratives/topics.
+        Use it for ideation and trend scanning.
+        language selects the locale/language (affects tokenization and trend definition).
+        Output should include topic_id, title/keywords, and a score/rank summary.
+      parameters:
+      - description: 'language: zh/en/ko, default: en'
+        in: query
+        name: language
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ItemsResponse-domain_Story'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Bad Request
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Too Many Requests
+      summary: list trending topics
+      tags:
+      - Tool
+  /v1/tool/search-mentions:
+    get:
+      description: |-
+        Searches recent social mentions (Twitter/X) for a keyword to answer
+        "who is talking / what are they saying / what just happened".
+        Output should be a list of tweets with text, author, timestamp, permalink,
+        engagement metrics (if available), and optional language/region info.
+      parameters:
+      - description: keyword to search Twitter/X mentions
+        in: query
+        name: keyword
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ItemsResponse-domain_Tweet'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Bad Request
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Too Many Requests
+      summary: search social mentions by keyword
+      tags:
+      - Tool
+  /v1/tool/search-narrative-candidates:
+    get:
+      description: |-
+        Reverse-searches topic candidates from a human keyword to map a fuzzy narrative
+        into the platform's topic taxonomy.
+        Input is keyword (e.g., "RWA", "AI Agent", "Restaking").
+        Output is a list of candidate topics with topic_id, match rationale/keyword overlap,
+        and a trend/heat summary.
+        Recommended: let the client-side LLM cluster/name/summarize the candidates.
+      parameters:
+      - description: keyword, e.g. RWA, AI Agent
+        in: query
+        name: keyword
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ItemsResponse-domain_Story'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Bad Request
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pubtool.ErrorResponse'
+          description: Too Many Requests
+      summary: search narrative candidate topics by keyword
+      tags:
+      - Tool
+servers:
+- url: https://api.chainbase.com/tops
