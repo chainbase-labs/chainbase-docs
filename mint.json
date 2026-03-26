@@ -707,6 +707,16 @@
           ]
         }
       ]
+    },
+    {
+      "group": "Tops API",
+      "pages":[
+        "api-reference/tops-api/tool/list-trending-topics",
+        "api-reference/tops-api/tool/get-topic-detail",
+        "api-reference/tops-api/tool/get-posts-for-a-topic",
+        "api-reference/tops-api/tool/search-narrative-candidate-topics-by-keyword",
+        "api-reference/tops-api/tool/search-social-mentions-by-keyword"
+      ]
     }
   ],
   "footerSocials": {
