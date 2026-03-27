@@ -23,7 +23,7 @@ The Coordinator periodically generates a challenge task, which involves calculat
 4. Aggregates responses from multiple `Manuscript Nodes` and submits the results to the on-chain contract `ChainbaseServiceManager`.
 
 **Manuscript Node:**
-1. Registers the operator by calling `RegisteryCoordinator`.
+1. Registers the operator by calling `RegistryCoordinator`.
 2. Receives tasks from the Coordinator via the RPC interface.
 3. Executes tasks, signs the task response.
 4. Sends the signed task response back to the Coordinator.
