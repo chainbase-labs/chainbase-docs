@@ -44,38 +44,23 @@
   },
   "navigation": [
     {
-      "group": "Getting Started",
+      "group": "Overview",
       "pages": [
         "getting-started/welcome",
         "getting-started/explore-all-products"
       ]
     },
     {
-      "group": "Build AI Agents",
+      "group": "Guides",
       "pages": [
-        "getting-started/build-ai-agents"
-      ]
-    },
-    {
-      "group": "Query Blockchain Data",
-      "pages": [
-        "getting-started/query-blockchain-data"
-      ]
-    },
-    {
-      "group": "Stream & Process Data",
-      "pages": [
-        "getting-started/stream-and-process-data"
-      ]
-    },
-    {
-      "group": "Explore Data in Cloud",
-      "pages": [
+        "getting-started/build-ai-agents",
+        "getting-started/query-blockchain-data",
+        "getting-started/stream-and-process-data",
         "getting-started/explore-data-in-cloud"
       ]
     },
     {
-      "group": "Tutorials & Use Cases",
+      "group": "Tutorials",
       "pages": [
         {
           "group": "Balance API Tutorials",
