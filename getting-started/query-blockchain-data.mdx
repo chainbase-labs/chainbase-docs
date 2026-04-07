@@ -1,0 +1,86 @@
+---
+title: "Query Blockchain Data"
+description: "Access token, wallet, NFT, and social data across 90+ chains"
+---
+
+Chainbase provides multiple ways to query on-chain data. Choose the approach that fits your use case.
+
+## Quick Start: CLI
+
+The fastest way to try Chainbase. Install the CLI and run a query in under a minute:
+
+```bash
+npm install -g chainbase-cli
+chainbase config set api-key YOUR_API_KEY
+```
+
+```bash
+# Get ETH price
+chainbase token price 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
+
+# Check wallet balances
+chainbase balance tokens 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+
+# Trending crypto narratives (free, no API key)
+chainbase tops trending
+```
+
+<Tip>
+Get your API key at [console.chainbase.com](https://console.chainbase.com/). For demo purposes, use the key "demo".
+</Tip>
+
+Full CLI reference: [CLI Documentation](/resources/ai/cli)
+
+## Web3 API
+
+REST API for structured queries — token metadata, balances, NFT ownership, ENS domains, and more.
+
+```bash
+curl -X GET 'https://api.chainbase.com/v1/token/price?chain_id=1&contract_address=0xdAC17F958D2ee523a2206206994597C13D831ec7' \
+  -H 'X-API-KEY: YOUR_API_KEY'
+```
+
+Available API suites:
+- **Basic API** — Block and transaction queries
+- **Token API** — Price, holders, metadata, transfers
+- **NFT API** — Metadata, ownership, rarity, transfers
+- **Balance API** — Native and ERC-20 token balances
+- **Domain API** — ENS resolution and reverse lookup
+- **Label API** — Address classification (exchange, whale, contract)
+
+Full reference: [Web3 API Documentation](/resources/platform/features/api/web3-api) | [API Reference](/api-reference/overview)
+
+## SQL API
+
+Run custom SQL queries against Chainbase's indexed on-chain data warehouse for complex analytics.
+
+```sql
+SELECT block_timestamp, _from, _to, _value
+FROM ethereum.erc20_transfer
+WHERE contract_address = '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+  AND block_number > 19000000
+LIMIT 10
+```
+
+Full reference: [SQL API Documentation](/resources/platform/features/api/sql-api/overview) | [API Reference](/api-reference/sql-api/execute-queries)
+
+## Tops API
+
+Query crypto social intelligence — trending narratives, Twitter/X mentions, and sentiment signals. **Free, no API key required.**
+
+```bash
+# Via CLI
+chainbase tops trending
+
+# Via API
+curl -X GET 'https://api.chainbase.com/tops/v1/trending'
+```
+
+Full reference: [Tops API Reference](/api-reference/tops-api/tool/list-trending-topics)
+
+## Next Steps
+
+- [Explore All Products](/getting-started/explore-all-products) — See all Chainbase tools and services
+- [API Reference](/api-reference/overview) — Complete endpoint documentation
+- [Data Catalog](/catalog/overview) — Browse available chain data schemas
+- [Tutorials](/getting-started/tutorials/balance-api/get-native-token-balances) — Step-by-step guides

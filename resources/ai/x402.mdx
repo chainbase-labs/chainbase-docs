@@ -1,0 +1,90 @@
+---
+title: "x402 Integration"
+description: "Pay-per-call API access for AI Agents via the HTTP 402 protocol"
+---
+
+## What is x402?
+
+x402 is an open standard introduced by Coinbase. It uses the HTTP `402 Payment Required` status code to allow machines (such as AI Agents) to automatically complete on-chain micropayments when initiating API requests. Payments are made using stablecoins (like USDC), with instant, transparent settlement and no need for trusted intermediaries.
+
+## Pricing
+
+All Chainbase Web3 API endpoints accessed via x402 are charged at a flat rate:
+
+| | Price |
+|---|---|
+| **Per API Call** | **$0.002 USDC** |
+
+No subscriptions, no monthly fees — just pay per request with your wallet.
+
+## Supported Endpoints
+
+All [Chainbase Web3 API](/api-reference/overview) endpoints support x402 access. See the [API Reference](/api-reference/overview) for the complete list of available endpoints.
+
+## Integration Steps (Python Example)
+
+### Install Dependencies
+
+```bash
+pip install eth_account x402
+```
+
+### Prepare Your Private Key
+
+Please ensure you have an Ethereum wallet with sufficient USDC (it is recommended to use a testnet or mainnet cold wallet). **Never expose your real private key in public code!**
+
+```python
+from eth_account import Account
+
+# For production, please read from environment variables or a key management service
+PRIVATE_KEY = "your_0x_private_key_here"  # Example: 0x123...abc
+account = Account.from_key(PRIVATE_KEY)
+```
+
+### Initialize x402 Session
+
+```python
+from x402 import x402ClientSync
+from x402.http.clients import x402_requests
+from x402.mechanisms.evm import EthAccountSigner
+from x402.mechanisms.evm.exact.register import register_exact_evm_client
+
+client = x402ClientSync()
+register_exact_evm_client(client, EthAccountSigner(account))
+
+session = x402_requests(client)
+```
+
+### Call Chainbase API
+
+For all Chainbase Web3 API endpoints, simply add `x-api-key: x402` to the request header. The rest of the usage is consistent with the standard API.
+
+```python
+from pprint import pprint
+
+# Example: Query Ethereum Mainnet USDT holder addresses ($0.002 per call)
+api_url = "https://api.chainbase.com/v1/token/holders?chain_id=1&contract_address=0xdac17f958d2ee523a2206206994597c13d831ec7"
+
+headers = {
+    "x-api-key": "x402",  # Enable x402 payment
+    "Accept": "application/json"
+}
+
+response = session.get(api_url, headers=headers)
+
+if response.status_code == 200:
+    pprint(response.json())
+else:
+    print(f"Payment failed or request error: {response.status_code} - {response.text}")
+```
+
+## Use Cases
+
+- **AI Agent automatically monitors token address changes**: Query once per hour, pay per request, no monthly fee required.
+- **One-time data fetching**: Analyze a specific Token project, call only once, and pay just $0.002.
+- **Experimental development**: No need to register an enterprise account, pay directly with a wallet to test interfaces.
+
+## Next Steps
+
+- [API Reference](/api-reference/overview) — Full interactive API documentation
+- [Supported Networks](/resources/platform/supported-networks/supported-networks) — Complete list of supported chains

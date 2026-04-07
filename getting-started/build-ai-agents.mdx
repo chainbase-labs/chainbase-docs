@@ -1,0 +1,96 @@
+---
+title: "Build AI Agents"
+description: "Connect AI agents to real-time Web3 data and crypto social intelligence"
+---
+
+Chainbase provides multiple integration paths for AI agents and LLM applications to access on-chain data and crypto social signals.
+
+## Quick Start: MCP
+
+The fastest way to connect an AI client to Chainbase data. MCP (Model Context Protocol) gives your AI agent direct access to token, wallet, NFT, and transaction data through natural language.
+
+<Tabs>
+  <Tab title="Claude Code">
+  ```bash
+  # Web3 data (requires API key)
+  claude mcp add --transport http chainbase https://api.chainbase.com/v1/mcp --header "X-API-KEY: YOUR_API_KEY"
+
+  # Tops social data (free)
+  claude mcp add --transport http tops https://api.chainbase.com/tops/v1/mcp
+  ```
+  </Tab>
+  <Tab title="Cursor">
+  Add to `~/.cursor/mcp.json`:
+  ```json
+  {
+    "mcpServers": {
+      "chainbase": {
+        "url": "https://api.chainbase.com/v1/mcp",
+        "headers": { "X-API-KEY": "YOUR_API_KEY" }
+      },
+      "tops": {
+        "url": "https://api.chainbase.com/tops/v1/mcp"
+      }
+    }
+  }
+  ```
+  </Tab>
+  <Tab title="Claude Desktop">
+  Settings > Connectors > Add custom connector
+
+  - Name: `Chainbase Web3 Data`
+  - Endpoint: `https://api.chainbase.com/v1/mcp`
+
+  For Tops (free): add another connector with endpoint `https://api.chainbase.com/tops/v1/mcp`
+  </Tab>
+</Tabs>
+
+Once connected, ask your AI agent questions like:
+- "What are the top 10 holders of USDT on Ethereum?"
+- "What's trending in crypto right now?"
+- "Show me the NFTs owned by vitalik.eth"
+
+Full reference: [Web3 Data MCP](/resources/ai/mcp) | [Tops Data MCP](/resources/ai/mcp-tops)
+
+## x402 Payment Protocol
+
+Enable AI agents to autonomously pay for API calls using stablecoins (USDC) via the HTTP 402 standard. No subscriptions — just $0.002 per call.
+
+```python
+from x402 import x402ClientSync
+from x402.http.clients import x402_requests
+from x402.mechanisms.evm import EthAccountSigner
+from x402.mechanisms.evm.exact.register import register_exact_evm_client
+
+client = x402ClientSync()
+register_exact_evm_client(client, EthAccountSigner(account))
+session = x402_requests(client)
+
+response = session.get(
+    "https://api.chainbase.com/v1/token/holders?chain_id=1&contract_address=0xdac17f958d2ee523a2206206994597c13d831ec7",
+    headers={"x-api-key": "x402"}
+)
+```
+
+Full reference: [x402 Integration](/resources/ai/x402)
+
+## Web3 Data Skill for Claude Code
+
+A Claude Code skill for on-chain data and crypto social intelligence via natural language:
+
+```bash
+npx skills add https://github.com/lxcong/web3-data-skill --skill web3-data
+```
+
+```
+> /web3-data top 10 holders of USDT on Ethereum
+> /web3-data what are the trending crypto narratives?
+```
+
+Full reference: [Web3 Data Skill](/resources/ai/web3-data-skill)
+
+## Next Steps
+
+- [Explore All Products](/getting-started/explore-all-products) — See all Chainbase tools
+- [CLI Reference](/resources/ai/cli) — Command-line tool also designed for AI agent automation
+- [API Reference](/api-reference/overview) — Full endpoint documentation
