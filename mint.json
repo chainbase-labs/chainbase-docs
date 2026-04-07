@@ -629,93 +629,79 @@
       ]
     },
     {
-      "group": "Introduction",
+      "group": "Learn",
       "pages": [
         "network/introduction/about",
+        {
+          "group": "Network Overview",
+          "pages": [
+            "network/introduction/networks/overview",
+            "network/introduction/networks/developers",
+            "network/introduction/networks/operators",
+            "network/introduction/networks/validators",
+            "network/introduction/networks/delegators"
+          ]
+        },
         "network/introduction/tokenomics",
         "network/introduction/litepaper",
+        {
+          "group": "Core Concepts",
+          "pages": [
+            "network/core-concepts/dual-chain",
+            "network/core-concepts/dual-staking",
+            "network/core-concepts/data-processing-based-on-avs",
+            "network/core-concepts/avs-design",
+            "network/core-concepts/glossary",
+            {
+              "group": "Architecture",
+              "pages": [
+                "network/core-concepts/architecture/overview",
+                "network/core-concepts/architecture/execution_layer",
+                "network/core-concepts/architecture/consensus_layer",
+                "network/core-concepts/architecture/data_accessibility_layer",
+                "network/core-concepts/architecture/co_processor_layer"
+              ]
+            }
+          ]
+        },
+        {
+          "group": "Crypto World Model (Theia)",
+          "pages": [
+            "network/theia/World_model/welcome",
+            "network/theia/World_model/theia",
+            "network/theia/World_model/features",
+            "network/theia/TheiaChat/overview",
+            "network/theia/TheiaChat/task-models",
+            "network/theia/TheiaChat/create-task-models",
+            "network/theia/Developers/Open-APIs",
+            {
+              "group": "Glossary",
+              "pages": [
+                "network/theia/Developers/Glossary/D2ORA",
+                "network/theia/Developers/Glossary/G2D"
+              ]
+            },
+            "network/theia/Resources/Roadmap",
+            "network/theia/Resources/Whitepaper",
+            "network/theia/Resources/FAQs"
+          ]
+        },
         "network/introduction/faqs"
       ]
     },
     {
-      "group": "Chainbase Network",
-      "pages": [
-        "network/introduction/networks/overview",
-        "network/introduction/networks/developers",
-        "network/introduction/networks/operators",
-        "network/introduction/networks/validators",
-        "network/introduction/networks/delegators"
-      ]
-    },
-    {
-      "group": "Core Concepts",
-      "pages": [
-        "network/core-concepts/dual-chain",
-        "network/core-concepts/dual-staking",
-        "network/core-concepts/data-processing-based-on-avs",
-        "network/core-concepts/avs-design",
-        "network/core-concepts/glossary",
-        {
-          "group": "Architecture",
-          "pages": [
-            "network/core-concepts/architecture/overview",
-            "network/core-concepts/architecture/execution_layer",
-            "network/core-concepts/architecture/consensus_layer",
-            "network/core-concepts/architecture/data_accessibility_layer",
-            "network/core-concepts/architecture/co_processor_layer"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Crypto World Model",
-      "pages": [
-        "network/theia/World_model/welcome",
-        "network/theia/World_model/theia",
-        "network/theia/World_model/features"
-      ]
-    },
-    {
-      "group": "TheiaChat",
-      "pages": [
-        "network/theia/TheiaChat/overview",
-        "network/theia/TheiaChat/task-models",
-        "network/theia/TheiaChat/create-task-models"
-      ]
-    },
-    {
-      "group": "Theia Developers",
-      "pages": [
-        "network/theia/Developers/Open-APIs",
-        {
-          "group": "Glossary",
-          "pages": [
-            "network/theia/Developers/Glossary/D2ORA",
-            "network/theia/Developers/Glossary/G2D"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Theia Resources",
-      "pages": [
-        "network/theia/Resources/Roadmap",
-        "network/theia/Resources/Whitepaper",
-        "network/theia/Resources/FAQs"
-      ]
-    },
-    {
-      "group": "Run a Node",
+      "group": "Operate",
       "pages": [
         "network/node/introduction",
         "network/node/operator",
         "network/node/validator",
         "network/node/configuration",
-        "network/node/testnet"
+        "network/node/testnet",
+        "network/developers/testnet"
       ]
     },
     {
-      "group": "Contributing",
+      "group": "Contribute",
       "pages": [
         "network/contributing/overview",
         "network/contributing/roadmap",
