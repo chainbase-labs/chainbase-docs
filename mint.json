@@ -51,15 +51,15 @@
       ]
     },
     {
-      "group": "Query Blockchain Data",
-      "pages": [
-        "getting-started/query-blockchain-data"
-      ]
-    },
-    {
       "group": "Build AI Agents",
       "pages": [
         "getting-started/build-ai-agents"
+      ]
+    },
+    {
+      "group": "Query Blockchain Data",
+      "pages": [
+        "getting-started/query-blockchain-data"
       ]
     },
     {
