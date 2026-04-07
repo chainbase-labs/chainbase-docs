@@ -3,17 +3,17 @@ title: 'Chainbase Network AVS Design'
 ---
 
 ## **Overview**
-EigenLayer's AVS is a cornerstone of its high-performance execution layer. Details to be specified [here](/core-concepts/data-processing-based-on-avs).
+EigenLayer's AVS is a cornerstone of its high-performance execution layer. Details to be specified [here](/network/core-concepts/data-processing-based-on-avs).
 
 ## **Integration with EigenLayer Core (AVS Directory)**
 To integrate with EigenLayer Core, Chainbase Network implements an instance of ECDSAServiceManagerBase or ServiceManagerBase (BLS). This integration allows operators to register by sending transactions to the AvsServiceManager, completing the registration process
-![death spiral](../images/avs-design-01.png)
+![death spiral](../../images/avs-design-01.png)
 
 ## **On-Chain Verification Challenges**
 Chainbase Network requires a stable and efficient group of operators to form a decentralized and trusted data processing network. The Coordinator component needs a mechanism to measure the operational quality of these operators, ensuring they meet the network's standards. This is achieved through an on-chain consensus game involving slashing for non-compliance.
 
 The Coordinator periodically generates a challenge task, which involves calculating the block hash of a specific block within the blockchain data integrated into Chainbase Network. This task has a clear answer and expected outcome. The challenge is sent to operators' manuscript-node nodes, where they execute the task and return the signed result along with the recorded task execution time. This information is used to evaluate the operators' efficiency, and the results are verified on the AVS chain.
-![death spiral](../images/avs-design-02.png)
+![death spiral](../../images/avs-design-02.png)
 
 ## **Implementation Details**
 **Coordinator:**
