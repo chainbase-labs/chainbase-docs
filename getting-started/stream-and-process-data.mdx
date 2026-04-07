@@ -1,0 +1,47 @@
+---
+title: "Stream & Process Data"
+description: "Build custom blockchain data pipelines with Manuscript and Data Sync"
+---
+
+Chainbase provides two approaches for building data pipelines: Manuscript for custom data processing, and Data Sync for streaming raw chain data to your infrastructure.
+
+## Manuscript
+
+Manuscript is a blockchain data streaming framework that lets you define data sources, transformations (SQL), and destinations in a single YAML file.
+
+**Install and create your first pipeline:**
+
+```bash
+curl -fsSL https://github.com/chainbase-labs/manuscript-core/raw/main/install-gui.sh | bash
+./manuscript
+```
+
+With Manuscript you can:
+- Select data from any supported blockchain on the Chainbase DA layer
+- Transform data using standard SQL and Flink SQL functions
+- Export results to PostgreSQL, MySQL, S3, and more
+- Deploy locally or to the Chainbase network
+
+Full reference: [Manuscript Documentation](/resources/manuscript/overview) | [QuickStart](/resources/manuscript/QuickStart/prerequisites)
+
+## Data Sync
+
+Stream real-time blockchain data directly to your own databases and storage systems:
+
+- Complete historical data synchronized with Data Cloud tables
+- Real-time incremental updates after initial sync
+- Support for PostgreSQL, MySQL, S3, and other targets
+
+Set up via the [Chainbase Console](https://console.chainbase.com/):
+1. Select your data source and target storage
+2. Choose data type (raw, decoded, or abstracted)
+3. Configure sync frequency
+4. Start syncing and monitor progress
+
+Full reference: [Data Sync Documentation](/resources/platform/features/sync/overview)
+
+## Next Steps
+
+- [Explore All Products](/getting-started/explore-all-products) — See all Chainbase tools
+- [Data Catalog](/catalog/overview) — Browse available data schemas
+- [Data Cloud](/resources/platform/features/datacloud/overview) — Query data online before building a pipeline

@@ -1,0 +1,45 @@
+---
+title: "Explore Data in Cloud"
+description: "Run SQL queries against terabytes of indexed on-chain data"
+---
+
+Chainbase Data Cloud is an online data warehouse for Web3. Run SQL queries against terabytes of indexed blockchain data — no infrastructure setup required.
+
+## Quick Start
+
+1. Go to [console.chainbase.com/dataCloud](https://console.chainbase.com/dataCloud)
+2. Enter a SQL query:
+
+```sql
+SELECT block_timestamp, block_number, _value, _from, _to
+FROM ethereum.erc20_transfer
+WHERE block_number = 17089970
+```
+
+3. Click **Execute** to see results instantly.
+
+## Key Features
+
+- **Unified datasets** — raw, decoded, and abstracted tables across 50+ chains
+- **Parameterized queries** — use `{parameter}` placeholders for reusable templates
+- **File Explorer** — save and organize your queries
+- **Generate API** — turn any saved query into a REST endpoint with one click
+
+## Generate an API from Your Query
+
+After saving a query, click **Generate API** to create a callable endpoint:
+
+```typescript
+const response = await fetch(
+  `https://api.chainbasehq.com/v1/query/${queryId}/execute`,
+  { method: "POST", headers: { "API-KEY": apiKey } }
+);
+```
+
+Full reference: [Data Cloud Documentation](/resources/platform/features/datacloud/overview) | [SQL API](/resources/platform/features/api/sql-api/overview)
+
+## Next Steps
+
+- [Data Catalog](/catalog/overview) — Browse available tables and schemas
+- [SQL API Reference](/api-reference/sql-api/execute-queries) — Call Data Cloud queries programmatically
+- [Data Sync](/resources/platform/features/sync/overview) — Stream data to your own infrastructure instead
