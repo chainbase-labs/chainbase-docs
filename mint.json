@@ -23,115 +23,278 @@
   ],
   "tabs": [
     {
-      "name": "Run a node",
-      "url": "node"
+      "name": "Developer Resources",
+      "url": "resources"
+    },
+    {
+      "name": "API Reference",
+      "url": "api-reference"
     },
     {
       "name": "Data Catalog",
       "url": "catalog"
     },
     {
-      "name": "Data Platform",
-      "url": "platform"
-    },
-    {
-      "name": "Crypto World Model",
-      "url": "theia"
-    },
-    {
-      "name": "Chainbase AI",
-      "url": "chainbase-ai"
-    },
-    {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Chainbase Network",
+      "url": "network"
     }
   ],
   "primaryTab": {
-    "name": "Learn and build"
+    "name": "Getting Started"
   },
   "navigation": [
     {
-      "group": "Introduction",
+      "group": "Getting Started",
       "pages": [
-        "introduction/about",
-        {
-          "group": "Chainbase Network",
-          "pages": [
-            "introduction/networks/overview",
-            "introduction/networks/developers",
-            "introduction/networks/operators",
-            "introduction/networks/validators",
-            "introduction/networks/delegators"
-          ]
-        },
-        "introduction/tokenomics",
-        "introduction/litepaper",
-        "introduction/faqs"
+        "getting-started/welcome",
+        "getting-started/explore-all-products"
       ]
     },
     {
-      "group": "Core Concepts",
+      "group": "Query Blockchain Data",
+      "pages": [
+        "getting-started/query-blockchain-data"
+      ]
+    },
+    {
+      "group": "Build AI Agents",
+      "pages": [
+        "getting-started/build-ai-agents"
+      ]
+    },
+    {
+      "group": "Stream & Process Data",
+      "pages": [
+        "getting-started/stream-and-process-data"
+      ]
+    },
+    {
+      "group": "Explore Data in Cloud",
+      "pages": [
+        "getting-started/explore-data-in-cloud"
+      ]
+    },
+    {
+      "group": "Tutorials & Use Cases",
       "pages": [
         {
-          "group": "Manuscript",
+          "group": "Balance API Tutorials",
           "pages": [
-            "core-concepts/manuscript/overview",
-            {
-              "group": "QuickStart",
-              "pages": [
-                "core-concepts/manuscript/QuickStart/prerequisites",
-                "core-concepts/manuscript/QuickStart/create_manuscript",
-                "core-concepts/manuscript/QuickStart/run_manuscript",
-                "core-concepts/manuscript/QuickStart/advanced_options"
-              ]
-            },
-            "core-concepts/manuscript/zone"
+            "getting-started/tutorials/balance-api/get-native-token-balances",
+            "getting-started/tutorials/balance-api/get-nfts-owned-by-address"
           ]
         },
-        "core-concepts/dual-chain",
-        "core-concepts/dual-staking",
-        "core-concepts/data-processing-based-on-avs",
-        "core-concepts/avs-design",
-        "core-concepts/glossary",
         {
-          "group": "Architecture",
+          "group": "NFT API Tutorials",
           "pages": [
-            "core-concepts/architecture/overview",
-            "core-concepts/architecture/execution_layer",
-            "core-concepts/architecture/consensus_layer",
-            "core-concepts/architecture/data_accessibility_layer",
-            "core-concepts/architecture/co_processor_layer"
+            "getting-started/tutorials/nft-api/get-all-transfers-of-a-collection",
+            "getting-started/tutorials/nft-api/get-nft-metadata",
+            "getting-started/tutorials/nft-api/get-nft-owners-by-collection",
+            "getting-started/tutorials/nft-api/get-nft-owner-by-token"
+          ]
+        },
+        {
+          "group": "Token API Tutorials",
+          "pages": [
+            "getting-started/tutorials/token-api/get-erc20-tokens-by-address",
+            "getting-started/tutorials/token-api/get-erc20-transfers-by-contract",
+            "getting-started/tutorials/token-api/get-token-metadata",
+            "getting-started/tutorials/token-api/get-holders-of-a-token",
+            "getting-started/tutorials/token-api/get-top-token-holders",
+            "getting-started/tutorials/token-api/get-token-price",
+            "getting-started/tutorials/token-api/get-token-price-history"
+          ]
+        },
+        {
+          "group": "Domain API Tutorials",
+          "pages": [
+            "getting-started/tutorials/domain-api/resolve-domain",
+            "getting-started/tutorials/domain-api/reverse-resolve-domain",
+            "getting-started/tutorials/domain-api/get-domain-names-by-address"
           ]
         }
       ]
     },
     {
-      "group": "Developers",
+      "group": "Developer Resources",
       "pages": [
-        "developers/testnet",
-        "developers/open_apis"
+        "resources/overview"
       ]
     },
     {
-      "group": "Contributing",
+      "group": "Chainbase AI",
       "pages": [
-        "contributing/overview",
-        "contributing/roadmap",
-        "contributing/governance",
-        "contributing/cips",
-        "contributing/legal-disclaimer",
-        "contributing/micar_whitepaper"
+        "resources/ai/overview",
+        "resources/ai/mcp",
+        "resources/ai/mcp-tops",
+        "resources/ai/x402",
+        "resources/ai/web3-data-skill"
       ]
     },
     {
-      "group": "Getting Started",
+      "group": "Data Platform",
       "pages": [
-        "node/introduction",
-        "node/operator",
-        "node/validator",
-        "node/configuration",
-        "node/testnet"
+        "resources/platform/overview",
+        "resources/platform/supported-networks/supported-networks",
+        {
+          "group": "Datasets",
+          "pages": [
+            "resources/platform/datasets/overview",
+            "resources/platform/datasets/inscription-and-rune",
+            "resources/platform/datasets/data-catalog"
+          ]
+        },
+        {
+          "group": "Data Cloud",
+          "pages": [
+            "resources/platform/features/datacloud/overview",
+            "resources/platform/features/datacloud/write-efficient-queries"
+          ]
+        },
+        {
+          "group": "Data Sync",
+          "pages": [
+            "resources/platform/features/sync/overview"
+          ]
+        },
+        {
+          "group": "APIs",
+          "pages": [
+            "resources/platform/features/api/web3-api",
+            {
+              "group": "SQL API",
+              "pages": [
+                "resources/platform/features/api/sql-api/overview",
+                "resources/platform/features/api/sql-api/datacloud-task-api",
+                "resources/platform/features/api/sql-api/datacloud-custom-api",
+                "resources/platform/features/api/sql-api/datacloud-api-classic"
+              ]
+            }
+          ]
+        },
+        "resources/platform/faqs/faq",
+        "resources/platform/pricing/pricing",
+        "resources/platform/support"
+      ]
+    },
+    {
+      "group": "Manuscript",
+      "pages": [
+        "resources/manuscript/overview",
+        {
+          "group": "QuickStart",
+          "pages": [
+            "resources/manuscript/QuickStart/prerequisites",
+            "resources/manuscript/QuickStart/create_manuscript",
+            "resources/manuscript/QuickStart/run_manuscript",
+            "resources/manuscript/QuickStart/advanced_options"
+          ]
+        },
+        "resources/manuscript/zone"
+      ]
+    },
+    {
+      "group": "CLI",
+      "pages": [
+        "resources/ai/cli"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/overview",
+        "api-reference/status-code",
+        "api-reference/jtw"
+      ]
+    },
+    {
+      "group": "Web3 API",
+      "pages": [
+        {
+          "group": "Basic API",
+          "pages": [
+            "api-reference/web3-api/basic/block/get-latest-block-number",
+            "api-reference/web3-api/basic/block/get-block-by-number",
+            "api-reference/web3-api/basic/transaction/get-transaction",
+            "api-reference/web3-api/basic/transaction/get-transactions-by-account",
+            "api-reference/web3-api/basic/contract/contract-call"
+          ]
+        },
+        {
+          "group": "Balance API",
+          "pages": [
+            "api-reference/web3-api/balance/token-balances/get-erc20-token-balances",
+            "api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address",
+            "api-reference/web3-api/balance/token-balances/get-native-token-balances"
+          ]
+        },
+        {
+          "group": "Token API",
+          "pages": [
+            "api-reference/web3-api/token/token-metadata/get-token-metadata",
+            "api-reference/web3-api/token/token-holders/get-top-token-holders",
+            "api-reference/web3-api/token/token-holders/get-token-holders",
+            "api-reference/web3-api/token/market-data/get-token-price",
+            "api-reference/web3-api/token/market-data/get-token-price-history",
+            "api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract"
+          ]
+        },
+        {
+          "group": "NFT API",
+          "pages": [
+            "api-reference/web3-api/nft/nft-metadata/get-nft-metadata",
+            "api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection",
+            "api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token",
+            "api-reference/web3-api/nft/nft-metadata/get-nft-rarity",
+            "api-reference/web3-api/nft/nft-ownership/get-nft-owner-history-by-token",
+            "api-reference/web3-api/nft/nft-transfers/get-nft-transfers-by-collection",
+            "api-reference/web3-api/nft/nft-collections/get-nft-collection-items",
+            "api-reference/web3-api/nft/nft-collections/get-nft-collection-metadata"
+          ]
+        },
+        {
+          "group": "Domain API",
+          "pages": [
+            "api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains",
+            "api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain",
+            "api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain"
+          ]
+        },
+        {
+          "group": "Label API",
+          "pages": [
+            "api-reference/web3-api/basic/labels/get-address-labels"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "SQL API",
+      "pages": [
+        {
+          "group": "Alpha",
+          "pages": [
+            "api-reference/sql-api/execute-queries",
+            "api-reference/sql-api/get-query-status",
+            "api-reference/sql-api/get-query-results"
+          ]
+        },
+        {
+          "group": "Classic(Deprecated)",
+          "pages": [
+            "api-reference/sql-api/data-cloud-sql-query"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Tops API",
+      "pages": [
+        "api-reference/tops-api/tool/list-trending-topics",
+        "api-reference/tops-api/tool/get-topic-detail",
+        "api-reference/tops-api/tool/get-posts-for-a-topic",
+        "api-reference/tops-api/tool/search-narrative-candidate-topics-by-keyword",
+        "api-reference/tops-api/tool/search-social-mentions-by-keyword"
       ]
     },
     {
@@ -466,256 +629,100 @@
       ]
     },
     {
+      "group": "Introduction",
+      "pages": [
+        "network/introduction/about",
+        "network/introduction/tokenomics",
+        "network/introduction/litepaper",
+        "network/introduction/faqs"
+      ]
+    },
+    {
+      "group": "Chainbase Network",
+      "pages": [
+        "network/introduction/networks/overview",
+        "network/introduction/networks/developers",
+        "network/introduction/networks/operators",
+        "network/introduction/networks/validators",
+        "network/introduction/networks/delegators"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        "network/core-concepts/dual-chain",
+        "network/core-concepts/dual-staking",
+        "network/core-concepts/data-processing-based-on-avs",
+        "network/core-concepts/avs-design",
+        "network/core-concepts/glossary",
+        {
+          "group": "Architecture",
+          "pages": [
+            "network/core-concepts/architecture/overview",
+            "network/core-concepts/architecture/execution_layer",
+            "network/core-concepts/architecture/consensus_layer",
+            "network/core-concepts/architecture/data_accessibility_layer",
+            "network/core-concepts/architecture/co_processor_layer"
+          ]
+        }
+      ]
+    },
+    {
       "group": "Crypto World Model",
       "pages": [
-        "theia/World_model/welcome",
-        "theia/World_model/theia",
-        "theia/World_model/features"
+        "network/theia/World_model/welcome",
+        "network/theia/World_model/theia",
+        "network/theia/World_model/features"
       ]
     },
     {
       "group": "TheiaChat",
       "pages": [
-        "theia/TheiaChat/overview",
-        "theia/TheiaChat/task-models",
-        "theia/TheiaChat/create-task-models"
+        "network/theia/TheiaChat/overview",
+        "network/theia/TheiaChat/task-models",
+        "network/theia/TheiaChat/create-task-models"
       ]
     },
     {
-      "group": "Developers",
+      "group": "Theia Developers",
       "pages": [
-        "theia/Developers/Open-APIs",
+        "network/theia/Developers/Open-APIs",
         {
           "group": "Glossary",
           "pages": [
-            "theia/Developers/Glossary/D2ORA",
-            "theia/Developers/Glossary/G2D"
+            "network/theia/Developers/Glossary/D2ORA",
+            "network/theia/Developers/Glossary/G2D"
           ]
         }
       ]
     },
     {
-      "group": "Resources",
+      "group": "Theia Resources",
       "pages": [
-        "theia/Resources/Roadmap",
-        "theia/Resources/Whitepaper",
-        "theia/Resources/FAQs"
+        "network/theia/Resources/Roadmap",
+        "network/theia/Resources/Whitepaper",
+        "network/theia/Resources/FAQs"
       ]
     },
     {
-      "group": "Data Platform",
+      "group": "Run a Node",
       "pages": [
-        "platform/overview",
-        "platform/supported-networks/supported-networks",
-        {
-          "group": "Datasets",
-          "pages": [
-            "platform/datasets/overview",
-            "platform/datasets/inscription-and-rune",
-            "platform/datasets/data-catalog"
-          ]
-        },
-        {
-          "group": "Data Cloud",
-          "pages": [
-            "platform/features/datacloud/overview",
-            "platform/features/datacloud/write-efficient-queries"
-          ]
-        },
-        {
-          "group": "Data Sync",
-          "pages": [
-            "platform/features/sync/overview"
-          ]
-        },
-        {
-          "group": "APIs",
-          "pages": [
-            "platform/features/api/web3-api",
-            {
-              "group": "SQL API",
-              "pages": [
-                "platform/features/api/sql-api/overview",
-                "platform/features/api/sql-api/datacloud-task-api",
-                "platform/features/api/sql-api/datacloud-custom-api",
-                "platform/features/api/sql-api/datacloud-api-classic"
-              ]
-            }
-          ]
-        },
-        {
-          "group": "Use Cases & Tutorials",
-          "pages": [
-            {
-              "group": "Balance API Tutorials",
-              "pages": [
-                "platform/usecases/balance-api/get-native-token-balances",
-                "platform/usecases/balance-api/get-nfts-owned-by-address"
-              ]
-            },
-            {
-              "group": "NFT API Tutorials",
-              "pages": [
-                "platform/usecases/nft-api/get-all-transfers-of-a-collection",
-                "platform/usecases/nft-api/get-nft-metadata",
-                "platform/usecases/nft-api/get-nft-owners-by-collection",
-                "platform/usecases/nft-api/get-nft-owner-by-token"
-              ]
-            },
-            {
-              "group": "Token API Tutorials",
-              "pages": [
-                "platform/usecases/token-api/get-erc20-tokens-by-address",
-                "platform/usecases/token-api/get-erc20-transfers-by-contract",
-                "platform/usecases/token-api/get-token-metadata",
-                "platform/usecases/token-api/get-holders-of-a-token",
-                "platform/usecases/token-api/get-top-token-holders",
-                "platform/usecases/token-api/get-token-price",
-                "platform/usecases/token-api/get-token-price-history"
-              ]
-            },
-            {
-              "group": "Domain API Tutorials",
-              "pages": [
-                "platform/usecases/domain-api/resolve-domain",
-                "platform/usecases/domain-api/reverse-resolve-domain",
-                "platform/usecases/domain-api/get-domain-names-by-address"
-              ]
-            }
-          ]
-        },
-        "platform/faqs/faq",
-        "platform/pricing/pricing",
-        "platform/support"
+        "network/node/introduction",
+        "network/node/operator",
+        "network/node/validator",
+        "network/node/configuration",
+        "network/node/testnet"
       ]
     },
     {
-      "group": "Chainbase AI",
+      "group": "Contributing",
       "pages": [
-        "chainbase-ai/overview"
-      ]
-    },
-    {
-      "group": "Payments",
-      "pages": [
-        "chainbase-ai/x402"
-      ]
-    },
-    {
-      "group": "Agent Skills",
-      "pages": [
-        "chainbase-ai/web3-data-skill"
-      ]
-    },
-    {
-      "group": "CLI",
-      "pages": [
-        "chainbase-ai/cli"
-      ]
-    },
-    {
-      "group": "MCP Servers",
-      "pages": [
-        "chainbase-ai/mcp",
-        "chainbase-ai/mcp-tops"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "api-reference/overview",
-        "api-reference/status-code",
-        "api-reference/jtw"
-      ]
-    },
-    {
-      "group": "Web3 API",
-      "pages": [
-        {
-          "group": "Basic API",
-          "pages": [
-            "api-reference/web3-api/basic/block/get-latest-block-number",
-            "api-reference/web3-api/basic/block/get-block-by-number",
-            "api-reference/web3-api/basic/transaction/get-transaction",
-            "api-reference/web3-api/basic/transaction/get-transactions-by-account",
-            "api-reference/web3-api/basic/contract/contract-call"
-          ]
-        },
-        {
-          "group": "Balance API",
-          "pages": [
-            "api-reference/web3-api/balance/token-balances/get-erc20-token-balances",
-            "api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address",
-            "api-reference/web3-api/balance/token-balances/get-native-token-balances"
-          ]
-        },
-        {
-          "group": "Token API",
-          "pages": [
-            "api-reference/web3-api/token/token-metadata/get-token-metadata",
-            "api-reference/web3-api/token/token-holders/get-top-token-holders",
-            "api-reference/web3-api/token/token-holders/get-token-holders",
-            "api-reference/web3-api/token/market-data/get-token-price",
-            "api-reference/web3-api/token/market-data/get-token-price-history",
-            "api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract"
-          ]
-        },
-        {
-          "group": "NFT API",
-          "pages": [
-            "api-reference/web3-api/nft/nft-metadata/get-nft-metadata",
-            "api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection",
-            "api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token",
-            "api-reference/web3-api/nft/nft-metadata/get-nft-rarity",
-            "api-reference/web3-api/nft/nft-ownership/get-nft-owner-history-by-token",
-            "api-reference/web3-api/nft/nft-transfers/get-nft-transfers-by-collection",
-            "api-reference/web3-api/nft/nft-collections/get-nft-collection-items",
-            "api-reference/web3-api/nft/nft-collections/get-nft-collection-metadata"
-          ]
-        },
-        {
-          "group": "Domain API",
-          "pages": [
-            "api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains",
-            "api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain",
-            "api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain"
-          ]
-        },
-        {
-          "group": "Label API",
-          "pages": [
-            "api-reference/web3-api/basic/labels/get-address-labels"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "SQL API",
-      "pages": [
-        {
-          "group": "Alpha",
-          "pages": [
-            "api-reference/sql-api/execute-queries",
-            "api-reference/sql-api/get-query-status",
-            "api-reference/sql-api/get-query-results"
-          ]
-        },
-        {
-          "group": "Classic(Deprecated)",
-          "pages": [
-            "api-reference/sql-api/data-cloud-sql-query"
-          ]
-        }
-      ]
-    },
-    {
-      "group": "Tops API",
-      "pages":[
-        "api-reference/tops-api/tool/list-trending-topics",
-        "api-reference/tops-api/tool/get-topic-detail",
-        "api-reference/tops-api/tool/get-posts-for-a-topic",
-        "api-reference/tops-api/tool/search-narrative-candidate-topics-by-keyword",
-        "api-reference/tops-api/tool/search-social-mentions-by-keyword"
+        "network/contributing/overview",
+        "network/contributing/roadmap",
+        "network/contributing/governance",
+        "network/contributing/cips",
+        "network/contributing/legal-disclaimer",
+        "network/contributing/micar_whitepaper"
       ]
     }
   ],
