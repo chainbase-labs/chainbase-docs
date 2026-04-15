@@ -697,6 +697,12 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/introduction/litepaper",
+      "destination": "/network/introduction/litepaper"
+    }
+  ],
   "footerSocials": {
     "x": "https://twitter.com/chainbaseHQ",
     "discord": "https://chainbase.com/discord",
