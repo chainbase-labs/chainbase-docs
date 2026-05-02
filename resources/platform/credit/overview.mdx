@@ -1,0 +1,139 @@
+---
+title: "Overview"
+description: "How Chainbase meters API usage with Credit Units (CBU)."
+---
+
+Chainbase meters paid API usage with **Credit Units (CBU)**. Every successful request to a metered API consumes a fixed number of CBU, and your monthly plan grants a CBU allowance that resets on a regular cycle.
+
+## Which APIs consume credits
+
+| Product | How it's metered |
+| --- | --- |
+| **Web3 API** | Per request, varying by method. See [Rate Card](/resources/platform/credit/methods). |
+| **SQL API** | Flat **200 CBU** per query execution. |
+
+Other Chainbase products are billed separately and are not covered by Credit Units.
+
+## Plans & monthly allowance
+
+| Plan | Monthly Credit Units | Billing cycle |
+| --- | --- | --- |
+| **Free** | 200,000 | Calendar month — resets on the **1st of each month (UTC)**. |
+| **Developer** | 10,000,000 | Anchored to your **subscription day** — resets on the same day-of-month each cycle. If your anchor day exceeds the days in a given month (e.g. day 31 in February), the cycle ends on that month's last day. |
+| **Enterprise** | Custom | Custom billing cycle, agreed in your contract. Contact sales for details. |
+
+Unused CBU do not roll over to the next cycle.
+
+CBU usage is tracked at the **account** level. All API keys, apps, and projects under the same account share a single monthly allowance — there is no per-key quota.
+
+### Cost example
+
+A workload running 5,000 native balance lookups, 1,000 NFT metadata calls, and 100 SQL queries per day:
+
+| Calls / day | Method | Unit cost | Daily CBU |
+| --- | --- | --- | --- |
+| 5,000 | Get Native Token Balance | 1 | 5,000 |
+| 1,000 | Get NFT Metadata | 1 | 1,000 |
+| 100 | SQL Query Execution | 200 | 20,000 |
+| | | **Total** | **26,000 / day ≈ 780,000 / month** |
+
+That workload exceeds the Free plan (200,000 CBU/month) and fits comfortably within the Developer plan (10,000,000 CBU/month).
+
+## Extra Credits Usage
+
+When your monthly plan allowance is fully consumed, requests can continue to be served by **extra credits** purchased on top of your plan. Extra credits give you a one-off, non-expiring buffer for traffic spikes without forcing a plan upgrade.
+
+### How they're priced
+
+The base rate is **$1 = 100,000 credits**, with volume bonuses applied automatically at checkout:
+
+| Single purchase amount | Bonus | Effective credits |
+| --- | --- | --- |
+| $1 – $49 | — | 100,000 / $ |
+| $50 – $249 | +5% | 105,000 / $ |
+| $250 – $999 | +10% | 110,000 / $ |
+| $1,000 – $10,000 | +20% | 120,000 / $ |
+
+Each purchase must be between **$1 and $10,000** USD. The discount is determined by each individual purchase amount, not by your cumulative spend.
+
+### How they're consumed
+
+1. Every billable request is charged to your **plan allowance** first.
+2. Once the plan allowance for the current cycle is exhausted, additional requests draw from your extra credit balance — provided extra credit consumption is **enabled** for your account.
+3. If extra credit consumption is **disabled**, requests are rejected after the plan allowance is used up, even if you have unused extra credits. This lets you hard-cap your monthly spend.
+4. Extra credits **do not expire** and are not reset when the plan cycle resets. Multiple purchases stack into a single balance.
+5. Unused plan allowance never converts into extra credits.
+
+You can enable or disable extra credit consumption at any time in the console, and you can buy additional packs whenever needed.
+
+Enterprise plans do not use the extra credit mechanism — usage limits and overage handling are governed by the contract.
+
+## Monitoring usage
+
+Track your live CBU consumption, current cycle window, and remaining balance in the console:
+
+[console.chainbase.com/settings/billing?tab=credit](https://console.chainbase.com/settings/billing?tab=credit)
+
+The dashboard breaks usage down by product (Web3 API, SQL API) and by day, so you can identify which methods drive your spend.
+
+## How a request is charged
+
+1. The gateway authenticates the request and looks up the method's CBU cost.
+2. **Web3 API** — CBU are recorded only on a successful response. Failed requests (4xx/5xx returned by Chainbase) are **not** charged.
+3. **SQL API** — CBU are deducted **immediately on submission**, as soon as the query is accepted for execution. The 200 CBU cost is charged regardless of whether the query ultimately succeeds, fails at runtime, or is cancelled, because the underlying compute resources are committed at submission time.
+4. When your plan allowance is exhausted, requests fall back to extra credits (if enabled). Without extra credits — or once the extra credit balance is also depleted — further requests are rejected with **HTTP 429 Too Many Requests** until the cycle resets or additional extra credits are purchased.
+
+For the per-method CBU table, see [Rate Card](/resources/platform/credit/methods).
+
+## Rate limits
+
+CBU is the **monthly** quota that governs total volume. Independently, your account is also subject to a **per-second rate limit** measured in CBU per second. During the current rollout period, both controls may apply to your traffic and are evaluated independently — exceeding either one will result in an HTTP 429 response.
+
+| Plan | Per-second rate limit |
+| --- | --- |
+| **Free** | 3 CBU / second |
+| **Developer** | 30 CBU / second |
+| **Enterprise** | Custom |
+
+Because the limit is measured in CBU rather than raw requests, the effective request rate depends on each method's cost. For example, on the Free plan you can sustain 3 calls/second to a 1-CBU method (e.g. Get Native Token Balance) but only 1 call/second to a 3-CBU method (e.g. Get ERC20 Token Balances).
+
+## FAQ
+
+<AccordionGroup>
+
+<Accordion title="Do all my API keys share the same monthly CBU quota?">
+Yes. CBU consumption is tracked at the account level. All keys, apps, and projects under your account draw from the same monthly allowance — there is no per-key budget.
+</Accordion>
+
+<Accordion title="My request timed out / failed with a network error. Was I charged?">
+Web3 API charges only on a successful response. Network timeouts and 4xx/5xx responses returned by Chainbase are not charged. If your client retries the request, each retry that reaches Chainbase and succeeds is billed independently.
+
+SQL API charges at submission. Once a query has been accepted by the gateway, the 200 CBU is final — including for client-side timeouts that result in a retry, since each accepted submission is billed.
+</Accordion>
+
+<Accordion title="Are batch endpoints (returning many records) charged per record?">
+No. Each Web3 API call is one request and consumes the listed CBU for that method, regardless of how many records the response contains.
+</Accordion>
+
+<Accordion title="Are paginated calls charged per page?">
+Yes. Each page request is a separate billable call.
+</Accordion>
+
+<Accordion title="What HTTP response do I get when I'm rate-limited?">
+Both limit types return **HTTP 429 Too Many Requests**:
+
+- **Monthly CBU exhausted** — your plan allowance (and any extra credits, if enabled) is depleted for the current cycle.
+- **Per-second CBU/s exceeded** — momentary traffic burst exceeds your plan's CBU/s limit (3 on Free, 30 on Developer).
+
+Check the response body and the [billing dashboard](https://console.chainbase.com/settings/billing?tab=credit) to determine which one was triggered. A short retry with backoff usually clears CBU/s throttling; a monthly-quota 429 will persist until the cycle resets or extra credits are added.
+</Accordion>
+
+<Accordion title="What happens to my CBU balance when I upgrade or downgrade my plan?">
+Your current cycle window and the new plan's allowance take effect according to the rules in the [Plans & monthly allowance](#plans--monthly-allowance) section. The console always shows your live cycle window and remaining balance — refer to it after any plan change.
+</Accordion>
+
+<Accordion title="Can I disable extra credits to hard-cap my spend?">
+Yes. Toggle off extra credit consumption in the console. With it off, requests are rejected with HTTP 429 once your plan allowance is used up, even if you have unused extra credits.
+</Accordion>
+
+</AccordionGroup>
