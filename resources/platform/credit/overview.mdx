@@ -10,7 +10,7 @@ Chainbase meters paid API usage with **Credit Units (CBU)**. Every successful re
 | Product | How it's metered |
 | --- | --- |
 | **Web3 API** | Per request, varying by method. See [Rate Card](/resources/platform/credit/methods). |
-| **SQL API** | Flat **200 CBU** per query execution. |
+| **SQL API** | Flat **100 CBU** per query execution. |
 
 Other Chainbase products are billed separately and are not covered by Credit Units.
 
@@ -34,8 +34,8 @@ A workload running 5,000 native balance lookups, 1,000 NFT metadata calls, and 1
 | --- | --- | --- | --- |
 | 5,000 | Get Native Token Balance | 1 | 5,000 |
 | 1,000 | Get NFT Metadata | 1 | 1,000 |
-| 100 | SQL Query Execution | 200 | 20,000 |
-| | | **Total** | **26,000 / day ≈ 780,000 / month** |
+| 100 | SQL Query Execution | 100 | 10,000 |
+| | | **Total** | **16,000 / day ≈ 480,000 / month** |
 
 That workload exceeds the Free plan (200,000 CBU/month) and fits comfortably within the Developer plan (10,000,000 CBU/month).
 
@@ -80,22 +80,24 @@ The dashboard breaks usage down by product (Web3 API, SQL API) and by day, so yo
 
 1. The gateway authenticates the request and looks up the method's CBU cost.
 2. **Web3 API** — CBU are recorded only on a successful response. Failed requests (4xx/5xx returned by Chainbase) are **not** charged.
-3. **SQL API** — CBU are deducted **immediately on submission**, as soon as the query is accepted for execution. The 200 CBU cost is charged regardless of whether the query ultimately succeeds, fails at runtime, or is cancelled, because the underlying compute resources are committed at submission time.
+3. **SQL API** — CBU are deducted **immediately on submission**, as soon as the query is accepted for execution. The 100 CBU cost is charged regardless of whether the query ultimately succeeds, fails at runtime, or is cancelled, because the underlying compute resources are committed at submission time.
 4. When your plan allowance is exhausted, requests fall back to extra credits (if enabled). Without extra credits — or once the extra credit balance is also depleted — further requests are rejected with **HTTP 429 Too Many Requests** until the cycle resets or additional extra credits are purchased.
 
 For the per-method CBU table, see [Rate Card](/resources/platform/credit/methods).
 
 ## Rate limits
 
-CBU is the **monthly** quota that governs total volume. Independently, your account is also subject to a **per-second rate limit** measured in CBU per second. During the current rollout period, both controls may apply to your traffic and are evaluated independently — exceeding either one will result in an HTTP 429 response.
+CBU is the **monthly** quota that governs total volume. Independently, **Web3 API** traffic is also subject to a **per-second rate limit** measured in CBU per second. During the current rollout period, both controls may apply to your Web3 API traffic and are evaluated independently — exceeding either one will result in an HTTP 429 response.
 
-| Plan | Per-second rate limit |
+| Plan | Web3 API per-second rate limit |
 | --- | --- |
 | **Free** | 3 CBU / second |
 | **Developer** | 30 CBU / second |
 | **Enterprise** | Custom |
 
 Because the limit is measured in CBU rather than raw requests, the effective request rate depends on each method's cost. For example, on the Free plan you can sustain 3 calls/second to a 1-CBU method (e.g. Get Native Token Balance) but only 1 call/second to a 3-CBU method (e.g. Get ERC20 Token Balances).
+
+The per-second limit does **not** apply to SQL API — SQL queries are governed only by the monthly CBU quota and any concurrency limits described in the SQL API documentation.
 
 ## FAQ
 
@@ -108,7 +110,7 @@ Yes. CBU consumption is tracked at the account level. All keys, apps, and projec
 <Accordion title="My request timed out / failed with a network error. Was I charged?">
 Web3 API charges only on a successful response. Network timeouts and 4xx/5xx responses returned by Chainbase are not charged. If your client retries the request, each retry that reaches Chainbase and succeeds is billed independently.
 
-SQL API charges at submission. Once a query has been accepted by the gateway, the 200 CBU is final — including for client-side timeouts that result in a retry, since each accepted submission is billed.
+SQL API charges at submission. Once a query has been accepted by the gateway, the 100 CBU is final — including for client-side timeouts that result in a retry, since each accepted submission is billed.
 </Accordion>
 
 <Accordion title="Are batch endpoints (returning many records) charged per record?">
@@ -123,7 +125,7 @@ Yes. Each page request is a separate billable call.
 Both limit types return **HTTP 429 Too Many Requests**:
 
 - **Monthly CBU exhausted** — your plan allowance (and any extra credits, if enabled) is depleted for the current cycle.
-- **Per-second CBU/s exceeded** — momentary traffic burst exceeds your plan's CBU/s limit (3 on Free, 30 on Developer).
+- **Per-second CBU/s exceeded (Web3 API only)** — momentary Web3 API burst exceeds your plan's CBU/s limit (3 on Free, 30 on Developer).
 
 Check the response body and the [billing dashboard](https://console.chainbase.com/settings/billing?tab=credit) to determine which one was triggered. A short retry with backoff usually clears CBU/s throttling; a monthly-quota 429 will persist until the cycle resets or extra credits are added.
 </Accordion>
