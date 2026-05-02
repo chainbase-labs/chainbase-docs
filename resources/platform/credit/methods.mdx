@@ -1,9 +1,9 @@
 ---
-title: "Rate Card"
-description: "Credit Unit (CBU) cost per Web3 API method and SQL API call."
+title: "Credit Cost"
+description: "Credit cost per Web3 API method and SQL API call."
 ---
 
-This page lists the Credit Unit (CBU) cost for every metered API method. Costs are uniform across all supported chains. Billing semantics differ by product:
+This page lists the credit cost for every metered API method. Costs are uniform across all supported chains. Billing semantics differ by product:
 
 - **Web3 API** — charged only on a successful response; failed requests (4xx/5xx) are free.
 - **SQL API** — charged at submission, regardless of whether the query later succeeds, fails at runtime, or is cancelled.
@@ -16,7 +16,7 @@ For full details on credits, plans, and billing cycles, see the [Credit Overview
 | --- | --- | --- |
 | [SQL Query Execution](/resources/platform/features/api/sql-api/overview) | SQL API | 100 |
 
-A flat 100 CBU is deducted the moment a query is submitted and accepted for execution, regardless of query complexity, scanned bytes, or runtime — and regardless of the query's eventual outcome.
+A flat 100 credits are deducted the moment a query is submitted and accepted for execution, regardless of query complexity, scanned bytes, or runtime — and regardless of the query's eventual outcome.
 
 ## Web3 API
 
@@ -72,9 +72,9 @@ A flat 100 CBU is deducted the moment a query is submitted and accepted for exec
 
 ## Notes
 
-- **When CBU are deducted.** Web3 API charges only on a successful response (4xx/5xx are free). SQL API charges at submission and the deduction is final, regardless of query outcome.
-- **No per-chain variation.** The same method costs the same number of CBU on every supported chain.
+- **When credits are deducted.** Web3 API charges only on a successful response (4xx/5xx are free). SQL API charges at submission and the deduction is final, regardless of query outcome.
+- **No per-chain variation.** The same method costs the same number of credits on every supported chain.
 - **Pagination.** Each page request is a separate billable call.
-- **Subject to change.** CBU costs may be adjusted as we add capacity or new methods. Material changes will be announced in advance.
+- **Subject to change.** Credit costs may be adjusted as we add capacity or new methods. Material changes will be announced in advance.
 
 To monitor your usage, visit [console.chainbase.com/settings/billing?tab=credit](https://console.chainbase.com/settings/billing?tab=credit).
