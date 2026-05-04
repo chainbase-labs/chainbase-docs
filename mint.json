@@ -157,6 +157,13 @@
             }
           ]
         },
+        {
+          "group": "Credit Units",
+          "pages": [
+            "resources/platform/credit/overview",
+            "resources/platform/credit/methods"
+          ]
+        },
         "resources/platform/faqs/faq",
         "resources/platform/pricing/pricing",
         "resources/platform/support"

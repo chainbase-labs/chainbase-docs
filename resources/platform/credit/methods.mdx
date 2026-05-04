@@ -1,0 +1,80 @@
+---
+title: "Credit Cost"
+description: "Credit cost per Web3 API method and SQL API call."
+---
+
+This page lists the credit cost for every metered API method. Costs are uniform across all supported chains. Billing semantics differ by product:
+
+- **Web3 API** — charged only on a successful response; failed requests (4xx/5xx) are free.
+- **SQL API** — charged at submission, regardless of whether the query later succeeds, fails at runtime, or is cancelled.
+
+For full details on credits, plans, and billing cycles, see the [Credit Overview](/resources/platform/credit/overview).
+
+## SQL API
+
+| Method | Endpoint | Credits |
+| --- | --- | --- |
+| [SQL Query Execution](/resources/platform/features/api/sql-api/overview) | SQL API | 100 |
+
+A flat 100 credits are deducted the moment a query is submitted and accepted for execution, regardless of query complexity, scanned bytes, or runtime — and regardless of the query's eventual outcome.
+
+## Web3 API
+
+### Basic
+
+| Method | Endpoint | Credits |
+| --- | --- | --- |
+| [Get Latest Block Number](/api-reference/web3-api/basic/block/get-latest-block-number) | `/v1/block/number/latest` | 1 |
+| [Get Block by Number](/api-reference/web3-api/basic/block/get-block-by-number) | `/v1/block/detail` | 3 |
+| [Get Transaction](/api-reference/web3-api/basic/transaction/get-transaction) | `/v1/tx/detail` | 3 |
+| [Get Transactions by Account](/api-reference/web3-api/basic/transaction/get-transactions-by-account) | `/v1/account/txs` | 3 |
+| [Contract Call](/api-reference/web3-api/basic/contract/contract-call) | `/v1/contract/call` | 3 |
+
+### Balance
+
+| Method | Endpoint | Credits |
+| --- | --- | --- |
+| [Get Native Token Balance](/api-reference/web3-api/balance/token-balances/get-native-token-balances) | `/v1/account/balance` | 1 |
+| [Get ERC20 Token Balances](/api-reference/web3-api/balance/token-balances/get-erc20-token-balances) | `/v1/account/tokens` | 3 |
+| [Get NFTs Owned by Address](/api-reference/web3-api/balance/nft-balances/get-nfts-owned-by-address) | `/v1/account/nfts` | 3 |
+
+### Token
+
+| Method | Endpoint | Credits |
+| --- | --- | --- |
+| [Get Token Metadata](/api-reference/web3-api/token/token-metadata/get-token-metadata) | `/v1/token/metadata` | 1 |
+| [Get Token Price](/api-reference/web3-api/token/market-data/get-token-price) | `/v1/token/price` | 1 |
+| [Get Token Price History](/api-reference/web3-api/token/market-data/get-token-price-history) | `/v1/token/price/history` | 3 |
+| [Get Token Holders](/api-reference/web3-api/token/token-holders/get-token-holders) | `/v1/token/holders` | 3 |
+| [Get Top Token Holders](/api-reference/web3-api/token/token-holders/get-top-token-holders) | `/v1/token/top-holders` | 3 |
+| [Get Token Transfers by Contract](/api-reference/web3-api/token/token-transfers/get-token-transfers-by-contract) | `/v1/token/transfers` | 5 |
+
+### NFT
+
+| Method | Endpoint | Credits |
+| --- | --- | --- |
+| [Get NFT Metadata](/api-reference/web3-api/nft/nft-metadata/get-nft-metadata) | `/v1/nft/metadata` | 1 |
+| [Get NFT Rarity](/api-reference/web3-api/nft/nft-metadata/get-nft-rarity) | `/v1/nft/rarity` | 1 |
+| [Get NFT Collection Metadata](/api-reference/web3-api/nft/nft-collections/get-nft-collection-metadata) | `/v1/nft/collection` | 1 |
+| [Get NFT Collection Items](/api-reference/web3-api/nft/nft-collections/get-nft-collection-items) | `/v1/nft/collection/items` | 3 |
+| [Get NFT Owner by Token](/api-reference/web3-api/nft/nft-ownership/get-nft-owner-by-token) | `/v1/nft/owner` | 3 |
+| [Get NFT Owners by Collection](/api-reference/web3-api/nft/nft-ownership/get-nft-owners-by-collection) | `/v1/nft/owners` | 3 |
+| [Get NFT Owner History by Token](/api-reference/web3-api/nft/nft-ownership/get-nft-owner-history-by-token) | `/v1/nft/owner/history` | 3 |
+| [Get NFT Transfers by Collection](/api-reference/web3-api/nft/nft-transfers/get-nft-transfers-by-collection) | `/v1/nft/transfers` | 3 |
+
+### Domain
+
+| Method | Endpoint | Credits |
+| --- | --- | --- |
+| [Resolve ENS Domain](/api-reference/web3-api/domain/ens-domain-endpoints/resolve-ens-domain) | `/v1/ens/records` | 1 |
+| [Reverse Resolve ENS Domain](/api-reference/web3-api/domain/ens-domain-endpoints/reverse-resolve-ens-domain) | `/v1/ens/reverse` | 3 |
+| [Get ENS Domains by Address](/api-reference/web3-api/domain/ens-domain-endpoints/get-ens-domains) | `/v1/account/ens` | 3 |
+
+## Notes
+
+- **When credits are deducted.** Web3 API charges only on a successful response (4xx/5xx are free). SQL API charges at submission and the deduction is final, regardless of query outcome.
+- **No per-chain variation.** The same method costs the same number of credits on every supported chain.
+- **Pagination.** Each page request is a separate billable call.
+- **Subject to change.** Credit costs may be adjusted as we add capacity or new methods. Material changes will be announced in advance.
+
+To monitor your usage, visit [console.chainbase.com/settings/billing?tab=credit](https://console.chainbase.com/settings/billing?tab=credit).
